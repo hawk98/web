@@ -1,0 +1,322 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+
+var cmMacPort = new Array();
+cmMacPort[1] = "$%cmMacPort1#$";
+cmMacPort[2] = "$%cmMacPort2#$";
+cmMacPort[3] = "$%cmMacPort3#$";
+cmMacPort[4] = "$%cmMacPort4#$";
+cmMacPort[5] = "$%cmMacPort5#$";
+cmMacPort[6] = "$%cmMacPort6#$";
+cmMacPort[7] = "$%cmMacPort7#$";
+cmMacPort[8] = "$%cmMacPort8#$";
+cmMacPort[9] = "$%cmMacPort9#$";
+cmMacPort[10] = "$%cmMacPort10#$";
+cmMacPort[11] = "$%cmMacPort11#$";
+cmMacPort[12] = "$%cmMacPort12#$";
+cmMacPort[13] = "$%cmMacPort13#$";
+cmMacPort[14] = "$%cmMacPort14#$";
+cmMacPort[15] = "$%cmMacPort15#$";
+cmMacPort[16] = "$%cmMacPort16#$";
+cmMacPort[17] = "$%cmMacPort17#$";
+cmMacPort[18] = "$%cmMacPort18#$";
+cmMacPort[19] = "$%cmMacPort19#$";
+cmMacPort[20] = "$%cmMacPort20#$";
+cmMacPort[21] = "$%cmMacPort21#$";
+cmMacPort[22] = "$%cmMacPort22#$";
+cmMacPort[23] = "$%cmMacPort23#$";
+cmMacPort[24] = "$%cmMacPort24#$";
+cmMacPort[25] = "$%cmMacPort25#$";
+cmMacPort[26] = "$%cmMacPort26#$";
+cmMacPort[27] = "$%cmMacPort27#$";
+cmMacPort[28] = "$%cmMacPort28#$";
+
+function display()
+{
+changebgcolor();
+
+}	
+var  MultymacPortList = [$%MultymacPortList#$];
+var  MultymacVlanList = [$%MultymacVlanList#$];
+var  MultymacAddrList = [$%MultymacAddrList#$];
+var  MultymacStateList = [$%MultymacStateList#$];
+
+var MultyMacTotalPages = $%MultyMacTotalPages#$;
+var MultyMacCurPage = $%MultyMacCurPage#$;
+var MultyMacPageItenNum = 20;
+
+function writeList()
+{
+var i;
+
+for(i=0;i<MultymacVlanList.length;i++)
+{
+	document.write("<tr  class='tables_all'><td class=inputsyslog1  >");
+	document.write( i+( MultyMacCurPage - 1 ) * MultyMacPageItenNum +1);
+	document.write("</td><td class=inputsyslog1>");
+	document.write(MultymacPortList[i]);
+	document.write("</td><td class=inputsyslog1>");
+	document.write(MultymacVlanList[i]);
+	document.write("</td><td class=inputsyslog1>");
+	document.write(MultymacAddrList[i]);
+	document.write("</td><td class=inputsyslog1>");
+	document.write(MultymacStateList[i]);
+	document.write("</td><td class=inputsyslog1>");
+	if(MultymacStateList[i] == "Static")
+		document.write("<input type='button' class='botton_under_line' name='button2' id='button2' value='删除'  onclick='delMac("+i+")' />");
+	else
+	    document.write("&nbsp;");	
+	document.write("</td></tr>");
+}
+
+}
+
+
+function delMac(i)
+{
+document.getElementById("MultymacDelMacAddr").value = MultymacAddrList[i];
+document.getElementById("MultymacDelMacAddrFlag").value = 1;
+document.getElementById("MultymacDelVlanID").value = MultymacVlanList[i];
+document.form1.submit();
+}
+
+function subForm()
+{
+
+	if(document.getElementById("tmmacVlanID").value<1 || document.getElementById("tmmacVlanID").value>4094)
+	{
+		alert("VLAN ID错误！");
+		return;
+	}
+	if(document.getElementById("tmmacPort").value<1 || document.getElementById("tmmacPort").value>28)
+	{
+		alert("端口错误！");
+		return;
+	}
+	if(!tdMacCheck(document.getElementById("tmmacAddr").value))
+	{
+		alert("MAC地址错误！");
+		return;
+	}
+	document.form1.submit();
+}
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("MultyMacGotoGage").value;
+	
+	if(!fucCheckNUM(gotoPageNum)  || gotoPageNum==""||gotoPageNum<1||gotoPageNum>MultyMacTotalPages)
+	{
+		alert("您输入的页数不存在！");
+		return;
+	}
+	if(gotoPageNum == MultyMacCurPage)
+	{
+		alert("您已经在第"+MultyMacCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("MultyMacGotoPageEnable").value = 1;
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("MultyMacGotoGage").value = (MultyMacCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("MultyMacGotoGage").value = (MultyMacCurPage+1);
+	gotopage();
+}
+
+function checkSub()
+{
+	var VLD = document.getElementById("tmmacVlanID").value
+	var idName = "";
+	var checkPort = 0;
+	var i = 0;
+	if(!fucCheckNUM(VLD)  || isNaN(VLD))
+	{
+	alert("VLAN ID 错误");
+	return;
+	}
+	if(VLD <1 || VLD >4094)
+	{
+	alert("VLAN ID 的范围是1-4094");
+	return;
+	}
+	for(i=1;i<=portNum;i++)
+	{
+	idName = "cmMacPort"+i;
+	if(document.getElementById(idName).checked == true)
+		checkPort += 1;
+	
+	}
+	if(checkPort<1)
+		{
+		alert("请选择端口");
+		return;
+		}
+	
+	if( !tdMacMcastCheck(document.getElementById("tmmacAddr").value))
+		{
+		alert("MAC地址错误,请输入正确的多播MAC！");
+		return;
+		}
+	document.form1.submit();
+}
+
+function IsDigit(fData)
+{
+    return ((fData>="0") && (fData<="9"))
+} 
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('mmac'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>多播MAC</td>
+    
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">MAC地址</span></div></TD>
+      <TD colspan="7" ><span class="crons">
+        <input type="text" name="tmmacAddr" id="tmmacAddr" / VALUE="$%tmmacAddr#$">
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;VLAN ID</TD>
+      <TD colspan="7" ><span class="crons">
+      <input type="text" name="tmmacVlanID" id="tmmacVlanID" / VALUE="$%tmmacVlanID#$">(1~4094)</span></TD>
+      </TR>
+      
+      <script language= "javascript">
+	  for(var i=1; i<=portNum; i++)
+	  {		
+		   if( i%4 == 1)
+		   {	
+		   		document.write("<TR height=22>");
+		   		if(i == 1)
+					document.write("<TD valign='top'>&nbsp;&nbsp;端口</TD>");
+				else
+		   			document.write("<TD valign='top'>&nbsp;</TD>");
+     
+		   }
+		   
+		   if(i <= 4)
+		   		document.write("<TD width='15%'><span class='inputsyslog1'>");  
+		   else
+		   		document.write("<TD><span class='inputsyslog1'>");   
+		   
+		   document.write("<input type='checkbox' name='cmMacPort"+i+"' id='cmMacPort"+i+"' value='ON' "+cmMacPort[i]+">端口"+i+"</span></TD>");
+		   
+		   if(i%4 == 0)
+		   	document.write("</TR>");
+	  }
+      </script>
+     
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交" onClick="checkSub()">
+    </td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>多播MAC地址表&nbsp;&nbsp;&nbsp;
+   <script language="javascript">
+	document.write("总共"+MultyMacTotalPages+"页，当前"+MultyMacCurPage+"页，");
+	</script>
+      到
+      <input name="MultyMacGotoGage" id="MultyMacGotoGage" type="text"  size="3" maxlength="3" VALUE="$%MultyMacGotoGage#$">
+      页
+      <input type="button" class="button1" value="确 认" id="gotoVlanAPage"  onClick="gotopage();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> 
+<a  onClick="gotoNextpage();"  style="cursor:pointer;">下一页</a><span class="table_main3">
+<input type="hidden" name="MultymacDelMacAddr" id="MultymacDelMacAddr" / VALUE="$%MultymacDelMacAddr#$">
+<input type="hidden" name="MultymacDelMacAddrFlag" id="MultymacDelMacAddrFlag" / VALUE="$%MultymacDelMacAddrFlag#$">
+<input type="hidden" name="MultymacDelVlanID" id="MultymacDelVlanID" / VALUE="$%MultymacDelVlanID#$">
+</span><span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="cmMacPort1,cmMacPort2,cmMacPort3,cmMacPort4,cmMacPort5,cmMacPort6,cmMacPort7,cmMacPort8" >
+<input type="hidden" name="MultyMacGotoPageEnable" id="MultyMacGotoPageEnable"  value="$%MultyMacGotoPageEnable#$"/>
+</span></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list">数量</TD>
+      <TD width="16%"   nowrap class="all_tables_list">端口</TD>
+      <TD width="16%"   nowrap class="all_tables_list">VLAN ID</TD>
+      <TD width="16%"   nowrap class="all_tables_list">MAC地址</TD>
+      <TD width="16%"   nowrap class="all_tables_list">类型</TD>
+      <TD width="16%"   nowrap class="all_tables_list">删除</TD>
+    </TR>
+   <script language="javascript">
+	  writeList();
+	  if(MultyMacCurPage == 1)
+	  {
+		  if (typeof gotoVlanPrePage !== 'undefined')
+  			document.getElementById("gotoVlanPrePage").style.display="none";
+	  }
+	  if(MultyMacCurPage == MultyMacTotalPages)
+	  {
+		  if (typeof gotoVlanNextPage !== 'undefined')
+ 		 	document.getElementById("gotoVlanNextPage").style.display="none";
+	  }
+	document.getElementById("tmmacVlanID").value = "";
+	  </script>
+  </table>
+</form>
+
+</BODY></HTML>

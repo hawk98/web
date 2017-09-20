@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+var stpStaList = [$%stpStaList#$];
+//var stpStaList = [1,23,3,5,3,43,2,3,34,6];
+
+function writeLines()
+{
+	var j = 0;
+	
+	for(var i=0;i<stpStaList.length/9;i++)
+	{
+	document.write("<tr>");
+	document.write("      <td class='td25'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("      <td class='crons'>"+stpStaList[j]+"</td>");
+	j++;
+	document.write("    </tr>");	
+		
+	}
+	
+}
+
+function changePort()
+{
+document.form1.submit();
+}
+
+function clearSta()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return;
+	}
+	document.getElementById("stpStaDeleteFlag").value = 1;
+	document.form1.submit();	
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("stpStaAutoflash").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	}
+}
+
+function aotoRefreshSet()
+{
+if(document.getElementById("stpStaAutoflash").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+}
+
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">STP 数据统计</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+    <table class="table_maintable" cellpadding="0">
+    <tr>
+      <td class="td25" colspan=4>&nbsp;</td>
+      <td colspan="5"  class="crons">
+        <input type="checkbox" name="stpStaAutoflash" id="stpStaAutoflash" value="ON"  onclick="aotoRefreshSet()"  $%stpStaAutoflash#$>
+        自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" class="button3" name="立即刷新" id="立即刷新" value="立即刷新" />
+        <input type="button" class="button1" name="button" id="button" value="清 零"  onclick="clearSta()" />
+        <input type="hidden" name="stpStaDeleteFlag" id="stpStaDeleteFlag" / VALUE="$%stpStaDeleteFlag#$">
+      </td>
+      </tr>
+    <tr>
+      <td  class="partition" align="center" width="10%">端口</td>
+      <td  class="partition">Rx RSTP</td>
+      <td  class="partition">Tx RSTP</td>
+      <td  class="partition">Rx STP</td>
+      <td  class="partition">Tx STP</td>
+      <td  class="partition">Rx TCN</td>
+      <td  class="partition">Tx TCN</td>
+      <td  class="partition">Rx Ill.</td>
+      <td  class="partition">Rx Unk.</td>
+    </tr>
+    <script language="javascript">
+	writeLines();
+	aotoRefresh();
+	</script>
+    </table>
+  <INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="stpStaAutoflash" ></form>
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="js/InputCheck_web.js">if (window == top) top.location.href = "/index.html";
+ </script>
+<SCRIPT LANGUAGE="javascript">
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+function display()
+{
+changebgcolor();
+
+}
+
+var acringStaList = [$%acringStaList#$];
+
+
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<acringStaList.length/7;i++)
+		{
+		document.write(" <tr class='tables_all'>");
+		document.write("    <td class='inputsyslog1'>"+convert_tomodport(acringStaList[j])+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringStaList[j]+"</td>");
+		j++;
+		document.write("  </tr>");
+		}
+}
+
+function changePort()
+{
+document.form1.submit();
+}
+
+function clearSta()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return;
+	}
+	document.getElementById("isacringStaClear").value = 1;
+	document.form1.submit();	
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("autoRefresh").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	}
+}
+function aotoRefreshSet()
+{
+if(document.getElementById("autoRefresh").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+}
+
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>UT-RING 数据统计</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"><span class="inputsyslog1">
+    <span class="inputsyslog1">
+    <input type="checkbox" name="autoRefresh" id="autoRefresh"  value="ON"  onclick="aotoRefreshSet()"  $%autoRefresh#$ />
+    </span> 自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" class="button3" name="立即刷新" id="立即刷新" value="立即刷新" />
+<input type="button" class="button3" name="button" id="button" value="清 零"  onclick="clearSta()" />
+    </span></div></td>
+  </tr>
+</table>
+
+
+	
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <tr class="table_maintable">
+      <td  width="14%"  class="all_tables_list" align="center"  >端口</td>
+      <td  width="14%"  class="all_tables_list" align="center" >Rx ERSTP</td>
+      <td  width="14%"  class="all_tables_list" align="center" >Tx ERSTP</td>
+      <td  width="14%"  class="all_tables_list" align="center" >Rx ETCN</td>
+      <td  width="14%"  class="all_tables_list" align="center" >Tx ETCN</td>
+      <td  width="14%"  class="all_tables_list" align="center" >Rx Ill</td>
+      <td  width="16%"  class="all_tables_list" align="center">Tx Unk</td>
+
+	  
+	  
+	  
+    </tr>
+    <script language="javascript">
+	writeLines();
+	aotoRefresh();
+	</script>
+  </table>
+<span class="inputsyslog1">
+<input type="hidden" name="isacringStaClear" id="isacringStaClear"  value="$%isacringStaClear#$" />
+</span>
+  </form>
+
+</BODY></HTML>

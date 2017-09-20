@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+/*
+var syslogHostIdList = [1,2];
+var syslogHostIpaddrList = ["1.1.1.1","2.2.2.2"];
+var syslogHostModeList = [1,0];
+var syslogHostPortList = [11,22];
+*/
+
+var syslogHostIdList = [$%syslogHostIdList#$];
+var syslogHostIpaddrList = [$%syslogHostIpaddrList#$];
+var syslogHostModeList = [$%syslogHostModeList#$];
+var syslogHostPortList = [$%syslogHostPortList#$];
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<syslogHostIdList.length;i++)
+	{
+	tempBuf += "<tr><td class='crons' colspan='2'>";
+	tempBuf += syslogHostIdList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += syslogHostIpaddrList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += syslogHostModeList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += syslogHostPortList[i];
+	tempBuf += "</td><td class='crons'>";
+	if(syslogHostModeList[i] == "enable")
+			tempBuf += "<input type='button' name='button3' id='button3' class='button1' value='禁 用'  onclick='enableSyslog("+syslogHostIdList[i]+",2)'/>";
+	else
+			tempBuf += "<input type='button' name='button3' id='button3' class='button1' value='启 用'  onclick='enableSyslog("+syslogHostIdList[i]+",3)'/>";
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += "<input type='button' name='button2' class='button1' id=button2 value='删 除' onclick='delHost("+ i +")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+function enableSyslog(ID,oprationType)
+{
+	//alert(ID+"and"+oprationType);
+	document.getElementById("isDelSyslog").value = oprationType;
+	document.getElementById("SyslogHostId").value = ID;
+	
+	document.form1.submit();
+}
+
+function delHost( i )
+{
+	document.getElementById("isDelSyslog").value = 1;
+	document.getElementById("SyslogHostId").value = syslogHostIdList[i];
+	document.form1.submit();
+}
+
+function checkSub()
+{
+	
+	var serIP = document.getElementById("tsyslogIP").value;
+	
+	if(serIP == "")
+	{
+		alert("IP不能为空！");
+		return false;
+	}
+	
+	if(!tdIpCheck(serIP))
+	{
+		alert("IP地址错误");
+		return false;
+	}
+	
+		tSyslogPort = document.getElementById("tSyslogPort").value;
+		if(isNaN(tSyslogPort) || tSyslogPort < 1 || tSyslogPort > 65535 || !fucCheckNUM(tSyslogPort)) 
+		{
+			alert("UDP端口设置错误，范围是 1-65535 ！");
+			return false;
+		}	
+	
+	
+ 
+}
+
+function changeValue(){
+	var selectId = document.getElementById("SyslogHostId").value;
+	for(var i=0;i<syslogHostIdList.length;i++)
+	{
+		if(selectId == syslogHostIdList[i])
+		{
+			if(syslogHostModeList[i])
+				document.getElementById("isDelSyslog").checked = true;
+			else
+				document.getElementById("isDelSyslog").checked = false;
+			document.getElementById("tsyslogIP").value = 	syslogHostIpaddrList[i];
+			document.getElementById("tSyslogPort").value = syslogHostPortList[i];
+			return;
+		}
+	}
+	
+		document.getElementById("isDelSyslog").checked = false;		
+		document.getElementById("tsyslogIP").value = 	"";
+		document.getElementById("tSyslogPort").value = "";
+
+	
+}
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="" onsubmit="return checkSub();">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">系统日志</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">  
+   <tr>
+    <td class="td25" colspan="2">HOST ID：</td>
+    <td colspan="5"  class="crons">
+      <select	name="SyslogHostId" id="SyslogHostId" size="1" onchange="changeValue()">
+        <option	value="1" $%sysloghostid(1)#$>1</option>
+        <option	value="2" $%sysloghostid(2)#$>2</option>
+        <option	value="3" $%sysloghostid(3)#$>3</option>
+        <option	value="4" $%sysloghostid(4)#$>4</option>
+      </select>
+    </td>
+  </tr>
+<tr>
+  <tr>
+    <td width="15%" class="td25" colspan="2">模式：</td>
+    <td  class="crons" colspan="5"  >
+      <input type="checkbox" name="syslogEnable" id="syslogEnable" value="ON" / $%syslogEnable#$>
+      启用</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2"> IP：</td>
+    <td  class="crons" colspan="5"  >
+      <input type="text" name="tsyslogIP" id="tsyslogIP" / VALUE="$%tsyslogIP#$">
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">UDP端口：</td>
+    <td colspan="5" class="crons">
+      
+      <input type="text" name="tSyslogPort" id="tSyslogPort" / VALUE="$%tSyslogPort#$">
+      
+    </td>
+  </tr>
+
+  
+  <td height=40 colspan="2"> </td>
+  <td colspan="5"  >
+    <input type="submit" class="button1" name="button" id="button" value="提 交"  >
+  </td>
+</tr>
+  <tr>
+    <td style="width:150px" >&nbsp;</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=6 class="table_main3">系统日志主机表</td>
+    </tr>
+  <tr>
+    <td   class="partition" colspan="2">HOST</td>
+    <td width="166"   class="partition">IP</td>
+    <td width="166"   class="partition">模式</td>
+    <td width="184"   class="partition">端口</td>
+    <td width="200"   class="partition">启用</td>
+    <td width="185"   class="partition">删除</td>
+  </tr>
+  <script language="javascript">
+  writeList();
+//  changeValue();
+  </script>
+  
+</table>
+      <input type="hidden" name="isDelSyslog" id="isDelSyslog" value="$%isDelSyslog#$" />
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="syslogEnable" ></form>
+</div>
+</body>
+</html>

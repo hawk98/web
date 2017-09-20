@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+var test = 1;
+var startPingFresh = 1;
+timer=null;
+function checkSub()
+{
+if(document.getElementById("icmpPingIP").value.length == 0 )
+{
+alert("请输入IP地址!");
+return;
+}
+if(document.getElementById("icmpPingIP").value.length > 64 )
+{
+alert("请输入正确的IP地址或域名!");
+return;
+}
+document.form1.submit();
+}
+
+
+function showInfo()
+{
+	setTimeout("showInfo()",1200);
+	alert(top.hiddenPing.stricmpPingInfo);
+	if(top.hiddenPing.stricmpPingInfo != null && top.hiddenPing.stricmpPingInfo.length >0 )
+	{
+		document.getElementById("pingInfo").value = top.hiddenPing.stricmpPingInfo;
+		
+		}
+}
+
+
+
+
+</script>
+<style type="text/css">
+<!--
+.disableText {	BACKGROUND-COLOR: #fff; BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; 
+}
+-->
+</style>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false onload="showInfo()">
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+  <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th height="32" colspan="2" class="partition"><h3>ICMP&nbsp;Ping</h3></th>
+  </tr>
+  <tr>
+    <td class="td25">IP地址：</td>
+    <td  class="crons">
+      <input type="text" name="icmpPingIP" id="icmpPingIP" / VALUE="$%icmpPingIP#$">
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" name="button" id="button" value=" 开 始 "  onclick="checkSub()"/>
+    </td>
+  </tr>
+
+   <tr>
+    <td class="td25">&nbsp;</td>
+    <td ><p>
+    </p>
+      <p>
+        <textarea name="pingInfo" cols="82" rows="13" readonly="readonly" id="pingInfo">$%icmpPingInfo#$</textarea>
+      </p>
+      <p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+
+</form>
+</div>
+</body>
+</html>

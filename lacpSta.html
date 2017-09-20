@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+
+<script language="javascript">
+var lacpStaList = [$%lacpStaList#$];
+
+var portNum = $%portNum#$;
+
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<portNum;i++)
+	{
+		document.write("<tr>");
+		document.write("    <td class='td25'>"+lacpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='crons'>"+lacpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='crons'>"+lacpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='crons'>"+lacpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='crons'>"+lacpStaList[j]+"</td>");
+		j++;
+		document.write("  </tr>");	}
+}
+
+function changePort()
+{
+document.getElementById("lldpDeleteFlag").value = 0;
+document.form1.submit();
+}
+
+
+function clearSta()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return;
+	}
+	document.getElementById("lldpDeleteFlag").value = 1;
+	document.form1.submit();	
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("lldpStaAutoFlash").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	}
+}
+
+function aotoRefreshSet()
+{
+if(document.getElementById("lldpStaAutoFlash").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+}
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">LACP 统计</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td colspan=3 class="crons">&nbsp;</td>
+    <td colspan="4" class="crons">
+      <input type="checkbox" name="lldpStaAutoFlash" id="lldpStaAutoFlash" value="ON"  onclick="aotoRefreshSet()"  $%lldpstaautoflash#$ />
+      自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+      
+        <input type="button" class="button3" name="button" id="button" value="立即刷新" onclick="changePort()" />
+        <input type="button" class="button1" name="button2" id="button2" value="清 零" onclick="clearSta()" />
+        <input type="hidden" name="lldpDeleteFlag" id="lldpDeleteFlag" / VALUE="$%lldpDeleteFlag#$" />
+      </td>
+    </tr>
+  <tr>
+    <td  class="partition" align="center">端口</td>
+    <td  class="partition">Rx Frames</td>
+    <td  class="partition">Tx Frames</td>
+    <td  class="partition">Rx Unknown</td>
+    <td  class="partition">Rx Illegal</td>
+  </tr>
+  <script language="javascript">
+  writeLines();
+  aotoRefresh();
+  </script>
+
+  </table>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="lldpStaAutoFlash" >
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

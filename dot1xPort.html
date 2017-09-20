@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+
+<script language="javascript">
+//var dot1xCurPortState = [1,2,0,1,3,0,1,2];
+var dot1xCurPortState = [$%dot1xCurPortStateList#$];
+
+
+var dot1xLastSourceState = [$%dot1xLastSourceList#$];
+var dot1xLastIDState = [$%dot1xLastIDList#$];
+
+var i;
+
+function reactivePort( port )
+{
+	document.getElementById("hDot1xReactivePort").value = port;
+	
+	document.getElementById("hDot1xReauthFlag").value = 1;
+	
+	document.form1.submit();
+}
+function setPortState()
+{
+	var IdName;
+	var StateName1;
+	for(i=1;i<=28;i++)
+	{	
+		IdName="dot1xCurPortState"+i;
+		StateName1 = getStateName(dot1xCurPortState[i-1])
+		document.getElementById(IdName).value = StateName1;
+	}
+}
+
+function setPortLastSource()
+{
+	var IdName;
+	var StateName1;
+	for(i=1;i<=28;i++)
+	{	
+		IdName="dot1xLastSource"+i;
+		document.getElementById(IdName).value = dot1xLastSourceState[i-1];
+	}
+}
+
+function setPortLastID()
+{
+	var IdName;
+	var StateName1;
+	for(i=1;i<=28;i++)
+	{	
+		IdName="dot1xLastID"+i;
+		document.getElementById(IdName).value = dot1xLastIDState[i-1];
+	}
+}
+
+function getStateName(State)
+{
+var StateName;
+switch(State)
+{
+	case 0: StateName = "未连接";
+			break;
+	case 1: StateName = "认证状态";
+			break;
+	case 2: StateName = "未认证";
+			break;
+	case 3: StateName = "802.1x禁用";
+			break;
+}
+	return StateName;
+}
+</script>
+<style type="text/css">
+<!--
+.disableText {
+	BACKGROUND-COLOR: #fff; BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; 
+}
+-->
+</style>
+</head>
+
+<body >
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">802.1x 端口配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td  class="partition"><div   style="width:30px">端口</div></td>
+    <td  class="partition">端口模式</td>
+    <td  class="partition">端口状态</td>
+    <td  class="partition">重新认证</td>
+    <td  class="partition">MAC地址</td>
+    <td  class="partition">用户名</td>
+  </tr>
+  <tr>
+    <td class="crons">1</td>
+    <td class="crons">
+      <select name="sDot1xPortMode1" id="sDot1xPortMode1">
+        <option value="2" $%sDot1xPortMode1(2)#$>自动</option>
+        <option value="1" $%sDot1xPortMode1(1)#$>强制认证</option>
+        <option value="3" $%sDot1xPortMode1(3)#$>强制非认证</option>
+      </select>
+    </td>
+    <td class="crons"><input name="dot1xCurPortState1" type="text" class="disableText" id="dot1xCurPortState1"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button2" id="button2" value="立即重新认证" onclick="reactivePort(0)" /></td>
+    <td class="crons"><input name="dot1xLastSource1" type="text" class="disableText" id="dot1xLastSource1"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID1" type="text" class="disableText" id="dot1xLastID1"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">2</td>
+    <td class="crons"><select name="sDot1xPortMode2" id="sDot1xPortMode2">
+      <option value="2" $%sDot1xPortMode2(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode2(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode2(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState2" type="text" class="disableText" id="dot1xCurPortState2"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button3" id="button3" value="立即重新认证" onclick="reactivePort(1)"  /></td>
+    <td class="crons"><input name="dot1xLastSource2" type="text" class="disableText" id="dot1xLastSource2"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID2" type="text" class="disableText" id="dot1xLastID2"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">3</td>
+    <td class="crons"><select name="sDot1xPortMode3" id="sDot1xPortMode3">
+      <option value="2" $%sDot1xPortMode3(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode3(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode3(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState3" type="text" class="disableText" id="dot1xCurPortState3"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button4" id="button4" value="立即重新认证"  onclick="reactivePort(2)" /></td>
+    <td class="crons"><input name="dot1xLastSource3" type="text" class="disableText" id="dot1xLastSource3"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID3" type="text" class="disableText" id="dot1xLastID3"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">4</td>
+    <td class="crons"><select name="sDot1xPortMode4" id="sDot1xPortMode4">
+      <option value="2" $%sDot1xPortMode4(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode4(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode4(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState4" type="text" class="disableText" id="dot1xCurPortState4"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button5" id="button5" value="立即重新认证" onclick="reactivePort(3)"  /></td>
+    <td class="crons"><input name="dot1xLastSource4" type="text" class="disableText" id="dot1xLastSource4"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID4" type="text" class="disableText" id="dot1xLastID4"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">5</td>
+    <td class="crons"><select name="sDot1xPortMode5" id="sDot1xPortMode5">
+      <option value="2" $%sDot1xPortMode5(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode5(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode5(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState5" type="text" class="disableText" id="dot1xCurPortState5"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button6" id="button6" value="立即重新认证"  onclick="reactivePort(4)" /></td>
+    <td class="crons"><input name="dot1xLastSource5" type="text" class="disableText" id="dot1xLastSource5"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID5" type="text" class="disableText" id="dot1xLastID5"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">6</td>
+    <td class="crons"><select name="sDot1xPortMode6" id="sDot1xPortMode6">
+      <option value="2" $%sDot1xPortMode6(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode6(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode6(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState6" type="text" class="disableText" id="dot1xCurPortState6"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button7" id="button7" value="立即重新认证"  onclick="reactivePort(5)" /></td>
+    <td class="crons"><input name="dot1xLastSource6" type="text" class="disableText" id="dot1xLastSource6"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID6" type="text" class="disableText" id="dot1xLastID6"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">7</td>
+    <td class="crons"><select name="sDot1xPortMode7" id="sDot1xPortMode7">
+      <option value="2" $%sDot1xPortMode7(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode7(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode7(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState7" type="text" class="disableText" id="dot1xCurPortState7"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button8" id="button8" value="立即重新认证"  onclick="reactivePort(6)" /></td>
+    <td class="crons"><input name="dot1xLastSource7" type="text" class="disableText" id="dot1xLastSource7"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID7" type="text" class="disableText" id="dot1xLastID7"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">8</td>
+    <td class="crons"><select name="sDot1xPortMode8" id="sDot1xPortMode8">
+      <option value="2" $%sDot1xPortMode8(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode8(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode8(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState8" type="text" class="disableText" id="dot1xCurPortState8"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button9" id="button9" value="立即重新认证"  onclick="reactivePort(7)" /></td>
+    <td class="crons"><input name="dot1xLastSource8" type="text" class="disableText" id="dot1xLastSource8"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID8" type="text" class="disableText" id="dot1xLastID8"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">9</td>
+    <td class="crons"><select name="sDot1xPortMode9" id="sDot1xPortMode9">
+      <option value="2" $%sDot1xPortMode9(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode9(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode9(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState9" type="text" class="disableText" id="dot1xCurPortState9"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button10" id="button10" value="立即重新认证"  onclick="reactivePort(8)" /></td>
+    <td class="crons"><input name="dot1xLastSource9" type="text" class="disableText" id="dot1xLastSource9"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID9" type="text" class="disableText" id="dot1xLastID9"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">10</td>
+    <td class="crons"><select name="sDot1xPortMode10" id="sDot1xPortMode10">
+      <option value="2" $%sDot1xPortMode10(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode10(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode10(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState10" type="text" class="disableText" id="dot1xCurPortState10"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button11" id="button11" value="立即重新认证"  onclick="reactivePort(9)" /></td>
+    <td class="crons"><input name="dot1xLastSource10" type="text" class="disableText" id="dot1xLastSource10"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID10" type="text" class="disableText" id="dot1xLastID10"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">11</td>
+    <td class="crons"><select name="sDot1xPortMode11" id="sDot1xPortMode11">
+      <option value="2" $%sDot1xPortMode11(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode11(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode11(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState11" type="text" class="disableText" id="dot1xCurPortState11"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button12" id="button12" value="立即重新认证"  onclick="reactivePort(10)" /></td>
+    <td class="crons"><input name="dot1xLastSource11" type="text" class="disableText" id="dot1xLastSource11"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID11" type="text" class="disableText" id="dot1xLastID11"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">12</td>
+    <td class="crons"><select name="sDot1xPortMode12" id="sDot1xPortMode12">
+      <option value="2" $%sDot1xPortMode12(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode12(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode12(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState12" type="text" class="disableText" id="dot1xCurPortState12"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button13" id="button13" value="立即重新认证"  onclick="reactivePort(11)" /></td>
+    <td class="crons"><input name="dot1xLastSource12" type="text" class="disableText" id="dot1xLastSource12"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID12" type="text" class="disableText" id="dot1xLastID12"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">13</td>
+    <td class="crons"><select name="sDot1xPortMode13" id="sDot1xPortMode13">
+      <option value="2" $%sDot1xPortMode13(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode13(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode13(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState13" type="text" class="disableText" id="dot1xCurPortState13"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button14" id="button14" value="立即重新认证"  onclick="reactivePort(12)" /></td>
+    <td class="crons"><input name="dot1xLastSource13" type="text" class="disableText" id="dot1xLastSource13"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID13" type="text" class="disableText" id="dot1xLastID13"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">14</td>
+    <td class="crons"><select name="sDot1xPortMode14" id="sDot1xPortMode14">
+      <option value="2" $%sDot1xPortMode14(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode14(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode14(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState14" type="text" class="disableText" id="dot1xCurPortState14"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button15" id="button15" value="立即重新认证"  onclick="reactivePort(13)" /></td>
+    <td class="crons"><input name="dot1xLastSource14" type="text" class="disableText" id="dot1xLastSource14"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID14" type="text" class="disableText" id="dot1xLastID14"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">15</td>
+    <td class="crons"><select name="sDot1xPortMode15" id="sDot1xPortMode15">
+      <option value="2" $%sDot1xPortMode15(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode15(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode15(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState15" type="text" class="disableText" id="dot1xCurPortState15"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button16" id="button16" value="立即重新认证"  onclick="reactivePort(14)" /></td>
+    <td class="crons"><input name="dot1xLastSource15" type="text" class="disableText" id="dot1xLastSource15"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID15" type="text" class="disableText" id="dot1xLastID15"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">16</td>
+    <td class="crons"><select name="sDot1xPortMode16" id="sDot1xPortMode16">
+      <option value="2" $%sDot1xPortMode16(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode16(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode16(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState16" type="text" class="disableText" id="dot1xCurPortState16"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button17" id="button17" value="立即重新认证"  onclick="reactivePort(15)" /></td>
+    <td class="crons"><input name="dot1xLastSource16" type="text" class="disableText" id="dot1xLastSource16"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID16" type="text" class="disableText" id="dot1xLastID16"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">17</td>
+    <td class="crons"><select name="sDot1xPortMode17" id="sDot1xPortMode17">
+      <option value="2" $%sDot1xPortMode17(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode17(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode17(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState17" type="text" class="disableText" id="dot1xCurPortState17"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button18" id="button18" value="立即重新认证"  onclick="reactivePort(16)" /></td>
+    <td class="crons"><input name="dot1xLastSource17" type="text" class="disableText" id="dot1xLastSource17"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID17" type="text" class="disableText" id="dot1xLastID17"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">18</td>
+    <td class="crons"><select name="sDot1xPortMode18" id="sDot1xPortMode18">
+      <option value="2" $%sDot1xPortMode18(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode18(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode18(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState18" type="text" class="disableText" id="dot1xCurPortState18"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button19" id="button19" value="立即重新认证"  onclick="reactivePort(17)" /></td>
+    <td class="crons"><input name="dot1xLastSource18" type="text" class="disableText" id="dot1xLastSource18"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID18" type="text" class="disableText" id="dot1xLastID18"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">19</td>
+    <td class="crons"><select name="sDot1xPortMode19" id="sDot1xPortMode19">
+      <option value="2" $%sDot1xPortMode19(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode19(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode19(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState19" type="text" class="disableText" id="dot1xCurPortState19"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button20" id="button20" value="立即重新认证"  onclick="reactivePort(18)" /></td>
+    <td class="crons"><input name="dot1xLastSource19" type="text" class="disableText" id="dot1xLastSource19"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID19" type="text" class="disableText" id="dot1xLastID19"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">20</td>
+    <td class="crons"><select name="sDot1xPortMode20" id="sDot1xPortMode20">
+      <option value="2" $%sDot1xPortMode20(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode20(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode20(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState20" type="text" class="disableText" id="dot1xCurPortState20"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button21" id="button21" value="立即重新认证"  onclick="reactivePort(19)" /></td>
+    <td class="crons"><input name="dot1xLastSource20" type="text" class="disableText" id="dot1xLastSource20"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID20" type="text" class="disableText" id="dot1xLastID20"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">21</td>
+    <td class="crons"><select name="sDot1xPortMode21" id="sDot1xPortMode21">
+      <option value="2" $%sDot1xPortMode21(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode21(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode21(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState21" type="text" class="disableText" id="dot1xCurPortState21"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button22" id="button22" value="立即重新认证"  onclick="reactivePort(20)" /></td>
+    <td class="crons"><input name="dot1xLastSource21" type="text" class="disableText" id="dot1xLastSource21"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID21" type="text" class="disableText" id="dot1xLastID21"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">22</td>
+    <td class="crons"><select name="sDot1xPortMode22" id="sDot1xPortMode22">
+      <option value="2" $%sDot1xPortMode22(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode22(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode22(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState22" type="text" class="disableText" id="dot1xCurPortState22"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button23" id="button23" value="立即重新认证"  onclick="reactivePort(21)" /></td>
+    <td class="crons"><input name="dot1xLastSource22" type="text" class="disableText" id="dot1xLastSource22"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID22" type="text" class="disableText" id="dot1xLastID22"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">23</td>
+    <td class="crons"><select name="sDot1xPortMode23" id="sDot1xPortMode23">
+      <option value="2" $%sDot1xPortMode23(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode23(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode23(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState23" type="text" class="disableText" id="dot1xCurPortState23"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button24" id="button24" value="立即重新认证"  onclick="reactivePort(22)" /></td>
+    <td class="crons"><input name="dot1xLastSource23" type="text" class="disableText" id="dot1xLastSource23"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID23" type="text" class="disableText" id="dot1xLastID23"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">24</td>
+    <td class="crons"><select name="sDot1xPortMode24" id="sDot1xPortMode24">
+      <option value="2" $%sDot1xPortMode24(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode24(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode24(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState24" type="text" class="disableText" id="dot1xCurPortState24"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button25" id="button25" value="立即重新认证"  onclick="reactivePort(23)" /></td>
+    <td class="crons"><input name="dot1xLastSource24" type="text" class="disableText" id="dot1xLastSource24"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID24" type="text" class="disableText" id="dot1xLastID24"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">25</td>
+    <td class="crons"><select name="sDot1xPortMode25" id="sDot1xPortMode25">
+      <option value="2" $%sDot1xPortMode25(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode25(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode25(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState25" type="text" class="disableText" id="dot1xCurPortState25"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button26" id="button26" value="立即重新认证"  onclick="reactivePort(24)" /></td>
+    <td class="crons"><input name="dot1xLastSource25" type="text" class="disableText" id="dot1xLastSource25"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID25" type="text" class="disableText" id="dot1xLastID25"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">26</td>
+    <td class="crons"><select name="sDot1xPortMode26" id="sDot1xPortMode26">
+      <option value="2" $%sDot1xPortMode26(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode26(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode26(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState26" type="text" class="disableText" id="dot1xCurPortState26"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button27" id="button27" value="立即重新认证"  onclick="reactivePort(25)" /></td>
+    <td class="crons"><input name="dot1xLastSource26" type="text" class="disableText" id="dot1xLastSource26"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID26" type="text" class="disableText" id="dot1xLastID26"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">27</td>
+    <td class="crons"><select name="sDot1xPortMode27" id="sDot1xPortMode27">
+      <option value="2" $%sDot1xPortMode27(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode27(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode27(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState27" type="text" class="disableText" id="dot1xCurPortState27"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button28" id="button28" value="立即重新认证"  onclick="reactivePort(26)" /></td>
+    <td class="crons"><input name="dot1xLastSource27" type="text" class="disableText" id="dot1xLastSource27"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID27" type="text" class="disableText" id="dot1xLastID27"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td class="crons">28</td>
+    <td class="crons"><select name="sDot1xPortMode28" id="sDot1xPortMode28">
+      <option value="2" $%sDot1xPortMode28(2)#$>自动</option>
+      <option value="1" $%sDot1xPortMode28(1)#$>强制认证</option>
+      <option value="3" $%sDot1xPortMode28(3)#$>强制非认证</option>
+    </select></td>
+    <td class="crons"><input name="dot1xCurPortState28" type="text" class="disableText" id="dot1xCurPortState28"   value="802.1x Disabled" size="17"  disabled="true"/></td>
+    <td class="crons"><input type="submit" class="button6" name="button29" id="button29" value="立即重新认证"  onclick="reactivePort(27)" /></td>
+    <td class="crons"><input name="dot1xLastSource28" type="text" class="disableText" id="dot1xLastSource28"   value="-" size="20"  disabled="true"/></td>
+    <td class="crons"><input name="dot1xLastID28" type="text" class="disableText" id="dot1xLastID28"   value="-" size="42"  disabled="true"/></td>
+  </tr>
+  <tr>
+    <td colspan="6"  align="center" height=40>
+      <input type="submit" class="button1" name="button" id="button" value="提 交" />
+      <input name="hDot1xReactivePort" type="hidden" id="hDot1xReactivePort" />
+	  
+       <input name="hDot1xReauthFlag" type="hidden" id="hDot1xReauthFlag" />
+   </td>
+    </tr>
+</table>
+<script language="javascript">
+
+setPortState();
+setPortLastSource();
+setPortLastID();
+</script>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

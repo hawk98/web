@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+
+/*
+var MstpMstiVlanList = ["11111","22222","333333333","444444444","55555"];
+var snmpViewSubtreeList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var snmpViewTypeList = [1,2,1,2,1];
+*/
+var MstpMstiVlanList = [$%MstpMstiVlanList#$];
+var MstpMstiInstList = [$%MstpMstiInstList#$];
+var MstpMstiVlanList1 = [$%MstpMstiVlanList1#$];
+var MstpMstiPrioList = [$%MstpMstiPrioList#$];
+var MstpMstiInfoList = [$%MstpMstiInfoList#$];
+var MstpCheckEnable = "$%MstpCheckEnable#$";
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+ 
+for(i=0;i<MstpMstiInstList.length;i++)
+	{
+	tempBuf += "<tr><td class='crons' colspan='1'>";
+	tempBuf += MstpMstiInstList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiVlanList1[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiPrioList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiInfoList[i * 5];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiInfoList[i * 5 + 1];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiInfoList[i * 5 + 2];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiInfoList[i * 5 + 3];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += MstpMstiInfoList[i * 5 + 4];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += "<input type='button' name='button' class='button1' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+function delSelectId( ID )
+{
+	if (MstpCheckEnable == 0)
+	{
+			alert("MSTP未启用，不能修改MSTI配置信息");
+		return;
+	}
+	document.getElementById("MstpMstiDelID").value = MstpMstiInstList[ID];
+	document.getElementById("MstpMstiDelFlag").value = 1;
+	document.form1.submit();
+}
+
+function checkSub()
+{
+	if (MstpCheckEnable == 0)
+	{
+			alert("MSTP未启用，不能修改MSTI配置信息");
+		return;
+	}
+	var MstpVlan = document.getElementById("MstpMstiVlan").value;
+	if(isNaN(MstpVlan) || MstpVlan < 2 || MstpVlan > 4094  || !fucCheckNUM(MstpVlan))
+		{
+		alert("Vlan 错误，范围为：2-4094");
+		return;
+		}
+
+	var MstpMstiInst = document.getElementById("MstpMstiInst").value;
+	if(isNaN(MstpMstiInst) || MstpMstiInst < 1 || MstpMstiInst > 30  || !fucCheckNUM(MstpMstiInst))
+		{
+		alert("实例错误，范围为：1-30");
+		return;
+		}
+
+	document.form1.submit();
+}
+function delVlan()
+{
+	if (MstpCheckEnable == 0)
+	{
+			alert("MSTP未启用，不能修改MSTI配置信息");
+		return;
+	}	
+	document.getElementById("MstpMstiDelVlanFlag").value = 1;
+	checkSub();
+}
+function changeVlan()
+{  
+ 
+ if (MstpCheckEnable == 0)
+ {
+ 		alert("MSTP未启用，不能修改MSTI配置信息");
+ 	return;
+ }	
+ document.getElementById("MstpMstiDelVlanFlag").value = 2; 
+ document.form1.submit();
+}
+
+ 
+window.onload = function(){    
+
+  /*
+  document.form1.MstpMstiVlan.value = MstpMstiVlanList[2];
+  document.form1.MstpMstiInst.value = ""; 
+  */
+  if (document.form1.MstpMstiInst.value == 0)
+  	document.form1.MstpMstiInst.value = "";
+  for(var i = 1; i < MstpMstiVlanList.length; i++)
+  	if(MstpMstiVlanList[i] == MstpMstiVlanList[0])
+  		document.form1.MstpMstiVlan.value = MstpMstiVlanList[0];
+}
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">MSTI 配置信息</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td width="15%" class="td25" colspan="2">VLAN:</td>
+    <td colspan="8" class="crons"><select name="MstpMstiVlan" id="MstpMstiVlan" onchange="changeVlan();">
+    <script language="javascript">   
+    	for(var i = 1; i < MstpMstiVlanList.length; i++){
+    	  document.writeln("<option value=" + MstpMstiVlanList[i] + ">" + MstpMstiVlanList[i] + "</option>");
+    	}
+    </script>
+    </select></td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">实例:</td>
+    <td colspan="8"  class="crons">
+      <input type="text" name="MstpMstiInst" id="MstpMstiInst" size="20" / VALUE="$%MstpMstiInst#$">
+    (1~30)</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">桥优先级：</td>
+    <td colspan="8" class="crons"><select name="MstpMstiPriority" id="MstpMstiPriority">
+        <option value="0" $%MstpMstiPriority(0)#$>0</option>
+        <option value="4096" $%MstpMstiPriority(4096)#$>4096</option>
+        <option value="8192" $%MstpMstiPriority(8192)#$>8192</option>
+        <option value="12288" $%MstpMstiPriority(12288)#$>12288</option>
+        <option value="16384" $%MstpMstiPriority(16384)#$>16384</option>
+        <option value="20480" $%MstpMstiPriority(20480)#$>20480</option>
+        <option value="24576" $%MstpMstiPriority(24576)#$>24576</option>
+        <option value="28672" $%MstpMstiPriority(28672)#$>28672</option>
+        <option value="32768" $%MstpMstiPriority(32768)#$>32768</option>
+        <option value="36864" $%MstpMstiPriority(36864)#$>36864</option>
+        <option value="40960" $%MstpMstiPriority(40960)#$>40960</option>
+        <option value="45056" $%MstpMstiPriority(45056)#$>45056</option>
+        <option value="49152" $%MstpMstiPriority(49152)#$>49152</option>
+        <option value="53248" $%MstpMstiPriority(53248)#$>53248</option>
+        <option value="57344" $%MstpMstiPriority(57344)#$>57344</option>
+        <option value="61440" $%MstpMstiPriority(61440)#$>61440</option>
+      </select>
+    </td>
+  </tr>
+
+   <tr>
+    <td height=40 colspan="2">&nbsp;</td>
+    <td colspan="1" >
+      <input type="button" class="button1" name="button" id="button" value="添 加"  onclick="checkSub()"/></td> &nbsp&nbsp   
+     <td><input type="button" class="button1" name="button" id="button" value="删 除"  onclick="delVlan()"/>
+     </td>
+  </tr>
+
+   <tr>
+    <td>&nbsp;</td>
+    <td colspan="3" >
+       <input type="hidden" name="MstpMstiDelID" id="MstpMstiDelID"  value="$%MstpMstiDelID#$"/>
+      <input type="hidden" name="MstpMstiDelFlag" id="MstpMstiDelFlag" / VALUE="0">
+       <input type="hidden" name="MstpMstiDelVlanFlag" id="MstpMstiDelVlanFlag"  value="$%MstpMstiDelVlanFlag#$"/>
+     </td>
+  </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=9 class="table_main3">MSTI 列表</td>
+  </tr>
+<tr>
+    <td  class="partition" colspan="1">实例</td>
+    <td  class="partition">VLAN</td>
+    <td  class="partition">桥优先级</td>
+    <td  class="partition">根路径开销</td>
+    <td  class="partition">端口</td>
+    <td  class="partition">根标识</td>
+    <td  class="partition">区域根标识</td>
+    <td  class="partition">桥标识</td>
+    <td  class="partition">删除</td>
+</tr>
+
+<script language="javascript">
+writeList();
+</script>
+
+</table>
+
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

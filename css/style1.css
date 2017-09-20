@@ -1,0 +1,284 @@
+/*-body-*/
+body {font-size: 9pt;color: #000000;background-color:#D3E4F4;margin: 0px 0px 0px 0px; background-image: url();}
+td {font-size: 9pt;color: #000000;line-height: 22px;}
+
+
+/*-不同大小的字体样式-*/
+.h12white{font-size: 9pt;font-weight: normal;color: #ffffff;text-decoration: none;}
+
+.h14red{font-size: 14px;font-weight: bold;color: #ff0000;text-decoration: none;}
+.h14blue{font-size: 14px;font-weight: bold;color: #0000ff;text-decoration: none;}
+
+.h14blackblod{font-size: 14px;font-weight: bold;color: #000000;text-decoration: none;line-height: 25px;letter-spacing:3px;}
+
+
+/*-链接样式-*/
+a:link {font-size: 12px;color: #000;text-decoration: none;}
+a:visited {font-size: 12px;color: #000;text-decoration: none;}
+a:hover {font-size: 12px;RIGHT: 0px; COLOR: #2766B1; }
+a:active {font-size: 12px;color: #2766B1;text-decoration: none;}
+
+a.red1:link {font-size: 9pt;color: #ff6600;text-decoration: none;}
+a.red1:visited {font-size: 9pt;color: #ff6600;text-decoration: none;}
+a.red1:hover {font-size: 9pt;color: #ff6600;text-decoration: underline;}
+a.red1:active {font-size: 9pt;color: #ff9900;text-decoration: underline;}
+
+a.blue1:link {font-size: 9pt;color: #459DDB;text-decoration: none;}
+a.blue1:visited {font-size: 9pt;color:#2682C6;text-decoration: none;}
+a.blue1:hover {font-size: 9pt;color: #459DDB;text-decoration: none;}
+a.blue1:active {font-size: 9pt;color: #2682C6;text-decoration: none;}
+
+/*-文本框样式-*/	
+.textfield{
+width:350px;
+height:15px;
+background-image: url(../images/button_bj.jpg);
+border: 1px solid #CCCCCC;
+font-size: 9pt;}
+
+.select{
+width:100px;
+height:15px;
+background-image: url(../images/button_bj.jpg);
+border: 1px solid #CCCCCC;
+font-size: 9pt;}
+
+
+/*-两个字按钮样式-*/
+.button1 {
+	font-size: 9pt;
+	letter-spacing:2px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/button_bj1.jpg);
+	height: 20px;
+	width:50px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+	
+/*-三个字按钮样式-*/
+.button2 {
+	font-size: 9pt;
+	letter-spacing:2px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/button_bj1.jpg);
+	height: 20px;
+	width:60px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-四个字按钮样式-*/
+.button3 {
+	font-size: 9pt;
+	letter-spacing:0px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/button_bj1.jpg);
+	height: 20px;
+	width:70px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-六个字按钮样式-*/
+.button6 {
+	font-size: 9pt;
+	letter-spacing:0px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/button_bj1.jpg);
+	height: 20px;
+	width:90px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-八个字按钮样式-*/
+.button8 {
+	font-size: 9pt;
+	letter-spacing:0px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/button_bj1.jpg);
+	height: 20px;
+	width:110px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-上一页按钮样式-*/
+.buttonpre {
+	font-size: 9pt;
+	letter-spacing:0px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/previous.png);
+	height: 20px;
+	width:60px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-下一页按钮样式-*/
+.buttonnext {
+	font-size: 9pt;
+	letter-spacing:0px;
+	color: #fff;
+	font-weight: normal;
+	background:url(../images/next.png);
+	height: 20px;
+	width:60px;
+	cursor:pointer;
+	border: 1px solid #5376A7;}
+
+/*-表格样式-*/
+.table_left1 {
+	border: 0px solid #000000;
+	width:210px;
+	background:url(../images/left_bj.jpg);
+	text-align:left;
+}
+
+.table_left2 {
+	border: 0px solid #000000;
+	width:190px;
+	background-color:#E6FAFF;
+	text-align:left;
+}
+
+.table_main1{
+	border: 1px solid #000000;
+	border-right:0px;
+	border-bottom:0px;
+
+	width:100%;
+	background-color:#FFFFFF;
+	text-align:left;}
+	
+.table_main2{
+	border: 0px solid #000000;
+	height:26px;
+	text-align:left;
+	}
+	
+.table_main3{
+	border: 1px solid #000000;
+	border-top:0px;
+	border-left:0px;
+	height:25px;
+	text-align:left;
+	letter-spacing:1px;
+	font-size: 14px;font-weight: bold;color: #000000;
+	padding-left:5px;
+	background-color:#D3E4F4;
+ 	}
+
+.table_main4{
+	border: 0px solid #000000;
+	background-image:url(../images/main_linebj.jpg);
+	height:25px;
+	text-align:center;
+	letter-spacing:5px;
+	font-size: 14px;font-weight: bold;color: #000000;}
+	
+/*zlh@20161214,add table_main5*/
+.table_main5{
+	border: 1px solid #000000;
+
+	width:100%;
+	background-color:#FFFFFF;
+	text-align:left;}
+		 
+.table_main_head{
+ background-image: url(../images/table_main_headbj1.jpg);
+    background-repeat:repeat-x;
+	border:1px solid #97D7E9;
+	border-top:0px;
+	border-left:0px;
+    height:25px;
+	font-size: 9pt;color: #000;}
+	
+.partition{
+	background-color:#D3E4F4;
+
+	border:1px solid #000000;
+	border-top:0px;
+	border-left:0px;
+    height:25px;
+	font-size: 9pt;color: #000;
+	padding-left:5px;}
+
+.table_main{
+ background-image: url(../images/table_main_headbj2.jpg);
+    background-repeat:repeat-x;
+	border:1px solid #A0DCEB;
+	border-top:0px;
+	border-left:0px;
+    height:25px;}
+
+.crons{
+ 	border:1px solid #000000;
+	border-top:0px;
+	border-left:0px;
+    height:25px;
+    text-align:left;
+    padding-left:5px;
+    word-break:break-all;}
+	
+.crons1{
+	border-top:0px;
+	border-left:0px;
+    height:25px;
+    text-align:left;
+    padding-left:5px;
+    word-break:break-all;}
+
+.td25{
+ 	border:1px solid #000000;
+	border-top:0px;
+	border-left:0px;
+    height:25px;
+    text-align:left;
+	 padding-left:5px;}
+    
+.crons_top{
+ background-image: url(../images/table_main_headbj2.jpg);
+    background-repeat:repeat-x;
+	border:1px solid #A0DCEB;
+	border-top:1px;
+	border-left:0px;
+    height:25px;
+    text-align:left;
+    padding-left:5px;}
+
+.crons_left{
+ background-image: url(../images/table_main_headbj2.jpg);
+    background-repeat:repeat-x;
+	border:1px solid #A0DCEB;
+	border-top:0px;
+	border-left:1px;
+    height:25px;
+    text-align:left;
+    padding-left:5px;}
+
+.crons_border{
+ background-image: url(../images/table_main_headbj2.jpg);
+    background-repeat:repeat-x;
+	border:1px solid #A0DCEB;
+    height:25px;
+    text-align:left;
+    padding-left:5px;}
+
+.crons_noright{
+ background-image: url(../images/table_main_headbj2.jpg);
+    background-repeat:repeat-x;
+	border:0px solid #A0DCEB;
+	border-bottom:1px solid #A0DCEB;
+    height:25px;
+    text-align:left;
+    padding-left:5px;}
+
+.table_maintable{
+width: 100%;
+border: 0px;
+border-collapse: collapse;
+border-spacing: 0px;
+}
+

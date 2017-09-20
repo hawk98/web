@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+
+<script language="javascript">
+
+function checkSub(){
+
+	if(document.getElementById("snmpengineID").value.length > 64 || document.getElementById("snmpengineID").value.length < 16)
+	{
+		alert("引擎ID长度不对！");
+		return;
+	}
+
+	if(!IsHexShowMsg(document.getElementById("snmpengineID").value,true,"引擎ID错误"))
+	{
+	return;
+	}
+	
+	document.form1.submit();
+}
+ function IsHexShowMsg(Value,AlertOn,mes)
+{
+    // Default value
+    var  AlertOn = (AlertOn == null) ? 0 : AlertOn;
+
+    ValidChars = "0123456789ABCDEFabcdef";
+
+    var ValueIsHex = true;
+
+    // check for valid charaters  
+    for (var i = 0 ; i <= Value.length; i ++ ) {
+	var ValueChar = Value.charAt(i);
+	if (ValidChars.indexOf(ValueChar) == -1 ) {
+	    ValueIsHex = false; 
+	}
+    }
+    
+    if (!ValueIsHex && AlertOn) {
+        alert (mes);
+    }
+
+    return ValueIsHex;
+}
+
+
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">SNMP 引擎ID</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td  width="15%" class="td25">引擎ID:</td>
+    <td  class="crons">
+<input name="snmpengineID" type="text"  id="snmpengineID"  value="$%snmpengineID#$" size="48" />
+( 16~64个十六进制字符，每两个十六进制字符构成一个八位组)</td>
+  </tr>
+  <tr>
+    <td  height=40>&nbsp;</td>
+    <td  >
+      <input type="button" class="button1" name="button" id="button" value="提 交"  onclick="checkSub()"/>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

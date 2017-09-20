@@ -1,0 +1,307 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+
+<script language="javascript">
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+function display()
+{
+changebgcolor();
+
+}
+
+var portNum = $%portNum#$;
+var fePortNum = $%fePortNum#$;
+
+var aclField = [$%aclField#$];
+var aclListStr = $%aclListStr#$;
+
+var aclType = ["基本","扩展","二层","未知"];
+var aclOrder = ["Config","Auto"];
+
+var str = "";
+var aclList = aclListStr.split("*");	
+var aclAttr = "";
+var aclIDPort = "";
+var aclAttr1 = "";
+var aclAttr2 = "";
+function writeLine_acllist()
+{
+	str = "";	
+	if(aclListStr == "") return;
+	for(var i = 0; i < aclList.length; i++)
+	{
+		aclAttr = aclList[i].split("&");
+		aclIDPort = aclAttr[0].split(";");
+		str += "<tr class='tables_all'><td class='inputsyslog1'>" + aclIDPort[0] + "</td>";		
+		str += "<td class='inputsyslog1'>" + aclType[aclIDPort[2]] + "</td>";
+		str += "<td class='inputsyslog1'>" + aclIDPort[1] + "</td>";
+		str += "<td class='inputsyslog1'>" + aclOrder[aclIDPort[3]] + "</td>";
+		str += "<td class='inputsyslog1' ><input type='button' class='botton_under_line' value='添加规则' onclick='addRuleX(" + aclIDPort[0] + ")'></td></tr>";
+	}
+	document.write(str);		
+}
+
+function writeLine_basicrule()
+{
+	str = "";	
+	if(aclListStr == "") return;		
+	for(var i = 0; i < aclList.length; i++)
+	{
+		aclAttr = aclList[i].split("&");		
+	  aclIDPort = aclAttr[0].split(";");
+	 if(aclIDPort[2] == 0)
+	 {
+		    aclAttr1 = aclAttr[1].split(";");
+		    if(aclAttr1 == "") {continue};	
+			  for(var j = 0; j < aclAttr1.length /4; j++)
+			  {
+		  	  str += "<tr><td class='crons'>" + aclIDPort[0] + "</td>";
+		  	  str += "<td class='crons'>" + aclAttr1[j*4] + "</td>";
+		  	  str += "<td class='crons'>" + getAny(aclAttr1[j*4 + 1]) + "</td>";
+		  	  str += "<td class='crons'>" + aclAttr1[j*4 + 2] + "</td>";
+		  	  str += "<td class='crons'>" + aclAttr1[j*4 + 3] + "</td>";
+		      str += "<td class='crons' colspan='6'><input type='button' class='button1' value='删除' onclick='delRule(" + aclIDPort[0] + "," + aclAttr1[j*4] + ")'></td>";
+		  	  str += "</tr>";
+		  	}
+		}
+  }
+  document.write(str);		
+}
+
+function writeLine_extendrule()
+{
+	str = "";	
+	if(aclListStr == "") return;	
+
+	for(var i = 0; i < aclList.length; i++)
+	{
+		  aclAttr = aclList[i].split("&");		  
+	    aclIDPort = aclAttr[0].split(";");
+	    if(aclIDPort[2] == 1)
+	    {		    
+		    aclAttr1 = aclAttr[1].split(";");
+		    if(aclAttr1 == "") {continue};
+			  for(var j = 0; j < aclAttr1.length /9; j++)
+			  {
+		  	  str += "<tr><td class='crons'>" + aclIDPort[0] + "</td>";
+		  	  str += "<td class='crons'>" + aclAttr1[j*9] + "</td>";
+		  	  for(var k = 1; k < 9; k++)
+		  	    if( k == 2 || k == 4)
+		    	  	str += "<td class='crons'>" + getMask(aclAttr1[j*9 + k]) + "</td>";
+		    	  else
+		    	  	str += "<td class='crons'>" + getAnyExtend(aclAttr1[j*9 + k]) + "</td>";
+		      str += "<td class='crons'><input type='button' class='button1' value='删除' onclick='delRule(" + aclIDPort[0] + "," + aclAttr1[j*9] + ")'></td>";
+		  	  str += "</tr>";
+			  }
+		  }
+  }
+  document.write(str);		
+}
+
+function writeLine_l2rule()
+{	
+	str = "";	
+	if(aclListStr == "") return;	
+	for(var i = 0; i < aclList.length; i++)	
+	{
+		  aclAttr = aclList[i].split("&");		 
+	    aclIDPort = aclAttr[0].split(";");
+	    if(aclIDPort[2] == 2)
+	    {		   
+		    aclAttr2 = aclAttr[1].split(";");
+		    if(aclAttr2 == "") {continue};
+			  for(var j = 0; j < aclAttr2.length /5; j++)
+			  {
+		  	  str += "<tr class='tables_all'><td class='inputsyslog1'>" + aclIDPort[0] + "</td>";
+		  	  str += "<td class='inputsyslog1'>" + aclAttr2[j*5] + "</td>";
+		  	  str += "<td class='inputsyslog1'>" + getAny(aclAttr2[j*5 + 1]) + "</td>";
+		  	  str += "<td class='inputsyslog1'>" + getAny(aclAttr2[j*5 + 2]) + "</td>";
+		  	  str += "<td class='inputsyslog1'>" + getAnyExtend(aclAttr2[j*5 + 3]) + "</td>";
+		  	  str += "<td class='inputsyslog1'>" + aclAttr2[j*5 + 4] + "</td>";
+		      str += "<td class='inputsyslog1' ><input type='button' class='botton_under_line' value='删除' onclick='delRule(" + aclIDPort[0] + "," + aclAttr2[j*5] + ")'></td>";
+		  	  str += "</tr>";
+			  }
+		 }
+  }
+  document.write(str);		
+}
+
+function addRuleX(i){
+  document.form1.AclAction.value = 3;
+  document.form1.AclActionID.value = i;
+  if(i >= 3000 && i <= 3999)
+    window.location.href = "aclrule.html?AclListNo=" + i;
+  else if(i >= 4000 && i <= 4999)
+  	window.location.href = "aclrule2.html?AclListNo=" + i;
+  else if(i >= 2000 && i <= 2999)
+  	window.location.href = "aclrule3.html?AclListNo=" + i;
+  else
+    alert("未知类型的 ACL 无法添加规则！");	
+}
+
+function delRule(i, j){
+  document.form1.AclAction.value = 4;
+  document.form1.AclActionID.value = i;
+  document.form1.AclActionRuleID.value = j;
+  document.form1.submit();
+}
+
+function getPort(pVal)
+{
+  var rt = "";
+  var tmp = 1;
+  for(var i = 1; i <= portNum+1; i++)
+  	{  	  
+         if (i == fePortNum+1) 
+           {
+           	tmp *=2;
+            continue;              
+           }
+         if(i > fePortNum+1) 
+        	{
+			      j = i - 1;
+        	}
+	       else
+	 	     {
+			     j = i
+	 	     }
+        if(tmp & pVal) rt += j + ",";
+        tmp *=2;
+  }
+  return rt == "" ? "" : rt.substring(0, rt.length -1);
+}
+
+function getAny(pVal)
+{
+  var rt = "";
+  if(pVal == "0-0" || pVal == "0.0.0.0" || pVal == "00:00:00:00:00:00") 
+    return "Any";
+  if(pVal == "(255)")
+    return "NULL(255)";
+  return pVal;
+}
+
+function getAnyExtend(pVal)
+{
+  var rt = "";
+  if(pVal == "0" || pVal == "0.0.0.0" || pVal == "00:00:00:00:00:00") 
+    return "Any";
+  if(pVal == "(255)" || pVal == "0x0000")
+    return "Any";
+  return pVal;
+}
+
+function getMask(pVal)
+{
+  var rt = "";
+  if(pVal == "0.0.0.0") 
+    return "255.255.255.255"; 
+  return pVal;
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('aclrule_config'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>ACL Rule配置</td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right">
+      <input type="hidden" name="rmonEventDelID" id="rmonEventDelID" / VALUE="$%rmonEventDelID#$">
+    </div></td>
+    
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+  <TR align="center" height=22>
+    <TD width="20%"   nowrap class="all_tables_list"><span class="partition">List ID</span></TD>
+    <TD width="20%"   nowrap class="all_tables_list"><span class="partition">类型</span></TD>
+    <TD width="20%"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+    <TD width="20%"   nowrap class="all_tables_list"><span class="partition">匹配顺序</span></TD>
+    <TD width="20%"   nowrap class="all_tables_list"><span class="partition">添加规则</span></TD>
+  </TR>
+  <script language="javascript">  
+  writeLine_acllist();  
+  </script>
+</table>
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>二层类型规则</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <TR align="center" height=22>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="partition">List ID</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">Rule ID</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">源MAC</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">目的MAC</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">以太网类型</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">动作</span></TD>
+       <TD width="15%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+   </TR>
+  <script language="javascript">  
+  writeLine_l2rule();  
+  </script>
+  </table>
+    <input type="hidden" name="AclAction" id="AclAction"  value="$%AclAction#$"/>
+    <input type="hidden" name="AclActionID" id="AclActionID"  value="$%AclActionID#$"/>
+    <input type="hidden" name="AclActionRuleID" id="AclActionRuleID"  value="$%AclActionRuleID#$"/>
+    <input type="hidden" name="AclPortMask" id="AclPortMask"  value="$%AclPortMask#$"/>
+	</form>
+
+</BODY></HTML>

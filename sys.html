@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http：//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http：//www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>sys</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+
+function checksub()
+{
+	if(checkname(document.getElementById("tSysContact"),"联系方式不能为空","联系方式中不能有空格","联系方式中必须是合法字符",0) == false)
+	{
+		return false;	
+	}
+
+	if(checkname(document.getElementById("tSysName"),"设备名称不能为空","设备名称中不能有空格","设备名称中必须是合法字符",0) == false)
+	{
+		return false;	
+	}
+
+	if(checkname(document.getElementById("tSysLocation"),"设备地址不能为空","设备地址中不能有空格","设备地址中必须是合法字符",0) == false)
+	{
+		return false;	
+	}
+	if(chkmaxlen(document.getElementById("tSysLocation").value) > 255)
+	{
+		alert("设备地址过长")
+		return false;	
+	}
+	if(chkmaxlen(document.getElementById("tSysContact").value) > 255)
+	{
+		alert("联系方式过长")
+		return false;	
+	}
+	if(chkmaxlen(document.getElementById("tSysName").value) > 255)
+	{
+		alert("设备名称过长")
+		return false;	
+	}
+		document.form1.submit();
+		return true;	
+}
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+<form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">系统信息</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+<table class="table_maintable" cellpadding="0" cellpadding="0">
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">系统</td>
+  </tr>
+  <tr >
+    <td class="td25" colspan="2" width="13%">联系方式：</td>
+    <td colspan="3"  class="crons">
+      
+        <input name="tSysContact" type="text" id="tSysContact" value="$%tSysContact#$" size="64" maxlength="255" />
+           </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">设备名称：</td>
+    <td colspan="3" class="crons">
+      <input name="tSysName" type="text" id="tSysName" value="$%tSysName#$" size="64"  maxlength="255" />
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">设备地址：</td>
+    <td colspan="3" class="crons"><input name="tSysLocation" type="text" id="tSysLocation" value="$%tSysLocation#$" size="64" maxlength="255" /></td>
+  </tr>
+
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>  
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">硬件</td>
+  </tr>
+  <tr>
+    <td  class="td25" colspan="2">CPU占用率：</td>
+    <td  class="crons">$%tSysCpuUsage#$</td>
+    <td  class="td25" width="13%">内存占用率：</td>
+    <td  class="crons">$%tSysMemUsage#$</td>
+  </tr>
+  <tr>
+    <td  class="td25" colspan="2">MAC 地址：</td>
+    <td  class="crons">$%tSysMacAddr#$</td>
+    <td  class="td25" width="13%">Bootrom 版本：</td>
+    <td  class="crons">$%tSysBootromVer#$</td>
+  </tr>  
+
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">时间</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">系统时间：</td>
+    <td class="crons">$%tSysDateTime#$</td>
+    <td class="td25">启动时间：</td>
+    <td class="crons">$%tSysUptimeTime#$</td>
+  </tr>
+ 
+
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">软件</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">软件版本：</td>
+    <td class="crons">$%tSysSoftVer#$</td>
+    <td class="td25">版本时间：</td>
+    <td class="crons">$%tSysSoftDate#$</td>
+  </tr>
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">温度</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">当前温度：</td>
+    <td class="crons" colspan="3">$%tSysTemperature#$</td>
+  </tr>
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="6" align="center">
+            <input type="button" class="button1" name="button" id="button" value="提 交" onclick="checksub()" />
+
+    </td>
+  </tr>
+</table>
+ <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

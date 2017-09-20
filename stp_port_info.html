@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+function display()
+{
+changebgcolor();
+
+}var stpPortInfoBridgeheader = [$%stpPortInfoBridgeheader#$];
+var stpPortInfoPortList = [$%stpPortInfoPortList#$];
+
+function writeLines()
+{
+var j=0;
+for(var i=0;i<stpPortInfoPortList.length/7;i++)
+{
+	document.write("      <tr class='tables_all'>");
+	
+		document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>"+stpPortInfoPortList[j]+"</td>");
+	j++;
+	document.write("      </tr>");
+	
+	
+}
+	
+}
+
+function setTextValue()
+{
+	if (stpPortInfoBridgeheader.length > 0 )
+	{
+		//document.getElementById("vlanID").value = stpPortInfoBridgeheader[0];
+		document.getElementById("BridgeID").value = stpPortInfoBridgeheader[0];
+		document.getElementById("rootID").value = stpPortInfoBridgeheader[1];
+		document.getElementById("rootPort").value = stpPortInfoBridgeheader[2];
+		document.getElementById("rootCost").value = stpPortInfoBridgeheader[3];
+		document.getElementById("TopologyFlag").value = stpPortInfoBridgeheader[4];
+	}
+}
+
+
+
+</script>
+
+
+<style type="text/css">
+<!--
+.disableTextStp {	BACKGROUND-COLOR: #fff; BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; 
+}
+-->
+</style>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('stp_port_info'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>STP 信息</td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22  style="display:none">
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">VLAN ID</span></div></TD>
+      <TD><span class="inputsyslog1">
+        <input name="vlanID" type="text" class="disableTextStp" id="vlanID" readonly="readonly" />
+      &nbsp;</span></TD>
+      </TR>
+    <TR height=22>
+      <TD >&nbsp;&nbsp;桥ID</TD>
+      <TD ><span class="inputsyslog1">
+        <input name="BridgeID" type="text" class="disableTextStp" id="BridgeID" value="" size="30" readonly="readonly" />
+      &nbsp;</span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">根桥ID</span></TD>
+      <TD ><span class="inputsyslog1">
+        <input name="rootID" type="text" class="disableTextStp" id="rootID" size="30" readonly="readonly" />
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD >&nbsp;&nbsp;<span class="td25">根端口</span></TD>
+      <TD ><span class="inputsyslog1">
+        <input name="rootPort" type="text" class="disableTextStp" id="rootPort" readonly="readonly" />
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;根路径开销</TD>
+      <TD ><span class="inputsyslog1">
+        <input name="rootCost" type="text" class="disableTextStp" id="rootCost" readonly="readonly" />
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD >&nbsp;&nbsp;拓扑标记</TD>
+      <TD ><span class="inputsyslog1">
+        <input name="TopologyFlag" type="text" class="disableTextStp" id="TopologyFlag" readonly="readonly" />
+      </span></TD>
+      </TR>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>STP 端口状态</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+	    <td class="all_tables_list" width="14%"  align="center">端口</td>
+        <td width="14%"  class="all_tables_list">端口角色</td>
+        <td width="14%"  class="all_tables_list">端口状态</td>
+        <td width="14%"  class="all_tables_list">路径开销</td>
+        <td width="14%"  class="all_tables_list">边缘端口</td>
+        <td width="14%"  class="all_tables_list">P2P端口</td>
+        <td width="16%"  class="all_tables_list">对端版本</td>
+    </TR>
+      <script language="javascript">
+	  writeLines();
+	  setTextValue();
+	  
+	  </script>
+  </table>
+</form>
+
+</BODY></HTML>

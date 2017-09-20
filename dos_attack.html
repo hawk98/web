@@ -1,0 +1,232 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+
+function display()
+{
+	changebgcolor();
+	changestat('DosAttack','select_ss');
+}
+
+
+function check()
+{
+	var doc = document.form1;
+	var tmp = 1, aattack = 0;
+	for(var i = 1; i <= 10; i++){
+	  if(document.getElementById("DosAttack" + i).checked) 
+	  {
+	 	 aattack += tmp;
+	  }
+	  else
+	  {
+	  	//alert(i);
+	  }
+	  tmp *= 2;
+	}
+	
+	doc.DosattackMask.value = aattack;
+
+//alert(doc.DosattackMask.value);
+
+	var vid1 = doc.tPingFloodNum.value;
+	var vid2 = doc.tSynFloodNum.value;
+
+		if ( vid1 < 0 || vid1 > 2048 )
+		{
+			alert('速率错误，有效范围是 0-2048！');
+			doc.tPingFloodNum.focus();
+			return false;
+		}
+/*
+	else
+	{
+		doc.tPingFloodNum.value = 0;
+	}
+*/
+
+		if ( vid2 < 0 || vid2 > 2048 )
+		{
+			alert('速率错误，有效范围是 0-2048！');
+			doc.tSynFloodNum.focus();
+			return false;
+		}
+/*	
+	else
+	{
+		doc.tSynFloodNum.value = 0;
+	}
+*/	
+
+
+	return true;
+}
+
+
+function select_all(flag)
+{
+	for(i=1;i<=10;i++)
+	{		
+		if(!document.getElementById("DosAttack"+i).disabled)
+		{
+			
+			if(flag)
+			{
+				document.getElementById("DosAttack"+i).checked = true;		
+			}
+			else
+			{
+				document.getElementById("DosAttack"+i).checked = false;		
+			}	
+		}		
+
+	}
+}
+
+var attack = 10 ;
+function changestat(str,id)
+{
+	var checked = 0;
+	var valid_attack = 0;
+		
+	for(i=1;i<=attack;i++)
+	{		
+		if(!document.getElementById(str+i).disabled)	
+		{
+			if(document.getElementById(str+i).checked)
+			{
+				checked = checked + 1;
+			}
+			valid_attack = valid_attack + 1;
+		}
+	}
+	
+	if(checked == valid_attack)
+	{
+		document.getElementById(id).checked = true ;
+	}
+	else
+	{
+		document.getElementById(id).checked = false ; 
+	}
+}
+
+
+
+</script>
+</HEAD>
+<BODY    onload="display()" >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('dos_attack'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return check();">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>DoS攻击防御</nobr></td>    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="select_ss" id="select_ss" value="checkbox"  onclick="select_all(this.checked)"/>
+全选</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack1" id="DosAttack1" value="ON" $%DosAttack1#$   onclick="changestat('DosAttack','select_ss');"/>
+SIP=DIP checking</span>        </TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack3" id="DosAttack3" value="ON"   $%DosAttack3#$  onclick="changestat('DosAttack','select_ss');"/>
+SPORT=DPORT checking</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack4" id="DosAttack4" value="ON"  $%DosAttack4#$   onclick="changestat('DosAttack','select_ss');"/>
+TCP head len error checking&nbsp;</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+      <input type="checkbox" name="DosAttack5" id="DosAttack5" value="ON"  $%DosAttack5#$   onclick="changestat('DosAttack','select_ss');"/>
+TCP packets with SYN and FIN bits checking</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack6" id="DosAttack6" value="ON"   $%DosAttack6#$  onClick="changestat('DosAttack','select_ss');"/>
+TCP packets with FIN, URG, PSH bits checking</span></TD>
+      </TR>
+    <TR height=22>
+      <TD width="22%" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack7" id="DosAttack7" value="ON"  $%DosAttack7#$   onclick="changestat('DosAttack','select_ss');"/>
+ping flood checking &nbsp;&nbsp;</span></TD>
+      <td  class="crons">速率限制:
+        <label>
+        <input name="tPingFloodNum" type="text" id="tPingFloodNum" value="$%tPingFloodNum#$" size="10" />
+        (0~2048Kbits)</label></td>
+      </TR>
+    <TR height=22>
+      <td  class="crons"><input type="checkbox" name="DosAttack8" id="DosAttack8" value="ON"   $%DosAttack8#$  onclick="changestat('DosAttack','select_ss');"/>
+        SYN flood checking </td>
+      <td  class="crons">速率限制:
+        <label>
+          <input name="tSynFloodNum" type="text" id="tSynFloodNum" value="$%tSynFloodNum#$" size="10" />
+        (0~2048Kbits)</label></td>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+      <input type="checkbox" name="DosAttack9" id="DosAttack9" value="ON"   $%DosAttack9#$  onclick="changestat('DosAttack','select_ss');"/>
+icmp-smurf checking</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack10" id="DosAttack10" value="ON"  $%DosAttack10#$   onclick="changestat('DosAttack','select_ss');"/>
+TCP packets with flag=0 checking</span></TD>
+      </TR>
+    <TR height=22>
+      <TD colspan="2" valign="top"><span class="crons">
+        <input type="checkbox" name="DosAttack2" id="DosAttack2" value="ON"   $%DosAttack2#$  onclick="changestat('DosAttack','select_ss');"/>
+TCP SYN packet with source port 0-1023 checking</span></TD>
+      </TR>
+      <tr>
+      	 <td  class="partition" colspan="8">&nbsp;
+        <input type="hidden" name="DosattackMask" id="DosattackMask"  value="$%DosattackMask#$"/>
+        <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提交"  >
+    		</td>
+      </tr>
+</TABLE>
+
+
+</FORM>
+
+</BODY></HTML>

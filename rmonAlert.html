@@ -1,0 +1,306 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+
+var rmonAlarmEntryNumList = [$%rmonAlarmEntryNumList#$];
+var rmonAlarmVarList = [$%rmonAlarmVarList#$];
+var rmonAlarmSampTimeList = [$%rmonAlarmSampTimeList#$];
+var rmonAlarmSampTypeList = [$%rmonAlarmSampTypeList#$];
+var rmonAlarmRisingThresholdList = [$%rmonAlarmRisingThresholdList#$];
+var rmonAlarmValue1List = [$%rmonAlarmValue1List#$];
+var rmonAlarmFallingList = [$%rmonAlarmFallingList#$];
+var rmonAlarmValue2List = [$%rmonAlarmValue2List#$];
+var romnAlarmPortList = [$%romnAlarmPortList1#$];
+
+var portNum = $%portNum#$;
+var fePortNum = $%fePortNum#$;
+
+function display()
+{
+	changebgcolor();
+}
+
+function writeList()
+{
+	var tempBuf = "";
+	var i;
+
+for(i=0;i<rmonAlarmEntryNumList.length;i++)
+	{
+	tempBuf += "<tr class='tables_all'><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmEntryNumList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += convert_tomodport(romnAlarmPortList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmVarList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmSampTimeList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += getSmode(rmonAlarmSampTypeList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmValue1List[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmRisingThresholdList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmValue2List[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonAlarmFallingList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+function getSmode(value)
+{
+if(value == 0)
+	return "变化值";
+if(value == 1)
+	return "绝对值";
+}
+
+function delSelectId( ID )
+{
+	document.getElementById("rmonAlarmDelID").value = rmonAlarmEntryNumList[ID];
+	document.form1.submit();
+}
+
+
+function checkSub()
+{
+
+var rmonAlarmEntryNum = document.getElementById("rmonAlarmEntryNum").value;
+
+if(rmonAlarmEntryNum<1 || rmonAlarmEntryNum>65535 ||  !fucCheckNUM(rmonAlarmEntryNum))
+{
+	alert("条目编号错误，范围是：1~65535");
+	return false;
+	
+}
+
+var rmonPort = document.getElementById("rmonPort").value;
+if(rmonPort<1 || rmonPort>portNum ||  !fucCheckNUM(rmonPort))
+{
+	alert("端口号错误，范围是：1~"+portNum);
+	
+	return false;
+	
+}
+
+var rmonAlarmVar = document.getElementById("rmonAlarmVar").value;
+if(!checkAlarmVar(rmonAlarmVar)){
+  alert("告警变量格式错误，应该是节点OID的点分格式");
+  return false;
+}
+
+var rmonSamplingTime = document.getElementById("rmonSamplingTime").value;
+if(rmonSamplingTime<5 || rmonSamplingTime>3600||  !fucCheckNUM(rmonSamplingTime))
+{
+	alert("采样时间错误，范围是：5~3600s");
+	return false;
+	
+}
+
+var rmonRisingThreshold = document.getElementById("rmonRisingThreshold").value;
+if(rmonRisingThreshold<1 || rmonRisingThreshold>4294967295||  !fucCheckNUM(rmonRisingThreshold))
+{
+	alert("上限阀值错误，范围是：1~4294967295");
+	return false;
+	
+}
+
+
+
+var rmonRisingEventValue = document.getElementById("rmonRisingEventValue").value;
+
+if(rmonRisingEventValue<1 || rmonRisingEventValue>65535||  !fucCheckNUM(rmonRisingEventValue))
+{
+	alert("上限事件编号错误，范围是：1~65535");
+	return false;
+	
+}
+
+var rmonFallingThreshold = document.getElementById("rmonFallingThreshold").value;
+if(rmonFallingThreshold<1 || rmonFallingThreshold>4294967295||  !fucCheckNUM(rmonFallingThreshold))
+{
+	alert("下限阀值错误，范围是：1~4294967295");
+	return false;
+	
+}
+
+var rmonFallingEventValue = document.getElementById("rmonFallingEventValue").value;
+
+if(rmonFallingEventValue<1 || rmonFallingEventValue>65535||  !fucCheckNUM(rmonFallingEventValue))
+{
+	alert("下限事件编号错误，范围是：1~65535");
+	return false;
+	
+}
+
+document.form1.submit();
+
+
+}
+function checkAlarmVar(v){
+  for(var i = 0; i < v.length;i++){
+    if(v.charAt(i)!='.' && (v.charAt(i)>'9' || v.charAt(i)<'0')){
+      return false; 
+    }
+  }	
+  return true;
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('rmonAlert'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return checkSub()">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>RMON告警组</td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">条目编号</span></div></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="rmonAlarmEntryNum" id="rmonAlarmEntryNum" / VALUE="$%rmonAlarmEntryNum#$">
+(1~65535)</span></TD>
+      <TD width="18%" >&nbsp;</TD>
+      <TD width="32%" >&nbsp;</TD>
+    </TR>
+    
+    <TR height=22>
+      <TD >&nbsp;&nbsp;<span class="td25">端口号</span></TD>
+      <TD ><span class="crons">
+        <label>
+        <span class="inputsyslog1">
+        
+      	<script language= "javascript">
+	  	document.write("<select name='rmonPort' id='rmonPort'>");
+	  	for(var i=1; i<= portNum; i++)
+	  	{		
+			document.write("<option value='"+i+"' >端口"+i+"</option>");	
+	  	}
+	  	document.write("</select>");
+    	 </script>                 
+     
+        </span></label>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">告警变量</span></TD>
+      <TD ><span class="crons">
+        <input name="rmonAlarmVar" type="text" id="rmonAlarmVar" / VALUE="$%rmonAlarmVar#$" maxlength="256">
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;采样时间</TD>
+      <TD ><span class="crons">
+      <input type="text" name="rmonSamplingTime" id="rmonSamplingTime" / VALUE="$%rmonSamplingTime#$">
+(5~3600s)</span></TD>
+      <TD >&nbsp;&nbsp;采样类型</TD>
+      <TD ><span class="crons">
+        <select name="rmonAlarmSamType" id="rmonAlarmSamType">
+          <option value="0" $%rmonAlarmSamType(0)#$>变化值</option>
+          <option value="1" $%rmonAlarmSamType(1)#$>绝对值</option>
+        </select>
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;上限阀值</TD>
+      <TD ><span class="crons">
+        <input type="text" name="rmonRisingThreshold" id="rmonRisingThreshold" / VALUE="$%rmonRisingThreshold#$">
+(1~4294967295)</span></TD>
+      <TD >&nbsp;&nbsp;上限事件编号</TD>
+      <TD ><span class="crons">
+        <input type="text" name="rmonRisingEventValue" id="rmonRisingEventValue" / VALUE="$%rmonRisingEventValue#$">
+(1~65535)</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">下限阀值</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="rmonFallingThreshold" id="rmonFallingThreshold" / VALUE="$%rmonFallingThreshold#$">
+(1~4294967295)</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">下限事件编号</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="rmonFallingEventValue" id="rmonFallingEventValue" / VALUE="$%rmonFallingEventValue#$">
+(1~65535)</span></TD>
+    </TR>
+    <tr>
+    <td class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交">
+      <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </div></td>
+    
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+
+
+    <td width="51%"  class=Tablelist id=tabs name=tabs>SNMP告警表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="partition">条目编号</span></TD>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="partition">端口号</span></TD>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="td25">告警变量</span></TD>
+      <TD width="10%"   nowrap class="all_tables_list">采样时间</TD>
+      <TD width="10%"   nowrap class="all_tables_list">采样类型</TD>
+      <TD width="10%"   nowrap class="all_tables_list">上限阀值</TD>
+      <TD width="10%"   nowrap class="all_tables_list">上限事件编号</TD>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="td25">下限阀值</span></TD>
+      <TD width="10%"   nowrap class="all_tables_list">下限事件编号</TD>
+      <TD width="10%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+<script language="javascript">
+
+writeList();
+</script>
+  </table>
+<input type="hidden" name="rmonAlarmDelID" id="rmonAlarmDelID" / VALUE="$%rmonAlarmDelID#$">
+  </form>
+
+</BODY></HTML>

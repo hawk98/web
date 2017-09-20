@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+function backConfig()
+{
+	
+var serIP = document.getElementById("setConfigDownIP").value;
+if(serIP == "")
+{
+	alert("IP不能为空！");
+	return;
+}
+
+if(!tdIpCheck(serIP))
+	{
+	alert("IP地址错误");
+	return;
+	}
+	document.getElementById("setConfigType").value = 1;
+	document.form1.submit();
+}
+
+function recoverConfig()
+{
+	
+var serIP = document.getElementById("setConfigUpIP").value;
+
+if(serIP == "")
+{
+	alert("IP不能为空！");
+	return;
+}
+
+if(!tdIpCheck(serIP))
+	{
+	alert("IP地址错误");
+	return;
+	}
+	document.getElementById("setConfigType").value = 2;
+	document.form1.submit();
+
+}
+
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">配置管理</td>
+        <input type="hidden" name="setConfigType" id="setConfigType" / VALUE="$%setConfigType#$">
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="crons" >配置备份：</td>
+    <td  class="crons">
+      TFTP服务器IP
+          <input type="text" name="setConfigDownIP" id="setConfigDownIP" / VALUE="$%setConfigDownIP#$">
+          &nbsp;&nbsp;&nbsp;备份文件名
+          <input type="text" name="setConfigDownFileName" id="setConfigDownFileName" / VALUE="$%setConfigDownFileName#$">
+    </td>
+  </tr>
+  <tr>
+    <td   height=40>&nbsp;</td>
+    <td ><input type="button" class="button3" name="button" id="button" value="配置备份"  onclick="backConfig()"/></td>
+  </tr>
+ <tr>
+    <td class="crons_top" >配置恢复：</td>
+    <td  class="crons_top">TFTP服务器IP
+      <input type="text" name="setConfigUpIP" id="setConfigUpIP" / VALUE="$%setConfigUpIP#$">
+&nbsp;&nbsp;&nbsp;备份文件名
+<input type="text" name="setConfigUpFileName" id="setConfigUpFileName" / VALUE="$%setConfigUpFileName#$"></td>
+  </tr>
+  <tr>
+    <td  height=40>&nbsp;</td>
+    <td ><input type="button" class="button3" name="button2" id="button2" value="配置恢复" onclick="recoverConfig()" /></td>
+  </tr>
+  </table>
+
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

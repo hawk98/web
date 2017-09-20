@@ -1,0 +1,340 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+<script language="javascript">
+
+/*
+var rmonHisEntryNumList = ["11111","22222","333333333","444444444","55555"];
+var rmonHisPortList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var rmonHisbucketsList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var rmonHisSampTimeList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var rmonStaList=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+*/
+var rmonHisEntryNumList = [$%rmonHisEntryNumList#$];
+var rmonHisPortList = [$%rmonHisPortList#$];
+var rmonHisbucketsList = [$%rmonHisbucketsList#$];
+var rmonHisSampTimeList = [$%rmonHisSampTimeList#$];
+
+var rmonStaList = [$%rmonHisList#$];
+
+var portNum = $%portNum#$;
+
+//var rmonStaList=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+
+function display()
+{
+changebgcolor();
+
+}
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<rmonHisEntryNumList.length;i++)
+	{
+	tempBuf += "<tr  class='tables_all'><td class='inputsyslog1' >";
+	tempBuf += rmonHisEntryNumList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += convert_tomodport(rmonHisPortList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonHisbucketsList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonHisSampTimeList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='查 看' onclick='showSelectId("+i+")' />";
+	tempBuf += "</td><tr  class='tables_all'>";
+	}
+	document.write(tempBuf);
+}
+
+
+function delSelectId( ID )
+{
+	document.getElementById("rmonHisDelNum").value = rmonHisEntryNumList[ID];
+	document.form1.submit();
+}
+function showSelectId( ID )
+{
+	document.getElementById("rmonHisDelNum").value = 65536 + (rmonHisEntryNumList[ID] - 0);
+	document.form1.submit();
+}
+
+function checkSub()
+{
+
+var RmonHisEntryNum = document.getElementById("RmonHisEntryNum").value;
+if(isNaN(RmonHisEntryNum) || RmonHisEntryNum<1 || RmonHisEntryNum>65535||  !fucCheckNUM(RmonHisEntryNum))
+{
+	alert("条目编号错误，范围是：1~65535");
+	
+	return false;
+	
+}
+
+var rmonPort = document.getElementById("rmonHisPortNum").value;
+
+if(isNaN(rmonPort) || rmonPort<1 || rmonPort>portNum||  !fucCheckNUM(rmonPort))
+{
+	alert("端口号错误，范围是：1~"+portNum);
+	
+	return false;
+}
+
+var rmonHisbuckets = document.getElementById("rmonHisbuckets").value;
+if(isNaN(rmonHisbuckets) || rmonHisbuckets<1 || rmonHisbuckets>64||  !fucCheckNUM(rmonHisbuckets))
+{
+	alert("历史表大小错误，范围是：1~64");
+		return false;
+	
+}
+
+var rmonHisSampling = document.getElementById("rmonHisSampling").value;
+if(isNaN(rmonHisSampling) || rmonHisSampling<5 || rmonHisSampling>3600||  !fucCheckNUM(rmonHisSampling))
+{
+	alert("采样时间错误，范围是：5~3600s");
+		return false;
+	
+}
+return true;
+ }
+
+function writeLineSta()
+{
+	var j = 0;
+	for(var i = 0 ;i<Math.floor(rmonStaList.length/18) ; i++)
+		{
+		
+	 	document.write("<tr  class='tables_all'>");
+	document.write("<td class='inputsyslog1'  width='16%'> portid </td>");
+	document.write("<td  class='inputsyslog1' width='17%'>")
+	document.write(convert_tomodport(rmonStaList[j]));
+	j++;
+	document.write("</td>");
+	document.write("<td class='inputsyslog1' width='16%'> drop_events </td>");
+	document.write("<td  class='inputsyslog1' width='17%'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td class='inputsyslog1' width='16%'> octets </td>");
+	document.write("<td  class='inputsyslog1' width='18%'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td> </tr>    <tr  class='tables_all'>");  
+	document.write("<td class='inputsyslog1' > packets </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> bcast_pkts </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> mcast_pkts </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr  class='tables_all'>");
+	document.write("<td class='inputsyslog1' > crc_align </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> undersize </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> oversize </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr  class='tables_all'>");
+	document.write("<td class='inputsyslog1' > fragments </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> jabbers </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> collisions </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr  class='tables_all'>");
+	document.write("<td class='inputsyslog1' > pkts_64 </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> pkts_65_127 </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> pkts_128_255 </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr  class='tables_all'>");
+	document.write("<td class='inputsyslog1' > pkts_256_511 </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> pkts_512_1023 </td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='inputsyslog1'> pkts_1024_1518</td>");
+	document.write("<td  class='inputsyslog1'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>");
+	}
+	
+	
+}
+
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('rmonhistory'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return checkSub()">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>RMON历史组</td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">条目编号</span></div></TD>
+      <TD width="32%" ><span class="crons">
+        <input type="text" name="RmonHisEntryNum" id="RmonHisEntryNum" / VALUE="$%RmonHisEntryNum#$" />
+(1~65535)</span></TD>
+      <TD width="18%" >&nbsp;&nbsp;<span class="td25">端口号</span></TD>
+      <TD width="32%" ><span class="crons">
+        <span class="inputsyslog1">
+        
+      	<script language= "javascript">
+	  	document.write("<select name='rmonHisPortNum' id='rmonHisPortNum'>");
+	  	for(var i=1; i<= portNum; i++)
+	  	{		
+			document.write("<option value='"+i+"' >端口"+i+"</option>");	
+	  	}
+	  	document.write("</select>");
+     	</script>                            
+     
+        </span></span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">历史表大小</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="rmonHisbuckets" id="rmonHisbuckets" / VALUE="$%rmonHisbuckets#$">
+(1~64)</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">采样时间</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="rmonHisSampling" id="rmonHisSampling" / VALUE="$%rmonHisSampling#$">
+(5~3600s)</span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+        <input type="hidden" name="rmonHisDelNum" id="rmonHisDelNum" / VALUE="$%rmonHisDelNum#$">
+        <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交"   >
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </td>
+    
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+
+
+    <td width="51%"  class=Tablelist id=tabs name=tabs>RMON历史组列表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="td25">条目编号</span></TD>
+      <TD width="17%"   nowrap class="all_tables_list"><span class="td25">端口号</span></TD>
+      <TD width="17%"   nowrap class="all_tables_list"><span class="td25">历史表大小</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="td25">采样时间</span></TD>
+      <TD width="17%"   nowrap class="all_tables_list">删除</TD>
+      <TD width="18%"   nowrap class="all_tables_list"><span class="partition">查看</span></TD>
+    </TR>
+	   <script language="javascript">
+   writeList();
+  
+   </script>
+  </table>
+  
+  
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>统计列表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+
+</table>
+
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+
+<script language="javascript">
+
+  writeLineSta();
+</script>
+  </table>  
+  </form><br>
+<br>
+<br>
+
+
+</BODY></HTML>

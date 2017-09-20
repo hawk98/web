@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+}
+
+function checkSub()
+{
+	if(document.getElementById("addUserName").value == null || document.getElementById("addUserPass").value == null)
+		{
+		alert("用户名和密码不能为空");
+		return;
+		}
+	if(document.getElementById("addUserName").value.length>16 || document.getElementById("addUserName").value.length == 0)
+		{
+		alert("用户名不能设置为空或超过16位的字符串!");
+		return;	
+		}
+
+	if(document.getElementById("addUserPass").value != document.getElementById("addUserPass1").value)
+		{
+		alert("两次输入的密码不一样，请重新输入");
+		return;
+		}
+	if(document.getElementById("addUserPass").value.length>16 || document.getElementById("addUserPass").value.length == 0)
+		{
+		alert("密码不能设置为空或超过16位的字符串!");
+		return;	
+		}
+		document.form1.submit();
+
+}
+
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('addadmin'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>新增用户</nobr></td>    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="27%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">用户名</span></div></TD>
+      <td  ><input name="addUserName" type="text" id="addUserName" / VALUE="$%addUserName#$" maxlength="16">
+        (由字母、数字和下划线组成，1-16位) </td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">密码</span></TD>
+      <td  ><input name="addUserPass" type="password" id="addUserPass" / VALUE="$%addUserPass#$" maxlength="16">
+        (由大小写字母、数字和下划线组成，8-16位)</td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">确认密码</span></TD>
+      <td  ><input name="addUserPass1" type="password" id="addUserPass1" / VALUE="$%addUserPass1#$" maxlength="16">
+      </td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">权限</span></TD>
+      <td ><select name="addUserLeve" id="addUserLeve">
+          <option value="1" $%addUserLeve(1)#$>User</option>
+          <option value="0" $%addUserLeve(0)#$>Administrator</option>
+        </select>
+      </td>
+    </TR>
+    <tr>
+    <td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交" onClick="checkSub()">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </td>
+    </tr>
+</TABLE>
+</FORM>
+
+</BODY></HTML>

@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+}
+
+function check(){
+  var doc = document.form1;
+  var fName = doc.softUptftpFName.value;
+  if(fName.indexOf(".Z") != fName.length - 2){
+    alert("文件必须是以 .Z 为扩展名的压缩文件！");
+    return false;
+  }
+  return true;
+}	
+
+
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('update'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>软件升级</nobr></td>    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="27%" valign="top">&nbsp;&nbsp;<span class="crons" style="width:120px">TFTP Server IP</span></TD>
+      <td ><span class="crons">
+        <input type="text" name="softUptftpIP" id="softUptftpIP" / VALUE="$%softUptftpIP#$">
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;文件名</TD>
+      <td ><span class="crons">
+        <input type="text" name="softUptftpFName" id="softUptftpFName" / VALUE="$%softUptftpFName#$">
+      </span></td>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="submit" id="b_submit" value="升级">
+    </div></td>
+    </tr>
+</TABLE>
+  </FORM>
+
+</BODY></HTML>

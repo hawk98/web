@@ -1,0 +1,276 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+
+change_view();
+}
+
+
+
+function tdCheckForm(s)
+{
+    var systemIP=s.tIP.value;
+    var subnetIP=s.tMask.value;
+    var gatewayIP=s.tRouter.value;
+    var vid = s.tVlanID.value;
+	
+	var priDNS = s.tPriDNS.value;
+	var secDNS = s.tSecDNS.value;
+	
+	
+	if(!document.getElementById("DHCP").checked)
+	{
+	
+		if ( !tdIpCheck(systemIP) )
+		{
+			alert('IP地址错误 !');
+			s.tIP.focus();
+			return false;
+		}
+		if ( !tdCheckSubnetMask(subnetIP) )
+		{
+			alert('子网掩码错误 !');
+			s.tMask.focus();
+			return false;
+		}
+		
+		if(gatewayIP == "0.0.0.0")
+		{
+			alert('0.0.0.0是无效的网关');
+			s.tRouter.focus();
+			return false;
+		}
+		if(gatewayIP != "0.0.0.0")
+		{
+			if( !tdIpCheck(gatewayIP) )
+			{
+					alert('网关错误 !');
+					s.tRouter.focus();
+					return false;
+			}
+		}
+		
+	}
+	
+		
+		if(priDNS != "0.0.0.0")
+		{
+			if ( !tdIpChecka(priDNS) )
+			{
+				alert('首选DNS错误 !');
+				return false;
+			}
+		}
+		if(secDNS != "0.0.0.0")
+		{
+			if ( !tdIpChecka(secDNS) )
+			{
+				alert('备用DNS错误 !');
+				return false;
+			}
+	
+		}
+		if(!fucCheckNUM1(vid))
+		{
+		alert("请输入正确的VLAN ID！");
+		return false;
+		}
+		
+		if ( vid < 1 || vid > 4094 )
+		{
+			alert('VLAN ID 错误，有效范围是 1-4094！');
+			s.tVlanID.focus();
+			return false;
+		}
+	
+    s.submit();
+}
+
+
+function fucCheckNUM1(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+function change_view()
+{
+	document.getElementById("tIP").disabled = true;
+	document.getElementById("tMask").disabled = true;
+	document.getElementById("tRouter").disabled = true;
+	//document.getElementById("tPriDNS").disabled = true;
+	//document.getElementById("tSecDNS").disabled = true;
+	//document.getElementById("tVlanID").disabled = true;
+
+	if(!document.getElementById("DHCP").checked)
+	{
+		document.getElementById("tIP").disabled = false;
+		document.getElementById("tMask").disabled = false;
+		document.getElementById("tRouter").disabled = false;
+	//	document.getElementById("tPriDNS").disabled = false;
+		//document.getElementById("tSecDNS").disabled = false;
+		//document.getElementById("tVlanID").disabled = false;
+	}
+
+
+} 
+
+function tdIpChecka(textValue)
+{
+    re1=/(\d+)(\W)(\d+)(\W)(\d+)(\W)(\d+)/
+    Check=textValue.search(re1);
+    if(Check==-1)
+    {
+        return false;
+    }
+    else
+    {
+        ipSplit=textValue.split('.');
+        if(ipSplit.length!=4)
+        {
+            return false;
+        }
+
+        for(i=0; i<ipSplit.length; i++)
+        {
+            if(isNaN(ipSplit[i]))  return false;
+			if(ipSplit[i].length > 1 && ipSplit[i].charAt(0) == "0") return false;
+        }
+    
+        for(i=0; i<ipSplit.length; i++)
+        {
+            if(ipSplit[i] > 255)
+            {
+                return false;
+            }
+            if(ipSplit[i] < 0)
+            {
+                return false;
+            }
+        }
+        if((ipSplit[0]==255) && (ipSplit[1]==255) && (ipSplit[2]==255) && (ipSplit[3]==255))
+        {
+            return false;
+        }
+
+        if((ipSplit[0]==0) || (ipSplit[0]==127) || (ipSplit[3]==0) || (ipSplit[3]==255))
+        {
+            return false;
+        }
+
+        if(ipSplit[0] >= 224)
+        {
+            return false;
+        }
+        return true;
+    }
+}
+
+</script>
+</HEAD>
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('ipaddress'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>IP地址</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22 style="display:none">
+      <TD width="27%" valign="top"><div align="left">&nbsp;&nbsp;DHCP</div></TD>
+      <td  ><span class="crons">
+        <input type="checkbox" name="DHCP" id="DHCP" value="ON" $%DHCP#$ onClick="change_view();">
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;IP地址</TD>
+      <td  ><span class="crons">
+        <input name="tIP" type="text" id="tIP" value="$%tIP#$" />
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;子网掩码</TD>
+      <td  ><span class="crons">
+        <input name="tMask" type="text" id="tMask" value="$%tMask#$" />
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;网关</TD>
+      <td ><span class="crons">
+        <input name="tRouter" type="text" id="tRouter" value="$%tRouter#$" />
+      </span></td>
+    </TR>
+    <TR height=22 style="display:none">
+      <TD valign="top">&nbsp;&nbsp;首选DNS</TD>
+      <td ><span class="crons">
+        <input type="text" name="tPriDNS" id="tPriDNS" / VALUE="$%tPriDNS#$">
+      </span></td>
+    </TR>
+    <TR height=22 style="display:none">
+      <TD valign="top">&nbsp;&nbsp;备用DNS</TD>
+      <td ><span class="crons">
+        <input type="text" name="tSecDNS" id="tSecDNS" / VALUE="$%tSecDNS#$">
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;管理VLAN</TD>
+      <td ><span class="crons">
+        <input name="tVlanID" type="text" id="tVlanID" value="$%tVlanID#$" />
+      </span></td>
+    </TR>
+    <tr>
+    <td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交"   onclick="tdCheckForm(this.form)">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </td>
+    </tr>
+</TABLE>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="DHCP" ></FORM>
+
+</BODY></HTML>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+
+
+function checkSub()
+{
+	if(document.getElementById("addUserName").value == null || document.getElementById("addUserPass").value == null)
+		{
+		alert("用户名和密码不能为空");
+		return;
+		}
+	if(document.getElementById("addUserName").value.length>16 || document.getElementById("addUserName").value.length == 0)
+		{
+		alert("用户名不能设置为空或超过16位的字符串!");
+		return;	
+		}
+
+	if(document.getElementById("addUserPass").value != document.getElementById("addUserPass1").value)
+		{
+		alert("两次输入的密码不一样，请重新输入");
+		return;
+		}
+	if(document.getElementById("addUserPass").value.length>16 || document.getElementById("addUserPass").value.length == 0)
+		{
+		alert("密码不能设置为空或超过16位的字符串!");
+		return;	
+		}
+		document.form1.submit();
+
+}
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">添加用户</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" colspan="2">用户名：</td>
+    <td  class="crons">
+      <input name="addUserName" type="text" id="addUserName" / VALUE="$%addUserName#$" maxlength="16">
+      (由字母、数字和下划线组成，1-16位)
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">密码：</td>
+    <td  class="crons">
+      <input name="addUserPass" type="password" id="addUserPass" / VALUE="$%addUserPass#$" maxlength="16">
+    (1-16位)</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">确认密码：</td>
+    <td  class="crons">
+      <input name="addUserPass1" type="password" id="addUserPass1" / VALUE="$%addUserPass1#$" maxlength="16">
+    </td>
+  </tr>
+
+   <tr>
+    <td class="td25" colspan="2">权限</td>
+    <td class="crons">
+      <select name="addUserLeve" id="addUserLeve">
+        <option value="1" $%addUserLeve(1)#$>User</option>
+        <option value="0" $%addUserLeve(0)#$>Administrator</option>
+      </select>
+    </td>
+  </tr>
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+   <tr>
+    <td colspan="2">&nbsp;</td>
+    <td >
+      <input type="button" class="button1" name="button" id="button" value="提 交" onclick="checkSub()" />
+    </td>
+  </tr>
+      <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

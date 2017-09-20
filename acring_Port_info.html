@@ -1,0 +1,97 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+var acringPortInfo = [$%acringPortInfo#$];
+
+
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<acringPortInfo.length/6;i++)
+	{
+		document.write(" <tr class='tables_all'>");
+		document.write("    <td class='inputsyslog1'>"+convert_tomodport(acringPortInfo[j])+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringPortInfo[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringPortInfo[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringPortInfo[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringPortInfo[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+acringPortInfo[j]+"</td>");
+		j++;
+		document.write("  </tr>");
+	}
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('acring_Port_info'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>UT-RING端口信息</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+
+
+	
+	
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">状态</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">环ID</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">环模式</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">角色</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">转发状态</span></TD>
+    </TR>
+   
+  <script language="javascript">
+  
+  writeLines();
+  
+  </script>
+  </table>
+</form>
+
+</BODY></HTML>

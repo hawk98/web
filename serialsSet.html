@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script src="JS/check.js" language="javascript"></script>
+<script language="javascript">
+
+var serialsMoreInfo = "$%serialsMoreInfo#$";
+
+
+function writeList()
+{
+	if(serialsMoreInfo!="")
+		document.write(serialsMoreInfo);
+}
+
+function writeSelect()
+{
+	if($%tSerialNum#$ == 4)
+	{
+		
+		document.write("<select name='serialsSetPort' id='serialsSetPort' onchange='selectPort()'>");
+		document.write("<option value='0' $%serialsSetPort(0)#$>串口1</option>");
+		document.write("<option value='1' $%serialsSetPort(1)#$>串口2</option>");
+		document.write("<option value='2' $%serialsSetPort(2)#$>串口3</option>");
+		document.write("<option value='3' $%serialsSetPort(3)#$>串口4</option>");
+		document.write("</select>");
+	}
+	else
+	{
+		document.write("<select name='serialsSetPort' id='serialsSetPort' onchange='selectPort()'>");
+		document.write("<option value='0' $%serialsSetPort(0)#$>串口1</option>");
+		document.write("</select>");
+	}
+
+}
+
+
+function selectPort()
+{
+//var portNum = document.getElementById("serialsSetPort").value;
+document.getElementById("serialsPortNumSelectFlag").value = 1;
+document.form1.submit();
+}
+
+function checkSub()
+{
+var serialsTcpClientPeerip = document.getElementById("serialsTcpClientPeerip").value;		//port
+var serialsTcpClentRemotePort = document.getElementById("serialsTcpClentRemotePort").value;	//IP
+var serialsTcpServerLport = document.getElementById("serialsTcpServerLport").value;
+var serialsUdpLport = document.getElementById("serialsUdpLport").value;
+var serialsUdpPeerip = document.getElementById("serialsUdpPeerip").value;
+var serialsUdpRPort = document.getElementById("serialsUdpRPort").value;
+var serialsName = document.getElementById("serialsName").value;
+
+var serialType = document.getElementById("serialsMode").value;
+
+if((serialsTcpClentRemotePort!="0.0.0.0" && !tdIpCheck(serialsTcpClentRemotePort) ) || (serialType=="1" && !tdIpCheck(serialsTcpClentRemotePort)))
+{
+        alert('TCP远端IP地址错误 !');
+        return false;
+}
+
+if((serialsUdpPeerip!="0.0.0.0" && !tdIpCheck(serialsUdpPeerip) ) || (serialType=="3" && !tdIpCheck(serialsUdpPeerip)))
+{
+        alert('UDP远端IP地址错误 !');
+        return false;
+}
+if(serialsName.length>32)
+{
+        alert('串口名过长 ,长度0-32!');
+        return false;
+}
+if(isNaN(serialsTcpClientPeerip) || serialsTcpClientPeerip < 0 || serialsTcpClientPeerip > 65535 || !fucCheckNUM(serialsTcpClientPeerip))
+{
+        alert('TCP远端端口错误,范围范围：0-65535 !');
+        return false;
+}
+if(isNaN(serialsTcpServerLport) || serialsTcpServerLport < 0 || serialsTcpServerLport > 65535 || !fucCheckNUM(serialsTcpServerLport))
+{
+        alert('TCP Server 本地端口错误,范围范围：0-65535 !');
+        return false;
+}	
+
+
+if(isNaN(serialsUdpLport) || serialsUdpLport < 0 || serialsUdpLport > 65535 || !fucCheckNUM(serialsUdpLport))
+{
+        alert('UDP本地端口错误,范围范围：0-65535 !');
+        return false;
+}	
+
+
+if(isNaN(serialsUdpRPort) || serialsUdpRPort < 0 || serialsUdpRPort > 65535 || !fucCheckNUM(serialsUdpRPort))
+{
+        alert('UDP远端端口错误,范围范围：0-65535 !');
+        return false;
+}	
+
+document.form1.submit();
+
+}
+
+function setTcpUdpSeting(){
+
+var modeType = document.getElementById("serialsMode").value;
+
+	if(modeType == 0){
+		document.getElementById("serialsTcpClientPeerip").disabled = true;
+		document.getElementById("serialsTcpClentRemotePort").disabled = true;
+		document.getElementById("serialsTcpServerLport").disabled = false;
+		document.getElementById("serialsUdpRPort").disabled = true;
+		document.getElementById("serialsUdpPeerip").disabled = true;
+		document.getElementById("serialsUdpLport").disabled = true;
+	}
+	else if(modeType == 1){
+		document.getElementById("serialsTcpClientPeerip").disabled = false;
+		document.getElementById("serialsTcpClentRemotePort").disabled = false;
+		document.getElementById("serialsTcpServerLport").disabled = true;
+		document.getElementById("serialsUdpRPort").disabled = true;
+		document.getElementById("serialsUdpPeerip").disabled = true;
+		document.getElementById("serialsUdpLport").disabled = true;
+	}
+	else if(modeType == 2){
+		document.getElementById("serialsTcpClientPeerip").disabled = true;
+		document.getElementById("serialsTcpClentRemotePort").disabled = true;
+		document.getElementById("serialsTcpServerLport").disabled = true;
+		document.getElementById("serialsUdpRPort").disabled = true;
+		document.getElementById("serialsUdpPeerip").disabled = true;
+		document.getElementById("serialsUdpLport").disabled = false;
+	}
+	else if(modeType == 3){		
+		document.getElementById("serialsTcpClientPeerip").disabled = true;
+		document.getElementById("serialsTcpClentRemotePort").disabled = true;
+		document.getElementById("serialsTcpServerLport").disabled = true;
+		document.getElementById("serialsUdpRPort").disabled = false;
+		document.getElementById("serialsUdpPeerip").disabled = false;
+		document.getElementById("serialsUdpLport").disabled = true;
+	}
+}
+
+
+
+
+</script>
+</head>
+
+<body >
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action=""  onsubmit="return checkSub();">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">串口设置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+    <table class="table_maintable" cellpadding="0">
+      <tr>
+        <td class="td25" colspan="2" width="15%">串口：</td>
+        <td  class="crons" width="35%">
+ <script language="javascript">
+  writeSelect();
+ </script>	  
+         </td>
+        <td class="td25" width="15%">串口名：</td>
+        <td  class="crons">
+          <input type="text" name="serialsName" id="serialsName" / VALUE="$%serialsName#$">(范围:0-32字符)
+        </td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">波特率：</td>
+        <td  class="crons">
+          <select name="serialsBaudrate" id="serialsBaudrate">
+            <option value="50" $%serialsBaudrate(50)#$>50</option>
+            <option value="75" $%serialsBaudrate(75)#$>75</option>
+            <option value="110" $%serialsBaudrate(110)#$>110</option>
+            <option value="150" $%serialsBaudrate(150)#$>150</option>
+            <option value="300" $%serialsBaudrate(300)#$>300</option>
+            <option value="600" $%serialsBaudrate(600)#$>600</option>
+            <option value="1200" $%serialsBaudrate(1200)#$>1200</option>
+            <option value="2000" $%serialsBaudrate(2000)#$>2000</option>
+            <option value="2400" $%serialsBaudrate(2400)#$>2400</option>
+            <option value="3600" $%serialsBaudrate(3600)#$>3600</option>
+            <option value="4800" $%serialsBaudrate(4800)#$>4800</option>
+            <option value="7200" $%serialsBaudrate(7200)#$>7200</option>
+            <option value="9600" $%serialsBaudrate(9600)#$>9600</option>
+            <option value="19200" $%serialsBaudrate(19200)#$>19200</option>
+            <option value="38400" $%serialsBaudrate(38400)#$>38400</option>
+            <option value="57600" $%serialsBaudrate(57600)#$>57600</option>
+            <option value="115200" $%serialsBaudrate(115200)#$>115200</option>
+          </select>
+        </td>
+        <td class="td25">流控：</td>
+        <td  class="crons">
+          <input type="checkbox" name="serialsFlowcontrol" id="serialsFlowcontrol"  value="ON"/ $%serialsFlowcontrol#$ disabled="disabled">
+        </td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">数据位：</td>
+        <td  class="crons">
+          <select name="serialsDatabits" id="serialsDatabits"  >
+            <option value="5" $%serialsDatabits(5)#$>5</option>
+            <option value="6" $%serialsDatabits(6)#$>6</option>
+            <option value="7" $%serialsDatabits(7)#$>7</option>
+            <option value="8" $%serialsDatabits(8)#$>8</option>
+          </select>
+        </td>
+        <td class="td25">校验位：</td>
+        <td  class="crons">
+          <select name="serialsParity" id="serialsParity"  >
+            <option value="0" $%serialsParity(0)#$>none</option>
+            <option value="1" $%serialsParity(1)#$>odd</option>
+            <option value="2" $%serialsParity(2)#$>even</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">停止位：</td>
+        <td  class="crons" colspan="3">
+          <select name="serialsStopbits" id="serialsStopbits"  >
+            <option value="0" $%serialsStopbits(0)#$>1</option>
+            <option value="2" $%serialsStopbits(2)#$>2</option>
+          </select>
+        </td>
+      </tr>
+      <tr><td height=10></td></tr>
+      <tr>
+        <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+        <td colspan=4 class="table_main3">串口模式</td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">模式：</td>
+        <td  class="crons" colspan="3"><select name="serialsMode" id="serialsMode" onchange="setTcpUdpSeting()">
+          <option value="0" $%serialsmode(0)#$>tcpserver</option>
+          <option value="1" $%serialsmode(1)#$>tcpclient</option>
+          <option value="2" $%serialsmode(2)#$>udpserver</option>
+          <option value="3" $%serialsmode(3)#$>udpclient</option>
+        </select></td>
+      </tr>
+      <tr><td height=10></td></tr>
+      <tr>
+        <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+        <td colspan=4 class="table_main3">TCP client设置</td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">远端端口：</td>
+        <td  class="crons">
+<input name="serialsTcpClientPeerip" type="text" id="serialsTcpClientPeerip" / VALUE="$%serialsTcpClientPeerip#$" />
+（范围：0 - 65535）</td>
+        <td  class="td25">远端IP：</td>
+        <td  class="crons">
+          <input type="text" name="serialsTcpClentRemotePort" id="serialsTcpClentRemotePort" / VALUE="$%serialsTcpClentRemotePort#$">
+        </td>
+      </tr>
+      <tr><td height=10></td></tr>
+      <tr>
+        <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+        <td colspan=4 class="table_main3">TCP Server</td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">本地端口：</td>
+        <td  class="crons" colspan="3">
+          <input type="text" name="serialsTcpServerLport" id="serialsTcpServerLport" / VALUE="$%serialsTcpServerLport#$">
+        （范围：0 - 65535）</td>
+      </tr>
+      <tr><td height=10></td></tr>
+      <tr>
+        <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+        <td colspan=4 class="table_main3">UDP client设置</td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">远端端口：</td>
+        <td  class="crons"><input type="text" name="serialsUdpRPort" id="serialsUdpRPort" / VALUE="$%serialsUdpRPort#$" />      
+        （范围：0 - 65535）</td>
+        <td  class="td25">远端IP：</td>
+        <td  class="crons">
+          <input type="text" name="serialsUdpPeerip" id="serialsUdpPeerip" / VALUE="$%serialsUdpPeerip#$" />
+        </td>
+      </tr>
+       <tr><td height=10></td></tr>
+     <tr>
+        <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+        <td colspan=4 class="table_main3">UDP Server</td>
+      </tr>
+      <tr>
+        <td class="td25" colspan="2">本地端口：</td>
+        <td  class="crons" colspan="3">
+          
+        <input type="text" name="serialsUdpLport" id="serialsUdpLport" / VALUE="$%serialsUdpLport#$" />
+        （范围：0 - 65535） </td>
+      </tr>
+      <tr>
+        <td colspan="2" height=40></td>
+        <td >
+          <input type="button" class="button1" name="button" id="button" value=" 提交 "   onclick="checkSub()" />
+        </td>
+      </tr>
+      <tr>
+	 <td  colspan="4" >  
+  <script language="javascript">
+  writeList();
+  setTcpUdpSeting();
+  
+ </script>	  
+ </td>
+       </tr>
+
+    </table>
+  <INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="serialsFlowcontrol" ></form>
+</div>
+</body>
+</html>

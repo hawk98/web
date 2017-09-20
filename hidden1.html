@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>hidden</title>
+<script language="javascript">
+//var statusStr = "2,1,2,1,2,2,2,2,1,2,1,2,2,1,2,2,2,2,2,"; 
+var statusStr = "$%TopPortLinkStateStr#$";
+var stricmpPingInfo = "";
+timer=null;
+polling();
+function polling()
+{      
+	//alert(top.topFrame.firstLoad);
+	if(top.topFrame.firstLoad == 1)
+	{	
+	top.topFrame.firstLoad = 0;
+ 	timer=setTimeout("SubmitForm()",15000);
+	}
+	else
+	{
+	timer=setTimeout("SubmitForm()",3000);
+	}
+}
+function SubmitForm()
+{
+    location.reload();
+}
+</script>
+</head>
+<body oncontextmenu=self.event.returnValue=false >
+<form id="form1" name="form1" method="post" action="">
+  
+  <textarea name="TstricmpPingInfo" id="TstricmpPingInfo">$%icmpPingInfo#$</textarea>
+  
+  <script language="javascript">
+  stricmpPingInfo = document.getElementById("TstricmpPingInfo").value;
+  </script>
+</form>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<HTML>	
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<TITLE>page</TITLE><script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+
+
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+var fePortNum = $%fePortNum#$;
+
+function checkSub()
+{
+  var idName = "", idValue = 0, maxR = 100, limit=1;
+  var minR = 0;
+  for(var j = 1; j <= portNum; j++)
+  {
+    idName_1 = "qosSRDlf" + j;
+    idValue_1 = document.getElementById(idName_1).value;
+    limit_1 = document.getElementById("qosSRDlfLmt" + j).value;
+    maxR_1 = (limit_1==2?100:2048);
+	minR_1 = (limit_1==2?1:64);
+    if(j > fePortNum&&limit_1==2) maxR_1 *= 10;
+    if(!fucCheckNUM1(idValue_1) || idValue_1 < minR_1 || idValue_1 > maxR_1){
+      alert("端口" + convert_tomodport(j) + "抑制未知单播速率错误，范围应是"+minR_1+"-" + maxR_1 + "！");
+	  document.getElementById("qosSRDlf" + j).select();
+      return false;
+    }
+    if(limit_1 == 1 && idValue_1 > 2000){
+    	document.getElementById(idName_1).value = idValue_1/1000;
+    	document.getElementById("qosSRDlfLmt" + j).value = 2;
+    }
+  }
+
+  for(var i = 1; i <= portNum; i++)
+  {
+    idName = "qosStomRate" + i;
+    idValue = document.getElementById(idName).value;
+    limit = document.getElementById("qosStomRateLimit" + i).value;
+    maxR = (limit==2?100:2048);
+	minR = (limit==2?1:64);  
+	 if(i > fePortNum&&limit==2) maxR *= 10;
+    if(!fucCheckNUM1(idValue) || idValue < minR || idValue > maxR){
+      alert("端口" + convert_tomodport(i) + "抑制多播广播速率错误，范围应是"+minR+"-" + maxR + "！");
+ 	  document.getElementById("qosStomRate" + i).select();
+     return false;
+    }
+    if(limit == 1 && idValue > 2000){
+    	document.getElementById(idName).value = idValue/1000;
+    	document.getElementById("qosStomRateLimit" + i).value = 2;
+    	//alert("端口" + i + "抑制速率大于 2000k，请将单位换算成兆！");
+    	//return false;
+    }
+  }
+
+  
+  
+  
+   for(var i = 1; i <= portNum; i++)
+   {
+		if((document.getElementById("qosStomEnable" + ((i-1)*4 + 2)).checked == false)&&(document.getElementById("qosStomEnable" + ((i-1)*4 + 3)).checked == false))
+		{
+		    	alert("多播和广播中至少选择一项");
+    			return false;
+
+		
+		}
+  } 
+  
+  submitForm0();
+  return false;
+}
+
+function submitForm0(){
+  var doc = document.form0;
+  doc.qosStomEnableStr.value = "";
+  doc.qosStomRateLimitStr.value = "";
+  doc.qosStomRateStr.value = document.getElementById("qosStomRate1").value;
+  for(var i = 1; i <= portNum*4; i++){
+    if(document.getElementById("qosStomEnable" + i).checked == true)
+      doc.qosStomEnableStr.value += "1";
+    else
+    	doc.qosStomEnableStr.value += "0";
+  }
+  for(var i = 2; i <= portNum; i++){
+    doc.qosStomRateStr.value += "," + document.getElementById("qosStomRate" + i).value;
+  }
+  for(var i = 1; i <= portNum; i++)
+    doc.qosStomRateLimitStr.value += document.getElementById("qosStomRateLimit" + i).value + "";
+	
+  doc.qosSRDlfLmtStr.value = "";
+  doc.qosSRDlfStr.value = document.getElementById("qosSRDlf1").value;
+   for(var i = 2; i <= portNum; i++){
+    doc.qosSRDlfStr.value += "," + document.getElementById("qosSRDlf" + i).value;
+  }
+ for(var i = 1; i <= portNum; i++)
+    doc.qosSRDlfLmtStr.value += document.getElementById("qosSRDlfLmt" + i).value + "";
+	
+	
+  doc.submit();
+}
+
+function fucCheckNUM1(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+function display(){
+changebgcolor();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('qos_storm'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form id="form0" name="form0" method="post" action="">
+  <input type="hidden" name="qosStomEnableStr" value="$%qosStomEnableStr#$">
+  <input type="hidden" name="qosStomRateStr" value="$%qosStomRateStr#$">
+  <input type="hidden" name="qosStomRateLimitStr" value="$%qosStomRateLimitStr#$">
+  <input name="qosSRDlfLmtStr" type="hidden" id="qosSRDlfLmtStr" value="$%qosSRDlfLmtStr#$">
+  <input name="qosSRDlfStr" type="hidden" id="qosSRDlfStr" value="$%qosSRDlfStr#$">
+</form>
+<form id="form1" name="form1" method="post"  onsubmit="return checkSub();">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td  class=Tablelist id=tabs name=tabs>风暴控制</td>
+     </tr>
+</table>
+
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <TR    align="center" height=22>
+      <TD width="7%"   nowrap >端口</TD>
+      <TD width="11%"   nowrap ><div align="left">模式和抑制速率</div></TD>
+      <TD width="20%"   nowrap >&nbsp;</TD>
+      <TD width="13%"   nowrap ><div align="left">模式和抑制速率</div></TD>
+      <TD width="49%"   nowrap ><div align="left"></div></TD>
+    </TR>
+    <TR    align="center" height=22>
+      <td >1</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable1"  style="display:none" id="qosStomEnable1" value="ON"  / $%qosStomEnable1#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;</div></td>
+      <td class="crons">
+        <div align="left">
+          <input type="checkbox" name="qosStomEnable4"  style="display:none" id="qosStomEnable4" value="ON"  / $%qosStomEnable4#$ />
+          <input name="qosSRDlf1" type="text" id="qosSRDlf1" size="6" maxlength="7" / VALUE="$%qosSRDlf1#$" />
+          <select name="qosSRDlfLmt1" id="qosSRDlfLmt1">
+            <option value="1" $%qosSRDlfLmt1(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt1(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable2"  style="display:" id="qosStomEnable2" value="ON"  / $%qosStomEnable2#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable3"  style="display:" id="qosStomEnable3" value="ON"  / $%qosStomEnable3#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input type="checkbox" name="qosStomEnable410"  style="display:none" id="qosStomEnable410" value="ON"  / $%qosStomEnable4#$ />
+              <input name="qosStomRate1" type="text" id="qosStomRate1" size="6" maxlength="7" / VALUE="$%qosStomRate1#$">
+              <select name="qosStomRateLimit1" id="qosStomRateLimit1">
+                <option value="1" $%qosStomRateLimit1(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit1(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >2</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable5"  style="display:none" id="qosStomEnable5" value="ON"  / $%qosStomEnable5#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable8"  style="display:none" id="qosStomEnable8" value="ON"  / $%qosStomEnable8#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf2" type="text" id="qosSRDlf2" size="6" maxlength="7" / VALUE="$%qosSRDlf2#$" />
+          <select name="qosSRDlfLmt2" id="qosSRDlfLmt2">
+            <option value="1" $%qosSRDlfLmt2(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt2(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable6"  style="display:" id="qosStomEnable6" value="ON"  / $%qosStomEnable6#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable7"  style="display:" id="qosStomEnable7" value="ON"  / $%qosStomEnable7#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate2" type="text" id="qosStomRate2" size="6" maxlength="7" / VALUE="$%qosStomRate2#$">
+              <select name="qosStomRateLimit2" id="qosStomRateLimit2">
+                <option value="1" $%qosStomRateLimit2(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit2(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >3</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable9"  style="display:none" id="qosStomEnable9" value="ON"  / $%qosStomEnable9#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable12"  style="display:none" id="qosStomEnable12" value="ON"  / $%qosStomEnable12#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf3" type="text" id="qosSRDlf3" size="6" maxlength="7" / VALUE="$%qosSRDlf3#$" />
+          <select name="qosSRDlfLmt3" id="qosSRDlfLmt3">
+            <option value="1" $%qosSRDlfLmt3(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt3(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable10"  style="display:" id="qosStomEnable10" value="ON"  / $%qosStomEnable10#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable11"  style="display:" id="qosStomEnable11" value="ON"  / $%qosStomEnable11#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate3" type="text" id="qosStomRate3" size="6" maxlength="7" / VALUE="$%qosStomRate3#$">
+              <select name="qosStomRateLimit3" id="qosStomRateLimit3">
+                <option value="1" $%qosStomRateLimit3(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit3(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >4</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable13"  style="display:none" id="qosStomEnable13" value="ON"  / $%qosStomEnable13#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable16"  style="display:none" id="qosStomEnable16" value="ON"  / $%qosStomEnable16#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf4" type="text" id="qosSRDlf4" size="6" maxlength="7" / VALUE="$%qosSRDlf4#$" />
+          <select name="qosSRDlfLmt4" id="qosSRDlfLmt4">
+            <option value="1" $%qosSRDlfLmt4(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt4(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable142"  style="display:" id="qosStomEnable14" value="ON"  / $%qosStomEnable14#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable15"  style="display:" id="qosStomEnable15" value="ON"  / $%qosStomEnable15#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate4" type="text" id="qosStomRate4" size="6" maxlength="7" / VALUE="$%qosStomRate4#$">
+              <select name="qosStomRateLimit4" id="qosStomRateLimit4">
+                <option value="1" $%qosStomRateLimit4(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit4(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >5</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable14"  style="display:none" id="qosStomEnable17" value="ON"  / $%qosStomEnable17#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable20"  style="display:none" id="qosStomEnable20" value="ON"  / $%qosStomEnable20#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf5" type="text" id="qosSRDlf5" size="6" maxlength="7" / VALUE="$%qosSRDlf5#$" />
+          <select name="qosSRDlfLmt5" id="qosSRDlfLmt5">
+            <option value="1" $%qosSRDlfLmt5(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt5(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable18"  style="display:" id="qosStomEnable18" value="ON"  / $%qosStomEnable18#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable19"  style="display:" id="qosStomEnable19" value="ON"  / $%qosStomEnable19#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate5" type="text" id="qosStomRate5" size="6" maxlength="7" / VALUE="$%qosStomRate5#$">
+              <select name="qosStomRateLimit5" id="qosStomRateLimit5">
+                <option value="1" $%qosStomRateLimit5(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit5(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >6</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable21"  style="display:none" id="qosStomEnable21" value="ON"  / $%qosStomEnable21#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;</div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf6" type="text" id="qosSRDlf6" size="6" maxlength="7" / VALUE="$%qosSRDlf6#$" />
+          <select name="qosSRDlfLmt6" id="qosSRDlfLmt6">
+            <option value="1" $%qosSRDlfLmt6(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt6(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable22"  style="display:" id="qosStomEnable22" value="ON"  / $%qosStomEnable22#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable23"  style="display:" id="qosStomEnable23" value="ON"  / $%qosStomEnable23#$ />
+<input type="checkbox" name="qosStomEnable24"  style="display:none" id="qosStomEnable24" value="ON"  / $%qosStomEnable24#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate6" type="text" id="qosStomRate6" size="6" maxlength="7" / VALUE="$%qosStomRate6#$">
+              <select name="qosStomRateLimit6" id="qosStomRateLimit6">
+                <option value="1" $%qosStomRateLimit6(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit6(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >7</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable25"  style="display:none" id="qosStomEnable25" value="ON"  / $%qosStomEnable25#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable28"  style="display:none" id="qosStomEnable28" value="ON"  / $%qosStomEnable28#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf7" type="text" id="qosSRDlf7" size="6" maxlength="7" / VALUE="$%qosSRDlf7#$" />
+          <select name="qosSRDlfLmt7" id="qosSRDlfLmt7">
+            <option value="1" $%qosSRDlfLmt7(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt7(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable26"  style="display:" id="qosStomEnable26" value="ON"  / $%qosStomEnable26#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable27"  style="display:" id="qosStomEnable27" value="ON"  / $%qosStomEnable27#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate7" type="text" id="qosStomRate7" size="6" maxlength="7" / VALUE="$%qosStomRate7#$">
+              <select name="qosStomRateLimit7" id="qosStomRateLimit7">
+                <option value="1" $%qosStomRateLimit7(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit7(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >8</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable29"  style="display:none" id="qosStomEnable29" value="ON"  / $%qosStomEnable29#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable32"  style="display:none" id="qosStomEnable32" value="ON"  / $%qosStomEnable32#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf8" type="text" id="qosSRDlf8" size="6" maxlength="7" / VALUE="$%qosSRDlf8#$" />
+          <select name="qosSRDlfLmt8" id="qosSRDlfLmt8">
+            <option value="1" $%qosSRDlfLmt8(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt8(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable30"  style="display:" id="qosStomEnable30" value="ON"  / $%qosStomEnable30#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable31"  style="display:" id="qosStomEnable31" value="ON"  / $%qosStomEnable31#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate8" type="text" id="qosStomRate8" size="6" maxlength="7" / VALUE="$%qosStomRate8#$">
+              <select name="qosStomRateLimit8" id="qosStomRateLimit8">
+                <option value="1" $%qosStomRateLimit8(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit8(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >9</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable33"  style="display:none" id="qosStomEnable33" value="ON"  / $%qosStomEnable33#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox"  name="qosStomEnable36"  style="display:none" id="qosStomEnable36" value="ON"  / $%qosStomEnable36#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf9" type="text" id="qosSRDlf9" size="6" maxlength="7" / VALUE="$%qosSRDlf9#$" />
+          <select name="qosSRDlfLmt9" id="qosSRDlfLmt9">
+            <option value="1" $%qosSRDlfLmt9(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt9(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable34"  style="display:" id="qosStomEnable34" value="ON"  / $%qosStomEnable34#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable35"  style="display:" id="qosStomEnable35" value="ON"  / $%qosStomEnable35#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate9" type="text" id="qosStomRate9" size="6" maxlength="7" / VALUE="$%qosStomRate9#$">
+              <select name="qosStomRateLimit9" id="qosStomRateLimit9">
+                <option value="1" $%qosStomRateLimit9(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit9(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >10</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable37"  style="display:none" id="qosStomEnable37" value="ON"  / $%qosStomEnable37#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable40"  style="display:none" id="qosStomEnable40" value="ON"  / $%qosStomEnable40#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf10" type="text" id="qosSRDlf10" size="6" maxlength="7" / VALUE="$%qosSRDlf10#$" />
+          <select name="qosSRDlfLmt10" id="qosSRDlfLmt10">
+            <option value="1" $%qosSRDlfLmt10(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt10(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable38"  style="display:" id="qosStomEnable38" value="ON"  / $%qosStomEnable38#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable39"  style="display:" id="qosStomEnable39" value="ON"  / $%qosStomEnable39#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate10" type="text" id="qosStomRate10" size="6" maxlength="7" / VALUE="$%qosStomRate10#$">
+              <select name="qosStomRateLimit10" id="qosStomRateLimit10">
+                <option value="1" $%qosStomRateLimit10(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit10(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >11</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable41"  style="display:none" id="qosStomEnable41" value="ON"  / $%qosStomEnable41#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable44"  style="display:none" id="qosStomEnable44" value="ON"  / $%qosStomEnable44#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf11" type="text" id="qosSRDlf11" size="6" maxlength="7" / VALUE="$%qosSRDlf11#$" />
+          <select name="qosSRDlfLmt11" id="qosSRDlfLmt11">
+            <option value="1" $%qosSRDlfLmt11(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt11(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable42"  style="display:" id="qosStomEnable42" value="ON"  / $%qosStomEnable42#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable43"  style="display:" id="qosStomEnable43" value="ON"  / $%qosStomEnable43#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate11" type="text" id="qosStomRate11" size="6" maxlength="7" / VALUE="$%qosStomRate11#$">
+              <select name="qosStomRateLimit11" id="qosStomRateLimit11">
+                <option value="1" $%qosStomRateLimit11(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit11(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >12</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable45"  style="display:none" id="qosStomEnable45" value="ON"  / $%qosStomEnable45#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable48"  style="display:none" id="qosStomEnable48" value="ON"  / $%qosStomEnable48#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf12" type="text" id="qosSRDlf12" size="6" maxlength="7" / VALUE="$%qosSRDlf12#$" />
+          <select name="qosSRDlfLmt12" id="qosSRDlfLmt12">
+            <option value="1" $%qosSRDlfLmt12(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt12(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable46"  style="display:" id="qosStomEnable46" value="ON"  / $%qosStomEnable46#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable47"  style="display:" id="qosStomEnable47" value="ON"  / $%qosStomEnable47#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate12" type="text" id="qosStomRate12" size="6" maxlength="7" / VALUE="$%qosStomRate12#$">
+              <select name="qosStomRateLimit12" id="qosStomRateLimit12">
+                <option value="1" $%qosStomRateLimit12(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit12(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >13</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable49"  style="display:none" id="qosStomEnable49" value="ON"  / $%qosStomEnable49#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable52"  style="display:none" id="qosStomEnable52" value="ON"  / $%qosStomEnable52#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf13" type="text" id="qosSRDlf13" size="6" maxlength="7" / VALUE="$%qosSRDlf13#$" />
+          <select name="qosSRDlfLmt13" id="qosSRDlfLmt13">
+            <option value="1" $%qosSRDlfLmt13(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt13(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable50"  style="display:" id="qosStomEnable50" value="ON"  / $%qosStomEnable50#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable51"  style="display:" id="qosStomEnable51" value="ON"  / $%qosStomEnable51#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate13" type="text" id="qosStomRate13" size="6" maxlength="7" / VALUE="$%qosStomRate13#$">
+              <select name="qosStomRateLimit13" id="qosStomRateLimit13">
+                <option value="1" $%qosStomRateLimit13(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit13(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >14</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable53"  style="display:none" id="qosStomEnable53" value="ON"  / $%qosStomEnable53#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable56"  style="display:none" id="qosStomEnable56" value="ON"  / $%qosStomEnable56#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf14" type="text" id="qosSRDlf14" size="6" maxlength="7" / VALUE="$%qosSRDlf14#$" />
+          <select name="qosSRDlfLmt14" id="qosSRDlfLmt14">
+            <option value="1" $%qosSRDlfLmt14(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt14(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable54"  style="display:" id="qosStomEnable54" value="ON"  / $%qosStomEnable54#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable55"  style="display:" id="qosStomEnable55" value="ON"  / $%qosStomEnable55#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate14" type="text" id="qosStomRate14" size="6" maxlength="7" / VALUE="$%qosStomRate14#$">
+              <select name="qosStomRateLimit14" id="qosStomRateLimit14">
+                <option value="1" $%qosStomRateLimit14(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit14(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >15</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable57"  style="display:none" id="qosStomEnable57" value="ON"  / $%qosStomEnable57#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable60"  style="display:none" id="qosStomEnable60" value="ON"  / $%qosStomEnable60#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf15" type="text" id="qosSRDlf15" size="6" maxlength="7" / VALUE="$%qosSRDlf15#$" />
+          <select name="qosSRDlfLmt15" id="qosSRDlfLmt15">
+            <option value="1" $%qosSRDlfLmt15(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt15(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable58"  style="display:" id="qosStomEnable58" value="ON"  / $%qosStomEnable58#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable59"  style="display:" id="qosStomEnable59" value="ON"  / $%qosStomEnable59#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate15" type="text" id="qosStomRate15" size="6" maxlength="7" / VALUE="$%qosStomRate15#$">
+              <select name="qosStomRateLimit15" id="qosStomRateLimit15">
+                <option value="1" $%qosStomRateLimit15(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit15(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >16</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable61"  style="display:none" id="qosStomEnable61" value="ON"  / $%qosStomEnable61#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable64"  style="display:none" id="qosStomEnable64" value="ON"  / $%qosStomEnable64#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf16" type="text" id="qosSRDlf16" size="6" maxlength="7" / VALUE="$%qosSRDlf16#$" />
+          <select name="qosSRDlfLmt16" id="qosSRDlfLmt16">
+            <option value="1" $%qosSRDlfLmt16(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt16(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable62"  style="display:" id="qosStomEnable62" value="ON"  / $%qosStomEnable62#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable63"  style="display:" id="qosStomEnable63" value="ON"  / $%qosStomEnable63#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate16" type="text" id="qosStomRate16" size="6" maxlength="7" / VALUE="$%qosStomRate16#$">
+              <select name="qosStomRateLimit16" id="qosStomRateLimit16">
+                <option value="1" $%qosStomRateLimit16(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit16(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >17</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable65"  style="display:none" id="qosStomEnable65" value="ON"  / $%qosStomEnable65#$ />
+&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable68"  style="display:none" id="qosStomEnable68" value="ON"  / $%qosStomEnable68#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf17" type="text" id="qosSRDlf17" size="6" maxlength="7" / VALUE="$%qosSRDlf17#$" />
+          <select name="qosSRDlfLmt17" id="qosSRDlfLmt17">
+            <option value="1" $%qosSRDlfLmt17(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt17(2)#$>Mbps</option>
+          </select>
+        </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable66"  style="display:" id="qosStomEnable66" value="ON"  / $%qosStomEnable66#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable67"  style="display:" id="qosStomEnable67" value="ON"  / $%qosStomEnable67#$ />
+        </div></td>
+        <td class="crons"><div align="left">
+          <input name="qosStomRate17" type="text" id="qosStomRate17" size="6" maxlength="7" / VALUE="$%qosStomRate17#$">
+          <select name="qosStomRateLimit17" id="qosStomRateLimit17">
+            <option value="1" $%qosStomRateLimit17(1)#$>Kbps</option>
+            <option value="2" $%qosStomRateLimit17(2)#$>Mbps</option>
+          </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >18</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable69"  style="display:none" id="qosStomEnable69" value="ON"  / $%qosStomEnable69#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable72"  style="display:none" id="qosStomEnable72" value="ON"  / $%qosStomEnable72#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf18" type="text" id="qosSRDlf18" size="6" maxlength="7" / VALUE="$%qosSRDlf18#$" />
+          <select name="qosSRDlfLmt18" id="qosSRDlfLmt18">
+            <option value="1" $%qosSRDlfLmt18(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt18(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable70"  style="display:" id="qosStomEnable70" value="ON"  / $%qosStomEnable70#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable71"  style="display:" id="qosStomEnable71" value="ON"  / $%qosStomEnable71#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate18" type="text" id="qosStomRate18" size="6" maxlength="7" / VALUE="$%qosStomRate18#$">
+              <select name="qosStomRateLimit18" id="qosStomRateLimit18">
+                <option value="1" $%qosStomRateLimit18(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit18(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >19</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable73"  style="display:none" id="qosStomEnable73" value="ON"  / $%qosStomEnable73#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable76"  style="display:none" id="qosStomEnable76" value="ON"  / $%qosStomEnable76#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf19" type="text" id="qosSRDlf19" size="6" maxlength="7" / VALUE="$%qosSRDlf19#$" />
+          <select name="qosSRDlfLmt19" id="qosSRDlfLmt19">
+            <option value="1" $%qosSRDlfLmt19(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt19(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons"><div align="left">多播
+  <input type="checkbox" name="qosStomEnable74"  style="display:" id="qosStomEnable74" value="ON"  / $%qosStomEnable74#$ />
+  &nbsp;&nbsp;&nbsp;&nbsp;广播
+  <input type="checkbox" name="qosStomEnable75"  style="display:" id="qosStomEnable75" value="ON"  / $%qosStomEnable75#$ />
+            </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate19" type="text" id="qosStomRate19" size="6" maxlength="7" / VALUE="$%qosStomRate19#$">
+              <select name="qosStomRateLimit19" id="qosStomRateLimit19">
+                <option value="1" $%qosStomRateLimit19(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit19(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    <TR    align="center" height=22>
+      <td >20</td>
+      <td class="crons"><div align="left">未知单播
+          <input type="checkbox" name="qosStomEnable77"  style="display:none" id="qosStomEnable77" value="ON"  / $%qosStomEnable77#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="qosStomEnable80"  style="display:none" id="qosStomEnable80" value="ON"  / $%qosStomEnable80#$ />
+      </div></td>
+      <td class="crons">
+        <div align="left">
+          <input name="qosSRDlf20" type="text" id="qosSRDlf20" size="6" maxlength="7" / VALUE="$%qosSRDlf20#$" />
+          <select name="qosSRDlfLmt20" id="qosSRDlfLmt20">
+            <option value="1" $%qosSRDlfLmt20(1)#$>Kbps</option>
+            <option value="2" $%qosSRDlfLmt20(2)#$>Mbps</option>
+          </select>
+            </div></td><td class="crons">
+        
+          
+              <div align="left">多播
+                <input type="checkbox" name="qosStomEnable78"  style="display:" id="qosStomEnable78" value="ON"  / $%qosStomEnable78#$ />
+&nbsp;&nbsp;&nbsp;&nbsp;广播
+<input type="checkbox" name="qosStomEnable79"  style="display:" id="qosStomEnable79" value="ON"  / $%qosStomEnable79#$ />
+              </div></td>
+            <td class="crons"><div align="left">
+              <input name="qosStomRate20" type="text" id="qosStomRate20" size="6" maxlength="7" / VALUE="$%qosStomRate20#$">
+              <select name="qosStomRateLimit20" id="qosStomRateLimit20">
+                <option value="1" $%qosStomRateLimit20(1)#$>Kbps</option>
+                <option value="2" $%qosStomRateLimit20(2)#$>Mbps</option>
+              </select>
+      </div></td>
+    </TR>
+    
+      <tr>
+  		<td class="partition" colspan="32">&nbsp;
+      <input name="ddddd" type="submit" class="button1" id="ddddd"    value="提交">
+    	</td>
+      </tr>
+    </TR>
+  </table>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="qosStomEnable1,qosStomEnable2,qosStomEnable3,qosStomEnable4,qosStomEnable5,qosStomEnable6,qosStomEnable7,qosStomEnable8,qosStomEnable9,qosStomEnable10,qosStomEnable11,qosStomEnable12,qosStomEnable13,qosStomEnable14,qosStomEnable15,qosStomEnable16,qosStomEnable17,qosStomEnable18,qosStomEnable19,qosStomEnable20" >
+</span>
+</form>
+
+ 
+<a name="bottom"></a></BODY></HTML>
+
+
+
+

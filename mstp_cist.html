@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+var MstpCistInfoList = [$%MstpCistInfoList#$];
+
+function checkSub()
+{
+  document.form1.submit();
+}
+
+function writeList(){
+  if(MstpCistInfoList.length != 5) return;
+  document.writeln("<tr><td class='crons' colspan='2'>");
+  for(var i = 0; i < 4; i++)
+    document.writeln(MstpCistInfoList[i] + "</td><td class='crons'>");
+  document.writeln(MstpCistInfoList[4] + "</td></tr>");
+}
+
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">CIST 配置信息</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+    <td class="td25" width="15%" colspan="2">优先级：</td>
+    <td class="crons" colspan="4"><select name="MstpCistPriority" id="MstpCistPriority">
+        <option value="0" $%MstpCistPriority(0)#$>0</option>
+        <option value="4096" $%MstpCistPriority(4096)#$>4096</option>
+        <option value="8192" $%MstpCistPriority(8192)#$>8192</option>
+        <option value="12288" $%MstpCistPriority(12288)#$>12288</option>
+        <option value="16384" $%MstpCistPriority(16384)#$>16384</option>
+        <option value="20480" $%MstpCistPriority(20480)#$>20480</option>
+        <option value="24576" $%MstpCistPriority(24576)#$>24576</option>
+        <option value="28672" $%MstpCistPriority(28672)#$>28672</option>
+        <option value="32768" $%MstpCistPriority(32768)#$>32768</option>
+        <option value="36864" $%MstpCistPriority(36864)#$>36864</option>
+        <option value="40960" $%MstpCistPriority(40960)#$>40960</option>
+        <option value="45056" $%MstpCistPriority(45056)#$>45056</option>
+        <option value="49152" $%MstpCistPriority(49152)#$>49152</option>
+        <option value="53248" $%MstpCistPriority(53248)#$>53248</option>
+        <option value="57344" $%MstpCistPriority(57344)#$>57344</option>
+        <option value="61440" $%MstpCistPriority(61440)#$>61440</option>
+      </select>
+    </td>
+   <tr>
+    <td height=40 colspan="2">&nbsp;</td>
+    <td >
+      <input type="button" class="button1" name="button" id="button" value="提 交"  onclick="checkSub()" />
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=9 class="table_main3">CIST 信息</td>
+  </tr>
+<tr>
+    <td  class="partition" colspan="2">根路径开销</td>
+    <td  class="partition">端口</td>
+    <td  class="partition">根标识</td>
+    <td  class="partition">区域根标识</td>
+    <td  class="partition">桥标识</td>
+</tr>
+<script language="javascript">
+  writeList();
+</script>
+</table>
+
+</div>
+</body>
+</html>

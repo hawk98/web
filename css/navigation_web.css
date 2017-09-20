@@ -1,0 +1,12 @@
+body{ font-size:11px; bottom repeat-x; background-color:#D8D6D0}
+
+a{font-size:11px; font-weight:bold; color:#000000;text-decoration:none;}
+a:hover{text-decoration:none;}
+
+.bbq{padding:0px; margin:0px; list-style-type:none;}
+
+.table_on{font-size:11px; background:url(../img/bg_center_web.gif);repeat-x;padding-top:4px; padding-left:0px;margin-top:0px; text-align:left;  cursor:pointer;}
+.table_off{font-size:11px; background:url(../img/bg_center_over_web.gif);repeat-x;padding-top:4px; padding-left:0px;margin-top:0px; text-align:left;  cursor:pointer;}
+  
+.bq{ font-size:11px; height:22px; background:url(../img/bq_d_new_web.gif);font-weight:bold;}
+align:left; float:left; cursor:pointer;}

@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<SCRIPT LANGUAGE="javascript">
+function display()
+{
+//changebgcolor();
+
+}
+var lldpInfoList = [$%lldpInfoList#$];
+//var lldpInfoList = ["Port 1","00-E0-0F-C4-7E-AB","1","Port 1IETH9307","aaaaaaaaaaaaaaaaaa"," Image 1.0.0.10  Oct 19 2011 15:35:46","Bridge(+)","192.168.65.75 (IPv4)"]
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<lldpInfoList.length/8;i++)
+	{
+		document.write("  <tr  class='tables_all'>");
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		document.write("    <td class='inputsyslog1'>"+lldpInfoList[j]+"</td>");
+		j++;
+		//document.write("    <td >"+lldpInfoList[j]+"</td>");
+		document.write("    <td class='inputsyslog1'><a  target='_blank'  href='http://"+lldpInfoList[j].split("(",1)+"'>"+lldpInfoList[j]+"</a></td>");
+		j++;
+
+		document.write("  </tr>");
+	}
+}
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('lldpInfo'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>LLDP信息</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <tr class="table_maintable nowrap ">
+      <td width="12%" nowrap  class="all_tables_list">本地端口</td>
+      <td width="12%" nowrap  class="all_tables_list">系统ID</td>
+      <td width="12%" nowrap  class="all_tables_list">远端端口</td>
+      <td width="12%" nowrap  class="all_tables_list">端口描述</td>
+      <td width="13%" nowrap  class="all_tables_list">系统名</td>
+      <td width="13%" nowrap  class="all_tables_list">系统描述</td>
+      <td width="13%" nowrap  class="all_tables_list">系统类型</td>
+      <td width="13%" nowrap  class="all_tables_list">管理地址</td>
+    </tr>
+  <script language="javascript">  
+  writeLines();
+  </script>
+  </table>
+  </form>
+
+</BODY></HTML>

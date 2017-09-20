@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+function checkSub()
+{
+	var MstpForwardDelay = document.getElementById("MstpForwardDelay").value;
+	var MstpHelloTime = document.getElementById("MstpHelloTime").value;
+	var MstpMaxAge = document.getElementById("MstpMaxAge").value;
+	var MstpMaxHops = document.getElementById("MstpMaxHops").value;
+	var MstpRevisionLevel = document.getElementById("MstpRevisionLevel").value;
+	if(isNaN(MstpForwardDelay) || MstpForwardDelay < 4 || MstpForwardDelay > 30  || !fucCheckNUM(MstpForwardDelay))
+		{
+		alert("转发延时错误，范围为：4~30s");
+		return;
+		}
+	if(isNaN(MstpHelloTime) || MstpHelloTime < 1 || MstpHelloTime > 10  || !fucCheckNUM(MstpHelloTime))
+		{
+		alert("Hello时间错误，范围为：1~10s");
+		return;
+		}
+	if(isNaN(MstpMaxAge) || MstpMaxAge < 6 || MstpMaxAge > 40  || !fucCheckNUM(MstpMaxAge))
+		{
+		alert("最大老化时间错误，范围为：6~40s");
+		return;
+		}
+	if(isNaN(MstpMaxHops) || MstpMaxHops < 1 || MstpMaxHops > 40  || !fucCheckNUM(MstpMaxHops))
+		{
+		alert("最大跳数错误，范围为：1~40");
+		return;
+		}
+	if(isNaN(MstpRevisionLevel) || MstpRevisionLevel < 0 || MstpRevisionLevel > 65535  || !fucCheckNUM(MstpRevisionLevel))
+		{
+		alert("修订级别错误，范围为：0~65535");
+		return;
+		}
+		
+	if(2*(document.getElementById("MstpForwardDelay").value - 1) < document.getElementById("MstpMaxAge").value)
+		{
+		alert("2*（转发延时-1）必须大于或等于最大老化时间");
+		return;
+		}	
+	
+	if(document.getElementById("MstpMaxAge").value < 2*(Number(document.getElementById("MstpHelloTime").value) + 1) )
+		{		
+		alert("2*（Hello时间+ 1）必须小于或等于最大老化时间");
+		return;
+		}
+	if(document.getElementById("MstpRegionName").value.length > 32 ||document.getElementById("MstpRegionName").value.length == 0)
+	{
+		alert("域名不能为空，长度也不能超过32");
+		return;
+	}
+
+	document.form1.submit();
+}
+
+window.onload = function(){
+  document.form1.MstpLicence.value = "true";
+}
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">Mstp桥配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" width=15%>是否启用：</td>
+    <td colspan="9"   class="crons">
+             
+      <input type="checkbox" name="MstpEnable" id="MstpEnable" value="ON" $%MstpEnable#$ >
+      </td>
+  </tr>
+  <tr>
+    <td class="td25">转发延时：</td>
+    <td  class="crons">
+      <input type="text" name="MstpForwardDelay" id="MstpForwardDelay" / VALUE="$%MstpForwardDelay#$">
+    (4~30s)</td>
+  </tr>
+  <tr>
+    <td class="td25">Hello时间：</td>
+    <td  class="crons">
+      <input type="text" name="MstpHelloTime" id="MstpHelloTime" / VALUE="$%MstpHelloTime#$">
+    (1~10s)</td>
+  </tr>
+  <tr>
+    <td class="td25">最大老化时间：</td>
+    <td  class="crons">
+      <input type="text" name="MstpMaxAge" id="MstpMaxAge" / VALUE="$%MstpMaxAge#$">
+    (6~40s)</td>
+  </tr>
+  <tr>
+    <td class="td25">最大跳数：</td>
+    <td  class="crons">
+      <input type="text" name="MstpMaxHops" id="MstpMaxHops" / VALUE="$%MstpMaxHops#$">
+    (1~40)</td>
+  </tr>
+  <tr>
+    <td class="td25">域名：</td>
+    <td  class="crons">
+      <input type="text" name="MstpRegionName" id="MstpRegionName" maxlength=32 / VALUE="$%MstpRegionName#$">
+    (1~32字符)</td>
+  </tr>
+  <tr>
+    <td class="td25">修订级别：</td>
+    <td  class="crons">
+      <input type="text" name="MstpRevisionLevel" id="MstpRevisionLevel" / VALUE="$%MstpRevisionLevel#$">
+    (0~65535)</td>
+  </tr>
+  <tr>
+    <td class="td25">桥地址：</td>
+    <td  class="crons">
+      <input type="text" name="MstpBridgeAddress" id="MstpBridgeAddress" / VALUE="$%MstpBridgeAddress#$" disabled></td>
+  </tr>
+  <tr>
+    <td class="td25">桥组播地址：</td>
+    <td  class="crons">
+      <input type="text" name="MstpGroupMcAddress" id="MstpGroupMcAddress" / VALUE="$%MstpGroupMcAddress#$" disabled></td>
+  </tr>
+  <tr>
+  	<td class="td25" colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td class="td25">摘要：</td>
+    <td  class="crons">
+      <input type="text" name="MstpDigest" id="MstpDigest" size=40 / VALUE="$%MstpDigest#$" disabled></td>
+  </tr>
+  <tr>
+    <td class="td25">密钥有效性：</td>
+    <td  class="crons">
+      <input type="text" name="MstpLicence" id="MstpLicence" / VALUE="$%MstpLicence#$" disabled></td>
+  </tr>
+   <tr>
+    <td height=40>&nbsp;</td>
+    <td >
+      <input type="button" class="button1" name="button" id="button" value="提 交"  onclick="checkSub()" />
+    </td>
+  </tr>
+</table>
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="MstpEnable" ></form>
+</div>
+</body>
+</html>

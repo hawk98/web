@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+
+function display()
+{
+changebgcolor();
+
+}	
+var syslogResultModuleList = [$%syslogResultModuleList#$];
+var syslogResultUserList = [$%syslogResultUserList#$];
+var syslogResultTimeList = [$%syslogResultTimeList#$];
+var syslogResultIPList = [$%syslogResultIPList#$];
+var syslogResultMsgList = [$%syslogResultMsgList#$];
+
+	var syslogTotalPages = $%syslogTotalPages#$;
+	var syslogCurPage = $%syslogCurPage#$;
+
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<syslogResultModuleList.length;i++)
+	{
+	tempBuf += "<tr  class='tables_all'><td class='inputsyslog1'>";
+	tempBuf += syslogResultModuleList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += syslogResultUserList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += syslogResultTimeList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += syslogResultIPList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += syslogResultMsgList[i];
+	tempBuf += "</td></tr >";
+	}
+	document.write(tempBuf);
+}
+
+
+
+
+function checkSub()
+{
+
+}
+
+function clearClick(){
+	document.form1.tsyslogSearchUser.value = "       ";
+	document.form1.submit();
+}
+
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("syslogGotoPage").value;
+	
+	if(isNaN(gotoPageNum) || gotoPageNum==""||gotoPageNum<1||gotoPageNum>syslogTotalPages)
+	{
+		alert("您输入的页数"+gotoPageNum+"不存在！");
+		return;
+	}
+	if(gotoPageNum == syslogCurPage)
+	{
+		alert("您已经在第"+syslogCurPage+"页了！");
+		return;
+	}
+	
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("syslogGotoPage").value = (syslogCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("syslogGotoPage").value = (syslogCurPage+1);
+	gotopage();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('syslog_result'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>日志查询</td>
+   
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">模式</span></div></TD>
+      <TD width="32%" ><span class="inputsyslog1">
+        <select name="tsyslogSearchModule" id="tsyslogSearchModule">
+          <option value="">All</option>
+          <option value="user" >user</option>
+          <option value="dns" >dns</option>
+          <option value="console" >console</option>
+          <option value="ut-ring" >ut-ring</option>
+          <option value="traffic" >traffic</option>
+          <option value="dhcp" >dhcp</option>
+          <option value="sntp" >sntp</option>
+          <option value="port" >port</option>
+          <option value="mac" >mac</option>
+          <option value="syslog" >syslog</option>
+          <option value="qos" >qos</option>
+          <option value="mirror" >mirror</option>
+          <option value="ip" >ip</option>
+          <option value="aggr" >aggr</option>
+
+          <option value="rstp" >rstp</option>
+          <option value="dot1x" >dot1x</option>
+          <option value="igmp" >igmp</option>
+          <option value="system" >system</option>
+          <option value="lldp" >lldp</option>
+          <option value="lacp" >lacp</option>
+          <option value="snmp" >snmp</option>
+          <option value="rmon">rmon</option>
+          <option value="alarm">alarm</option>
+          <option value="acl">acl</option>
+          <option value="mstp">mstp</option>
+          <option value="gmrp">gmrp</option>
+          <option value="web">web</option>
+        </select>
+      </span></TD>
+      <TD width="18%" >&nbsp;&nbsp;<span class="td25">用户</span></TD>
+      <TD width="32%" ><span class="inputsyslog1">
+        <input name="tsyslogSearchUser" type="text" id="tsyslogSearchUser" value="$%tsyslogSearchUser#$" />
+      </span></TD>
+    </TR>
+    <tr>
+     <td class="partition" colspan="8">&nbsp;
+      <input name="SearchModule" type="hidden" id="SearchModule" value="$%tsyslogSearchModule#$" />
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交"  >
+      <input name="b_submit22" class="button3" type="button" id="b_submit2" value="清除日志"  onclick="clearClick();" >
+    	</td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>日志查询结果表&nbsp;&nbsp;&nbsp;
+    <script language="javascript">
+	document.write("总共"+syslogTotalPages+"页，当前"+syslogCurPage+"页，");
+	</script>
+    到
+    <input name="syslogGotoPage" id="syslogGotoPage" type="text"  size="3" maxlength="3" VALUE="$%syslogGotoPage#$">
+    页
+    <input type="button" class="button3" value="确 认" id="gotoVlanAPage"  onClick="gotopage();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> 
+<a onClick="gotoNextpage();"  style="cursor:pointer;">下一页</a></td>
+    <td width="30%" class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list">模块</TD>
+      <TD width="20%"   nowrap class="all_tables_list">用户</TD>
+      <TD width="20%"   nowrap class="all_tables_list">时间</TD>
+      <TD width="20%"   nowrap class="all_tables_list">日志来源</TD>
+      <TD width="20%"   nowrap class="all_tables_list">消息</TD>
+    </TR>
+	  <script language="javascript">
+  writeList();
+ </script>
+  
+</table>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="syslogEnable" >
+</span>
+
+  </form>
+<script language="javascript">
+   if(document.getElementById("SearchModule").value!="")
+  document.getElementById("tsyslogSearchModule").value = document.getElementById("SearchModule").value ; 
+
+  if(syslogCurPage == 1)
+  	document.getElementById("gotoVlanPrePage").style.display="none";
+	if(syslogCurPage == syslogTotalPages)
+    document.getElementById("gotoVlanNextPage").style.display="none";
+ </script>
+ 
+</BODY></HTML>

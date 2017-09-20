@@ -1,0 +1,195 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+<script language="javascript">
+
+var rmonEventEntryNumList = [$%rmonEventEntryNumList#$];
+var rmonEventDiscList = [$%rmonEventDiscList#$];
+var rmonEventTypeList = [$%rmonEventTypeList#$];
+var rmonEventCommList = [$%rmonEventCommList#$];
+
+function display()
+{
+changebgcolor();
+
+}
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<rmonEventEntryNumList.length;i++)
+	{
+	tempBuf += "<tr class='tables_all'><td class='inputsyslog1'>";
+	tempBuf += rmonEventEntryNumList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonEventDiscList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += getSmode(rmonEventTypeList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += rmonEventCommList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+function getSmode(value)
+{
+if(value == 1)
+	return "none";
+if(value == 2)
+	return "log";
+if(value == 3)
+	return "trap";
+if(value == 4)
+	return "log_trap";
+}
+
+function delSelectId( ID )
+{
+	document.getElementById("rmonEventDelID").value = rmonEventEntryNumList[ID];
+	document.form1.submit();
+}
+
+
+function checkSub()
+{
+
+var rmonEventEntryNum = document.getElementById("rmonEventEntryNum").value;
+
+if(isNaN(rmonEventEntryNum) || rmonEventEntryNum<1 || rmonEventEntryNum>65535||  !fucCheckNUM(rmonEventEntryNum))
+{
+	alert("条目编号错误，范围是：1~65535");
+	return false;
+	
+}
+
+	if(checkname(document.getElementById("rmonEventDescription"),"事件描述不能为空","事件描述中不能有空格","事件描述中必须是合法字符",0) == false)
+	{
+		return false;	
+	}
+
+	if(checkname(document.getElementById("rmonEventCommName"),"事件团体名不能为空","事件团体名中不能有空格","事件团体名中必须是合法字符",0) == false)
+	{
+		return false;	
+	}
+	if(chkmaxlen(document.getElementById("rmonEventDescription").value) > 32)
+	{
+		alert("事件描述过长")
+		return false;	
+	}
+	if(chkmaxlen(document.getElementById("rmonEventCommName").value) > 32)
+	{
+		alert("事件团体名过长")
+		return false;	
+	}
+
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('rmonEvent'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form id="form1" name="form1" method="post" action="" onSubmit="return checkSub()">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>RMON事件组</td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">条目编号</span></div></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="rmonEventEntryNum" id="rmonEventEntryNum" / VALUE="$%rmonEventEntryNum#$">
+(1~65535)</span></TD>
+      <TD width="18%" >&nbsp;&nbsp;<span class="partition">事件描述</span></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="rmonEventDescription" id="rmonEventDescription" / VALUE="$%rmonEventDescription#$">
+(字符串长度范围1~32)</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">事件类型</span></TD>
+      <TD ><span class="crons">
+        <select name="rmonEventType" id="rmonEventType">
+          <option value="1" $%rmonEventType(1)#$>none</option>
+          <option value="2" $%rmonEventType(2)#$>log</option>
+          <option value="3" $%rmonEventType(3)#$>trap</option>
+          <option value="4" $%rmonEventType(4)#$>log_trap</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="partition">事件团体名</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="rmonEventCommName" id="rmonEventCommName" / VALUE="$%rmonEventCommName#$">
+(字符串长度范围1~32)</span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input type="hidden" name="rmonEventDelID" id="rmonEventDelID" / VALUE="$%rmonEventDelID#$">
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交"   >
+      <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </div></td>
+    
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>RMON事件组表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">条目编号</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">事件描述</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">事件类型</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">事件团体名</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+<script language="javascript">
+
+writeList();
+</script>
+  </table>
+</form>
+
+</BODY></HTML>

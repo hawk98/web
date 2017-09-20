@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="js/InputCheck_web.js">if (window == top) top.location.href = "/index.html";
+ </script>
+<SCRIPT LANGUAGE="javascript">
+
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+function display()
+{
+changebgcolor();
+
+}
+
+var lldpStaList=[$%lldpStaList#$];
+
+
+
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<lldpStaList.length/9;i++)
+	{
+		document.write(" <tr  class='tables_all'>");
+		if(fucCheckNUM(lldpStaList[j]))
+			document.write("    <td class='inputsyslog1'>"+convert_tomodport(lldpStaList[j])+"</td>");
+		else
+			document.write("    <td class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		
+		j++
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1'>"+lldpStaList[j]+"</td>");
+		j++;
+		document.write("  </tr>");
+
+	}
+}
+
+function changePort()
+{
+document.form1.submit();
+}
+
+function clearSta()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return;
+	}
+	document.getElementById("lldpDeleteFlag").value = 1;
+	document.form1.submit();	
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("lldpStaAutoFlash").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	}
+}
+
+function aotoRefreshSet()
+{
+if(document.getElementById("lldpStaAutoFlash").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+}
+
+
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>LLDP统计</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"><span class="inputsyslog1">
+    <input type="checkbox" name="lldpStaAutoFlash" id="lldpStaAutoFlash" value="ON"  onclick="aotoRefreshSet()"  $%lldpstaautoflash#$ />
+自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" class="button3" name="button" id="button" value="立即刷新" />
+<input type="button" class="button3" name="button2" id="button2" value="清 零" onClick="clearSta()" />
+<input type="hidden" name="lldpDeleteFlag" id="lldpDeleteFlag" / VALUE="$%lldpDeleteFlag#$" />
+    </span></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <tr class="table_maintable" align="center">
+      <td width="12%"  class="all_tables_list">端口</td>
+      <td width="11%"  class="all_tables_list">Rx Frames</td>
+      <td width="11%"  class="all_tables_list">Tx Frames</td>
+      <td width="11%"  class="all_tables_list">Rx Errors</td>
+      <td width="11%"  class="all_tables_list">Rx Discards</td>
+      <td width="11%"  class="all_tables_list">Rx TLV  Errors</td>
+      <td width="11%"  class="all_tables_list">Rx TLV Unknown</td>
+      <td width="11%"  class="all_tables_list">Rx TLV Organz</td>
+      <td width="11%"  class="all_tables_list">Rx TLV Aged</td>
+    </tr>
+<script language="javascript">
+  writeLines();
+  aotoRefresh();
+  </script>
+  </table>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="lldpStaAutoFlash" >
+</span>
+  </form>
+
+</BODY></HTML>

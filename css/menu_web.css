@@ -1,0 +1,53 @@
+.menuTitleCell {
+	  BACKGROUND-COLOR: #99B0BE; WIDTH: 195px;  HEIGHT: 24px;BORDER-BOTTOM: #ffffff 1px solid; FONT-WEIGHT: bold;  
+}
+.menuCell {
+	BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; BORDER-LEFT: #ffffff 1px solid; WIDTH: 185px; PADDING-TOP: 3px; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.menuTitle {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 22px;FONT-WEIGHT: bold; 
+}
+.menuHover {
+	BACKGROUND-COLOR: #feefcf
+}
+
+
+.menuList {
+	BACKGROUND-COLOR:#D3E4F4;FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none; HEIGHT: 20px;  border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #ffffff;
+}
+A.menuList:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.menuList:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.menuList:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.menuList:hover {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.selectedDevice {
+	FONT-WEIGHT: bold; COLOR: #000000; BACKGROUND-COLOR: #facc68
+}
+A.selectedDevice:link {
+	TEXT-DECORATION: none
+}
+A.selectedDevice:visited {
+	TEXT-DECORATION: none
+}
+A.selectedDevice:hover {
+	TEXT-DECORATION: none
+}
+A.selectedDevice:active {
+	TEXT-DECORATION: none
+}
+.menuTopMargin {
+	MARGIN-TOP: 5px; VERTICAL-ALIGN: top; WIDTH: 185px
+}
+.menuTopMarginFirst {
+	MARGIN-TOP: 0px; VERTICAL-ALIGN: top; WIDTH: 185px
+}
+
+.menu_index {
+background-color:#99B0BE}

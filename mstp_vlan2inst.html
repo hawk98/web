@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+
+var MstpVLAN2instance = [$%MstpVLAN2instance#$];
+var MstpPort2instance = [$%MstpPort2instance#$];
+
+function checkSub()
+{
+	var MstpFirstVLAN = document.getElementById("MstpFirstVLAN").value;
+	var MstpLastVLAN = document.getElementById("MstpLastVLAN").value;
+	var MstpInstanceConf = document.getElementById("MstpInstanceConf").value;
+	if(isNaN(MstpFirstVLAN) || MstpFirstVLAN < 2 || MstpFirstVLAN > 4094  || !fucCheckNUM(MstpFirstVLAN))
+		{
+		alert("起始VLAN错误，范围为：2~4094");
+		return;
+		}
+	if(isNaN(MstpLastVLAN) || MstpLastVLAN < 2 || MstpLastVLAN > 4094  || !fucCheckNUM(MstpLastVLAN))
+		{
+		alert("终止VLAN错误，范围为：2~4094");
+		return;
+		}
+	if(isNaN(MstpInstanceConf) || MstpInstanceConf < 1 || MstpInstanceConf > 30  || !fucCheckNUM(MstpInstanceConf))
+		{
+		alert("实例错误，范围为：1~30");
+		return;
+		}
+	if(MstpFirstVLAN-0 > MstpLastVLAN-0){
+		  alert("起始VLAN必须不大于终止VLAN");
+		  return;
+		}
+	if(MstpLastVLAN-10 >= MstpFirstVLAN-0){
+		  alert("起始VLAN和终止VLAN的间隔不能超过10");
+		  return;
+		}
+
+	document.form1.submit();
+}
+
+function writeLines(){
+	for(var i=0;i<MstpVLAN2instance.length/2;i++)
+	{
+		document.write("<tr>");
+		document.write("    <td height='32' colspan='2' class='td25'>"+MstpVLAN2instance[i*2]+"</td>");
+		document.write("    <td  class='crons' colspan='28'>"+MstpVLAN2instance[i * 2 + 1]+"</td>");
+		document.write("  </tr>");
+	}
+}
+function writeLines2(){
+	for(var i=0;i<MstpPort2instance.length/portNum+1;i++)
+	{
+		document.write("<tr>");
+		document.write("    <td height='32' colspan='2' class='td25'>"+MstpPort2instance[i*portNum+1)]+"</td>");
+		for (var j = 1; j < portNum+1; j++)
+		  document.write("    <td  class='crons'>"+MstpPort2instance[i * (portNum+1) + j]+"</td>");
+		document.write("  </tr>");
+	}
+}
+
+</script>
+
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">VLAN2instance</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" colspan="2" width="7%">起始VLAN：</td>
+    <td  class="crons" colspan="28">
+      <input type="text" name="MstpFirstVLAN" id="MstpFirstVLAN" / VALUE="$%MstpFirstVLAN#$"> (2~4094)</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">终止VLAN：</td>
+    <td  class="crons" colspan="28">
+      <input type="text" name="MstpLastVLAN" id="MstpLastVLAN" / VALUE="$%MstpLastVLAN#$"> (2~4094)</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">实例：</td>
+    <td  class="crons" colspan="28">
+      <input type="text" name="MstpInstanceConf" id="MstpInstanceConf" / VALUE="$%MstpInstanceConf#$"> (1~30)</td>
+  </tr>
+   <tr>
+    <td height=40 colspan="2">&nbsp;</td>
+    <td  colspan="28">
+      <input type="button" class="button1" name="button" id="button" value="添 加"  onclick="checkSub()" />
+    </td>
+  </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=29 class="table_main3">已配置VLAN2instance</td>
+  </tr>
+  <tr>
+    <td  colspan=2 class="partition" align="center">实例编号</td>
+    <td  class="partition" colspan="28">对应VLAN</td>
+  </tr>
+  <script language="javascript">
+	    writeLines();	 
+	 </script>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=29 class="table_main3">已生成port2instance</td>
+  </tr>
+  <tr>
+    <td  colspan=2 class="partition" align="center" rowspan=2>实例编号</td>
+    <td align=center class="partition" colspan=28>端口 </td>
+    </tr>
+      <tr>
+        <td class="partition">&nbsp;1</td>
+        <td class="partition">&nbsp;2</td>
+        <td class="partition">&nbsp;3</td>
+        <td class="partition">&nbsp;4</td>
+        <td class="partition">&nbsp;5</td>
+        <td class="partition">&nbsp;6</td>
+        <td class="partition">&nbsp;7</td>
+        <td class="partition">&nbsp;8</td>
+        <td class="partition">&nbsp;9</td>
+        <td class="partition">10</td>
+        <td class="partition">11</td>
+        <td class="partition">12</td>
+        <td class="partition">13</td>
+        <td class="partition">14</td>
+        <td class="partition">15</td>
+        <td class="partition">16</td>
+        <td class="partition">17</td>
+        <td class="partition">18</td>
+        <td class="partition">19</td>
+        <td class="partition">20</td>
+        </tr>
+  </tr>
+  <script language="javascript">
+	    writeLines2();	 
+	 </script>
+</table>
+
+</div>
+</body>
+</html>

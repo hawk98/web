@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+function checkSub()
+{
+		document.form1.submit();
+}
+
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="" onsubmit="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">SNMP 配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" width="15%">模式：</td>
+    <td  class="crons">
+      <input type="checkbox" name="snmpEnable" id="snmpEnable" value="ON" / $%snmpEnable#$>
+      启用</td>
+  </tr>
+  <tr>
+    <td class="td25" width="15%">Trap：</td>
+    <td  class="crons">
+      <input type="checkbox" name="snmptEnable" id="snmptEnable" value="ON" / $%snmptEnable#$>
+      启用</td>
+  </tr>
+<tr>
+  <td height=40></td>
+  <td>
+    <input type="button" class="button1" name="button" id="button" value="提 交"   onclick="checkSub()">
+  </td>
+</tr>
+</table>
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="snmpEnable,snmptEnable"></form>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+function display()
+{
+changebgcolor();
+
+}
+
+function checkSub()
+{
+	var RstpMaxAge = document.getElementById("RstpMaxAge").value;
+	var RSTPForwardDelay = document.getElementById("RSTPForwardDelay").value;
+	if(isNaN(RstpMaxAge) || RstpMaxAge < 6 || RstpMaxAge > 58  || !fucCheckNUM(RstpMaxAge))
+		{
+		alert("最大老化时间错误，范围为：6~58s");
+		return;
+		}
+	if(isNaN(RSTPForwardDelay) || RSTPForwardDelay < 4 || RSTPForwardDelay > 30  || !fucCheckNUM(RSTPForwardDelay))
+		{
+		alert("转发延时错误，范围为：4~30s");
+		return;
+		}
+		
+	if(2*(document.getElementById("RSTPForwardDelay").value - 1) < document.getElementById("RstpMaxAge").value)
+		{
+		alert("2*（转发延时-1）必须大于或等于最大的老化时间");
+		return;
+		}
+
+	document.form1.submit();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('stp_systeminfo'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>STP 系统配置</td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">系统优先级</span></div></TD>
+      <TD width="32%" ><span class="crons">
+        <select name="RSTPPriority" id="RSTPPriority">
+          <option value="0" $%RSTPPriority(0)#$>0</option>
+          <option value="4096" $%RSTPPriority(4096)#$>4096</option>
+          <option value="8192" $%RSTPPriority(8192)#$>8192</option>
+          <option value="12288" $%RSTPPriority(12288)#$>12288</option>
+          <option value="16384" $%RSTPPriority(16384)#$>16384</option>
+          <option value="20480" $%RSTPPriority(20480)#$>20480</option>
+          <option value="24576" $%RSTPPriority(24576)#$>24576</option>
+          <option value="28672" $%RSTPPriority(28672)#$>28672</option>
+          <option value="32768" $%RSTPPriority(32768)#$>32768</option>
+          <option value="36864" $%RSTPPriority(36864)#$>36864</option>
+          <option value="40960" $%RSTPPriority(40960)#$>40960</option>
+          <option value="45056" $%RSTPPriority(45056)#$>45056</option>
+          <option value="49152" $%RSTPPriority(49152)#$>49152</option>
+          <option value="53248" $%RSTPPriority(53248)#$>53248</option>
+          <option value="57344" $%RSTPPriority(57344)#$>57344</option>
+          <option value="61440" $%RSTPPriority(61440)#$>61440</option>
+        </select>
+      </span></TD>
+      <TD width="18%" >&nbsp;&nbsp;最大老化时间</TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="RstpMaxAge" id="RstpMaxAge" / VALUE="$%RstpMaxAge#$">
+(6~58s)</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">转发延时</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="RSTPForwardDelay" id="RSTPForwardDelay" / VALUE="$%RSTPForwardDelay#$">
+(4~30s)</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">协议版本</span></TD>
+      <TD ><span class="crons">
+        <select name="RSTPVersion" id="RSTPVersion">
+          <option value="0" $%RSTPVersion(0)#$>STP</option>
+          <option value="1" $%RSTPVersion(1)#$>RSTP</option>
+        </select>
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;<span class="table_main1">
+      <INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="rstp_enbale" >
+    </span>
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"  onclick="checkSub()"  >
+    </td>
+    </tr>
+</TABLE>
+
+
+<br>
+  </form>
+
+</BODY></HTML>

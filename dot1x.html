@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+function checkSub()
+{
+	
+		var serIP = document.getElementById("tDot1xRadiusIP").value;
+	
+//		if(document.getElementById("dot1xEnable").checked)
+		if(true)
+		{
+		
+			if(serIP != "" && !tdIpCheck(serIP))
+			{
+				alert("IP地址错误");
+				return false;
+			}
+		}
+		else
+		{
+			document.getElementById("tDot1xRadiusIP").value = "";
+		}
+	
+	
+	
+		tDot1xRadiusPort = document.getElementById("tDot1xRadiusPort").value;
+		if(isNaN(tDot1xRadiusPort) || tDot1xRadiusPort < 1 || tDot1xRadiusPort> 65535 ) 
+		{
+		alert("认证端口设置错误");
+		return false;
+		}	
+		
+		if(!fucCheckNUM(tDot1xRadiusPort))
+		{
+			alert("认证端口设置错误");
+			return false;
+		}	
+
+	
+	
+		if(checkname(document.forms[0].tDot1xRadiusKey,"认证密钥不能为空","认证密钥中不能有空格","认证密钥中必须是合法字符",0) == false)
+		{
+			return false;	
+		}
+		if(!IsANShowMsg(document.getElementById("tDot1xRadiusKey").value,true,"认证密钥必须由字母和数字组成！"))
+		{
+			return false;
+		}
+		if(isChinese(document.getElementById("tDot1xRadiusKey").value))
+		{
+			return false;
+		}
+	
+	
+		tDot1xPer = document.getElementById("tDot1xPer").value;
+		if(isNaN(tDot1xPer) || tDot1xPer < 1 || tDot1xPer> 3600 ) 
+		{
+			alert("重新认证周期设置错误");
+			return false;
+		}	
+		
+		if(!fucCheckNUM(tDot1xPer))
+		{
+			alert("重新认证周期设置错误");
+			return false;
+		}	
+		tDot1xTimeOut = document.getElementById("tDot1xTimeOut").value;
+		if(isNaN(tDot1xTimeOut) || tDot1xTimeOut < 1 || tDot1xTimeOut> 255 ) 
+		{
+			alert("EAP超时设置错误");
+			return false;
+		}	
+		
+		if(!fucCheckNUM(tDot1xTimeOut))
+		{
+			alert("EAP超时设置错误");
+			return false;
+		}	
+			
+		document.form1.submit();
+		return true;
+
+
+}
+
+ function IsANShowMsg(Value,AlertOn,mes)
+{
+    // Default value
+    var  AlertOn = (AlertOn == null) ? 0 : AlertOn;
+
+    var ValueIsAlphaNum = true;
+
+    // check for valid charaters  
+    for (var i = 0 ; i < Value.length; i ++ ) {
+			var vc = Value.charAt(i);
+			if ((vc>='0' && vc<='9') || (vc>='a' && vc<='z') || (vc>='A' && vc<='Z')) {
+			}else{
+    		ValueIsAlphaNum = false; 
+			}
+    }
+    
+    if (!ValueIsAlphaNum && AlertOn) {
+        alert (mes);
+    }
+
+    return ValueIsAlphaNum;
+}
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="" onsubmit="return checkSub();">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">802.1X 系统配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" width="15%">模式：</td>
+    <td  class="crons">
+      <input type="checkbox" name="dot1xEnable" id="dot1xEnable" value="ON" / $%dot1xEnable#$>
+      启用</td>
+  </tr>
+  <tr>
+    <td class="td25">RADIUS IP：</td>
+    <td  class="crons">
+      <input type="text" name="tDot1xRadiusIP" id="tDot1xRadiusIP" / VALUE="$%tDot1xRadiusIP#$">
+    </td>
+  </tr>
+  <tr>
+    <td class="td25">认证端口：</td>
+    <td  class="crons">
+      
+      <input type="text" name="tDot1xRadiusPort" id="tDot1xRadiusPort" / VALUE="$%tDot1xRadiusPort#$">
+      
+    (1~65535)</td>
+  </tr>
+
+   <tr>
+    <td class="td25">认证密钥：</td>
+    <td  class="crons">
+      
+      <input name="tDot1xRadiusKey" type="text" id="tDot1xRadiusKey" / VALUE="$%tDot1xRadiusKey#$" maxlength="32">
+      
+    (范围：1~32个字符)</td>
+  </tr>
+
+   <tr>
+    <td class="td25">重新认证：</td>
+    <td  class="crons">
+      
+      <input type="checkbox" name="dot1xReEnable" id="dot1xReEnable" value="ON" / $%dot1xReEnable#$>
+启用</td>
+  </tr>
+<tr>
+    <td class="td25">重新认证周期：</td>
+    <td  class="crons">
+      
+      <input type="text" name="tDot1xPer" id="tDot1xPer" / VALUE="$%tDot1xPer#$">
+      
+    (1~3600s)</td>
+  </tr>
+<tr>
+  <td class="td25">EAP 超时：</td>
+  <td  class="crons">
+    
+    <input type="text" name="tDot1xTimeOut" id="tDot1xTimeOut" / VALUE="$%tDot1xTimeOut#$">
+    
+  (1~255s)</td>
+</tr>
+<tr>
+  <td height=40></td>
+  <td>
+    <input type="button" class="button1" name="button" id="button" value="提 交"   onclick="checkSub()">
+  </td>
+</tr>
+</table>
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="dot1xEnable,dot1xReEnable"></form>
+</div>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+function display()
+{
+	changebgcolor();
+}
+
+var portNum = $%portNum#$;
+var fePortNum = $%fePortNum#$;
+
+var aclField = [$%aclField#$];
+var aclListStr = $%aclListStr#$;
+
+
+var str = "";
+var aclList = aclListStr.split("*");	
+var aclAttr = "";
+var aclIDPort = "";
+var aclType = ["基本","扩展","二层","未知"];
+var aclOrder = ["Config","Auto"];
+
+function writeLine()
+{
+	str = "";	
+	if(aclListStr == "") return;
+	for(var i = 0; i < aclList.length; i++)
+	{
+		aclAttr = aclList[i].split("&");
+		aclIDPort = aclAttr[0].split(";");
+		str += "<tr class='tables_all'><td class='inputsyslog1'>" + aclIDPort[0] + "</td>";
+		str += "<td class='inputsyslog1'>" + aclIDPort[1] + "</td>";
+		str += "<td class='inputsyslog1'>" + aclType[aclIDPort[2]] + "</td>";
+		str += "<td class='inputsyslog1'>" + aclOrder[aclIDPort[3]] + "</td>";
+		str += "<td class='inputsyslog1'><input type='button' class='botton_under_line' value='删除' onclick='delAcl(" + aclIDPort[0] + ")'></td></tr>";
+	}
+	document.write(str);		
+}
+
+function getPort(pVal)
+{
+  var rt = "";
+  var tmp = 1;
+  for(var i = 1; i <= portNum+1; i++)
+  	{  	  
+         if (i == fePortNum+1) 
+           {
+           	tmp *=2;
+            continue;              
+           }
+         if(i > fePortNum+1) 
+        	{
+			      j = i - 1;
+        	}
+	       else
+	 	     {
+			     j = i
+	 	     }
+        if(tmp & pVal) rt += j + ",";
+        tmp *=2;
+  }
+  return rt == "" ? "" : rt.substring(0, rt.length -1);
+}
+
+function getProtoStr(pVal){
+  var rt = "";
+  switch(pVal){
+    case "0000": rt = "全部"; break;
+    case "0800": rt = "IP"; break;
+    case "0806": rt = "ARP"; break;
+    case "8035": rt = "RARP"; break;
+    case "8100": rt = "802.1Q"; break;
+    case "8137": rt = "IPX"; break;
+    default: rt = "全部";
+  }
+  return rt;
+}
+
+function getAny(pVal){
+  var rt = "";
+  if(pVal == "0-0" || pVal == "0.0.0.0" || pVal == "00:00:00:00:00:00") 
+    return "Any";
+  if(pVal == "(255)")
+    return "All(255)";
+  return pVal;
+}
+
+function check(){
+	var tmp = 1, aPort = 0;
+	var doc = document.form1;
+	var ACLListID = doc.ACLListID.value;
+	var AclType = doc.AclType.value;
+	if(ACLListID != "" && (!fucCheckNUM(ACLListID) ||isNaN(ACLListID) || ACLListID<0 || ACLListID>4294967295))
+	{
+		alert("List ID 错误！");
+		return false;
+	}
+	if(ACLListID != "" && AclType == 0 && (ACLListID < 2000 || ACLListID > 2999)){
+	  alert("基本 ACL 的 ID 应该在 2000 到 2999 之间！");
+	  return false;
+	}
+	if(ACLListID != "" && AclType == 1 && (ACLListID < 3000 || ACLListID > 3999)){
+	  alert("扩展 ACL 的 ID 应该在 3000 到 3999 之间！");
+	  return false;
+	}
+	if(ACLListID != "" && AclType == 2 && (ACLListID < 4000 || ACLListID > 4999)){
+	  alert("二层 ACL 的 ID 应该在 4000 到 4999 之间！");
+	  return false;
+	}
+	
+	for(var i = 1; i <= portNum; i++){
+	  if(document.getElementById("AclRouterPort" + i).checked) aPort += tmp;
+	  tmp *= 2;
+	}
+	if(ACLListID != "" && aPort == 0)
+	{
+		alert("请选择端口！");
+		return false;
+	}
+	doc.AclPortMask.value = aPort;
+	doc.AclAction.value = 1;
+	return true;
+}
+
+function delAcl(i){
+  document.form1.AclAction.value = 2;
+  document.form1.AclActionID.value = i;
+  document.form1.submit();
+}
+
+function addRuleX(i){
+  document.form1.AclAction.value = 3;
+  document.form1.AclActionID.value = i;
+  if(i >= 3000 && i <= 3999)
+    window.location.href = "aclrule.html?AclListNo=" + i;
+  else if(i >= 4000 && i <= 4999)
+  	window.location.href = "aclrule2.html?AclListNo=" + i;
+  else if(i >= 2000 && i <= 2999)
+  	window.location.href = "aclrule3.html?AclListNo=" + i;
+  else
+    alert("未知类型的 ACL 无法添加规则！");	
+}
+
+function addRule(i){
+  document.form1.AclAction.value = 3;
+  document.form1.AclActionID.value = i;
+  window.location.href = "aclrule.html?AclListNo=" + i;
+//  document.form1.submit();
+}
+function addRule2(i){
+  document.form1.AclAction.value = 3;
+  document.form1.AclActionID.value = i;
+  window.location.href = "aclrule2.html?AclListNo=" + i;
+}
+
+function delRule(i, j){
+  document.form1.AclAction.value = 4;
+  document.form1.AclActionID.value = i;
+  document.form1.AclActionRuleID.value = j;
+  document.form1.submit();
+}
+
+
+function select_all(flag)
+{
+	for(i=1;i<=portNum;i++)
+	{		
+		if(!document.getElementById("AclRouterPort"+i).disabled)
+		{
+			
+			if(flag)
+			{
+				document.getElementById("AclRouterPort"+i).checked = true;		
+			}
+			else
+			{
+				document.getElementById("AclRouterPort"+i).checked = false;		
+			}	
+		}		
+
+	}
+}
+
+function changestat(str,id)
+{
+	var checked = 0;
+	var valid_port = 0;
+		
+	for(i=1;i<=portNum;i++)
+	{		
+		if(!document.getElementById(str+i).disabled)	
+		{
+			if(document.getElementById(str+i).checked)
+			{
+				checked = checked + 1;
+			}
+			valid_port = valid_port + 1;
+		}
+	}
+	
+	if(checked == valid_port)
+	{
+		document.getElementById(id).checked = true ;
+	}
+	else
+	{
+		document.getElementById(id).checked = false ; 
+	}
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('acl'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return check();">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td class=Tablelist id=tabs name=tabs>ACL配置</td> 
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="20%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">模式</span></div></TD>
+      <TD colspan="7" ><span class="crons">
+        <input type="checkbox" name="ACLEnable" id="ACLEnable" value="ON" / $%ACLEnable#$>
+启用</span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons">List ID</span></TD>
+      <TD colspan="7" ><span class="crons">
+        <input name="ACLListID" id="ACLListID" / VALUE="">
+      （4000 ~ 4999）</span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons">匹配顺序</span></TD>
+      <TD colspan="7" ><span class="crons">
+        <select name="AclOrder" id="AclOrder">
+          <option value="1" $%AclOrder(1)#$>Auto</option>
+          <option value="0" $%AclOrder(0)#$>Config</option>
+        </select>
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons">类型</span></TD>
+      <TD colspan="7" ><span class="crons">
+        <select name="AclType" id="AclType">
+          <option value="2">二层</option>
+        </select>
+      </span></TD>
+      </TR>
+      
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="inputsyslog1">端口
+          <input type="hidden" name="AclAction" id="AclAction"  value="$%AclAction#$"/>
+          <input type="hidden" name="AclActionID" id="AclActionID"  value="$%AclActionID#$"/>
+          <input type="hidden" name="AclActionRuleID" id="AclActionRuleID"  value="$%AclActionRuleID#$"/>
+          <input type="hidden" name="AclPortMask" id="AclPortMask"  value="$%AclPortMask#$"/>
+          <span class="crons">
+          <input type="checkbox" name="select_ss" id="select_ss" value="checkbox"  onclick="select_all(this.checked)"/>
+全选</span></span></TD>
+      <TD width="20%" ><span class="inputsyslog1">
+        <input type="checkbox" name="AclRouterPort1" id="AclRouterPort1" value="ON"   onClick="changestat('AclRouterPort','select_ss');"/>
+        端口1</span></TD>
+      <TD width="20%" ><span class="inputsyslog1">
+        <input type="checkbox" name="AclRouterPort2" id="AclRouterPort2" value="ON"   onClick="changestat('AclRouterPort','select_ss');"/>
+端口2</span></TD>
+      <TD width="20%" ><span class="inputsyslog1">
+<input type="checkbox" name="AclRouterPort3" id="AclRouterPort3" value="ON"   onClick="changestat('AclRouterPort','select_ss');"/>
+端口3</span></TD>
+      <TD width="20%" ><span class="inputsyslog1">
+       <input type="checkbox" name="AclRouterPort4" id="AclRouterPort4" value="ON"   onClick="changestat('AclRouterPort','select_ss');"/>
+端口4</span></TD>
+    </TR>
+    
+     <script language= "javascript">
+	  for(var i = 5; i <= portNum; i++)
+	  {		
+		   if(i%4 == 1)
+		   {
+			  document.write("<TR height=22>");
+			  document.write("<TD valign='top'>&nbsp;</TD>");
+		   }
+		   	
+		   document.write("<TD><span class='inputsyslog1'>");
+		   document.write("<input type='checkbox' name='AclRouterPort"+i+"' id='AclRouterPort"+i+"' value='ON' onClick='changestat(AclRouterPort,select_ss);'>");
+		   document.write("端口"+i+"</span></TD>");	
+		   
+		   if(i%4 == 0)
+		   	  document.write("</TR>");	
+	  }
+      </script>
+      
+		<tr>
+    	 <td class="partition" colspan="8">&nbsp;
+      <input type="hidden" name="rmonEventDelID" id="rmonEventDelID" / VALUE="$%rmonEventDelID#$">
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交"   >
+    </td>
+    </tr>
+</TABLE>
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>ACL 列表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">List ID</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">类型</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">匹配顺序</span></TD>
+       <TD width="20%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+   </TR>
+  <script language="javascript">  
+  writeLine();  
+  </script>
+  </table>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="ACLEnable" >
+</form>
+
+</BODY></HTML>

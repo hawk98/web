@@ -1,0 +1,326 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+ 
+<script language="javascript">
+var portNum = $%portNum#$; 
+
+function IsMacAddress(textValue) 
+{
+	var reg_name=/^([0-9A-Fa-f]{2})(-[0-9A-Fa-f]{2}){5}$/;   
+	var reg_name2=/^([0-9A-Fa-f]{2})(:[0-9A-Fa-f]{2}){5}$/;   
+	if((!reg_name.test(textValue))&&(!reg_name2.test(textValue)))
+	{ 
+		return false;
+	}
+	else
+	{ if(textValue == "00-00-00-00-00-00" || textValue == "00:00:00:00:00:00")
+		  return false;
+		return true;
+	}
+
+}
+
+function tdMacCheck(textValue)
+{
+	return IsMacAddress(textValue);
+}
+
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+  
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+
+function display()
+{
+changebgcolor();
+
+}	
+var  macPortList = [$%macPortList#$];
+var  macVlanList = [$%macVlanList#$];
+var  macAddrList = [$%macAddrList#$];
+var  macAddrTypeList = [$%macAddrTypeList#$];
+
+var MacTotalPages = $%MacTotalPages#$;
+var MacCurPage = $%MacCurPage#$;
+var MacPageItenNum = 20;
+
+function writeList()
+{
+var i;
+
+for(i=0;i<macPortList.length;i++)
+{
+	if(macVlanList[i] == 0) continue;
+	document.write("<tr class='tables_all'><td  class='inputsyslog1'>");
+	document.write( i+( MacCurPage - 1 ) * MacPageItenNum +1);
+	document.write("</td><td  class='inputsyslog1'>");
+
+	document.write(macPortList[i]);
+
+	document.write("</td><td  class='inputsyslog1'>");
+	document.write(macVlanList[i]);
+	document.write("</td><td  class='inputsyslog1'>");
+	document.write(macAddrList[i]);
+	document.write("</td><td  class='inputsyslog1'>");
+	document.write(getMacType(macAddrTypeList[i]));
+	document.write("</td><td  class='inputsyslog1'>");
+	if(macAddrTypeList[i] == 1 && macPortList[i] != "CPU")
+		document.write("<input type='button' class='botton_under_line' name='button2' id='button2' value='删除'  onclick='delMac("+i+")' />");
+	else
+	document.write("&nbsp;");
+	document.write("</td></tr>");
+}
+
+}
+
+
+function delMac(i)
+{
+document.getElementById("macDelMacAddr").value = macAddrList[i];
+document.getElementById("macDelMacAddrFlag").value = 1;
+document.getElementById("macDelVlanID").value = macVlanList[i];
+document.form1.submit();
+}
+
+function getMacType(type)
+{
+	if(type == 1)
+		return "Static";
+	else
+		return "Dynamic";
+}
+
+function subForm()
+{
+	if(!fucCheckNUM(document.getElementById("tmacAgingTime").value) ||isNaN(document.getElementById("tmacAgingTime").value) || document.getElementById("tmacAgingTime").value<10 || document.getElementById("tmacAgingTime").value>1000000)
+	{
+		alert("老化时间错误！");
+		return;
+	}
+	if(document.getElementById("tmacVlanID").value == "0" || document.getElementById("tmacVlanID").value == "" && document.getElementById("tmacAddr").value == ""){
+	  document.form1.submit();
+	  return true;
+	}
+	if(document.getElementById("tmacVlanID").value != ""&& ( isNaN(document.getElementById("tmacVlanID").value) || document.getElementById("tmacVlanID").value<1 || document.getElementById("tmacVlanID").value>4094 || !fucCheckNUM(document.getElementById("tmacVlanID").value)))
+	{
+		alert("VLAN ID错误！");
+		return;
+	}
+	if((isNaN(document.getElementById("tmacPort").value) ||document.getElementById("tmacPort").value<1 || document.getElementById("tmacPort").value>portNum ||!fucCheckNUM(document.getElementById("tmacPort").value)))
+	{
+		alert("端口错误！");
+		return;
+	}
+	if(document.getElementById("tmacAddr").value != "" &&!tdMacCheck(document.getElementById("tmacAddr").value))
+	{
+		alert("MAC地址错误！");
+		return;
+	}
+	if(document.getElementById("tmacVlanID").value == "" || document.getElementById("tmacPort").value == "" || document.getElementById("tmacAddr").value == ""){
+	  alert("VLAN ID，端口，MAC 地址均不能为空！");
+	  return false;
+	}
+	document.form1.submit();
+}
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("MacGotoGage").value;
+	
+	if(!fucCheckNUM(gotoPageNum)  || gotoPageNum==""||gotoPageNum<1||gotoPageNum>MacTotalPages)
+	{
+		alert("您输入的页数不存在！");
+		return;
+	}
+	if(gotoPageNum == MacCurPage)
+	{
+		alert("您已经在第"+MacCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("MacGotoPageEnable").value = 1;
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("MacGotoGage").value = (MacCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("MacGotoGage").value = (MacCurPage+1);
+	gotopage();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('mac'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>单播MAC</td> 
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">老化时间</span></div></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="tmacAgingTime" id="tmacAgingTime" / VALUE="$%tmacAgingTime#$">
+(10~1000000s)</span></TD>
+      <TD width="18%" >&nbsp;&nbsp;MAC地址</TD>
+      <TD width="32%" ><span class="crons">
+        <input type="text" name="tmacAddr" id="tmacAddr" / VALUE="$%tmacAddr#$">
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;VLAN ID</TD>
+      <TD ><span class="crons">
+        <input type="text" name="tmacVlanID" id="tmacVlanID" / VALUE="$%tmacVlanID#$">
+(1~4094)</span></TD>
+      <TD >&nbsp;&nbsp;端口</TD>
+      <TD ><span class="crons">
+        <span class="inputsyslog1">
+        <select name="tmacPort" id="tmacPort"  >
+        
+        <script language="javascript">
+		for(var i = 1; i <= portNum; i++)
+		{
+			document.write("<option value='"+i+"' >端口"+i+"</option>");
+		}
+		</script>
+        </select>
+        </span></span></TD>
+    </TR>
+    <tr>
+    	<td   class="partition" colspan="8">&nbsp;
+       <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"    onclick="subForm()" >
+    </td>
+	    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>单播MAC地址表&nbsp;&nbsp;&nbsp;
+ <script language="javascript">
+	document.write("总共"+MacTotalPages+"页，当前"+MacCurPage+"页，");
+	</script>
+    到
+    <input name="MacGotoGage" id="MacGotoGage" type="text"  size="3" maxlength="3" VALUE="$%MacGotoGage#$">
+    页
+    <input type="button" class="button1" value="确 认" id="gotoVlanAPage"  onClick="gotopage();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> 
+<a  onClick="gotoNextpage();"  style="cursor:pointer;">下一页</a><span class="table_main3">
+<input type="hidden" name="macDelMacAddr" id="macDelMacAddr" value="$%macDelMacAddr#$" />
+<input type="hidden" name="macDelMacAddrFlag" id="macDelMacAddrFlag"  value="$%macDelMacAddrFlag#$" />
+<input type="hidden" name="macDelVlanID" id="macDelVlanID" / VALUE="$%macDelVlanID#$">
+</span>
+<input type="hidden" name="MacGotoPageEnable" id="MacGotoPageEnable"  value="$%MacGotoPageEnable#$"/></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list">数量</TD>
+      <TD width="16%"   nowrap class="all_tables_list">端口</TD>
+      <TD width="16%"   nowrap class="all_tables_list">VLAN ID</TD>
+      <TD width="16%"   nowrap class="all_tables_list">MAC地址</TD>
+      <TD width="16%"   nowrap class="all_tables_list">类型</TD>
+      <TD width="16%"   nowrap class="all_tables_list">删除</TD>
+    </TR>
+   <script language="javascript">
+   writeList();
+  
+    if(MacCurPage == 1)
+	{
+		if (typeof gotoVlanPrePage !== 'undefined')
+			document.getElementById("gotoVlanPrePage").style.display="none";	
+	}
+  		
+	if(MacCurPage == MacTotalPages)
+	{	
+		if (typeof gotoVlanNextPage !== 'undefined')
+			document.getElementById("gotoVlanNextPage").style.display="none";
+	}
+ 		 
+	document.getElementById("tmacVlanID").value = "";
+	//document.getElementById("tmacPort").value = "";
+  </script>
+  </table>
+</form>
+
+</BODY></HTML>

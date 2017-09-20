@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>ACL RULE</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+//var dhcpClient = ["1111","22222","tt"];
+//var dhcpClient = [0,1,8];
+function writeLine()
+{
+
+}
+
+function onClickAllDay(){
+
+}
+function checkForm(s){
+  var aNo = s.AclListNo.value;
+  var sIP = s.AclRuleSourceIp.value;
+  var sMask = s.AclRuleSourceMask.value;
+  var dIP = s.AclRuleDestIp.value;
+  var dMask = s.AclRuleDestMask.value;
+  var sPort = s.AclRuleSourcePort.value;
+  var dPort = s.AclRuleDestPort.value;
+  var aProto = s.AclRuleProtocol.value;
+ 
+	if(sIP != "" && !tdIpCheckAcl(sIP))
+	{
+		alert("源IP地址错误！");
+		return false;
+	}
+	if(sMask != "" && !tdCheckSubnetMaskAcl(sMask))
+	{
+		alert("源Mask错误！");
+		return false;
+	}
+	if(dIP != "" && !tdIpCheckAcl(dIP))
+	{
+		alert("目的IP地址错误！");
+		return false;
+	}
+	if(dMask != "" && !tdCheckSubnetMaskAcl(dMask))
+	{
+		alert("目的Mask错误！");
+		return false;
+	}
+	if (aProto > 2)
+	{
+             if (sPort != "" && (!isNaN(sPort)))
+             	{
+             	    if(sPort < 1 || sPort > 65535 || !fucCheckNUM(sPort))
+             	    	{
+             	    	    alert("源端口设置错误，范围是 1-65535 ！");
+		                 return false;
+		             }					
+             	}
+		
+		if(dPort != "" && (!isNaN(dPort)))
+		{
+			if (dPort < 1 || dPort > 65535 || !fucCheckNUM(dPort))
+			{
+		          alert("目的端口设置错误，范围是 1-65535 ！");
+		          return false;
+			}
+		}
+	}
+	if(sIP == "" && dIP == "" && sPort == "" && dPort == "" && aProto == 255)
+	{
+	    alert("请输入规则配置数据");
+	    return false;
+	}
+  
+  return true;
+}
+
+function disableport()
+{
+        var proval = document.getElementById("AclRuleProtocol").value;
+	 if (proval == 1 || proval == 2)
+	 {
+	 	 document.getElementById("AclRuleSourcePort").disabled = true;
+		 document.getElementById("AclRuleSourcePort").value = "";
+		 document.getElementById("AclRuleDestPort").disabled = true;
+		 document.getElementById("AclRuleDestPort").value = "";
+	 }
+	else
+	{
+		document.getElementById("AclRuleSourcePort").disabled = false;		 
+		document.getElementById("AclRuleDestPort").disabled = false;
+	}
+}
+
+
+window.onload = function(){
+  var doc = document.form1;
+   doc.AclRuleSourcePort.value = "";
+  doc.AclRuleDestPort.value = "";
+  doc.AclRuleProtocol.value = 255;
+  checkVar();
+}
+function checkVar(){
+  var strHref = window.document.location.href; 
+  var intPos = strHref.indexOf("?");
+  if(intPos < 0) window.location.href = "aclrule_config.html"; 
+  var strRight = strHref.substr(intPos + 1); 
+
+  var arrTmp = strRight.split("="); 
+  document.form1.AclListNo.value = arrTmp[1];
+}
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="aclrule.html">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">ACL 规则</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" colspan="2" width="15%">对应ACL编号：</td>
+    <td class="crons" colspan="3"><input name="AclListNo" type="text" id="AclListNo" value="$%AclListNo#$"  ReadOnly=true/></td>
+    <td class="td25" colspan="2" width="15%">动作：</td>
+    <td class="crons" colspan="3">
+    	<select name="AclRuleAction" id="AclRuleAction">
+      <option value="1" $%AclRuleAction(1)#$>允许</option>
+      <option value="0" $%AclRuleAction(0)#$>拒绝</option></select>
+    </td>
+  </tr>
+  <tr>  	
+    <td class="td25" colspan="2" width="15%">协议：</td>
+    <td class="crons" colspan="8"><select name="AclRuleProtocol" id="AclRuleProtocol" onchange="disableport()">   
+       <option value="255" $%AclRuleProtocol(255)#$>Any</option>
+    	<option value="1" $%AclRuleProtocol(1)#$>ICMP</option>
+    	<option value="2" $%AclRuleProtocol(2)#$>IGMP</option>
+    	<option value="6" $%AclRuleProtocol(6)#$>TCP</option>
+    	<option value="17" $%AclRuleProtocol(17)#$>UDP</option>
+    	</select></td>   
+  </tr>	
+  <tr>
+    <td class="td25" colspan="2" width="15%">源IP：</td>
+    <td class="crons" colspan="3"><input name="AclRuleSourceIp" type="text" maxlength=31 id="AclRuleSourceIp" value="$%AclRuleSourceIp#$" /></td>
+    <td class="td25" colspan="2" width="15%">源Mask：</td>
+    <td class="crons" colspan="3"><input name="AclRuleSourceMask" type="text" id="AclRuleSourceMask" value="$%AclRuleSourceMask#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2" width="15%">目的IP：</td>
+    <td class="crons" colspan="3"><input name="AclRuleDestIp" type="text" maxlength=31 id="AclRuleDestIp" value="$%AclRuleDestIp#$" /></td>
+    <td class="td25" colspan="2" width="15%">目的Mask：</td>
+    <td class="crons" colspan="3"><input name="AclRuleDestMask" type="text" id="AclRuleDestMask" value="$%AclRuleDestMask#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2" width="15%">源端口：</td>
+    <td class="crons" colspan="3"><input name="AclRuleSourcePort" type="text" maxlength=31 id="AclRuleSourcePort" value="$%AclRuleSourcePort#$" /></td>
+    <td class="td25" colspan="2" width="15%">目的端口：</td>
+    <td class="crons" colspan="3"><input name="AclRuleDestPort" type="text" id="AclRuleDestPort" value="$%AclRuleDestPort#$" /></td>
+  </tr>  
+<tr>
+  <td colspan=8 align="center" height=40><input type="submit" class="button1" name="button" id="button" value="提 交"  onclick="return checkForm(this.form);" /></td>
+</tr>
+</table>
+<!--<table  class="table_maintable" cellpadding="0">
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=9 class="table_main3">客户端过滤规则列表
+  </tr>
+  <tr>
+    <td  class="partition">编号</td>
+    <td  class="partition">启用</td>
+    <td  class="partition">注释</td>
+    <td  class="partition">局域网IP段</td>
+    <td  class="partition">广域网端口段</td>
+    <td  class="partition">类型</td>
+    <td  class="partition">日期</td>
+    <td  class="partition">时间</td>
+    <td  class="partition">选择</td>
+    <td  class="partition">删除</td>
+  </tr>
+  <script language="javascript">
+  writeLine();
+  </script>
+</table>-->
+
+    </td>
+  </tr>
+</table>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="RuleType" >
+</form>
+</div>
+</body>
+</html>

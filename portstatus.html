@@ -1,0 +1,356 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript">
+var portNum = $%portNum#$;
+
+var portstanum = new Array();
+portstanum[1] = "$%portstanum(1)#$";
+portstanum[2] = "$%portstanum(2)#$";
+portstanum[3] = "$%portstanum(3)#$";
+portstanum[4] = "$%portstanum(4)#$";
+portstanum[5] = "$%portstanum(5)#$";
+portstanum[6] = "$%portstanum(6)#$";
+portstanum[7] = "$%portstanum(7)#$";
+portstanum[8] = "$%portstanum(8)#$";
+portstanum[9] = "$%portstanum(9)#$";
+portstanum[10] = "$%portstanum(10)#$";
+portstanum[11] = "$%portstanum(11)#$";
+portstanum[12] = "$%portstanum(12)#$";
+portstanum[13] = "$%portstanum(13)#$";
+portstanum[14] = "$%portstanum(14)#$";
+portstanum[15] = "$%portstanum(15)#$";
+portstanum[16] = "$%portstanum(16)#$";
+portstanum[17] = "$%portstanum(17)#$";
+portstanum[18] = "$%portstanum(18)#$";
+portstanum[19] = "$%portstanum(19)#$";
+portstanum[20] = "$%portstanum(20)#$";
+portstanum[21] = "$%portstanum(21)#$";
+portstanum[22] = "$%portstanum(22)#$";
+portstanum[23] = "$%portstanum(23)#$";
+portstanum[24] = "$%portstanum(24)#$";
+portstanum[25] = "$%portstanum(25)#$";
+portstanum[26] = "$%portstanum(26)#$";
+portstanum[27] = "$%portstanum(27)#$";
+portstanum[28] = "$%portstanum(28)#$";
+
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+var portStaList = [$%portStaList#$];
+
+function writeInfo()
+{
+	var i = 0 ;
+	var portStaNum = document.getElementById("portStaNum").value;
+	
+	document.write("<tr  >");
+
+	document.write("    <td  colspan='6'>rmon ethernet statistics</td>");
+	document.write("    </tr><tr  >");
+	document.write("    <td   width='16%' >rxDropEvents</td>");
+	document.write("    <td   width='16%'>"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td width='160' width='16%'  >rxOctets</td>");
+	document.write("    <td   width='16%'>"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td width='160'  width='16%' >rxPkts</td>");
+	document.write("    <td   width='16%'>"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >rxBroadcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rxMulticastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rxCRCAlignErrors</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >rxUndersizePkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rxOversizePkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rxFragments</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >rxJabbers</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rx64</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rx65to127</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >rx128to255</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rx256to511</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rx512to1023</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >rx1024to1518</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >rx1519toMax</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >txDropEvents</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >txOctets</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >txPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >txBroadcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >txMulticastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >txCollisions</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >&nbsp;</td>");
+	document.write("    <td  >&nbsp;</td>");
+	document.write("  </tr>");
+  document.write("  <tr  ><td   colspan='6'>&nbsp;</td></tr>");
+	document.write("  <tr  >");
+
+	document.write("    <td  colspan='6'>if group statistics</td>");
+	document.write("    </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >ifInOctets</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifInUcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifInMultiPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >ifInBroadPkts</td>");
+
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifInNUcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifInDiscards</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >ifInErrors</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifOutOctets</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifOutUcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >ifOutMultiPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifOutBroadPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifOutNUcastPkts</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("  </tr>");
+	document.write("  <tr  >");
+	document.write("    <td  >ifOutDiscards</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >ifOutErrors</td>");
+	document.write("    <td  >"+portStaList[i]+"</td>");
+	i++;
+	document.write("    <td  >&nbsp;</td>");
+	document.write("    <td  >&nbsp;</td>");
+	document.write("  </tr>");
+	i++;
+	i++;
+	i++;
+
+}
+
+function changePort()
+{
+	  document.form1.submit();
+}
+
+function getPage(){
+	
+document.location = "portSta.html";	
+}
+
+function clearSta()
+{
+	if(confirm("您确定要清除吗？"))	
+	{
+		document.getElementById("isPortStaClear").value = 1;
+		document.form1.submit();	
+	}
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("autoRefresh").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	//getPage();
+	}
+}
+function aotoRefreshSet()
+{
+if(document.getElementById("autoRefresh").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+}
+function setNoRefresh(){
+  isAutoRefresh = false;
+}
+
+var canSelect = false;
+
+function selectChange(){
+	if(canSelect)
+    document.form1.submit();
+}
+
+window.onload = function(){
+  canSelect = true;
+  changebgcolor();
+  checkVar();
+}
+
+window.onunload = function(){
+  canSelect = false;
+}
+
+function checkVar(){
+  var strHref = window.document.location.href; 
+  var intPos = strHref.indexOf("?");
+  if(intPos < 0) return; 
+  var strRight = strHref.substr(intPos + 1); 
+
+  var arrTmp = strRight.split("="); 
+  document.form1.portStaNum.value = arrTmp[1];
+  selectChange();
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  >
+<br>
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr  >
+    <td width="51%"  class=Tablelist id=tabs name=tabs><div align="left">端口统计</div></td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"><span class="inputsyslog1">选择：
+    <select name="portStaNum" id="portStaNum" onChange="selectChange()">
+     <script language= "javascript">
+	  for(var i = 1; i <= portNum; i++)
+	  {	
+	  	document.write("<option value='"+i+"' "+portstanum[i]+">端口"+i+"</option>");
+	  }
+	  </script>                     
+ 	</select>
+            
+      <input type="checkbox" name="autoRefresh" id="autoRefresh"  value="ON"  onclick="aotoRefreshSet()"  $%autoRefresh#$>
+自动刷新        
+       &nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="submit" class="button3" name="button" id="button" value=" 立即刷新 " />
+&nbsp;&nbsp;
+<input type="button" class="button1" name="button2" id="button2" value="清 零" onClick="clearSta()" />
+<input type="hidden" name="isPortStaClear" id="isPortStaClear"  value="$%isPortStaClear#$" />
+    </span></div></td>
+  </tr>
+
+</table>
+
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+
+  <script language="javascript">
+  writeInfo();
+  aotoRefresh();
+
+  </script>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="autoRefresh" >
+  </table>  
+  </form><br>
+<br>
+<br>
+
+
+</BODY></HTML>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>ACL RULE</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+//var dhcpClient = ["1111","22222","tt"];
+//var dhcpClient = [0,1,8];
+function writeLine()
+{
+
+}
+
+function onClickAllDay(){
+
+}
+function checkForm(s){
+  var aNo = s.AclListNo.value;
+  var sIP = s.AclRuleSourceIp.value;
+  var sMask = s.AclRuleSourceMask.value;
+  
+  
+	if(sIP == "" || !tdIpCheckAcl(sIP))
+	{
+		alert("源IP地址错误！");
+		return false;
+	}
+	if (document.getElementById("AclRuleBasicType").value == 2)
+	{
+		if(sMask == "" || sMask == "255.255.255.255" ||!tdCheckSubnetMaskAcl(sMask))
+		{
+			alert("源Mask错误！");
+			return false;
+		}
+	}
+  
+  return true;
+}
+
+window.onload = function(){
+  checkVar();
+}
+function checkVar(){
+  var strHref = window.document.location.href; 
+  var intPos = strHref.indexOf("?");
+  if(intPos < 0) window.location.href = "aclrule_config.html"; 
+  var strRight = strHref.substr(intPos + 1); 
+
+  var arrTmp = strRight.split("="); 
+  document.form1.AclListNo.value = arrTmp[1];
+  document.getElementById("AclRuleSourceMask").disabled = true;
+}
+
+function disablemask()
+{
+	 if (document.getElementById("AclRuleBasicType").value == 1)
+	 {
+	 	 document.getElementById("AclRuleSourceMask").disabled = true;
+		 document.getElementById("AclRuleSourceMask").value = "";
+	 }
+	else
+		{
+			document.getElementById("AclRuleSourceMask").disabled = false;
+		}
+}
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="aclrule3.html">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">ACL 规则</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" colspan="2" width="15%">对应ACL编号：</td>
+    <td class="crons" colspan="3"><input name="AclListNo" type="text" id="AclListNo" value="$%AclListNo#$"  ReadOnly=true/></td>
+    <td class="td25" colspan="2" width="15%">动作：</td>
+    <td class="crons" colspan="3">
+    	<select name="AclRuleAction" id="AclRuleAction">
+      <option value="1" $%AclRuleAction(1)#$>允许</option>
+      <option value="0" $%AclRuleAction(0)#$>拒绝</option></select>
+    </td>
+  </tr>
+  <tr>    	
+    <td class="td25" colspan="2" width="15%">IP 类型：</td>
+    <td class="crons" colspan="8"><select name="AclRuleBasicType" id="AclRuleBasicType" onchange="disablemask()">    	
+    	<option value="1" $%AclRuleBasicType(1)#$>Host</option>
+    	<option value="2" $%AclRuleBasicType(2)#$>SubNet</option>    	
+    	</select></td>    
+  </tr>
+  <tr>
+    <td class="td25" colspan="2" width="15%">源IP：</td>
+    <td class="crons" colspan="3"><input name="AclRuleSourceIp" type="text" maxlength=31 id="AclRuleSourceIp" value="$%AclRuleSourceIp#$" /></td>
+    <td class="td25" colspan="2" width="15%">源Mask：</td>
+    <td class="crons" colspan="3"><input name="AclRuleSourceMask" type="text" id="AclRuleSourceMask" value="$%AclRuleSourceMask#$" /></td>
+  </tr>
+<tr>
+  <td colspan=8 align="center" height=40><input type="submit" class="button1" name="button" id="button" value="提 交"  onclick="return checkForm(this.form);" /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="RuleType" >
+</form>
+</div>
+</body>
+</html>

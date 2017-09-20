@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<SCRIPT LANGUAGE="javascript">
+function display()
+{
+changebgcolor();
+changebgcolor2();
+}
+
+
+function backConfig()
+{
+	
+var serIP = document.getElementById("setConfigDownIP").value;
+if(serIP == "")
+{
+	alert("IP不能为空！");
+	return;
+}
+
+if(!tdIpCheck(serIP))
+	{
+	alert("IP地址错误");
+	return;
+	}
+	document.getElementById("setConfigType").value = 1;
+	document.form1.submit();
+}
+
+function recoverConfig()
+{
+	
+var serIP = document.getElementById("setConfigUpIP").value;
+
+if(serIP == "")
+{
+	alert("IP不能为空！");
+	return;
+}
+
+if(!tdIpCheck(serIP))
+	{
+	alert("IP地址错误");
+	return;
+	}
+	document.getElementById("setConfigType").value = 2;
+	document.form1.submit();
+
+}
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('config_setting'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form name="form1" method="post" >
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>配置备份</nobr></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="27%" valign="top">&nbsp;&nbsp;<span class="crons">TFTP服务器IP</span></TD>
+      <TD width="73%" ><span class="crons">
+        <input type="text" name="setConfigDownIP" id="setConfigDownIP" / VALUE="$%setConfigDownIP#$">
+&nbsp;&nbsp;&nbsp;</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons">备份文件名</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="setConfigDownFileName" id="setConfigDownFileName" / VALUE="$%setConfigDownFileName#$">
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      	 <input type="hidden" name="setConfigType" id="setConfigType" / VALUE="$%setConfigType#$"><input name="b_submit2" class="button3" type="button" id="b_submit" value="配置备份"   onclick="backConfig()" >
+   		</td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td width="60%"  class=Tablelist id=tabs name=tabs><nobr>配置恢复</nobr></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table2" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons_top">TFTP服务器IP</span></TD>
+      <TD ><span class="crons_top">
+        <input type="text" name="setConfigUpIP" id="setConfigUpIP" / VALUE="$%setConfigUpIP#$">
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD width="27%" valign="top"><div align="left">&nbsp;&nbsp;<span class="crons_top">备份文件名</span></div></TD>
+      <TD width="73%" ><span class="crons_top">
+        <input type="text" name="setConfigUpFileName" id="setConfigUpFileName" / VALUE="$%setConfigUpFileName#$">
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      	<input name="b_submit22" class="button3" type="button" id="b_submit2" value="配置恢复" onClick="recoverConfig()">
+    	</td>
+    </tr>
+  
+    
+</TABLE>
+</form>
+</BODY></HTML>

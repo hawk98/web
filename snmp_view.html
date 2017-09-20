@@ -1,0 +1,184 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+/*
+var snmpViewNameList = ["11111","22222","333333333","444444444","55555"];
+var snmpViewSubtreeList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var snmpViewTypeList = [1,2,1,2,1];
+*/
+var snmpViewNameList = [$%snmpViewNameList#$];
+var snmpViewSubtreeList = [$%snmpViewSubtreeList#$];
+var snmpViewTypeList = [$%snmpViewTypeList#$];
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<snmpViewNameList.length;i++)
+	{
+	tempBuf += "<tr class='tables_all'><td class='inputsyslog1'  >";
+	tempBuf += snmpViewNameList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += snmpViewSubtreeList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += snmpViewTypeList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' name='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+function display()
+{
+changebgcolor();
+
+}
+function getsnmpviewType(type)
+{
+var typeName;
+if(type == 1)
+	typeName = "Excluded";
+else
+	typeName = "Included";
+	
+return typeName;
+}
+
+function delSelectId( ID )
+{
+	//alert(ID);
+	document.getElementById("snmpDelViewID").value = snmpViewNameList[ID];
+	document.getElementById("snmpDelViewOid").value = snmpViewSubtreeList[ID];
+	document.form1.submit();
+}
+
+function checkSub()
+{
+	if(!tdOIDCheck(document.getElementById("snmpsubTree").value))
+	{
+		alert("OID 错误");
+		return;
+	}
+	if(document.getElementById("snmpsubTree").value.length > 128 ||document.getElementById("snmpsubTree").value.length == 0)
+	{
+		alert("OID 不能为空，长度也不能超过128");
+		return;
+	}
+	if(!checkname(document.getElementById("snmpviewName"),"视图名为空","视图名错误","视图名错误",1))
+	//if(!tdCheckASCIICode(document.getElementById("snmpviewName").value))
+	{
+		//alert("View Name 错误");
+		return;
+	}
+	
+	if(document.getElementById("snmpviewName").value.length > 32 || document.getElementById("snmpviewName").value.length == 0)
+	{
+		alert("视图名不能为空，长度也不能超过32");
+		return;
+	}
+
+	document.form1.submit();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('snmp_view'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>SNMP视图</td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">视图名</span></div></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="snmpviewName" id="snmpviewName" size="20" maxlength="32" / VALUE="$%snmpviewName#$">
+(范围：1~32个字符) </span></TD>
+      <TD width="18%" >&nbsp;</TD>
+      <TD width="32%" >&nbsp;</TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">子树 OID</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="snmpsubTree" id="snmpsubTree" size="20" maxlength="128" / VALUE="$%snmpsubTree#$">
+
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">视图类型</span></TD>
+      <TD ><span class="crons">
+        <select name="snmpviewType" id="snmpviewType" size="1">
+          <option value="1" $%snmpviewType(1)#$>Included</option>
+          <option value="2" $%snmpviewType(2)#$="selected">Excluded</option>
+        </select>
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input type="hidden" name="snmpDelViewID" id="snmpDelViewID"  value="$%snmpDelViewID#$"/>
+      <input type="hidden" name="snmpDelViewOid" id="snmpDelViewOid" / VALUE="$%snmpDelViewOid#$">
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"  onclick="checkSub()" >
+      <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </div></td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>SNMP视图表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">视图名</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">子树</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">视图类型</span></TD>
+      <TD width="36%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+  <script language="javascript">
+  writeList();
+  </script>
+  </table>
+</form>
+
+</BODY></HTML>

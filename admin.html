@@ -1,0 +1,121 @@
+<HTML>	
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<TITLE>page</TITLE><script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+
+
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+var userNameList = [$%userNameList#$];
+var userLeveList = [$%userLeveList#$];
+var curUser = "$%curUserName#$";
+
+function gotoAddUser()
+{
+	window.location.href = "addadmin.html";
+}
+
+function writeUserLine()
+{
+	for(var i=0;i<userNameList.length;i++)
+	{
+		document.write("<tr  class='tables_all'>");
+		document.write("<td  height='32' class='inputsyslog1'>"+userNameList[i]+"</td>");
+		document.write("<td  class='inputsyslog1'>"+getUserLeve(userLeveList[i])+"</td>");
+		document.write("<td  class='inputsyslog1'>");
+		if(i<=2)
+		{
+			if(userNameList[i] == curUser)
+				document.write("      <input type='submit' name='button2' id='button2' class='botton_under_line' value='修改密码'  onclick='editeUser("+i+")'  />");
+			else			
+				document.write("&nbsp;");
+		}
+		else if(i>2)
+		{
+			if(userNameList[i] == curUser)
+				document.write("<input type='submit' name='button2' id='button2' class='botton_under_line' value='修改密码'  onclick='editeUser("+i+")'  />");			
+			else
+				document.write("<input type='submit' name='button3' id='button3' class='botton_under_line' value='删除' onclick='delUser("+i+")'  />");
+		}
+		document.write("</td>");
+		document.write("</tr>");
+	}
+}
+function getUserLeve(leve)
+{
+if(leve == 0)
+	return "Administrators"
+else if(leve == 2)
+	return "Logger"
+else
+	return "Users"
+}
+
+function delUser(i)
+{
+	document.getElementById("userListDelName").value = userNameList[i];
+}
+
+function editeUser(i)
+{
+	document.getElementById("userListEditName").value = userNameList[i];
+}
+</script>
+</HEAD>
+<BODY  >
+<br>
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('admin'));
+ </SCRIPT>
+ </TABLE>
+</div>
+
+<form id="form1" name="form1" method="post" action="admin.html">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td  class=Tablelist id=tabs name=tabs>用户列表</td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right">
+      <span class="td25">
+      <input type="hidden" name="userListDelName" id="userListDelName"  value="">
+      <input type="hidden" name="userListEditName" id="userListEditName" value="">
+      </span>
+      <input name="ddddd" type="button" class="button1" id="ddddd" onClick="javascript:top.mainctrl.location='addadmin.html' " value="新增">
+    </div></td>
+  </tr>
+</table>
+<tr>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <TR align="center" height=22>
+      <TD   nowrap class="all_tables_list">用户名</TD>
+      <TD   nowrap class="all_tables_list">权限</TD>
+      <TD   nowrap class="all_tables_list">编辑/删除</TD>
+    </TR>
+  <script language="javascript">
+  writeUserLine();
+  document.getElementById("userListDelName").value = "";
+  document.getElementById("userListEditName").value = "";
+//changebgcolor();
+  </script>
+  </table>
+</form>
+
+<a name="bottom"></a></BODY></HTML>
+
+
+
+

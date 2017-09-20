@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+}
+
+function checkSub(){
+
+	if(document.getElementById("snmpengineID").value.length > 64 || document.getElementById("snmpengineID").value.length < 16)
+	{
+		alert("引擎ID长度不对！");
+		return;
+	}
+
+	if(!IsHexShowMsg(document.getElementById("snmpengineID").value,true,"引擎ID错误"))
+	{
+	return;
+	}
+	
+	document.form1.submit();
+}
+ function IsHexShowMsg(Value,AlertOn,mes)
+{
+    // Default value
+    var  AlertOn = (AlertOn == null) ? 0 : AlertOn;
+
+    ValidChars = "0123456789ABCDEFabcdef";
+
+    var ValueIsHex = true;
+
+    // check for valid charaters  
+    for (var i = 0 ; i <= Value.length; i ++ ) {
+	var ValueChar = Value.charAt(i);
+	if (ValidChars.indexOf(ValueChar) == -1 ) {
+	    ValueIsHex = false; 
+	}
+    }
+    
+    if (!ValueIsHex && AlertOn) {
+        alert (mes);
+    }
+
+    return ValueIsHex;
+}
+
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('snmp_engine'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>SNMP引擎ID</nobr></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="23%" valign="top">&nbsp;&nbsp;<span class="td25">引擎ID</span></TD>
+      <td width="77%" ><span class="crons">
+      <input name="snmpengineID" type="text"  id="snmpengineID"  value="$%snmpengineID#$" size="48" />
+( 16~64个十六进制字符，每两个十六进制字符构成一个八位组)</span></td>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交"  onclick="checkSub()">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </div></td>
+    
+    </tr>
+</TABLE>
+</FORM>
+
+</BODY></HTML>

@@ -1,0 +1,341 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";</script>
+<script language="javascript">
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+
+function changebgcolor2(){
+ var tab = document.all.table2;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+function display()
+{
+changebgcolor();
+changebgcolor2();
+}
+
+var igmpVlanIDList = [$%igmpVlanIDList#$];
+var igmpSnoopingEableList = [$%igmpSnoopingEableList#$];
+var igmpQuerierList = [$%igmpQuerierList#$];
+
+function writeLine()
+{
+	var str="";
+
+	for(var i=0;i<igmpVlanIDList.length;i++)
+	{
+	str +="<tr   class='tables_all'>";
+	str +="    <td  class='inputsyslog1'>"+igmpVlanIDList[i]+"</td>";
+	str +="    <td  class='inputsyslog1'>"+getSnooping(igmpSnoopingEableList[i],i)+"</td>";
+	str +="    <td   class='inputsyslog1'>"+getQuerier(igmpQuerierList[i],i)+"</td>";
+	str += "    <td><input type='button' name='buttonP"+i+"' id='buttonP"+i+"' class='botton_under_line' value='删 除' onclick='delIgmpVlan("+igmpVlanIDList[i]+")'   /></td>";
+	
+	str +="  </tr>";
+	}
+	str +="<tr  class='tables_all'>";
+	str +="    <td colspan='4'  align='center' height=40><input type='button' class='button1' name='button_submit' id='button_submit' value='提 交'  onclick='modifyState("+i+")'  /></td>";
+	str +="  </tr>";
+	//alert(str);
+	document.write(str);
+}
+
+function getSnooping(enable,i)
+{
+	if(enable)
+		return ("<select name='selectSnooping"+i+"' id='selectSnooping"+i+"'><option value='1' selected='selected' >启用</option><option value='0' >禁用</option></select>");
+	else
+		return ("<select name='selectSnooping"+i+"' id='selectSnooping"+i+"'><option value='1' >启用</option><option value='0'  selected='selected'>禁用</option></select>");
+
+}
+
+function getQuerier(enable,i)
+{
+	if(enable)
+		return ("<select name='selectQuerier"+i+"' id='selectQuerier"+i+"'><option value='1' selected='selected'>启用</option><option value='0' >禁用</option></select>");
+	else
+		return ("<select name='selectQuerier"+i+"' id='selectQuerier"+i+"'><option value='1' >启用</option><option value='0'  selected='selected'>禁用</option></select>");
+
+}
+
+function modifyState(i)
+{
+/*
+	var snooping_str="";
+	var querier_str="";
+	//alert(i);
+*/
+	
+	all_str = "";
+	for(j=0;j<i;j++)
+	{
+		//var idName1 = eval("selectSnooping" + j);
+		//var idName2 = eval("selectQuerier" + j);
+		//alert(j);
+		var idName1 = "selectSnooping" + j;
+		var idName2 = "selectQuerier" + j;
+/*
+	    snooping_str += document.getElementById(idName1).value;
+		snooping_str += ",";
+	    querier_str += document.getElementById(idName2).value;
+		querier_str += ",";
+*/	
+		all_str += igmpVlanIDList[j] + "," + document.getElementById(idName1).value + "," + document.getElementById(idName2).value + ";" ;
+	}
+/*	
+	 snooping_str = snooping_str.substring(0,snooping_str.length-1);
+	 querier_str = querier_str.substring(0,querier_str.length-1);
+	alert(snooping_str);
+	alert(querier_str);
+*/
+	 all_str = all_str.substring(0,all_str.length-1);
+
+	document.form3.igmpSnoopingEableList.value = all_str;
+
+	//document.getElementById("igmpQuerierList").value = querier_str;
+
+
+	//document.getElementById("hIgmpVlanID").value = 3;
+
+	//alert(all_str);
+
+
+	document.form3.submit();
+}
+
+
+
+function delIgmpVlan(vid)
+{
+	document.form2.hIgmpVlanID.value = 4;
+	document.form2.igmpvlannew.value = vid;
+
+	document.form2.submit();
+
+}
+
+var IgmpVTotalPages = $%IgmpVTotalPages#$;
+var IgmpVCurPage = $%IgmpVCurPage#$;
+var IgmpVPageItenNum = 50;
+
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("IgmpVGotoGage").value;
+	
+	if(!fucCheckNUM(gotoPageNum)  || gotoPageNum==""||gotoPageNum<1||gotoPageNum>IgmpVTotalPages)
+	{
+		alert("您输入的页数不存在！");
+		return;
+	}
+	if(gotoPageNum == IgmpVCurPage)
+	{
+		alert("您已经在第"+IgmpVCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("IgmpVGotoPageEnable").value = 1;
+	document.form3.hIgmpVlanID.value = 5;
+	document.form3.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("IgmpVGotoGage").value = (IgmpVCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("IgmpVGotoGage").value = (IgmpVCurPage+1);
+	gotopage();
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('igmp'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>IGMP配置</td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="20%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">模式</span><span class="inputsyslog1">
+        <input name="hIgmpVlanID" type="hidden" id="hIgmpVlanID" value="2" />
+        <input type="hidden" name="igmpVlanIDList" id="igmpVlanIDList" / VALUE="$%igmpVlanIDList#$">
+        <input type="hidden" name="igmpQuerierList" id="igmpQuerierList" / VALUE="$%igmpQuerierList#$">
+      </span><span class="table_main1">
+      <input type="HIDDEN" name="CheckBoxManager" value="IGMPEnable" >
+      </span></div></TD>
+      <TD width="80%" ><span class="inputsyslog1">
+      <input type="checkbox" name="IGMPEnable" id="IGMPEnable" value="ON" / $%IGMPEnable#$>
+启用</span></TD>
+      </TR>
+      <tr>
+      	<td class="partition" colspan="8">&nbsp;
+      		<input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交">
+    		</td>
+      </tr>
+</TABLE>
+</form>
+  <form id="form2" name="form2" method="post" action="" onSubmit="">
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td  class=Tablelist id=tabs name=tabs>IGMP VLAN<span class="inputsyslog1">
+      <input name="hIgmpVlanID" type="hidden" id="hIgmpVlanID" value="3" />
+    </span></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table2" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="20%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">VLAN</span><span class="table_main1"></span></div></TD>
+      <TD width="80%" ><input name="igmpvlannew" type="text" id="igmpvlannew" maxlength="4">
+        (1~4094)</TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input name="b_submit22" class="button1" type="submit" id="b_submit2" value="提 交"  >
+    </td>
+    </tr>
+</TABLE>
+</form>
+  <form id="form3" name="form3" method="post" action="" onSubmit="">
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>IGMP配置列表&nbsp;&nbsp;&nbsp;
+      <script language="javascript">
+	document.write("总共"+IgmpVTotalPages+"页，当前"+IgmpVCurPage+"页，");
+	  </script>
+到
+<input name="IgmpVGotoGage" id="IgmpVGotoGage" type="text"  size="3" maxlength="3" VALUE="$%IgmpVGotoGage#$">
+页
+<input name="button" type="button" class="button1" id="gotoVlanAPage"  onClick="gotopage();" value="确 认">
+&nbsp;&nbsp;&nbsp;&nbsp; <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a>&nbsp;&nbsp;<a  onClick="gotoNextpage();" style="cursor:pointer;">下一页</a>
+<input type="hidden" name="IgmpVGotoPageEnable" id="IgmpVGotoPageEnable"  value="$%IgmpVGotoPageEnable#$"/>
+<span class="inputsyslog1">
+<input name="hIgmpVlanID" type="hidden" id="hIgmpVlanID" value="1" />
+<input type="hidden" name="igmpSnoopingEableList" id="igmpSnoopingEableList" / VALUE="$%igmpSnoopingEableList#$">
+</span></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="21%"   nowrap class="all_tables_list"><span class="partition">VLAN ID</span></TD>
+      <TD width="21%"   nowrap class="all_tables_list"><span class="partition">Snooping Enabled</span></TD>
+      <TD width="27%"   nowrap class="all_tables_list"><span class="partition">IGMP Querier</span></TD>
+      <TD width="31%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+    
+  <script language="javascript">  
+  writeLine();  
+    if(IgmpVCurPage == 1)
+	{
+  		if (typeof gotoVlanPrePage !== 'undefined')
+			document.getElementById("gotoVlanPrePage").style.display="none";
+	}
+	if(IgmpVCurPage == IgmpVTotalPages)
+	{
+ 		if (typeof gotoVlanNextPage !== 'undefined')
+		 	document.getElementById("gotoVlanNextPage").style.display="none";
+	}
+  </script>
+  </table>
+</form>
+<br>
+
+</BODY></HTML>

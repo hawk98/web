@@ -1,0 +1,542 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<SCRIPT LANGUAGE="javascript">
+var portNum = $%portNum#$;
+var groupNum = portNum/2;
+
+var trunkPort = new Array();
+
+trunkPort[0] = new Array();
+trunkPort[0][1] = "$%trunkPort1(0)#$";
+trunkPort[0][2] = "$%trunkPort2(0)#$";
+trunkPort[0][3] = "$%trunkPort3(0)#$";
+trunkPort[0][4] = "$%trunkPort4(0)#$";
+trunkPort[0][5] = "$%trunkPort5(0)#$";
+trunkPort[0][6] = "$%trunkPort6(0)#$";
+trunkPort[0][7] = "$%trunkPort7(0)#$";
+trunkPort[0][8] = "$%trunkPort8(0)#$";
+trunkPort[0][9] = "$%trunkPort9(0)#$";
+trunkPort[0][10] = "$%trunkPort10(0)#$";
+trunkPort[0][11] = "$%trunkPort11(0)#$";
+trunkPort[0][12] = "$%trunkPort12(0)#$";
+trunkPort[0][13] = "$%trunkPort13(0)#$";
+trunkPort[0][14] = "$%trunkPort14(0)#$";
+trunkPort[0][15] = "$%trunkPort15(0)#$";
+trunkPort[0][16] = "$%trunkPort16(0)#$";
+trunkPort[0][17] = "$%trunkPort17(0)#$";
+trunkPort[0][18] = "$%trunkPort18(0)#$";
+trunkPort[0][19] = "$%trunkPort19(0)#$";
+trunkPort[0][20] = "$%trunkPort20(0)#$";
+trunkPort[0][21] = "$%trunkPort21(0)#$";
+trunkPort[0][22] = "$%trunkPort22(0)#$";
+trunkPort[0][23] = "$%trunkPort23(0)#$";
+trunkPort[0][24] = "$%trunkPort24(0)#$";
+trunkPort[0][25] = "$%trunkPort25(0)#$";
+trunkPort[0][26] = "$%trunkPort26(0)#$";
+trunkPort[0][27] = "$%trunkPort27(0)#$";
+trunkPort[0][28] = "$%trunkPort28(0)#$";
+
+trunkPort[1] = new Array();
+trunkPort[1][1] = "$%trunkPort1(1)#$";
+trunkPort[1][2] = "$%trunkPort2(1)#$";
+trunkPort[1][3] = "$%trunkPort3(1)#$";
+trunkPort[1][4] = "$%trunkPort4(1)#$";
+trunkPort[1][5] = "$%trunkPort5(1)#$";
+trunkPort[1][6] = "$%trunkPort6(1)#$";
+trunkPort[1][7] = "$%trunkPort7(1)#$";
+trunkPort[1][8] = "$%trunkPort8(1)#$";
+trunkPort[1][9] = "$%trunkPort9(1)#$";
+trunkPort[1][10] = "$%trunkPort10(1)#$";
+trunkPort[1][11] = "$%trunkPort11(1)#$";
+trunkPort[1][12] = "$%trunkPort12(1)#$";
+trunkPort[1][13] = "$%trunkPort13(1)#$";
+trunkPort[1][14] = "$%trunkPort14(1)#$";
+trunkPort[1][15] = "$%trunkPort15(1)#$";
+trunkPort[1][16] = "$%trunkPort16(1)#$";
+trunkPort[1][17] = "$%trunkPort17(1)#$";
+trunkPort[1][18] = "$%trunkPort18(1)#$";
+trunkPort[1][19] = "$%trunkPort19(1)#$";
+trunkPort[1][20] = "$%trunkPort20(1)#$";
+trunkPort[1][21] = "$%trunkPort21(1)#$";
+trunkPort[1][22] = "$%trunkPort22(1)#$";
+trunkPort[1][23] = "$%trunkPort23(1)#$";
+trunkPort[1][24] = "$%trunkPort24(1)#$";
+trunkPort[1][25] = "$%trunkPort25(1)#$";
+trunkPort[1][26] = "$%trunkPort26(1)#$";
+trunkPort[1][27] = "$%trunkPort27(1)#$";
+trunkPort[1][28] = "$%trunkPort28(1)#$";
+
+trunkPort[2] = new Array();
+trunkPort[2][1] = "$%trunkPort1(2)#$";
+trunkPort[2][2] = "$%trunkPort2(2)#$";
+trunkPort[2][3] = "$%trunkPort3(2)#$";
+trunkPort[2][4] = "$%trunkPort4(2)#$";
+trunkPort[2][5] = "$%trunkPort5(2)#$";
+trunkPort[2][6] = "$%trunkPort6(2)#$";
+trunkPort[2][7] = "$%trunkPort7(2)#$";
+trunkPort[2][8] = "$%trunkPort8(2)#$";
+trunkPort[2][9] = "$%trunkPort9(2)#$";
+trunkPort[2][10] = "$%trunkPort10(2)#$";
+trunkPort[2][11] = "$%trunkPort11(2)#$";
+trunkPort[2][12] = "$%trunkPort12(2)#$";
+trunkPort[2][13] = "$%trunkPort13(2)#$";
+trunkPort[2][14] = "$%trunkPort14(2)#$";
+trunkPort[2][15] = "$%trunkPort15(2)#$";
+trunkPort[2][16] = "$%trunkPort16(2)#$";
+trunkPort[2][17] = "$%trunkPort17(2)#$";
+trunkPort[2][18] = "$%trunkPort18(2)#$";
+trunkPort[2][19] = "$%trunkPort19(2)#$";
+trunkPort[2][20] = "$%trunkPort20(2)#$";
+trunkPort[2][21] = "$%trunkPort21(2)#$";
+trunkPort[2][22] = "$%trunkPort22(2)#$";
+trunkPort[2][23] = "$%trunkPort23(2)#$";
+trunkPort[2][24] = "$%trunkPort24(2)#$";
+trunkPort[2][25] = "$%trunkPort25(2)#$";
+trunkPort[2][26] = "$%trunkPort26(2)#$";
+trunkPort[2][27] = "$%trunkPort27(2)#$";
+trunkPort[2][28] = "$%trunkPort28(2)#$";
+
+trunkPort[3] = new Array();
+trunkPort[3][1] = "$%trunkPort1(3)#$";
+trunkPort[3][2] = "$%trunkPort2(3)#$";
+trunkPort[3][3] = "$%trunkPort3(3)#$";
+trunkPort[3][4] = "$%trunkPort4(3)#$";
+trunkPort[3][5] = "$%trunkPort5(3)#$";
+trunkPort[3][6] = "$%trunkPort6(3)#$";
+trunkPort[3][7] = "$%trunkPort7(3)#$";
+trunkPort[3][8] = "$%trunkPort8(3)#$";
+trunkPort[3][9] = "$%trunkPort9(3)#$";
+trunkPort[3][10] = "$%trunkPort10(3)#$";
+trunkPort[3][11] = "$%trunkPort11(3)#$";
+trunkPort[3][12] = "$%trunkPort12(3)#$";
+trunkPort[3][13] = "$%trunkPort13(3)#$";
+trunkPort[3][14] = "$%trunkPort14(3)#$";
+trunkPort[3][15] = "$%trunkPort15(3)#$";
+trunkPort[3][16] = "$%trunkPort16(3)#$";
+trunkPort[3][17] = "$%trunkPort17(3)#$";
+trunkPort[3][18] = "$%trunkPort18(3)#$";
+trunkPort[3][19] = "$%trunkPort19(3)#$";
+trunkPort[3][20] = "$%trunkPort20(3)#$";
+trunkPort[3][21] = "$%trunkPort21(3)#$";
+trunkPort[3][22] = "$%trunkPort22(3)#$";
+trunkPort[3][23] = "$%trunkPort23(3)#$";
+trunkPort[3][24] = "$%trunkPort24(3)#$";
+trunkPort[3][25] = "$%trunkPort25(3)#$";
+trunkPort[3][26] = "$%trunkPort26(3)#$";
+trunkPort[3][27] = "$%trunkPort27(3)#$";
+trunkPort[3][28] = "$%trunkPort28(3)#$";
+
+trunkPort[4] = new Array();
+trunkPort[4][1] = "$%trunkPort1(4)#$";
+trunkPort[4][2] = "$%trunkPort2(4)#$";
+trunkPort[4][3] = "$%trunkPort3(4)#$";
+trunkPort[4][4] = "$%trunkPort4(4)#$";
+trunkPort[4][5] = "$%trunkPort5(4)#$";
+trunkPort[4][6] = "$%trunkPort6(4)#$";
+trunkPort[4][7] = "$%trunkPort7(4)#$";
+trunkPort[4][8] = "$%trunkPort8(4)#$";
+trunkPort[4][9] = "$%trunkPort9(4)#$";
+trunkPort[4][10] = "$%trunkPort10(4)#$";
+trunkPort[4][11] = "$%trunkPort11(4)#$";
+trunkPort[4][12] = "$%trunkPort12(4)#$";
+trunkPort[4][13] = "$%trunkPort13(4)#$";
+trunkPort[4][14] = "$%trunkPort14(4)#$";
+trunkPort[4][15] = "$%trunkPort15(4)#$";
+trunkPort[4][16] = "$%trunkPort16(4)#$";
+trunkPort[4][17] = "$%trunkPort17(4)#$";
+trunkPort[4][18] = "$%trunkPort18(4)#$";
+trunkPort[4][19] = "$%trunkPort19(4)#$";
+trunkPort[4][20] = "$%trunkPort20(4)#$";
+trunkPort[4][21] = "$%trunkPort21(4)#$";
+trunkPort[4][22] = "$%trunkPort22(4)#$";
+trunkPort[4][23] = "$%trunkPort23(4)#$";
+trunkPort[4][24] = "$%trunkPort24(4)#$";
+trunkPort[4][25] = "$%trunkPort25(4)#$";
+trunkPort[4][26] = "$%trunkPort26(4)#$";
+trunkPort[4][27] = "$%trunkPort27(4)#$";
+trunkPort[4][28] = "$%trunkPort28(4)#$";
+
+trunkPort[5] = new Array();
+trunkPort[5][1] = "$%trunkPort1(5)#$";
+trunkPort[5][2] = "$%trunkPort2(5)#$";
+trunkPort[5][3] = "$%trunkPort3(5)#$";
+trunkPort[5][4] = "$%trunkPort4(5)#$";
+trunkPort[5][5] = "$%trunkPort5(5)#$";
+trunkPort[5][6] = "$%trunkPort6(5)#$";
+trunkPort[5][7] = "$%trunkPort7(5)#$";
+trunkPort[5][8] = "$%trunkPort8(5)#$";
+trunkPort[5][9] = "$%trunkPort9(5)#$";
+trunkPort[5][10] = "$%trunkPort10(5)#$";
+trunkPort[5][11] = "$%trunkPort11(5)#$";
+trunkPort[5][12] = "$%trunkPort12(5)#$";
+trunkPort[5][13] = "$%trunkPort13(5)#$";
+trunkPort[5][14] = "$%trunkPort14(5)#$";
+trunkPort[5][15] = "$%trunkPort15(5)#$";
+trunkPort[5][16] = "$%trunkPort16(5)#$";
+trunkPort[5][17] = "$%trunkPort17(5)#$";
+trunkPort[5][18] = "$%trunkPort18(5)#$";
+trunkPort[5][19] = "$%trunkPort19(5)#$";
+trunkPort[5][20] = "$%trunkPort20(5)#$";
+trunkPort[5][21] = "$%trunkPort21(5)#$";
+trunkPort[5][22] = "$%trunkPort22(5)#$";
+trunkPort[5][23] = "$%trunkPort23(5)#$";
+trunkPort[5][24] = "$%trunkPort24(5)#$";
+trunkPort[5][25] = "$%trunkPort25(5)#$";
+trunkPort[5][26] = "$%trunkPort26(5)#$";
+trunkPort[5][27] = "$%trunkPort27(5)#$";
+trunkPort[5][28] = "$%trunkPort28(5)#$";
+
+trunkPort[6] = new Array();
+trunkPort[6][1] = "$%trunkPort1(6)#$";
+trunkPort[6][2] = "$%trunkPort2(6)#$";
+trunkPort[6][3] = "$%trunkPort3(6)#$";
+trunkPort[6][4] = "$%trunkPort4(6)#$";
+trunkPort[6][5] = "$%trunkPort5(6)#$";
+trunkPort[6][6] = "$%trunkPort6(6)#$";
+trunkPort[6][7] = "$%trunkPort7(6)#$";
+trunkPort[6][8] = "$%trunkPort8(6)#$";
+trunkPort[6][9] = "$%trunkPort9(6)#$";
+trunkPort[6][10] = "$%trunkPort10(6)#$";
+trunkPort[6][11] = "$%trunkPort11(6)#$";
+trunkPort[6][12] = "$%trunkPort12(6)#$";
+trunkPort[6][13] = "$%trunkPort13(6)#$";
+trunkPort[6][14] = "$%trunkPort14(6)#$";
+trunkPort[6][15] = "$%trunkPort15(6)#$";
+trunkPort[6][16] = "$%trunkPort16(6)#$";
+trunkPort[6][17] = "$%trunkPort17(6)#$";
+trunkPort[6][18] = "$%trunkPort18(6)#$";
+trunkPort[6][19] = "$%trunkPort19(6)#$";
+trunkPort[6][20] = "$%trunkPort20(6)#$";
+trunkPort[6][21] = "$%trunkPort21(6)#$";
+trunkPort[6][22] = "$%trunkPort22(6)#$";
+trunkPort[6][23] = "$%trunkPort23(6)#$";
+trunkPort[6][24] = "$%trunkPort24(6)#$";
+trunkPort[6][25] = "$%trunkPort25(6)#$";
+trunkPort[6][26] = "$%trunkPort26(6)#$";
+trunkPort[6][27] = "$%trunkPort27(6)#$";
+trunkPort[6][28] = "$%trunkPort28(6)#$";
+
+trunkPort[7] = new Array();
+trunkPort[7][1] = "$%trunkPort1(7)#$";
+trunkPort[7][2] = "$%trunkPort2(7)#$";
+trunkPort[7][3] = "$%trunkPort3(7)#$";
+trunkPort[7][4] = "$%trunkPort4(7)#$";
+trunkPort[7][5] = "$%trunkPort5(7)#$";
+trunkPort[7][6] = "$%trunkPort6(7)#$";
+trunkPort[7][7] = "$%trunkPort7(7)#$";
+trunkPort[7][8] = "$%trunkPort8(7)#$";
+trunkPort[7][9] = "$%trunkPort9(7)#$";
+trunkPort[7][10] = "$%trunkPort10(7)#$";
+trunkPort[7][11] = "$%trunkPort11(7)#$";
+trunkPort[7][12] = "$%trunkPort12(7)#$";
+trunkPort[7][13] = "$%trunkPort13(7)#$";
+trunkPort[7][14] = "$%trunkPort14(7)#$";
+trunkPort[7][15] = "$%trunkPort15(7)#$";
+trunkPort[7][16] = "$%trunkPort16(7)#$";
+trunkPort[7][17] = "$%trunkPort17(7)#$";
+trunkPort[7][18] = "$%trunkPort18(7)#$";
+trunkPort[7][19] = "$%trunkPort19(7)#$";
+trunkPort[7][20] = "$%trunkPort20(7)#$";
+trunkPort[7][21] = "$%trunkPort21(7)#$";
+trunkPort[7][22] = "$%trunkPort22(7)#$";
+trunkPort[7][23] = "$%trunkPort23(7)#$";
+trunkPort[7][24] = "$%trunkPort24(7)#$";
+trunkPort[7][25] = "$%trunkPort25(7)#$";
+trunkPort[7][26] = "$%trunkPort26(7)#$";
+trunkPort[7][27] = "$%trunkPort27(7)#$";
+trunkPort[7][28] = "$%trunkPort28(7)#$";
+
+trunkPort[8] = new Array();
+trunkPort[8][1] = "$%trunkPort1(8)#$";
+trunkPort[8][2] = "$%trunkPort2(8)#$";
+trunkPort[8][3] = "$%trunkPort3(8)#$";
+trunkPort[8][4] = "$%trunkPort4(8)#$";
+trunkPort[8][5] = "$%trunkPort5(8)#$";
+trunkPort[8][6] = "$%trunkPort6(8)#$";
+trunkPort[8][7] = "$%trunkPort7(8)#$";
+trunkPort[8][8] = "$%trunkPort8(8)#$";
+trunkPort[8][9] = "$%trunkPort9(8)#$";
+trunkPort[8][10] = "$%trunkPort10(8)#$";
+trunkPort[8][11] = "$%trunkPort11(8)#$";
+trunkPort[8][12] = "$%trunkPort12(8)#$";
+trunkPort[8][13] = "$%trunkPort13(8)#$";
+trunkPort[8][14] = "$%trunkPort14(8)#$";
+trunkPort[8][15] = "$%trunkPort15(8)#$";
+trunkPort[8][16] = "$%trunkPort16(8)#$";
+trunkPort[8][17] = "$%trunkPort17(8)#$";
+trunkPort[8][18] = "$%trunkPort18(8)#$";
+trunkPort[8][19] = "$%trunkPort19(8)#$";
+trunkPort[8][20] = "$%trunkPort20(8)#$";
+trunkPort[8][21] = "$%trunkPort21(8)#$";
+trunkPort[8][22] = "$%trunkPort22(8)#$";
+trunkPort[8][23] = "$%trunkPort23(8)#$";
+trunkPort[8][24] = "$%trunkPort24(8)#$";
+trunkPort[8][25] = "$%trunkPort25(8)#$";
+trunkPort[8][26] = "$%trunkPort26(8)#$";
+trunkPort[8][27] = "$%trunkPort27(8)#$";
+trunkPort[8][28] = "$%trunkPort28(8)#$";
+
+trunkPort[9] = new Array();
+trunkPort[9][1] = "$%trunkPort1(9)#$";
+trunkPort[9][2] = "$%trunkPort2(9)#$";
+trunkPort[9][3] = "$%trunkPort3(9)#$";
+trunkPort[9][4] = "$%trunkPort4(9)#$";
+trunkPort[9][5] = "$%trunkPort5(9)#$";
+trunkPort[9][6] = "$%trunkPort6(9)#$";
+trunkPort[9][7] = "$%trunkPort7(9)#$";
+trunkPort[9][8] = "$%trunkPort8(9)#$";
+trunkPort[9][9] = "$%trunkPort9(9)#$";
+trunkPort[9][10] = "$%trunkPort10(9)#$";
+trunkPort[9][11] = "$%trunkPort11(9)#$";
+trunkPort[9][12] = "$%trunkPort12(9)#$";
+trunkPort[9][13] = "$%trunkPort13(9)#$";
+trunkPort[9][14] = "$%trunkPort14(9)#$";
+trunkPort[9][15] = "$%trunkPort15(9)#$";
+trunkPort[9][16] = "$%trunkPort16(9)#$";
+trunkPort[9][17] = "$%trunkPort17(9)#$";
+trunkPort[9][18] = "$%trunkPort18(9)#$";
+trunkPort[9][19] = "$%trunkPort19(9)#$";
+trunkPort[9][20] = "$%trunkPort20(9)#$";
+trunkPort[9][21] = "$%trunkPort21(9)#$";
+trunkPort[9][22] = "$%trunkPort22(9)#$";
+trunkPort[9][23] = "$%trunkPort23(9)#$";
+trunkPort[9][24] = "$%trunkPort24(9)#$";
+trunkPort[9][25] = "$%trunkPort25(9)#$";
+trunkPort[9][26] = "$%trunkPort26(9)#$";
+trunkPort[9][27] = "$%trunkPort27(9)#$";
+trunkPort[9][28] = "$%trunkPort28(9)#$";
+
+trunkPort[10] = new Array();
+trunkPort[10][1] = "$%trunkPort1(10)#$";
+trunkPort[10][2] = "$%trunkPort2(10)#$";
+trunkPort[10][3] = "$%trunkPort3(10)#$";
+trunkPort[10][4] = "$%trunkPort4(10)#$";
+trunkPort[10][5] = "$%trunkPort5(10)#$";
+trunkPort[10][6] = "$%trunkPort6(10)#$";
+trunkPort[10][7] = "$%trunkPort7(10)#$";
+trunkPort[10][8] = "$%trunkPort8(10)#$";
+trunkPort[10][9] = "$%trunkPort9(10)#$";
+trunkPort[10][10] = "$%trunkPort10(10)#$";
+trunkPort[10][11] = "$%trunkPort11(10)#$";
+trunkPort[10][12] = "$%trunkPort12(10)#$";
+trunkPort[10][13] = "$%trunkPort13(10)#$";
+trunkPort[10][14] = "$%trunkPort14(10)#$";
+trunkPort[10][15] = "$%trunkPort15(10)#$";
+trunkPort[10][16] = "$%trunkPort16(10)#$";
+trunkPort[10][17] = "$%trunkPort17(10)#$";
+trunkPort[10][18] = "$%trunkPort18(10)#$";
+trunkPort[10][19] = "$%trunkPort19(10)#$";
+trunkPort[10][20] = "$%trunkPort20(10)#$";
+trunkPort[10][21] = "$%trunkPort21(10)#$";
+trunkPort[10][22] = "$%trunkPort22(10)#$";
+trunkPort[10][23] = "$%trunkPort23(10)#$";
+trunkPort[10][24] = "$%trunkPort24(10)#$";
+trunkPort[10][25] = "$%trunkPort25(10)#$";
+trunkPort[10][26] = "$%trunkPort26(10)#$";
+trunkPort[10][27] = "$%trunkPort27(10)#$";
+trunkPort[10][28] = "$%trunkPort28(10)#$";
+
+trunkPort[11] = new Array();
+trunkPort[11][1] = "$%trunkPort1(11)#$";
+trunkPort[11][2] = "$%trunkPort2(11)#$";
+trunkPort[11][3] = "$%trunkPort3(11)#$";
+trunkPort[11][4] = "$%trunkPort4(11)#$";
+trunkPort[11][5] = "$%trunkPort5(11)#$";
+trunkPort[11][6] = "$%trunkPort6(11)#$";
+trunkPort[11][7] = "$%trunkPort7(11)#$";
+trunkPort[11][8] = "$%trunkPort8(11)#$";
+trunkPort[11][9] = "$%trunkPort9(11)#$";
+trunkPort[11][10] = "$%trunkPort10(11)#$";
+trunkPort[11][11] = "$%trunkPort11(11)#$";
+trunkPort[11][12] = "$%trunkPort12(11)#$";
+trunkPort[11][13] = "$%trunkPort13(11)#$";
+trunkPort[11][14] = "$%trunkPort14(11)#$";
+trunkPort[11][15] = "$%trunkPort15(11)#$";
+trunkPort[11][16] = "$%trunkPort16(11)#$";
+trunkPort[11][17] = "$%trunkPort17(11)#$";
+trunkPort[11][18] = "$%trunkPort18(11)#$";
+trunkPort[11][19] = "$%trunkPort19(11)#$";
+trunkPort[11][20] = "$%trunkPort20(11)#$";
+trunkPort[11][21] = "$%trunkPort21(11)#$";
+trunkPort[11][22] = "$%trunkPort22(11)#$";
+trunkPort[11][23] = "$%trunkPort23(11)#$";
+trunkPort[11][24] = "$%trunkPort24(11)#$";
+trunkPort[11][25] = "$%trunkPort25(11)#$";
+trunkPort[11][26] = "$%trunkPort26(11)#$";
+trunkPort[11][27] = "$%trunkPort27(11)#$";
+trunkPort[11][28] = "$%trunkPort28(11)#$";
+
+trunkPort[12] = new Array();
+trunkPort[12][1] = "$%trunkPort1(12)#$";
+trunkPort[12][2] = "$%trunkPort2(12)#$";
+trunkPort[12][3] = "$%trunkPort3(12)#$";
+trunkPort[12][4] = "$%trunkPort4(12)#$";
+trunkPort[12][5] = "$%trunkPort5(12)#$";
+trunkPort[12][6] = "$%trunkPort6(12)#$";
+trunkPort[12][7] = "$%trunkPort7(12)#$";
+trunkPort[12][8] = "$%trunkPort8(12)#$";
+trunkPort[12][9] = "$%trunkPort9(12)#$";
+trunkPort[12][10] = "$%trunkPort10(12)#$";
+trunkPort[12][11] = "$%trunkPort11(12)#$";
+trunkPort[12][12] = "$%trunkPort12(12)#$";
+trunkPort[12][13] = "$%trunkPort13(12)#$";
+trunkPort[12][14] = "$%trunkPort14(12)#$";
+trunkPort[12][15] = "$%trunkPort15(12)#$";
+trunkPort[12][16] = "$%trunkPort16(12)#$";
+trunkPort[12][17] = "$%trunkPort17(12)#$";
+trunkPort[12][18] = "$%trunkPort18(12)#$";
+trunkPort[12][19] = "$%trunkPort19(12)#$";
+trunkPort[12][20] = "$%trunkPort20(12)#$";
+trunkPort[12][21] = "$%trunkPort21(12)#$";
+trunkPort[12][22] = "$%trunkPort22(12)#$";
+trunkPort[12][23] = "$%trunkPort23(12)#$";
+trunkPort[12][24] = "$%trunkPort24(12)#$";
+trunkPort[12][25] = "$%trunkPort25(12)#$";
+trunkPort[12][26] = "$%trunkPort26(12)#$";
+trunkPort[12][27] = "$%trunkPort27(12)#$";
+trunkPort[12][28] = "$%trunkPort28(12)#$";
+
+trunkPort[13] = new Array();
+trunkPort[13][1] = "$%trunkPort1(13)#$";
+trunkPort[13][2] = "$%trunkPort2(13)#$";
+trunkPort[13][3] = "$%trunkPort3(13)#$";
+trunkPort[13][4] = "$%trunkPort4(13)#$";
+trunkPort[13][5] = "$%trunkPort5(13)#$";
+trunkPort[13][6] = "$%trunkPort6(13)#$";
+trunkPort[13][7] = "$%trunkPort7(13)#$";
+trunkPort[13][8] = "$%trunkPort8(13)#$";
+trunkPort[13][9] = "$%trunkPort9(13)#$";
+trunkPort[13][10] = "$%trunkPort10(13)#$";
+trunkPort[13][11] = "$%trunkPort11(13)#$";
+trunkPort[13][12] = "$%trunkPort12(13)#$";
+trunkPort[13][13] = "$%trunkPort13(13)#$";
+trunkPort[13][14] = "$%trunkPort14(13)#$";
+trunkPort[13][15] = "$%trunkPort15(13)#$";
+trunkPort[13][16] = "$%trunkPort16(13)#$";
+trunkPort[13][17] = "$%trunkPort17(13)#$";
+trunkPort[13][18] = "$%trunkPort18(13)#$";
+trunkPort[13][19] = "$%trunkPort19(13)#$";
+trunkPort[13][20] = "$%trunkPort20(13)#$";
+trunkPort[13][21] = "$%trunkPort21(13)#$";
+trunkPort[13][22] = "$%trunkPort22(13)#$";
+trunkPort[13][23] = "$%trunkPort23(13)#$";
+trunkPort[13][24] = "$%trunkPort24(13)#$";
+trunkPort[13][25] = "$%trunkPort25(13)#$";
+trunkPort[13][26] = "$%trunkPort26(13)#$";
+trunkPort[13][27] = "$%trunkPort27(13)#$";
+trunkPort[13][28] = "$%trunkPort28(13)#$";
+
+trunkPort[14] = new Array();
+trunkPort[14][1] = "$%trunkPort1(14)#$";
+trunkPort[14][2] = "$%trunkPort2(14)#$";
+trunkPort[14][3] = "$%trunkPort3(14)#$";
+trunkPort[14][4] = "$%trunkPort4(14)#$";
+trunkPort[14][5] = "$%trunkPort5(14)#$";
+trunkPort[14][6] = "$%trunkPort6(14)#$";
+trunkPort[14][7] = "$%trunkPort7(14)#$";
+trunkPort[14][8] = "$%trunkPort8(14)#$";
+trunkPort[14][9] = "$%trunkPort9(14)#$";
+trunkPort[14][10] = "$%trunkPort10(14)#$";
+trunkPort[14][11] = "$%trunkPort11(14)#$";
+trunkPort[14][12] = "$%trunkPort12(14)#$";
+trunkPort[14][13] = "$%trunkPort13(14)#$";
+trunkPort[14][14] = "$%trunkPort14(14)#$";
+trunkPort[14][15] = "$%trunkPort15(14)#$";
+trunkPort[14][16] = "$%trunkPort16(14)#$";
+trunkPort[14][17] = "$%trunkPort17(14)#$";
+trunkPort[14][18] = "$%trunkPort18(14)#$";
+trunkPort[14][19] = "$%trunkPort19(14)#$";
+trunkPort[14][20] = "$%trunkPort20(14)#$";
+trunkPort[14][21] = "$%trunkPort21(14)#$";
+trunkPort[14][22] = "$%trunkPort22(14)#$";
+trunkPort[14][23] = "$%trunkPort23(14)#$";
+trunkPort[14][24] = "$%trunkPort24(14)#$";
+trunkPort[14][25] = "$%trunkPort25(14)#$";
+trunkPort[14][26] = "$%trunkPort26(14)#$";
+trunkPort[14][27] = "$%trunkPort27(14)#$";
+trunkPort[14][28] = "$%trunkPort28(14)#$";
+
+function display()
+{
+changebgcolor();
+
+}
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+<div id="view_help"  style="display:none">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('trunk'));
+ </SCRIPT>
+</TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>Trunk</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <tr>
+    <td width="25" rowspan=2 nowrap align="center" class="partition">组</td>
+    <td align=center class="partition" colspan=28>端口 </td>
+  </tr>
+ 
+  <script language= "javascript">
+  	document.write("<tr align='center'>");
+	for(var i = 1; i <= portNum; i++)
+	{	
+	  	document.write("<td class='partition'>&nbsp;"+i+"</td> ");
+	}
+	document.write("</tr>");
+ 
+ 	document.write("<tr align='center'>");
+  	document.write("<td nowrap class='crons'>缺省</td>");
+  	for(var i = 1; i <= portNum; i++)
+	{	
+	  	document.write("<td class='crons'><input type='radio' name='trunkPort"+i+"' id='trunkPort"+i+"_0' value='0' "+trunkPort[0][i]+"></td>");
+	}
+    document.write("</tr>");
+	
+	for(var k = 1; k <= groupNum; k++)
+	{
+		document.write("<tr align='center'>");
+		document.write("<td class='crons' >"+k+"</td>");
+		for(var i = 1 ; i <= portNum; i++)
+		{
+			document.write("<td class='crons'><input type='radio' name='trunkPort"+i+"' id='trunkPort"+i+"_"+k+"' value='"+k+"' "+trunkPort[k][i]+"></td>");
+		}
+		document.write("</tr>");
+	}
+  </script>		
+ 
+  <td  class="partition" colspan="32">&nbsp;
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提交"   >
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+   </td>
+</table>
+</FORM>
+</BODY></HTML>

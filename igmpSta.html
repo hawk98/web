@@ -1,0 +1,169 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<SCRIPT LANGUAGE="javascript">
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+var igmpStaList = [$%igmpStaList#$];
+
+//var igmpStaList = ["1","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0"];
+function display()
+{
+changebgcolor();
+
+}
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<(igmpStaList.length/8);i++)
+	{
+		document.write(" <tr class='tables_all'>");
+		document.write("    <td  class='inputsyslog1' colspan=3 >"+igmpStaList[j]+"</td>");
+		j++;
+		
+		if( igmpStaList[j] == 1 )
+		document.write("    <td  class='inputsyslog1' colspan=4 >ACTIVE</td>");
+		else
+		document.write("    <td  class='inputsyslog1' colspan=4 >IDLE</td>");
+		
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("    <td  class='inputsyslog1' colspan=4 >"+igmpStaList[j]+"</td>");
+		j++;
+		document.write("  </tr>");
+
+	}
+
+
+}
+
+
+function changePort()
+{
+document.form1.submit();
+}
+
+function clearSta()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return;
+	}
+	document.getElementById("igmpStaClearFlag").value = 1;
+	document.form1.submit();	
+	
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("igmpStareflash").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	}
+}
+
+function aotoRefreshSet()
+{
+if(document.getElementById("igmpStareflash").checked == true)
+{	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+
+
+	aotoRefresh();
+}
+
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>IGMP统计</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"><span class="crons">
+    <input type="checkbox" name="igmpStareflash" id="igmpStareflash" value="ON" onClick="aotoRefreshSet()" / $%igmpStareflash#$>
+自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" class="button3" name="button2" id="button2" value="立即刷新" />
+<input type="button" class="button3" name="button" id="button" value="清 零" onClick="clearSta()" />
+<input type="hidden" name="igmpStaClearFlag" id="igmpStaClearFlag" / VALUE="$%igmpStaClearFlag#$">
+    </span></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <tr>
+      <td colspan="3" class="inputsyslog1"><span class="partition">VLAN ID</span></td>
+      <td colspan=4 align=center class="inputsyslog1">查询状态</td>
+      <td colspan=4 align=center class="inputsyslog1">接收查询包</td>
+      <td colspan=4 align=center class="inputsyslog1">发送查询包</td>
+      <td colspan=4 align=center class="inputsyslog1">接收V1报告</td>
+      <td colspan=4 align=center class="inputsyslog1">接收V2报告</td>
+      <td colspan=4 align=center class="inputsyslog1">接收V3报告</td>
+      <td colspan=4 align=center class="inputsyslog1">接收V2离开</td>
+    </tr>
+    <script language="javascript">
+	writeLines();
+	aotoRefresh();
+	</script>
+ 	
+
+
+  </table>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="igmpStareflash" >
+</span>
+  </form>
+
+</BODY></HTML>

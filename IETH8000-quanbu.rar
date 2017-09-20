@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>IETH</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="JS/check.js" language="javascript"></script>
+<script language="javascript">
+
+/*
+var rmonHisEntryNumList = ["11111","22222","333333333","444444444","55555"];
+var rmonHisPortList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var rmonHisbucketsList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var rmonHisSampTimeList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+*/
+
+
+var rmonHisEntryNumList = [$%rmonHisEntryNumList#$];
+var rmonHisPortList = [$%rmonHisPortList#$];
+var rmonHisbucketsList = [$%rmonHisbucketsList#$];
+var rmonHisSampTimeList = [$%rmonHisSampTimeList#$];
+
+var rmonStaList = [$%rmonHisList#$];
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<rmonHisEntryNumList.length;i++)
+	{
+	tempBuf += "<tr><td>";
+	tempBuf += rmonHisEntryNumList[i];
+	tempBuf += "</td><td >";
+	tempBuf += rmonHisPortList[i];
+	tempBuf += "</td><td >";
+	tempBuf += rmonHisbucketsList[i];
+	tempBuf += "</td><td >";
+	tempBuf += rmonHisSampTimeList[i];
+	tempBuf += "</td><td >";
+	tempBuf += "<input type='button' name='button' id='button' value='删除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+
+function delSelectId( ID )
+{
+	document.getElementById("rmonHisDelNum").value = rmonHisEntryNumList[ID];
+	document.form1.submit();
+}
+
+
+function checkSub()
+{
+
+var portNum = document.getElementById("rmonHisPortNum").value;
+
+if(isNaN(portNum) || portNum<1 || portNum>8||  !fucCheckNUM(portNum))
+{
+	alert("端口号错误，范围是：1-8");
+		return false;
+	
+}
+
+var RmonHisEntryNum = document.getElementById("RmonHisEntryNum").value;
+if(isNaN(RmonHisEntryNum) || RmonHisEntryNum<1 || RmonHisEntryNum>65535||  !fucCheckNUM(RmonHisEntryNum))
+{
+	alert("条目编号错误，范围是：1-65535");
+		return false;
+	
+}
+
+var rmonHisbuckets = document.getElementById("rmonHisbuckets").value;
+if(isNaN(rmonHisbuckets) || rmonHisbuckets<1 || rmonHisbuckets>64||  !fucCheckNUM(rmonHisbuckets))
+{
+	alert("历史表大小错误，范围是：1-64");
+		return false;
+	
+}
+
+var rmonHisSampling = document.getElementById("rmonHisSampling").value;
+if(isNaN(rmonHisSampling) || rmonHisSampling<5 || rmonHisSampling>3600||  !fucCheckNUM(rmonHisSampling))
+{
+	alert("采样时间错误，范围是：5-3600");
+		return false;
+	
+}
+return true;
+ }
+
+function writeLineSta()
+{
+	var j = 0;
+	for(var i = 0 ;i<rmonStaList.length/19 ; i++)
+		{
+		
+	 	document.write("<tr>");
+	document.write("<td class='td25'> ifIndex </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td class='td25'> drop_events </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td class='td25'> octets </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td> </tr>    <tr>");  
+	document.write("<td class='td25'> packets </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='crons'> bcast_pkts </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td  class='crons'> mcast_pkts </td>");
+	document.write("<td  class='crons'>")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr>");
+	document.write("<td class='td25'> crc_align </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > undersize </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > oversize </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr>");
+	document.write("<td class='td25'> fragments </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > jabbers </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > collisions </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr>");
+	document.write("<td class='td25'> pkts_64 </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > pkts_65_127 </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > pkts_128_255 </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr>    <tr>");
+	document.write("<td class='td25'> pkts_256_511 </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td > pkts_512_1023 </td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>");
+	document.write("<td >pkts_1024_1518</td>");
+	document.write("<td >")
+	document.write(rmonStaList[j]);
+	j++;
+	document.write("</td>    </tr><tr><td colspan=6>&nbsp;</td></tr>");
+	}
+	
+	
+}
+
+
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="" onsubmit="return checkSub();">
+  <table class="tb tb2 fixpadding">
+  <tr>
+    <th height="32" colspan="5" class="partition" background="Images/bg_repx_hc.gif"><h3>历史组</h3></th>
+  </tr>
+  <tr>
+    <td class="td25">条目编号：</td>
+    <td colspan="4"  class="crons"><input type="text" name="RmonHisEntryNum" id="RmonHisEntryNum" / VALUE="$%RmonHisEntryNum#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25">端口号：</td>
+    <td colspan="4"  class="crons"><input type="text" name="rmonHisPortNum" id="rmonHisPortNum" / VALUE="$%rmonHisPortNum#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25">历史表大小:</td>
+    <td colspan="4" >
+      <input type="text" name="rmonHisbuckets" id="rmonHisbuckets" / VALUE="$%rmonHisbuckets#$">
+    </td>
+  </tr>
+
+   <tr>
+    <td class="td25">采样时间：</td>
+    <td colspan="4" >
+      <input type="text" name="rmonHisSampling" id="rmonHisSampling" / VALUE="$%rmonHisSampling#$">
+    </td>
+  </tr>
+
+   <tr>
+    <td class="td25">&nbsp;</td>
+    <td colspan="4" >
+      <input type="submit" name="button" id="button" value="提交"  >
+    </td>
+  </tr>
+<tr>
+    <td class="td25"></td>
+    <td colspan="4" ><input type="hidden" name="rmonHisDelNum" id="rmonHisDelNum" / VALUE="$%rmonHisDelNum#$">
+      &nbsp;</td>
+  </tr>
+<tr>
+  <td  class="partition" background="Images/bg_repx_hc.gif">条目编号</td>
+  <td  class="partition" background="Images/bg_repx_hc.gif">端口号</td>
+  <td  class="partition" background="Images/bg_repx_hc.gif">历史表大小</td>
+  <td  class="partition" background="Images/bg_repx_hc.gif">采样时间</td>
+  <td  class="partition" background="Images/bg_repx_hc.gif">删除</td>
+</tr>
+<script language="javascript">
+writeList();
+</script>
+</table>
+  <p>&nbsp;</p>
+  <table class="tb tb2 fixpadding">
+  <tr>
+    <th width="32%" height="32" background="Images/bg_repx_hc.gif" colspan="6" class="partition"><h3>统计列表</h3></th>
+  </tr>
+  <script language="javascript">
+  writeLineSta();
+  
+  </script>
+  </table>
+  </form>
+</div>
+</body>
+</html>

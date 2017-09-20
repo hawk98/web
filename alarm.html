@@ -1,0 +1,275 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<SCRIPT LANGUAGE="javascript">
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+function display()
+{
+changebgcolor();
+
+}
+
+
+var alarmList = [$%alarmList#$];
+//var alarmList = [1,23,3,5,3,43,2,3,34,6];
+
+function writeLines()
+{
+	var j = 0;
+	
+	for(var i=1;i<=alarmList.length;i++)
+	{
+	document.write("<tr   class='tables_all'>");
+	document.write("      <td  class='inputsyslog1' >"+ i +"</td>");
+	document.write("      <td class='inputsyslog1' >"+alarmList[j]+"</td>");
+	j++;	
+	document.write("    </tr>");	
+		
+	}
+	
+}
+
+timer=null;
+var isAutoRefresh = true;
+
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",10000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("alarmAutoflash").checked == true && isAutoRefresh == true)
+	{
+		document.getElementById("alarmOperFlag").value = 3;	
+		document.form1.submit();
+	}
+}
+
+function aotoRefreshSet()
+{
+	if(document.getElementById("alarmAutoflash").checked == true)
+	{	isAutoRefresh = true;
+		aotoRefresh();
+	}
+	else
+	{
+		isAutoRefresh = false;
+	}
+}
+
+function refreshAlarm()
+{
+	document.getElementById("alarmOperFlag").value = 3;	
+	document.form1.submit();	
+}
+
+
+function clearAlarm()
+{
+	if(!confirm("您确定要清除吗？"))	
+	{
+		return false;
+	}
+	document.getElementById("alarmOperFlag").value = 2;
+	document.form1.submit();	
+}
+
+function checkSub()
+{
+		if( document.getElementById( "period" ).value < 10 || document.getElementById( "period" ).value > 3600)
+		{
+			alert("轮询时间范围(10-3600s)");
+			return false;
+		}
+		
+		if( document.getElementById( "commlow" ).value <  -30 || document.getElementById( "commlow" ).value > 0)
+		{
+			alert("基本告警低温范围(-30~0℃) ");
+			return false;
+		}
+		if( document.getElementById( "commHigh" ).value < 0 || document.getElementById( "commHigh" ).value > 70)
+		{
+			alert("基本告警高温范围(0~70℃) ");
+			return false;
+		}
+		if( document.getElementById( "seriousLow" ).value < -40 || document.getElementById( "seriousLow" ).value >0 )
+		{
+			alert("严重告警低温范围(-40~0℃) ");
+			return false;
+		}
+		if( document.getElementById( "seriousHigh" ).value < 0 || document.getElementById( "seriousHigh" ).value  > 85)
+		{
+			alert("严重告警高温范围(0~85℃) ");
+			return false;
+		}	
+		if(  parseInt(document.getElementById( "commlow" ).value)  <= parseInt(document.getElementById( "seriousLow" ).value ))
+		{
+			alert("严重告警低温要小于基本告警低温 ");
+			return false;
+		}
+		if( parseInt(document.getElementById( "seriousHigh" ).value) <= parseInt(document.getElementById( "commHigh" ).value))
+		{
+			alert("严重告警高温要大于基本告警高温 ");
+			return false;
+		}	
+		
+		document.getElementById("alarmOperFlag").value = 1;
+	  document.form1.submit();	
+}
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('alarm'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return checkSub()">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>告警配置</td>    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    
+    <TR height=22>
+      <TD colspan="4" valign="top"><span class="Tablelist">告警配置:</span></TD>
+      </TR>
+    <TR height=22>
+      <TD width="24%" valign="top">&nbsp;&nbsp;<span class="td25">电源告警</span></TD>
+      <TD colspan="3" ><span class="crons">
+      <input type="checkbox" name="poweralarm" id="poweralarm" value="ON" / $%poweralarm#$>
+启用</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">端口告警</span></TD>
+      <TD colspan="3" ><span class="crons">
+      <input type="checkbox" name="portalarm" id="portalarm" value="ON" / $%portalarm#$>
+启用</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">温度告警</span></TD>
+      <TD colspan="3" ><span class="crons">
+      <input type="checkbox" name="tempalarm" id="tempalarm" value="ON" / $%tempalarm#$>
+启用</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;环网告警</TD>
+      <TD colspan="3" ><span class="crons">
+      <input type="checkbox" name="ringalarm" id="ringalarm" value="ON" / $%ringalarm#$>
+启用</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">温度告警配置:</TD>
+      <TD colspan="3" >&nbsp;</TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">轮询时间</span></div></TD>
+      <TD width="26%" ><span class="crons">
+        <input type="text" name="period" id="period" / VALUE="$%period#$" />
+        (10~3600s)</span></TD>
+      <TD width="24%" >&nbsp;</TD>
+      <TD width="26%" >&nbsp;</TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">基本告警高温</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="commHigh" id="commHigh" / VALUE="$%commHigh#$" />
+        (0~70℃)</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">基本告警低温</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="commlow" id="commlow" / VALUE="$%commlow#$" />
+        (-30~0℃)</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">严重告警高温</span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="seriousHigh" id="seriousHigh" / VALUE="$%seriousHigh#$" />
+        (0~85℃)</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">严重告警低温<span class="table_main1">
+        <INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="poweralarm,portalarm,tempalarm,ringalarm,alarmAutoflash">
+      </span></span></TD>
+      <TD ><span class="crons">
+        <input type="text" name="seriousLow" id="seriousLow" / VALUE="$%seriousLow#$" />
+        (-40~0℃)</span></TD>
+    </TR>
+    <tr>
+    	<td   class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交" onClick="checkSub()">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </div></td>
+    </tr>
+</TABLE>
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td class=Tablelist id=tabs name=tabs>告警信息</td>
+    <td class="tablenew" id=tabs name=tabs><input type="checkbox" name="alarmAutoflash" id="alarmAutoflash" value="ON"  onclick="aotoRefreshSet()"  $%alarmAutoflash#$>
+        自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" class="button3" name="立即刷新" id="立即刷新" value="立即刷新" onClick="refreshAlarm()" />
+        <input type="button" class="button3" name="button" id="button" value="清除告警"  onclick="clearAlarm()" />
+        <input type="hidden" name="alarmOperFlag" id="alarmOperFlag" / VALUE="$%alarmOperFlag#$"></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="27%"   nowrap class="all_tables_list">序号</TD>
+      <TD width="73%"   nowrap class="all_tables_list">告警信息</TD>
+    </TR>
+    <script language="javascript">
+	     writeLines();
+	     aotoRefresh();
+	</script>
+  </table>
+</form>
+
+</BODY></HTML>

@@ -1,0 +1,177 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+function display()
+{
+changebgcolor();
+
+}
+var linkID;
+function linkSub()
+{
+	if(document.getElementById("acring_link_enable_or_delete").value == 12){
+          alert("链路只能配置一条，请先将原来配置的链路删除再继续配置！");
+          return false;
+        }
+	if(document.getElementById("acring_linkID").value == "" || !fucCheckNUM(document.getElementById("acring_linkID").value) ||document.getElementById("acring_linkID").value<1 || document.getElementById("acring_linkID").value>1000)
+	{
+		alert("链路ID的范围是1~1000");
+		return ;
+	}
+	document.getElementById("acring_link_enable_or_delete").value = 3;
+	document.form1.submit();
+	
+}
+
+function dellinkSub(){
+	document.getElementById("acring_link_enable_or_delete").value = 4;
+	document.getElementById("acring_linkID").value = linkID; 
+	document.form1.submit();
+}
+
+function writeLinkBak()
+{
+ document.write("<tr class='tables_all'><td class='inputsyslog1' >"+document.getElementById("acring_linkID").value+"</td>");
+ document.write(" <td  class='inputsyslog1'>Port"+convert_tomodport(document.getElementById("acring_LinkPort").value)+"</td>");
+ 
+ if( document.getElementById("acringRole").value == 1)
+	 document.write(" <td  class='inputsyslog1'>主链路</td>");
+  else
+	document.write(" <td  class='inputsyslog1'>备链路</td>");
+	
+ document.write(" <td class='inputsyslog1'><input type='button' name='buttonStepa' class='botton_under_line' id='buttonStepa' value='删 除'    onclick='dellinkSub()'/></td>");
+ 
+ document.write("</tr>");
+ 
+ 
+ linkID = document.getElementById("acring_linkID").value;
+ document.getElementById("acring_linkID").value = "";
+ document.getElementById("acring_LinkPort").value = "1";
+ document.getElementById("acringRole").value = "1";
+}
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('acring_link'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>UT RING主备链路</td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right"><span class="table_main1">
+      <input type="hidden" name="acring_link_enable_or_delete" id="acring_link_enable_or_delete" / VALUE="$%acring_link_enable_or_delete#$" />
+    </span>
+      <input name="b_submit2" class="buttons_apply" type="button" id="b_submit" value="提 交"   onclick="linkSub()" >
+    </div></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">链路ID</span></div></TD>
+      <TD colspan="3" ><span class="inputsyslog1">
+        <label>
+        <input type="text" name="acring_linkID" id="acring_linkID" / VALUE="$%acring_linkID#$" />
+（1~1000）</label>
+      </span></TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="inputsyslog1">端口</span></TD>
+      <TD width="32%" ><span class="inputsyslog1">
+        <select name="acring_LinkPort" id="acring_LinkPort">
+        <option value="1" $%acring_LinkPort(1)#$>端口 1</option>
+        <option value="2" $%acring_LinkPort(2)#$>端口 2</option>
+        <option value="3" $%acring_LinkPort(3)#$>端口 3</option>
+        <option value="4" $%acring_LinkPort(4)#$>端口 4</option>
+        <option value="5" $%acring_LinkPort(5)#$>端口 5</option>
+        <option value="6" $%acring_LinkPort(6)#$>端口 6</option>
+        <option value="7" $%acring_LinkPort(7)#$>端口 7</option>
+        <option value="8" $%acring_LinkPort(8)#$>端口 8</option>
+        <option value="9" $%acring_LinkPort(9)#$>端口 9</option>
+        <option value="10" $%acring_LinkPort(10)#$>端口 10</option>
+        <option value="11" $%acring_LinkPort(11)#$>端口 11</option>
+        <option value="12" $%acring_LinkPort(12)#$>端口 12</option>
+        <option value="13" $%acring_LinkPort(13)#$>端口 13</option>
+        <option value="14" $%acring_LinkPort(14)#$>端口 14</option>
+        <option value="15" $%acring_LinkPort(15)#$>端口 15</option>
+        <option value="16" $%acring_LinkPort(16)#$>端口 16</option>
+        <option value="17" $%acring_LinkPort(17)#$>端口 17</option>
+        <option value="18" $%acring_LinkPort(18)#$>端口 18</option>
+        <option value="19" $%acring_LinkPort(19)#$>端口 19</option>
+        <option value="20" $%acring_LinkPort(20)#$>端口 20</option>
+      </select>
+      </span></TD>
+      <TD width="18%" >&nbsp;&nbsp;<span class="inputsyslog1">角色</span></TD>
+      <TD width="32%" ><select name="acringRole" id="acringRole">
+        <option value="1" $%acringRole(1)#$>主链路</option>
+        <option value="2" $%acringRole(2)#$>备链路</option>
+      </select></TD>
+    </TR>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>主备链路列表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">链路ID</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">角色</span></TD>
+      <TD width="36%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+   
+       <script language="JavaScript" type="text/javascript">
+					if(document.getElementById("acring_linkID").value == "0"){
+							document.getElementById("acring_linkID").value  = "";
+              document.getElementById("acring_link_enable_or_delete").value = 11;
+          }
+					else{
+							writeLinkBak();
+              document.getElementById("acring_link_enable_or_delete").value = 12;
+          }
+          </script>
+  </table>
+</form>
+
+</BODY></HTML>

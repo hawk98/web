@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+var snmpUserNameList = [$%snmpUserNameList#$];
+var snmpUserGroupList = [$%snmpUserGroupList#$];
+var snmpUserSnmpVerList = [$%snmpUserSnmpVerList#$];
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<snmpUserNameList.length;i++)
+	{
+	tempBuf += "<tr><td class='crons' colspan='2'>";
+	tempBuf += snmpUserNameList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += snmpUserGroupList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += snmpUserSnmpVerList[i];
+	tempBuf += "</td><td class='crons'>";
+	tempBuf += "<input type='button' type='button' class='button1' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+function delSelectId( ID )
+{
+	document.getElementById("snmpUserDelID").value = snmpUserNameList[ID];
+	document.form1.submit();
+}
+
+
+function  checkOtherChar(str,errmsg) {
+       for(var loop_index=0; loop_index<str.length; loop_index++)
+       {
+         if(str.charAt(loop_index) == '~'
+           ||str.charAt(loop_index) == '!'
+           ||str.charAt(loop_index) == '@'
+           ||str.charAt(loop_index) == '#'
+           ||str.charAt(loop_index) == '$'
+           ||str.charAt(loop_index) == '%'
+           ||str.charAt(loop_index) == '^'
+           ||str.charAt(loop_index) == '&'
+           ||str.charAt(loop_index) == '*'
+           ||str.charAt(loop_index) == '('
+           ||str.charAt(loop_index) == ')'
+           ||str.charAt(loop_index) == '+'
+           ||str.charAt(loop_index) == '{'
+           ||str.charAt(loop_index) == '}'
+           ||str.charAt(loop_index) == '|'
+           ||str.charAt(loop_index) == ':'
+           ||str.charAt(loop_index) == '"'
+           ||str.charAt(loop_index) == '<'
+           ||str.charAt(loop_index) == '>'
+           ||str.charAt(loop_index) == '?'
+           ||str.charAt(loop_index) == '`'
+           ||str.charAt(loop_index) == '='
+           ||str.charAt(loop_index) == '['
+           ||str.charAt(loop_index) == ']'
+           ||str.charAt(loop_index) == '\\'
+           ||str.charAt(loop_index) == ';'
+           ||str.charAt(loop_index) == '\''
+           ||str.charAt(loop_index) == '/')
+          {
+            
+            alert(errmsg);
+            return false;
+   	   }
+         }
+      return true;
+   }
+
+function left_trim(field)
+{
+ var tmp_string = field.value;
+ while (''+tmp_string.charAt(0) == ' ')
+ tmp_string = tmp_string.substring(1,tmp_string.length);
+
+ field.value = tmp_string;
+
+}
+
+function right_trim(field)
+{
+ var tmp_string = field.value;
+
+ while (''+tmp_string.charAt(tmp_string.length-1) == ' ')
+ tmp_string = tmp_string.substring(0,tmp_string.length-1);
+
+ field.value = tmp_string;
+}
+
+function checkname1(field,err_blank,err_space,err_invalid,flag)
+{
+	if ((field.value.indexOf(" ") >=0)&&(flag == 1))
+   {
+		alert(err_space);
+		field.focus();
+		field.select();
+		return false;
+	}
+
+	left_trim(field);
+	right_trim(field);
+
+
+
+
+	if ((field.value =="" | field.value == null)&&(flag == 1))
+	{
+		
+		alert(err_blank);
+		field.focus();
+		field.select();
+		return false;
+	}
+
+
+	if (checkOtherChar(field.value, err_invalid)==false)
+	{
+		field.focus();
+		field.select();
+		return false;
+	}
+	
+/*	
+	if (isChinese(field.value)==true)
+	{
+		field.focus();
+		field.select();
+		return false;
+	}
+*/
+
+	return true;
+}
+
+function checSub(){
+	if(!checkname1(document.getElementById("snmpuserName"),"用户名为空","用户名错误","用户名错误",1))
+	{
+		//alert("View Name 错误");
+		return;
+	}
+	if(document.getElementById("snmpauthPassword").disabled == false){
+		if(document.getElementById("snmpauthPassword").value.length < 8){
+			alert("请输入八位以上的认证密码！");
+			return false;
+		}	
+		if(document.getElementById("snmpprivProtocol").value == 2 && document.getElementById("snmpprivPassword").value.length < 8){
+			alert("请输入八位以上的加密密码！");
+			return false;
+		}	
+	}
+	  
+	document.form1.submit();
+
+}
+
+
+function changeType(){
+	if(document.getElementById("snmpencrypt").checked)	
+	{
+		document.getElementById("snmpauthProtocol").disabled = false;
+		document.getElementById("snmpauthPassword").disabled = false;
+		document.getElementById("snmpprivProtocol").disabled = false;
+		document.getElementById("snmpprivPassword").disabled = false;
+	}
+	else
+	{
+		document.getElementById("snmpauthProtocol").disabled = true;
+		document.getElementById("snmpauthPassword").disabled = true;
+		document.getElementById("snmpprivProtocol").disabled = true;
+		document.getElementById("snmpprivPassword").disabled = true;
+	}
+}
+</script>
+</head>
+<body oncontextmenu=self.event.returnValue=false>
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">SNMP 用户</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td class="td25" width="15%" colspan="2">用户名:</td>
+    <td colspan="3"  class="crons">
+      <input type="text" name="snmpuserName"  id="snmpuserName"  size="20" maxlength="31" / VALUE="$%snmpuserName#$">
+      (范围：1~31个字符)
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan="2">群组:</td>
+    <td colspan="3" class="crons">
+      <input type="text" name="snmpusergroupName"  id="snmpusergroupName" size="20" maxlength="32" / VALUE="$%snmpusergroupName#$">
+      (范围：1~32个字符)
+    </td>
+  </tr>
+
+   <tr>
+    <td class="td25" colspan="2">SNMP V3 加密:</td>
+    <td colspan="3" class="crons">
+      <input type="checkbox" name="snmpencrypt"  id="snmpencrypt" onclick="changeType()" value="ON" / $%snmpencrypt#$>
+      加密</span></td>
+  </tr>
+
+   <tr>
+    <td class="td25" colspan="2">认证协议:</td>
+    <td class="crons"><SELECT NAME="snmpauthProtocol" id="snmpauthProtocol" SIZE="1">
+        <OPTION VALUE=1 $%snmpauthProtocol(1)#$>MD5</OPTION>
+        <OPTION VALUE=2 $%snmpauthProtocol(2)#$>SHA</OPTION>
+        </SELECT></td>
+    <td class="td25">密码:</td>
+    <td class="crons">
+      <input type="password" name="snmpauthPassword" id="snmpauthPassword" size="20" maxlength="15" value="$%snmpauthPassword#$" />
+    </td>
+   </tr>
+<tr>
+    <td class="td25" colspan="2">加密协议:</td>
+    <td class="crons">
+      <select name="snmpprivProtocol" id="snmpprivProtocol" size="1" >
+        <option value="1" $%snmpprivProtocol(1)#$>None</option>
+        <option value="2" $%snmpprivProtocol(2)#$>DES</option>
+      </select>
+    </td>
+    <td class="td25">密码:</td>
+    <td class="crons">
+      <input type="password" name="snmpprivPassword" id="snmpprivPassword" size="20" maxlength="15" value="$%snmpprivPassword#$" />
+    </td>
+</tr>
+<tr>
+  <td height=40 colspan=2></td>
+  <td colspan="3" >
+    <input type="button" class="button1" name="button" id="button" value="提 交"  onclick="checSub()"/>
+  </td>
+  </tr>
+<tr>
+  <td ></td>
+  <td >&nbsp;</td>
+  <td >&nbsp;</td>
+  <td >&nbsp;</td>
+</tr>
+<tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=4 class="table_main3">SNMP用户表</td>
+    <input type="hidden" name="snmpUserDelID" id="snmpUserDelID" value="$%snmpUserDelID#$" />
+  
+<tr>
+  <td  class="partition" colspan="2">用户名</td>
+  <td  class="partition">群组</td>
+  <td  class="partition">SNMP版本</td>
+  <td  class="partition">删除</td>
+</tr>
+<script language="javascript">
+
+writeList();
+changeType();
+</script>
+</table>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="snmpencrypt" ></form>
+</div>
+</body>
+</html>

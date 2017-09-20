@@ -1,0 +1,353 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+function display()
+{
+changebgcolor();
+
+}
+//var acringList_info = ["100","1","1,2","master,1,sub,2","200","0","1,2","master,1,sub,2"];
+var acringList_info = [$%acringList_info#$];
+var portNum = $%portNum#$;
+
+var acring_step_port1 = new Array();
+acring_step_port1[1] = "$%acring_step_port1(1)#$";
+acring_step_port1[2] = "$%acring_step_port1(2)#$";
+acring_step_port1[3] = "$%acring_step_port1(3)#$";
+acring_step_port1[4] = "$%acring_step_port1(4)#$";
+acring_step_port1[5] = "$%acring_step_port1(5)#$";
+acring_step_port1[6] = "$%acring_step_port1(6)#$";
+acring_step_port1[7] = "$%acring_step_port1(7)#$";
+acring_step_port1[8] = "$%acring_step_port1(8)#$";
+acring_step_port1[9] = "$%acring_step_port1(9)#$";
+acring_step_port1[10] = "$%acring_step_port1(10)#$";
+acring_step_port1[11] = "$%acring_step_port1(11)#$";
+acring_step_port1[12] = "$%acring_step_port1(12)#$";
+acring_step_port1[13] = "$%acring_step_port1(13)#$";
+acring_step_port1[14] = "$%acring_step_port1(14)#$";
+acring_step_port1[15] = "$%acring_step_port1(15)#$";
+acring_step_port1[16] = "$%acring_step_port1(16)#$";
+acring_step_port1[17] = "$%acring_step_port1(17)#$";
+acring_step_port1[18] = "$%acring_step_port1(18)#$";
+acring_step_port1[19] = "$%acring_step_port1(19)#$";
+acring_step_port1[20] = "$%acring_step_port1(20)#$";
+acring_step_port1[21] = "$%acring_step_port1(21)#$";
+acring_step_port1[22] = "$%acring_step_port1(22)#$";
+acring_step_port1[23] = "$%acring_step_port1(23)#$";
+acring_step_port1[24] = "$%acring_step_port1(24)#$";
+acring_step_port1[25] = "$%acring_step_port1(25)#$";
+acring_step_port1[26] = "$%acring_step_port1(26)#$";
+acring_step_port1[27] = "$%acring_step_port1(27)#$";
+acring_step_port1[28] = "$%acring_step_port1(28)#$";
+
+var acring_step_port2 = new Array();
+acring_step_port2[1] = "$%acring_step_port2(1)#$";
+acring_step_port2[2] = "$%acring_step_port2(2)#$";
+acring_step_port2[3] = "$%acring_step_port2(3)#$";
+acring_step_port2[4] = "$%acring_step_port2(4)#$";
+acring_step_port2[5] = "$%acring_step_port2(5)#$";
+acring_step_port2[6] = "$%acring_step_port2(6)#$";
+acring_step_port2[7] = "$%acring_step_port2(7)#$";
+acring_step_port2[8] = "$%acring_step_port2(8)#$";
+acring_step_port2[9] = "$%acring_step_port2(9)#$";
+acring_step_port2[10] = "$%acring_step_port2(10)#$";
+acring_step_port2[11] = "$%acring_step_port2(11)#$";
+acring_step_port2[12] = "$%acring_step_port2(12)#$";
+acring_step_port2[13] = "$%acring_step_port2(13)#$";
+acring_step_port2[14] = "$%acring_step_port2(14)#$";
+acring_step_port2[15] = "$%acring_step_port2(15)#$";
+acring_step_port2[16] = "$%acring_step_port2(16)#$";
+acring_step_port2[17] = "$%acring_step_port2(17)#$";
+acring_step_port2[18] = "$%acring_step_port2(18)#$";
+acring_step_port2[19] = "$%acring_step_port2(19)#$";
+acring_step_port2[20] = "$%acring_step_port2(20)#$";
+acring_step_port2[21] = "$%acring_step_port2(21)#$";
+acring_step_port2[22] = "$%acring_step_port2(22)#$";
+acring_step_port2[23] = "$%acring_step_port2(23)#$";
+acring_step_port2[24] = "$%acring_step_port2(24)#$";
+acring_step_port2[25] = "$%acring_step_port2(25)#$";
+acring_step_port2[26] = "$%acring_step_port2(26)#$";
+acring_step_port2[27] = "$%acring_step_port2(27)#$";
+acring_step_port2[28] = "$%acring_step_port2(28)#$";
+
+function writeLines()
+{
+	var j = 0;
+	for(var i=0;i<acringList_info.length/4;i++)
+	{
+		document.write("<tr class='tables_all'><td class='inputsyslog1' >"+acringList_info[j]+"</td><td  class='inputsyslog1'><label>");
+		j++;
+		if(acringList_info[j] == 1)
+			document.write("Enable");
+		else
+			document.write("Disable");
+		j++;
+		document.write("</label></td><td  class='inputsyslog1'>");
+		
+		document.write(acringList_info[j]);
+		j++;
+		document.write("</td><td  class='inputsyslog1'>");
+		
+		document.write(acringList_info[j]);
+		j++;
+		
+		document.write("</td><td  class='inputsyslog1'><label>");
+		if(acringList_info[j -3] == 1)
+			document.write("<input type='submit' name='button3' id='button3' class='botton_under_line' value='禁 用'  onclick='enableRing("+acringList_info[j - 4]+",1)'/>");
+		else
+			document.write("<input type='submit' name='button3' id='button3' class='botton_under_line' value='启 用'  onclick='enableRing("+acringList_info[j - 4]+",2)'/>");
+
+		document.write("</label></td><td  class='inputsyslog1'><label>");
+		document.write("<input type='submit' name='button3' id='button4' class='botton_under_line' value='删 除'   onclick='deleteRing("+acringList_info[j - 4]+")'/>");
+		document.write("</label></td> </tr>");
+	}
+	
+
+	
+}
+
+function enableRing(ID,oprationType)
+{
+	//alert(ID+"and"+oprationType);
+	document.getElementById("acring_list_enable_or_delete").value = oprationType;
+	document.getElementById("acring_list_ringID").value = ID;
+	
+	document.form1.submit();
+}
+function deleteRing(ID)
+{
+	document.getElementById("acring_list_enable_or_delete").value = 0;
+	document.getElementById("acring_list_ringID").value = ID;
+	
+	document.form1.submit();
+}
+
+function gotoGuide()
+{
+document.location = "acringSet.html";	
+}
+
+function stepSub()
+{
+	document.getElementById("acring_list_enable_or_delete").value = -1;
+	
+	if(document.getElementById("acring_step_port2").value  == document.getElementById("acring_step_port1").value)
+	{
+		alert("请选择正确的端口成员，必须选择两个不同的端口");
+		return ;
+	}
+	if( !fucCheckNUM(document.getElementById("acring_step_ringID").value) || document.getElementById("acring_step_ringID").value < 1 || document.getElementById("acring_step_ringID").value >4096 )
+	{
+		alert("Ring ID的错误，范围是1-4096！");
+		return ;
+	}
+	
+	var portType1 = document.getElementById("acring_step_Master_port_1").value;
+	var portType2 = document.getElementById("acring_step_Master_port_2").value;
+	var switchType = document.getElementById("acring_step_switch_type").value;
+	if(switchType == 1 && !((portType1 == 0 && portType2 == 1) || (portType1 == 1 && portType2 == 0)))
+	{
+		alert("请选择正确的端口配置类型,交换机配置为Master时，成员端口必须一个为Master，一个为Subsidiary");
+		return ;
+	}
+	//if((switchType == 2 || switchType == 3 ) && (portType1 != 2 && portType2 != 3) && (portType1 != 3 && portType2 != 2))
+	if((switchType == 2 || switchType == 3 ) && !((portType1 == 6 && portType2 == 7) || (portType1 == 7 && portType2 == 6)))
+	{
+		alert("请选择正确的端口配置类型，交换机配置为Assitant或Edge时，有一个端口必须为Edgeport，另一个端口为None!");
+		return ;
+	}
+	document.form1.acring_step_switch_type.disabled=false;
+	document.form1.submit();
+}
+
+function changeSwitchType()
+{
+	if(document.getElementById("acring_step_switch_type").value != "4")
+	{
+		document.getElementById("acring_step_Master_port_1").disabled = false;
+		document.getElementById("acring_step_Master_port_2").disabled = false;
+	}
+	else
+	{		
+		document.getElementById("acring_step_Master_port_1").disabled = true;
+
+		document.getElementById("acring_step_Master_port_2").disabled = true;
+	}
+}
+
+function ringAuto(){
+	if(document.getElementById("acring_ringAuto").value == 1){
+    document.form1.acring_step_switch_type.value = 4;
+    changeSwitchType();
+    document.form1.acring_step_switch_type.disabled = true;
+  }else{
+    document.form1.acring_step_switch_type.disabled = false;
+  }
+}
+
+function clickRingAuto(){
+    if(confirm("更改环网类型会删除所有已配置的环网！您确认要更改环网类型吗？")){
+	    document.getElementById("acring_list_enable_or_delete").value = -2;
+	    document.form1.submit();
+    }else{
+      document.getElementById("acring_ringAuto").value = 1 - document.getElementById("acring_ringAuto").value;
+  }
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('acring_ringList'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>创建UT-Ring</td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right"><span class="table_main3">
+      <input type="hidden" name="acring_list_ringID" id="acring_list_ringID" / VALUE="$%acring_list_ringID#$" />
+      <input type="hidden" name="acring_list_enable_or_delete" id="acring_list_enable_or_delete" / VALUE="$%acring_list_enable_or_delete#$" />
+      </span>
+      <input name="b_submit2" class="button6" type="button" id="b_submit" value="Ring设置向导"    onclick="gotoGuide()" >
+    </div></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">环网类型</span></div></TD>
+      <TD width="32%" ><span class="inputsyslog1">
+        <select name="acring_ringAuto" id="acring_ringAuto" onChange="clickRingAuto()">
+          <option value="0" $%acring_ringAuto(0)#$>静态环网 </option>
+          <option value="1" $%acring_ringAuto(1)#$>动态环网 </option>
+        </select>
+      </span></TD>
+      <TD width="18%" >&nbsp;&nbsp;Ring ID</TD>
+      <TD width="32%" ><input type="text" name="acring_step_ringID" id="acring_step_ringID" / VALUE="$%acring_step_ringID#$" /></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;端口成员1</TD>
+
+      <script language= "javascript">
+	  	document.write("<TD ><select name='acring_step_port1' id='acring_step_port1'>");
+	  	for(var i=1; i<= portNum; i++)
+	  	{		
+			document.write("<option value='"+i+"' "+acring_step_port1[i]+">端口"+i+"</option>");	
+	  	}
+	  	document.write("</select></TD>");
+       </script>                 
+         
+      <TD >&nbsp;&nbsp;端口成员2</TD>
+      
+      <script language= "javascript">
+	  	document.write("<TD ><select name='acring_step_port2' id='acring_step_port2'>");
+	  	for(var i=1; i<= portNum; i++)
+	  	{		
+			document.write("<option value='"+i+"' "+acring_step_port2[i]+">端口"+i+"</option>");	
+	  	}
+	  	document.write("</select></TD>");
+       </script>         
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;系统类型</TD>
+      <TD ><span class="inputsyslog1">
+        <select name="acring_step_switch_type" id="acring_step_switch_type"  onchange="changeSwitchType()">
+          <option value="4" $%acring_step_switch_type(4)#$>Transfer</option>
+          <option value="1" $%acring_step_switch_type(1)#$>Master</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;Ring 启用</TD>
+      <TD ><span class="inputsyslog1">
+        <input type="checkbox" value="ON" name="acring_step_Enable_ring" id="acring_step_Enable_ring" / $%acring_step_Enable_ring#$ />
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="inputsyslog1">端口成员1类型</span></TD>
+      <TD ><span class="inputsyslog1">
+        <select name="acring_step_Master_port_1" id="acring_step_Master_port_1">
+          <option value="6" $%acring_step_Master_port_1(6)#$>None</option>
+          <option value="0" $%acring_step_Master_port_1(0)#$>Master</option>
+          <option value="1" $%acring_step_Master_port_1(1)#$>Subsidiary</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="inputsyslog1">端口成员2类型</span></TD>
+      <TD ><span class="inputsyslog1">
+        <select name="acring_step_Master_port_2" id="acring_step_Master_port_2">
+          <option value="6" $%acring_step_Master_port_2(6)#$>None</option>
+          <option value="0" $%acring_step_Master_port_2(0)#$>Master</option>
+          <option value="1" $%acring_step_Master_port_2(1)#$>Subsidiary</option>
+        </select>
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+    	<input name="b_reset2" class="button3" type="button"   onclick="stepSub()" id="b_reset2" value="提 交">
+    	</td>    
+    	</tr>
+</TABLE>
+
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>UT-Ring列表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">Ring ID</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">模式</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">系统类型</span></TD>
+      <TD width="16%"   nowrap class="all_tables_list"><span class="partition">启用</span></TD>
+	        <TD width="20%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+  <script language="javascript">
+  writeLines();
+  </script>
+  </table>    <script language="JavaScript" type="text/javascript">
+		changeSwitchType();	
+		if(document.getElementById("acring_step_ringID").value == "0" )
+			document.getElementById("acring_step_ringID").value = "";
+		ringAuto();
+          </script> <INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="acring_step_Enable_ring" >
+</form>
+
+</BODY></HTML>

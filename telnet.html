@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http：//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http：//www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>telnet CONFIG</title>
+
+<script src="JS/check.js" language="javascript"></script>
+<script language="javascript">
+
+
+
+function tdCheckForm(s)
+{
+	var vid1 = s.tTelnetNum.value;
+	var vid2 = s.tSshNum.value;
+	
+	if ( vid1 < 0 || vid1 > 5 )
+	{
+		alert('Telnet访问数 错误，有效范围是 0-5！');
+		s.tTelnetNum.focus();
+		return false;
+	}
+
+	if ( vid2 < 1 || vid2 > 5 )
+	{
+		alert('SSH访问数 错误，有效范围是 1-5！');
+		s.tSshNum.focus();
+		return false;
+	}
+	
+	if (s.tTelnetTimeout.value>1800 ||s.tTelnetTimeout.value<10)
+	{
+		alert('Telnet/SSH访问超时 错误，有效范围是 10-1800！');
+		s.tTelnetTimeout.focus();
+		return false;
+	}
+	if (s.tWebTimeout.value>3600 ||s.tWebTimeout.value<10)
+	{
+		alert('WEB访问超时 错误，有效范围是 10-3600！');
+		s.tWebTimeout.focus();
+		return false;
+	}
+
+	
+	
+	
+    s.submit();
+}
+
+
+
+
+</script>
+</head>
+
+<body oncontextmenu=self.event.returnValue=false >
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">远程登录</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  
+<tr>
+  <td colspan="2" class="td25">Telnet访问数：</td>
+  <td width="85%" colspan="9"   class="crons"><input name="tTelnetNum" type="text" id="tTelnetNum" value="$%tTelnetNum#$" /></td>
+</tr>
+ 
+ <tr>
+  <td colspan="2" class="td25">SSH访问数：</td>
+  <td width="85%" colspan="9"   class="crons"><input name="tSshNum" type="text" id="tSshNum" value="$%tSshNum#$" /></td>
+</tr>
+ <tr>
+   <td colspan="2" class="td25">Telnet/SSH访问超时：</td>
+   <td colspan="9"   class="crons"><input name="tTelnetTimeout" type="text" id="tTelnetTimeout" value="$%tTelnetTimeout#$" />
+   (10-1800s)</td>
+ </tr>
+ <tr>
+   <td colspan="2" class="td25">WEB访问超时：</td>
+   <td colspan="9"   class="crons"><input name="tWebTimeout" type="text" id="tWebTimeout" value="$%tWebTimeout#$" />
+     (10-3600s)</td>
+ </tr>
+
+     <tr>
+        <td colspan="2" height="10"></td>
+      </tr>
+<tr>
+	<td colspan="2"></td>
+  <td><input type="button" class="button1" name="button" id="button" value="提 交"  onclick="tdCheckForm(this.form)" /></td>
+</tr>
+  </table>
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="DHCP" ></form>
+</div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+
+<SCRIPT LANGUAGE="javascript">
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+function changebgcolor2(){
+ var tab = document.all.table2;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+
+function display(){
+changebgcolor();
+changebgcolor2();
+}
+function  checkChar(str) {
+       for(var loop_index=0; loop_index<str.length; loop_index++)
+       { 
+         if(
+           (str.charAt(loop_index) == '<')
+           ||(str.charAt(loop_index) == '>')
+           )
+          {
+            alert("<,>是非法字符.请重新输入.");
+            return false;
+   	   }
+         }
+      return true;
+   }
+
+function check() {
+var sysname = document.forms[0].tSysContact.value;
+if (checkChar(sysname)  == false) {
+document.forms[0].tSysContact.select();
+return false;
+}	
+
+}
+
+
+function checktextarea(src){
+       var Temp=src.value.substring(0,src.value.length-1);
+       if(src.value.length>254)
+          src.value=src.value.substring(0,253);//<--
+}
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<tr height=22 ><TD class='all_tables'>&nbsp;&nbsp;联系方式：本栏目填写的内容是对管理该节点的联系人的文本描述，以及如何联系该人的信息。可允许的字符串长为0～255个NVT ASCII字符（32-126）。</td></tr>
+<tr height=22 ><TD class='all_tables'>&nbsp;&nbsp;地址：本栏目填写的内容是本节点的物理位置。可允许的字符串长为0～255个NVT ASCII字符（32-126）。</td></tr>         
+<tr height=22 ><TD class='all_tables'>&nbsp;&nbsp;系统名称：本栏目填写的内容是对该管理节点分配的管理名。</td></tr>
+	  
+  </TABLE>
+</div>
+
+
+<form name="company_info" method="post" onSubmit="return check();">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>系统信息</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR >
+      <TD width="22%" valign="top"><div align="left">&nbsp;&nbsp;联系方式</div></TD>
+      <TD width="78%" >
+        <textarea name="tSysContact" cols="50" rows="2" id="tSysContact"  onpropertychange="checktextarea(this)" >$%tSysContact#$</textarea></TD>
+    </TR>
+    <TR >
+      <TD valign="top">&nbsp;&nbsp;地址</TD>
+      <TD ><textarea name="tSysLocation" cols="50" rows="2" id="tSysLocation"  onpropertychange="checktextarea(this)" >$%tSysLocation#$</textarea></TD>
+    </TR>
+    <TR >
+      <TD valign="top">&nbsp;&nbsp;系统名称</TD>
+      <TD ><textarea name="tSysName" cols="50" rows="2" id="tSysName"  onpropertychange="checktextarea(this)" >$%tSysName#$</textarea></TD>
+    </TR>
+    <tr height="22" rows="2">
+    <td colspan="8"  class="crons">&nbsp;
+        <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提交">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </td>
+    <tr>
+</TABLE>
+</FORM>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>系统状态</nobr></td>
+    <td   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table2" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="22%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">CPU占用率</span><span class="td25">：</span></div></TD>
+      <TD width="28%" ><span class="crons">$%tSysCpuUsage#$</span></TD>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">MAC 地址：</span></TD>
+      <TD ><span class="crons">$%tSysMacAddr#$</span></TD>
+    </TR>
+    <TR height=22>
+      <TD >&nbsp;&nbsp;<span class="td25">Bootrom 版本：</span></TD>
+      <TD ><span class="crons">$%tSysBootromVer#$</span></TD>
+      <TD ><span class="td25">&nbsp;&nbsp;版本时间：</span></TD>
+      <TD ><span class="crons">$%tSysSoftDate#$</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">系统时间：</span></TD>
+      <TD ><span class="crons">$%tSysDateTime#$</span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">启动时间：</span></TD>
+      <TD ><span class="crons">$%tSysUptimeTime#$</span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">当前温度：</span></TD>
+      <TD ><span class="crons">$%tSysTemperature#$</span></TD>
+      <TD valign="top">&nbsp;</TD>
+      <TD >&nbsp;</TD>
+    </TR>
+</TABLE>
+</BODY></HTML>

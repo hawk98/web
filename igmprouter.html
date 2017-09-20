@@ -1,0 +1,382 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+function display()
+{
+changebgcolor();
+
+}
+
+var igmpRVlanList = "$%igmpRVlanList#$";
+var igmpRVlanPortView = "$%igmpRVlanPortView#$";
+var igmpRVlanPortReal = "$%igmpRVlanPortReal#$";
+var igmpRVlanPortType = "$%igmpRVlanPortType#$";
+
+function selectRouter(s)
+{
+	document.forms[0].tigmpVlanID.value = s.vid.value;
+	var idName = "";
+	routerid = s.routerid.value;
+	select_all(0);
+	for(var i=0;i<routerid.split(" ").length;i++)
+	{
+		portid = routerid.split(" ")[i];
+		if(portid>0 && portid <portNum+1)
+		{
+			idName  = "IgmpRouterPort"+portid;
+			document.getElementById(idName).checked = true;
+		
+		
+		}
+	}
+
+}
+
+
+function select_all(flag)
+{
+	for(i=1;i<=portNum;i++)
+	{		
+		if(!document.getElementById("IgmpRouterPort"+i).disabled)
+		{
+			
+			if(flag)
+			{
+				document.getElementById("IgmpRouterPort"+i).checked = true;		
+			}
+			else
+			{
+				document.getElementById("IgmpRouterPort"+i).checked = false;		
+			}	
+		}		
+
+	}
+}
+
+
+function changestat(str,id)
+{
+	var checked = 0;
+	var valid_port = 0;
+		
+	for(i=1;i<=portNum;i++)
+	{		
+		if(!document.getElementById(str+i).disabled)	
+		{
+			if(document.getElementById(str+i).checked)
+			{
+				checked = checked + 1;
+			}
+			valid_port = valid_port + 1;
+		}
+	}
+	
+	if(checked == valid_port)
+	{
+		document.getElementById(id).checked = true ;
+	}
+	else
+	{
+		document.getElementById(id).checked = false ; 
+	}
+}
+
+function delRouter(vid)
+{
+	document.forms[0].tigmpVlanID.value = vid;
+	select_all(0);
+	document.form1.submit();
+
+}
+
+function writeLine()
+{
+	var str="";
+	if(igmpRVlanList!="")
+	{
+		for(var i=0;i<igmpRVlanList.split(",").length;i++)
+		{
+			vid = igmpRVlanList.split(",")[i];
+			routerid = igmpRVlanPortReal.split(",")[i];
+			typeid = igmpRVlanPortType.split(",")[i];
+			if(typeid == 1)
+			{
+				display_type = "Dynamic";
+			}
+			else
+			{
+				display_type = "Static";
+			}
+			
+			str +="<form>";
+			str +="<tr   class='tables_all'>";
+			str +="    <td  class='inputsyslog1'>"+vid+"</td>";
+			str +="    <td  class='inputsyslog1'>"+igmpRVlanPortView.split(",")[i]+"</td>";
+			str +="    <td  class='inputsyslog1'>"+display_type+"</td>";
+
+			if(typeid == 1)
+			{
+				str +="<td>&nbsp;</td>";
+				str +="<td>&nbsp;</td>";
+			}
+			else
+			{
+				str += "<td><input type='button' name='buttonP"+i+"' id='buttonP"+i+"' class='botton_under_line' value='选 择'  onclick='selectRouter(this.form)' /></td>";
+		
+				str += "<td><input type='button' name='buttonP"+i+"' id='buttonP"+i+"' class='botton_under_line' value='删 除'  onclick='delRouter("+vid+")' /></td>";
+			}
+			
+		
+			str +="<input type='hidden' name='vid' value='"+vid+"'> <input type='hidden' name='routerid' value='"+routerid+"'> </tr>";
+			str +="</form>";
+		}
+	
+	}
+
+	//alert(str);
+	document.write(str);
+  
+}
+
+
+var IgmpRTotalPages = $%IgmpRTotalPages#$;
+var IgmpRCurPage = $%IgmpRCurPage#$;
+var IgmpRPageItenNum = 20;
+
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("IgmpRGotoGage").value;
+	
+	if(!fucCheckNUM(gotoPageNum)  || gotoPageNum==""||gotoPageNum<1||gotoPageNum>IgmpRTotalPages)
+	{
+		alert("您输入的页数不存在！");
+		return;
+	}
+	if(gotoPageNum == IgmpRCurPage)
+	{
+		alert("您已经在第"+IgmpRCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("IgmpRGotoPageEnable").value = 1;
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("IgmpRGotoGage").value = (IgmpRCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("IgmpRGotoGage").value = (IgmpRCurPage+1);
+	gotopage();
+}
+
+
+function checkSub()
+{
+	var checkPort = 0;
+	var i = 0;
+
+	for(i=1;i<=28;i++)
+	{
+		idName = "IgmpRouterPort"+i;
+		if(document.getElementById(idName).checked == true)
+			checkPort += 1;
+		
+	}
+	if(checkPort<1)
+	{
+		alert("请选择端口");
+		return false;
+	}
+	
+}
+
+
+
+</script>
+
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('igmprouter'));
+ </SCRIPT>
+	  
+  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="return checkSub()">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>IGMP&nbsp;<span class="inputsyslog1">路由端口</span></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;VLAN</TD>
+      <TD colspan="7" ><span class="crons">
+        <input type="text" name="tigmpVlanID" id="tigmpVlanID">
+(1~4094)</span></TD>
+      </TR>
+       
+       <TR height=22>
+      <TD width="20%" valign="top">&nbsp;&nbsp;<span class="inputsyslog1">路由端口
+        <span class="table_main1">
+        <input type="HIDDEN" name="CheckBoxManager" value="IgmpRouterPort1,IgmpRouterPort2,IgmpRouterPort3,IgmpRouterPort4,IgmpRouterPort5,IgmpRouterPort6,IgmpRouterPort7,IgmpRouterPort8,IgmpRouterPort9,IgmpRouterPort10,IgmpRouterPort11,IgmpRouterPort12,IgmpRouterPort13,IgmpRouterPort14,IgmpRouterPort15,IgmpRouterPort16,IgmpRouterPort17,IgmpRouterPort18,IgmpRouterPort19,IgmpRouterPort20">
+        <span class="crons">
+        <input type="checkbox" name="select_ss" id="select_ss" value="checkbox"  onclick="select_all(this.checked)"/>
+全选</span></span></span></TD>
+      <TD width="10%" ><span class="inputsyslog1">
+        <input type="checkbox" name="IgmpRouterPort1"   onClick="changestat('IgmpRouterPort','select_ss');" id="IgmpRouterPort1" value="ON"  /    >
+        端口1</span></TD>
+      <TD width="10%" ><span class="inputsyslog1">
+        <input type="checkbox" name="IgmpRouterPort2"   onClick="changestat('IgmpRouterPort','select_ss');" id="IgmpRouterPort2" value="ON"  /    >
+端口2&nbsp;&nbsp;&nbsp;&nbsp;</span></TD>
+      <TD width="10%" ><span class="inputsyslog1">
+        <input type="checkbox" name="IgmpRouterPort3"   onClick="changestat('IgmpRouterPort','select_ss');" id="IgmpRouterPort3" value="ON"  /    >
+端口3&nbsp;&nbsp;&nbsp;&nbsp;</span></TD>
+      <TD width="10%" ><span class="inputsyslog1">
+        <input type="checkbox" name="IgmpRouterPort4"   onClick="changestat('IgmpRouterPort','select_ss');" id="IgmpRouterPort4" value="ON"  /    >
+端口4&nbsp;</span></TD>
+    </TR>
+     <script language= "javascript">
+	  for(var i = 5; i<= portNum; i++)
+	  {		
+		   if(i%4 == 1)
+		   {
+				document.write("<TR height=22>");
+			    document.write("<TD valign='top'>&nbsp;</TD>");
+		   }
+		   
+		   document.write("<TD><span class='inputsyslog1'>");
+		   document.write("<input type='checkbox' name='IgmpRouterPort"+i+"' id='IgmpRouterPort"+i+"' value='ON'  onClick='changestat('IgmpRouterPort','select_ss');'>");
+		   document.write("端口"+i+"</span></TD>");	
+		   
+		   if(i%4 == 0)
+		   {
+		   		document.write("</TR>");
+		   }
+	  }
+      </script>
+    
+    <td class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提 交">
+    </td>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>IGMP配置列表&nbsp;&nbsp;&nbsp;
+      <script language="javascript">
+	document.write("总共"+IgmpRTotalPages+"页，当前"+IgmpRCurPage+"页，");
+	  </script>
+到
+<input name="IgmpRGotoGage" id="IgmpRGotoGage" type="text"  size="3" maxlength="3" VALUE="$%IgmpRGotoGage#$">
+页
+<input name="button" type="button" class="button1" id="gotoVlanAPage"  onClick="gotopage();" value="确 认">
+&nbsp;&nbsp;&nbsp;&nbsp; <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> <a  onClick="gotoNextpage();"  style="cursor:pointer;">下一页</a>
+<input type="hidden" name="IgmpRGotoPageEnable" id="IgmpRGotoPageEnable"  value="$%IgmpRGotoPageEnable#$"/></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+</form>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="9%"   nowrap class="all_tables_list"><span class="partition">VLAN ID</span></TD>
+      <TD width="45%"   nowrap class="all_tables_list"><span class="partition">路由端口</span></TD>
+      <TD width="9%"   nowrap class="all_tables_list"><span class="partition">类型</span></TD>
+      <TD width="9%"   nowrap class="all_tables_list"><span class="partition">选择</span></TD>
+      <TD width="28%"   nowrap class="all_tables_list">删除</TD>
+    </TR>
+  <script language="javascript">  
+  writeLine();
+    if(IgmpRCurPage == 1)
+	{
+  		if (typeof gotoVlanPrePage !== 'undefined')
+			document.getElementById("gotoVlanPrePage").style.display="none";
+	}
+	if(IgmpRCurPage == IgmpRTotalPages)
+ 	{
+		if (typeof gotoVlanNextPage !== 'undefined')	
+			document.getElementById("gotoVlanNextPage").style.display="none";
+	}
+  </script>
+  </table>
+<br>
+
+</BODY></HTML>

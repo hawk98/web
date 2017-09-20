@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+
+var MstpMstiPortInfoList = [$%MstpMstiPortInfoList#$];
+var MstpMstiPortInstList = [$%MstpMstiPortInstList#$];
+var MstpCheckEnable = "$%MstpCheckEnable#$";
+
+var portNum = $%portNum#$;
+
+function setCurState()
+{
+}
+
+function checkSub(){	
+	var idNameCost = "";
+	
+	if (MstpCheckEnable == 0)
+	{
+			alert("MSTP未启用，不能修改MSTI端口配置");
+		return;
+	}
+	
+	for(var i=1;i<=portNum;i++)
+	{
+	idNameCost ="MstpMstiPortCost"+i;
+	var MstpMstiPortCost =  document.getElementById(idNameCost).value;
+	
+		if(isNaN(MstpMstiPortCost) || MstpMstiPortCost < 0 || MstpMstiPortCost > 200000000  || !fucCheckNUM(MstpMstiPortCost))
+		{
+		alert("端口"+i+" 路径开销错误,范围：0-200000000");
+		return false;
+		}
+	}
+  document.form0.MstpMstiPortShowFlag.value = 1;
+  submitForm0();
+  return false;
+}
+
+function changePort(){
+  document.form0.MstpMstiPortShowFlag.value = 0;
+  document.form0.MstpMstiPortInst.value = document.form1.MstpMstiPortInst.value;
+  document.form0.submit();
+}
+
+window.onload = function(){
+  var ua = navigator.userAgent.toLowerCase();
+	if(MstpMstiPortInstList.length >= 2) 
+	  if(ua.indexOf("msie") > 0) document.getElementById("showLines").style.display = "block" ;
+	  else document.getElementById("showLines").style.display = "inline-table" ;
+  for(var i = 1; i < MstpMstiPortInstList.length; i++)
+  	if(MstpMstiPortInstList[i] == MstpMstiPortInstList[0])
+  		document.form1.MstpMstiPortInst.value = MstpMstiPortInstList[0];
+}
+function writeList(){
+	var sta = ["Disabled", "Block", "Learn", "Forward", "Blank", "Error"];
+	var role = ["Master", "Alternate", "Root", "Designated", "Disabled", "Backup"];
+	for(var j = 0; j < MstpMstiPortInfoList.length/6; j++){
+		if (MstpMstiPortInfoList[j*6 + 1] == 4)
+		{
+			MstpMstiPortInfoList[j*6] = 0;
+		}
+		else if(MstpMstiPortInfoList[j*6] == 0)
+			{
+				MstpMstiPortInfoList[j*6] = 1;
+			}
+	}
+	
+	for(var i = 0; i < MstpMstiPortInfoList.length/6; i++){
+  	document.writeln("<tr><td class='td25' colspan='2'>");
+	  document.writeln(i + 1 + "</td><td class='crons'>");
+	  document.writeln(sta[MstpMstiPortInfoList[i*6]] + "</td><td class='crons'>");
+	  document.writeln(role[MstpMstiPortInfoList[i*6 + 1]] + "</td><td class='crons'>");
+	  document.writeln(MstpMstiPortInfoList[i*6 + 2] + "</td><td class='crons'>");
+	  document.writeln(MstpMstiPortInfoList[i*6 + 3] + "</td><td class='crons'>");
+	  document.writeln(MstpMstiPortInfoList[i*6 + 4] + "</td><td class='crons'>");
+	  document.writeln(MstpMstiPortInfoList[i*6 + 5] + "</td></tr>");
+	}
+}
+function submitForm0(){
+  var doc = document.form0;
+  doc.MstpMstiPortBindStr.value = "";
+  doc.MstpMstiPortPrioStr.value = "";
+  doc.MstpMstiPortCostStr.value = "";
+  for(var i = 1; i <= portNum; i++){
+  	doc.MstpMstiPortBindStr.value += document.getElementById("MstpMstiPortBind" + i).value;
+  	doc.MstpMstiPortPrioStr.value += document.getElementById("MstpMstiPortPrio" + i).value;
+  	doc.MstpMstiPortCostStr.value += document.getElementById("MstpMstiPortCost" + i).value;
+  	if(i < portNum) {
+  		doc.MstpMstiPortPrioStr.value += ",";
+  		doc.MstpMstiPortCostStr.value += ",";
+  	}
+  }
+  doc.MstpMstiPortInst.value = document.form1.MstpMstiPortInst.value;
+  doc.submit();
+}
+</script>
+
+</head>
+
+<body>
+<div class="container" id="cpcontainer">
+  <form id="form0" name="form0" method="post" action="">
+  	<input type="hidden" name="MstpMstiPortBindStr" value="$%MstpMstiPortBindStr#$">
+  	<input type="hidden" name="MstpMstiPortPrioStr" value="$%MstpMstiPortPrioStr#$">
+  	<input type="hidden" name="MstpMstiPortCostStr" value="$%MstpMstiPortCostStr#$">
+    <input type="hidden" name="MstpMstiPortShowFlag" id="MstpMstiPortShowFlag" value="0">
+    <input type="hidden" name="MstpMstiPortInst" value="$%MstpMstiPortInst#$">
+   </form>
+  <form id="form1" name="form1" method="post" action="" onsubmit="return checkSub();">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">Msti端口配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table  class="table_maintable" cellpadding="0"> 
+    <tr>
+      <td class="td25" colspan=3>&nbsp;</td>
+      <td colspan="6"  class="crons">实例选择：<select name="MstpMstiPortInst" id="MstpMstiPortInst" onchange="changePort();">
+    		<script language="javascript">
+    			for(var i = 1; i < MstpMstiPortInstList.length; i++){
+    	  		document.writeln("<option value=\"" + MstpMstiPortInstList[i] + "\"  >" + MstpMstiPortInstList[i] + "</option>");
+    			}
+    		</script>
+    		</select></td>
+      </tr>
+  <tr>
+    <td class="partition" align="center" width="10%">端口</td>
+    <td class="partition" width="20%">端口绑定</td>
+    <td class="partition" width="20%">优先级</td>
+    <td class="partition" width="50%">路径开销(0表示auto状态)</td>
+  </tr>
+</table>
+<table  class="table_maintable" width="100%" cellpadding="0" id="showLines" style="display:none">  
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>1</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind1" id="MstpMstiPortBind1">
+        <option value="1" $%MstpMstiPortBind1(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind1(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio1" id="MstpMstiPortPrio1">
+      <option value="0" $%MstpMstiPortPrio1(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio1(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio1(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio1(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio1(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio1(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio1(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio1(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio1(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio1(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio1(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio1(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio1(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio1(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio1(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio1(240)#$>240</option>
+    </select></td>
+    <td class="crons" width="50%" colspan='3'><input type="text" name="MstpMstiPortCost1" id="MstpMstiPortCost1" / VALUE="$%MstpMstiPortCost1#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>2</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind2" id="MstpMstiPortBind2">
+        <option value="1" $%MstpMstiPortBind2(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind2(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio2" id="MstpMstiPortPrio2">
+      <option value="0" $%MstpMstiPortPrio2(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio2(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio2(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio2(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio2(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio2(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio2(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio2(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio2(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio2(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio2(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio2(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio2(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio2(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio2(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio2(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost2" id="MstpMstiPortCost2" / VALUE="$%MstpMstiPortCost2#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>3</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind3" id="MstpMstiPortBind3">
+        <option value="1" $%MstpMstiPortBind3(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind3(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio3" id="MstpMstiPortPrio3">
+      <option value="0" $%MstpMstiPortPrio3(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio3(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio3(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio3(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio3(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio3(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio3(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio3(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio3(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio3(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio3(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio3(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio3(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio3(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio3(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio3(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost3" id="MstpMstiPortCost3" / VALUE="$%MstpMstiPortCost3#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>4</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind4" id="MstpMstiPortBind4">
+        <option value="1" $%MstpMstiPortBind4(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind4(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio4" id="MstpMstiPortPrio4">
+      <option value="0" $%MstpMstiPortPrio4(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio4(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio4(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio4(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio4(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio4(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio4(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio4(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio4(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio4(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio4(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio4(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio4(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio4(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio4(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio4(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost4" id="MstpMstiPortCost4" / VALUE="$%MstpMstiPortCost4#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>5</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind5" id="MstpMstiPortBind5">
+        <option value="1" $%MstpMstiPortBind5(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind5(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio5" id="MstpMstiPortPrio5">
+      <option value="0" $%MstpMstiPortPrio5(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio5(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio5(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio5(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio5(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio5(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio5(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio5(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio5(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio5(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio5(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio5(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio5(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio5(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio5(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio5(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost5" id="MstpMstiPortCost5" / VALUE="$%MstpMstiPortCost5#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>6</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind6" id="MstpMstiPortBind6">
+        <option value="1" $%MstpMstiPortBind6(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind6(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio6" id="MstpMstiPortPrio6">
+      <option value="0" $%MstpMstiPortPrio6(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio6(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio6(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio6(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio6(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio6(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio6(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio6(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio6(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio6(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio6(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio6(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio6(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio6(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio6(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio6(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost6" id="MstpMstiPortCost6" / VALUE="$%MstpMstiPortCost6#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>7</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind7" id="MstpMstiPortBind7">
+        <option value="1" $%MstpMstiPortBind7(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind7(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio7" id="MstpMstiPortPrio7">
+      <option value="0" $%MstpMstiPortPrio7(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio7(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio7(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio7(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio7(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio7(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio7(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio7(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio7(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio7(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio7(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio7(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio7(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio7(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio7(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio7(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost7" id="MstpMstiPortCost7" / VALUE="$%MstpMstiPortCost7#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>8</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind8" id="MstpMstiPortBind8">
+        <option value="1" $%MstpMstiPortBind8(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind8(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio8" id="MstpMstiPortPrio8">
+      <option value="0" $%MstpMstiPortPrio8(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio8(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio8(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio8(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio8(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio8(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio8(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio8(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio8(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio8(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio8(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio8(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio8(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio8(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio8(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio8(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost8" id="MstpMstiPortCost8" / VALUE="$%MstpMstiPortCost8#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>9</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind9" id="MstpMstiPortBind9">
+        <option value="1" $%MstpMstiPortBind9(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind9(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio9" id="MstpMstiPortPrio9">
+      <option value="0" $%MstpMstiPortPrio9(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio9(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio9(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio9(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio9(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio9(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio9(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio9(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio9(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio9(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio9(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio9(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio9(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio9(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio9(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio9(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost9" id="MstpMstiPortCost9" / VALUE="$%MstpMstiPortCost9#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25"  width="10%" colspan='2'>10</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind10" id="MstpMstiPortBind10">
+        <option value="1" $%MstpMstiPortBind10(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind10(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"  width="20%"><select name="MstpMstiPortPrio10" id="MstpMstiPortPrio10">
+      <option value="0" $%MstpMstiPortPrio10(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio10(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio10(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio10(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio10(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio10(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio10(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio10(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio10(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio10(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio10(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio10(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio10(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio10(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio10(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio10(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost10" id="MstpMstiPortCost10" / VALUE="$%MstpMstiPortCost10#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>11</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind11" id="MstpMstiPortBind11">
+        <option value="1" $%MstpMstiPortBind11(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind11(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio11" id="MstpMstiPortPrio11">
+      <option value="0" $%MstpMstiPortPrio11(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio11(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio11(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio11(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio11(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio11(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio11(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio11(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio11(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio11(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio11(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio11(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio11(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio11(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio11(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio11(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost11" id="MstpMstiPortCost11" / VALUE="$%MstpMstiPortCost11#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>12</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind12" id="MstpMstiPortBind12">
+        <option value="1" $%MstpMstiPortBind12(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind12(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio12" id="MstpMstiPortPrio12">
+      <option value="0" $%MstpMstiPortPrio12(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio12(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio12(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio12(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio12(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio12(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio12(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio12(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio12(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio12(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio12(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio12(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio12(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio12(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio12(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio12(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost12" id="MstpMstiPortCost12" / VALUE="$%MstpMstiPortCost12#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>13</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind13" id="MstpMstiPortBind13">
+        <option value="1" $%MstpMstiPortBind13(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind13(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio13" id="MstpMstiPortPrio13">
+      <option value="0" $%MstpMstiPortPrio13(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio13(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio13(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio13(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio13(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio13(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio13(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio13(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio13(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio13(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio13(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio13(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio13(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio13(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio13(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio13(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost13" id="MstpMstiPortCost13" / VALUE="$%MstpMstiPortCost13#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>14</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind14" id="MstpMstiPortBind14">
+        <option value="1" $%MstpMstiPortBind14(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind14(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio14" id="MstpMstiPortPrio14">
+      <option value="0" $%MstpMstiPortPrio14(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio14(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio14(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio14(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio14(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio14(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio14(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio14(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio14(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio14(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio14(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio14(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio14(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio14(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio14(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio14(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost14" id="MstpMstiPortCost14" / VALUE="$%MstpMstiPortCost14#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>15</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind15" id="MstpMstiPortBind15">
+        <option value="1" $%MstpMstiPortBind15(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind15(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio15" id="MstpMstiPortPrio15">
+      <option value="0" $%MstpMstiPortPrio15(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio15(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio15(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio15(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio15(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio15(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio15(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio15(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio15(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio15(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio15(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio15(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio15(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio15(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio15(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio15(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost15" id="MstpMstiPortCost15" / VALUE="$%MstpMstiPortCost15#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>16</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind16" id="MstpMstiPortBind16">
+        <option value="1" $%MstpMstiPortBind16(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind16(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio16" id="MstpMstiPortPrio16">
+      <option value="0" $%MstpMstiPortPrio16(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio16(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio16(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio16(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio16(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio16(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio16(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio16(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio16(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio16(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio16(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio16(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio16(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio16(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio16(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio16(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost16" id="MstpMstiPortCost16" / VALUE="$%MstpMstiPortCost16#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>17</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind17" id="MstpMstiPortBind17">
+        <option value="1" $%MstpMstiPortBind17(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind17(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio17" id="MstpMstiPortPrio17">
+      <option value="0" $%MstpMstiPortPrio17(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio17(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio17(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio17(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio17(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio17(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio17(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio17(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio17(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio17(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio17(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio17(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio17(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio17(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio17(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio17(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost17" id="MstpMstiPortCost17" / VALUE="$%MstpMstiPortCost17#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>18</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind18" id="MstpMstiPortBind18">
+        <option value="1" $%MstpMstiPortBind18(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind18(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio18" id="MstpMstiPortPrio18">
+      <option value="0" $%MstpMstiPortPrio18(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio18(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio18(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio18(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio18(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio18(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio18(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio18(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio18(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio18(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio18(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio18(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio18(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio18(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio18(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio18(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost18" id="MstpMstiPortCost18" / VALUE="$%MstpMstiPortCost18#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>19</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind19" id="MstpMstiPortBind19">
+        <option value="1" $%MstpMstiPortBind19(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind19(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio19" id="MstpMstiPortPrio19">
+      <option value="0" $%MstpMstiPortPrio19(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio19(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio19(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio19(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio19(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio19(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio19(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio19(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio19(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio19(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio19(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio19(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio19(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio19(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio19(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio19(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost19" id="MstpMstiPortCost19" / VALUE="$%MstpMstiPortCost19#$" /></td>
+  </tr>
+  <tr>
+    <td class="td25" width="10%" colspan='2'>20</td>
+    <td class="crons" width="20%" colspan='2'>
+      <select name="MstpMstiPortBind20" id="MstpMstiPortBind20">
+        <option value="1" $%MstpMstiPortBind20(1)#$>是</option>
+        <option value="0" $%MstpMstiPortBind20(0)#$>否</option>
+      </select>
+    </td>
+    <td class="crons"><select name="MstpMstiPortPrio20" id="MstpMstiPortPrio20">
+      <option value="0" $%MstpMstiPortPrio20(0)#$>0</option>
+      <option value="16" $%MstpMstiPortPrio20(16)#$>16</option>
+      <option value="32" $%MstpMstiPortPrio20(32)#$>32</option>
+      <option value="48" $%MstpMstiPortPrio20(48)#$>48</option>
+      <option value="64" $%MstpMstiPortPrio20(64)#$>64</option>
+      <option value="80" $%MstpMstiPortPrio20(80)#$>80</option>
+      <option value="96" $%MstpMstiPortPrio20(96)#$>96</option>
+      <option value="112" $%MstpMstiPortPrio20(112)#$>112</option>
+      <option value="128" $%MstpMstiPortPrio20(128)#$>128</option>
+      <option value="144" $%MstpMstiPortPrio20(144)#$>144</option>
+      <option value="160" $%MstpMstiPortPrio20(160)#$>160</option>
+      <option value="176" $%MstpMstiPortPrio20(176)#$>176</option>
+      <option value="192" $%MstpMstiPortPrio20(192)#$>192</option>
+      <option value="208" $%MstpMstiPortPrio20(208)#$>208</option>
+      <option value="224" $%MstpMstiPortPrio20(224)#$>224</option>
+      <option value="240" $%MstpMstiPortPrio20(240)#$>240</option>
+    </select></td>
+    <td class="crons" colspan='3'><input type="text" name="MstpMstiPortCost20" id="MstpMstiPortCost20" / VALUE="$%MstpMstiPortCost20#$" /></td>
+  </tr>
+  
+        <tr>
+          <td height="10"></td>
+        </tr>
+  <tr>
+    <td colspan="8" align="center">
+      <input type="submit" class="button1" name="button" id="button" value="提 交" />
+    </td>
+    </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=9 class="table_main3">MSTI 端口状态</td>
+  </tr>
+  <tr>
+    <td class="partition" colspan='2' align="center">端口</td>
+    <td class="partition">状态</td>
+    <td class="partition">角色</td>
+    <td class="partition">指定桥</td>
+    <td class="partition">指定根</td>
+    <td class="partition">指定端口</td>
+    <td class="partition">指定路径开销</td>
+  </tr>
+<script language="javascript">
+  writeList();
+</script>
+        <tr>
+          <td height="10"></td>
+        </tr>
+</table>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

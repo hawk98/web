@@ -1,0 +1,613 @@
+<HTML>	
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<TITLE>page</TITLE><script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+
+
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+<script language="javascript">
+var ljzt = [$%portLinkState#$];
+var type = [$%portType#$];
+var curMode = [$%portCurMode#$];
+var portRxPause = [$%portRxPause#$];
+var portTxPause = [$%portTxPause#$];
+
+var portNum = $%portNum#$;
+
+var portDesc = new Array();
+portDesc[1] = "$%portDesc1#$";
+portDesc[2] = "$%portDesc2#$";
+portDesc[3] = "$%portDesc3#$";
+portDesc[4] = "$%portDesc4#$";
+portDesc[5] = "$%portDesc5#$";
+portDesc[6] = "$%portDesc6#$";
+portDesc[7] = "$%portDesc7#$";
+portDesc[8] = "$%portDesc8#$";
+portDesc[9] = "$%portDesc9#$";
+portDesc[10] = "$%portDesc10#$";
+portDesc[11] = "$%portDesc11#$";
+portDesc[12] = "$%portDesc12#$";
+portDesc[13] = "$%portDesc13#$";
+portDesc[14] = "$%portDesc14#$";
+portDesc[15] = "$%portDesc15#$";
+portDesc[16] = "$%portDesc16#$";
+portDesc[17] = "$%portDesc17#$";
+portDesc[18] = "$%portDesc18#$";
+portDesc[19] = "$%portDesc19#$";
+portDesc[20] = "$%portDesc20#$";
+portDesc[21] = "$%portDesc21#$";
+portDesc[22] = "$%portDesc22#$";
+portDesc[23] = "$%portDesc23#$";
+portDesc[24] = "$%portDesc24#$";
+portDesc[25] = "$%portDesc25#$";
+portDesc[26] = "$%portDesc26#$";
+portDesc[27] = "$%portDesc27#$";
+portDesc[28] = "$%portDesc28#$";
+
+var portConfigEnable1 = new Array();
+portConfigEnable1[1] = "$%portConfigEnable1(1)#$";
+portConfigEnable1[2] = "$%portConfigEnable2(1)#$";
+portConfigEnable1[3] = "$%portConfigEnable3(1)#$";
+portConfigEnable1[4] = "$%portConfigEnable4(1)#$";
+portConfigEnable1[5] = "$%portConfigEnable5(1)#$";
+portConfigEnable1[6] = "$%portConfigEnable6(1)#$";
+portConfigEnable1[7] = "$%portConfigEnable7(1)#$";
+portConfigEnable1[8] = "$%portConfigEnable8(1)#$";
+portConfigEnable1[9] = "$%portConfigEnable9(1)#$";
+portConfigEnable1[10] = "$%portConfigEnable10(1)#$";
+portConfigEnable1[11] = "$%portConfigEnable11(1)#$";
+portConfigEnable1[12] = "$%portConfigEnable12(1)#$";
+portConfigEnable1[13] = "$%portConfigEnable13(1)#$";
+portConfigEnable1[14] = "$%portConfigEnable14(1)#$";
+portConfigEnable1[15] = "$%portConfigEnable15(1)#$";
+portConfigEnable1[16] = "$%portConfigEnable16(1)#$";
+portConfigEnable1[17] = "$%portConfigEnable17(1)#$";
+portConfigEnable1[18] = "$%portConfigEnable18(1)#$";
+portConfigEnable1[19] = "$%portConfigEnable19(1)#$";
+portConfigEnable1[20] = "$%portConfigEnable20(1)#$";
+portConfigEnable1[21] = "$%portConfigEnable21(1)#$";
+portConfigEnable1[22] = "$%portConfigEnable22(1)#$";
+portConfigEnable1[23] = "$%portConfigEnable23(1)#$";
+portConfigEnable1[24] = "$%portConfigEnable24(1)#$";
+portConfigEnable1[25] = "$%portConfigEnable25(1)#$";
+portConfigEnable1[26] = "$%portConfigEnable26(1)#$";
+portConfigEnable1[27] = "$%portConfigEnable27(1)#$";
+portConfigEnable1[28] = "$%portConfigEnable28(1)#$";
+
+var portConfigEnable0 = new Array();
+portConfigEnable0[1] = "$%portConfigEnable1(0)#$";
+portConfigEnable0[2] = "$%portConfigEnable2(0)#$";
+portConfigEnable0[3] = "$%portConfigEnable3(0)#$";
+portConfigEnable0[4] = "$%portConfigEnable4(0)#$";
+portConfigEnable0[5] = "$%portConfigEnable5(0)#$";
+portConfigEnable0[6] = "$%portConfigEnable6(0)#$";
+portConfigEnable0[7] = "$%portConfigEnable7(0)#$";
+portConfigEnable0[8] = "$%portConfigEnable8(0)#$";
+portConfigEnable0[9] = "$%portConfigEnable9(0)#$";
+portConfigEnable0[10] = "$%portConfigEnable10(0)#$";
+portConfigEnable0[11] = "$%portConfigEnable11(0)#$";
+portConfigEnable0[12] = "$%portConfigEnable12(0)#$";
+portConfigEnable0[13] = "$%portConfigEnable13(0)#$";
+portConfigEnable0[14] = "$%portConfigEnable14(0)#$";
+portConfigEnable0[15] = "$%portConfigEnable15(0)#$";
+portConfigEnable0[16] = "$%portConfigEnable16(0)#$";
+portConfigEnable0[17] = "$%portConfigEnable17(0)#$";
+portConfigEnable0[18] = "$%portConfigEnable18(0)#$";
+portConfigEnable0[19] = "$%portConfigEnable19(0)#$";
+portConfigEnable0[20] = "$%portConfigEnable20(0)#$";
+portConfigEnable0[21] = "$%portConfigEnable21(0)#$";
+portConfigEnable0[22] = "$%portConfigEnable22(0)#$";
+portConfigEnable0[23] = "$%portConfigEnable23(0)#$";
+portConfigEnable0[24] = "$%portConfigEnable24(0)#$";
+portConfigEnable0[25] = "$%portConfigEnable25(0)#$";
+portConfigEnable0[26] = "$%portConfigEnable26(0)#$";
+portConfigEnable0[27] = "$%portConfigEnable27(0)#$";
+portConfigEnable0[28] = "$%portConfigEnable28(0)#$";
+
+var PortMode0 = new Array();
+PortMode0[1] = "$%sPortMode1(0)#$";
+PortMode0[2] = "$%sPortMode2(0)#$";
+PortMode0[3] = "$%sPortMode3(0)#$";
+PortMode0[4] = "$%sPortMode4(0)#$";
+PortMode0[5] = "$%sPortMode5(0)#$";
+PortMode0[6] = "$%sPortMode6(0)#$";
+PortMode0[7] = "$%sPortMode7(0)#$";
+PortMode0[8] = "$%sPortMode8(0)#$";
+PortMode0[9] = "$%sPortMode9(0)#$";
+PortMode0[10] = "$%sPortMode10(0)#$";
+PortMode0[11] = "$%sPortMode11(0)#$";
+PortMode0[12] = "$%sPortMode12(0)#$";
+PortMode0[13] = "$%sPortMode13(0)#$";
+PortMode0[14] = "$%sPortMode14(0)#$";
+PortMode0[15] = "$%sPortMode15(0)#$";
+PortMode0[16] = "$%sPortMode16(0)#$";
+PortMode0[17] = "$%sPortMode17(0)#$";
+PortMode0[18] = "$%sPortMode18(0)#$";
+PortMode0[19] = "$%sPortMode19(0)#$";
+PortMode0[20] = "$%sPortMode20(0)#$";
+PortMode0[21] = "$%sPortMode21(0)#$";
+PortMode0[22] = "$%sPortMode22(0)#$";
+PortMode0[23] = "$%sPortMode23(0)#$";
+PortMode0[24] = "$%sPortMode24(0)#$";
+PortMode0[25] = "$%sPortMode25(0)#$";
+PortMode0[26] = "$%sPortMode26(0)#$";
+PortMode0[27] = "$%sPortMode27(0)#$";
+PortMode0[28] = "$%sPortMode28(0)#$";
+
+var PortMode1 = new Array();
+PortMode1[1] = "$%sPortMode1(1)#$";
+PortMode1[2] = "$%sPortMode2(1)#$";
+PortMode1[3] = "$%sPortMode3(1)#$";
+PortMode1[4] = "$%sPortMode4(1)#$";
+PortMode1[5] = "$%sPortMode5(1)#$";
+PortMode1[6] = "$%sPortMode6(1)#$";
+PortMode1[7] = "$%sPortMode7(1)#$";
+PortMode1[8] = "$%sPortMode8(1)#$";
+PortMode1[9] = "$%sPortMode9(1)#$";
+PortMode1[10] = "$%sPortMode10(1)#$";
+PortMode1[11] = "$%sPortMode11(1)#$";
+PortMode1[12] = "$%sPortMode12(1)#$";
+PortMode1[13] = "$%sPortMode13(1)#$";
+PortMode1[14] = "$%sPortMode14(1)#$";
+PortMode1[15] = "$%sPortMode15(1)#$";
+PortMode1[16] = "$%sPortMode16(1)#$";
+PortMode1[17] = "$%sPortMode17(1)#$";
+PortMode1[18] = "$%sPortMode18(1)#$";
+PortMode1[19] = "$%sPortMode19(1)#$";
+PortMode1[20] = "$%sPortMode20(1)#$";
+PortMode1[21] = "$%sPortMode21(1)#$";
+PortMode1[22] = "$%sPortMode22(1)#$";
+PortMode1[23] = "$%sPortMode23(1)#$";
+PortMode1[24] = "$%sPortMode24(1)#$";
+PortMode1[25] = "$%sPortMode25(1)#$";
+PortMode1[26] = "$%sPortMode26(1)#$";
+PortMode1[27] = "$%sPortMode27(1)#$";
+PortMode1[28] = "$%sPortMode28(1)#$";
+
+var PortMode2 = new Array();
+PortMode2[1] = "$%sPortMode1(2)#$";
+PortMode2[2] = "$%sPortMode2(2)#$";
+PortMode2[3] = "$%sPortMode3(2)#$";
+PortMode2[4] = "$%sPortMode4(2)#$";
+PortMode2[5] = "$%sPortMode5(2)#$";
+PortMode2[6] = "$%sPortMode6(2)#$";
+PortMode2[7] = "$%sPortMode7(2)#$";
+PortMode2[8] = "$%sPortMode8(2)#$";
+PortMode2[9] = "$%sPortMode9(2)#$";
+PortMode2[10] = "$%sPortMode10(2)#$";
+PortMode2[11] = "$%sPortMode11(2)#$";
+PortMode2[12] = "$%sPortMode12(2)#$";
+PortMode2[13] = "$%sPortMode13(2)#$";
+PortMode2[14] = "$%sPortMode14(2)#$";
+PortMode2[15] = "$%sPortMode15(2)#$";
+PortMode2[16] = "$%sPortMode16(2)#$";
+PortMode2[17] = "$%sPortMode17(2)#$";
+PortMode2[18] = "$%sPortMode18(2)#$";
+PortMode2[19] = "$%sPortMode19(2)#$";
+PortMode2[20] = "$%sPortMode20(2)#$";
+PortMode2[21] = "$%sPortMode21(2)#$";
+PortMode2[22] = "$%sPortMode22(2)#$";
+PortMode2[23] = "$%sPortMode23(2)#$";
+PortMode2[24] = "$%sPortMode24(2)#$";
+PortMode2[25] = "$%sPortMode25(2)#$";
+PortMode2[26] = "$%sPortMode26(2)#$";
+PortMode2[27] = "$%sPortMode27(2)#$";
+PortMode2[28] = "$%sPortMode28(2)#$";
+
+var PortMode3 = new Array();
+PortMode3[1] = "$%sPortMode1(3)#$";
+PortMode3[2] = "$%sPortMode2(3)#$";
+PortMode3[3] = "$%sPortMode3(3)#$";
+PortMode3[4] = "$%sPortMode4(3)#$";
+PortMode3[5] = "$%sPortMode5(3)#$";
+PortMode3[6] = "$%sPortMode6(3)#$";
+PortMode3[7] = "$%sPortMode7(3)#$";
+PortMode3[8] = "$%sPortMode8(3)#$";
+PortMode3[9] = "$%sPortMode9(3)#$";
+PortMode3[10] = "$%sPortMode10(3)#$";
+PortMode3[11] = "$%sPortMode11(3)#$";
+PortMode3[12] = "$%sPortMode12(3)#$";
+PortMode3[13] = "$%sPortMode13(3)#$";
+PortMode3[14] = "$%sPortMode14(3)#$";
+PortMode3[15] = "$%sPortMode15(3)#$";
+PortMode3[16] = "$%sPortMode16(3)#$";
+PortMode3[17] = "$%sPortMode17(3)#$";
+PortMode3[18] = "$%sPortMode18(3)#$";
+PortMode3[19] = "$%sPortMode19(3)#$";
+PortMode3[20] = "$%sPortMode20(3)#$";
+PortMode3[21] = "$%sPortMode21(3)#$";
+PortMode3[22] = "$%sPortMode22(3)#$";
+PortMode3[23] = "$%sPortMode23(3)#$";
+PortMode3[24] = "$%sPortMode24(3)#$";
+PortMode3[25] = "$%sPortMode25(3)#$";
+PortMode3[26] = "$%sPortMode26(3)#$";
+PortMode3[27] = "$%sPortMode27(3)#$";
+PortMode3[28] = "$%sPortMode28(3)#$";
+
+var PortMode4 = new Array();
+PortMode4[1] = "$%sPortMode1(4)#$";
+PortMode4[2] = "$%sPortMode2(4)#$";
+PortMode4[3] = "$%sPortMode3(4)#$";
+PortMode4[4] = "$%sPortMode4(4)#$";
+PortMode4[5] = "$%sPortMode5(4)#$";
+PortMode4[6] = "$%sPortMode6(4)#$";
+PortMode4[7] = "$%sPortMode7(4)#$";
+PortMode4[8] = "$%sPortMode8(4)#$";
+PortMode4[9] = "$%sPortMode9(4)#$";
+PortMode4[10] = "$%sPortMode10(4)#$";
+PortMode4[11] = "$%sPortMode11(4)#$";
+PortMode4[12] = "$%sPortMode12(4)#$";
+PortMode4[13] = "$%sPortMode13(4)#$";
+PortMode4[14] = "$%sPortMode14(4)#$";
+PortMode4[15] = "$%sPortMode15(4)#$";
+PortMode4[16] = "$%sPortMode16(4)#$";
+PortMode4[17] = "$%sPortMode17(4)#$";
+PortMode4[18] = "$%sPortMode18(4)#$";
+PortMode4[19] = "$%sPortMode19(4)#$";
+PortMode4[20] = "$%sPortMode20(4)#$";
+PortMode4[21] = "$%sPortMode21(4)#$";
+PortMode4[22] = "$%sPortMode22(4)#$";
+PortMode4[23] = "$%sPortMode23(4)#$";
+PortMode4[24] = "$%sPortMode24(4)#$";
+PortMode4[25] = "$%sPortMode25(4)#$";
+PortMode4[26] = "$%sPortMode26(4)#$";
+PortMode4[27] = "$%sPortMode27(4)#$";
+PortMode4[28] = "$%sPortMode28(4)#$";
+
+var sFcontrol1 = new Array();
+sFcontrol1[1] = "$%sFcontrol1(1)#$";
+sFcontrol1[2] = "$%sFcontrol2(1)#$";
+sFcontrol1[3] = "$%sFcontrol3(1)#$";
+sFcontrol1[4] = "$%sFcontrol4(1)#$";
+sFcontrol1[5] = "$%sFcontrol5(1)#$";
+sFcontrol1[6] = "$%sFcontrol6(1)#$";
+sFcontrol1[7] = "$%sFcontrol7(1)#$";
+sFcontrol1[8] = "$%sFcontrol8(1)#$";
+sFcontrol1[9] = "$%sFcontrol9(1)#$";
+sFcontrol1[10] = "$%sFcontrol10(1)#$";
+sFcontrol1[11] = "$%sFcontrol11(1)#$";
+sFcontrol1[12] = "$%sFcontrol12(1)#$";
+sFcontrol1[13] = "$%sFcontrol13(1)#$";
+sFcontrol1[14] = "$%sFcontrol14(1)#$";
+sFcontrol1[15] = "$%sFcontrol15(1)#$";
+sFcontrol1[16] = "$%sFcontrol16(1)#$";
+sFcontrol1[17] = "$%sFcontrol17(1)#$";
+sFcontrol1[18] = "$%sFcontrol18(1)#$";
+sFcontrol1[19] = "$%sFcontrol19(1)#$";
+sFcontrol1[20] = "$%sFcontrol20(1)#$";
+sFcontrol1[21] = "$%sFcontrol21(1)#$";
+sFcontrol1[22] = "$%sFcontrol22(1)#$";
+sFcontrol1[23] = "$%sFcontrol23(1)#$";
+sFcontrol1[24] = "$%sFcontrol24(1)#$";
+sFcontrol1[25] = "$%sFcontrol25(1)#$";
+sFcontrol1[26] = "$%sFcontrol26(1)#$";
+sFcontrol1[27] = "$%sFcontrol27(1)#$";
+sFcontrol1[28] = "$%sFcontrol28(1)#$";
+
+var sFcontrol0 = new Array();
+sFcontrol0[1] = "$%sFcontrol1(0)#$";
+sFcontrol0[2] = "$%sFcontrol2(0)#$";
+sFcontrol0[3] = "$%sFcontrol3(0)#$";
+sFcontrol0[4] = "$%sFcontrol4(0)#$";
+sFcontrol0[5] = "$%sFcontrol5(0)#$";
+sFcontrol0[6] = "$%sFcontrol6(0)#$";
+sFcontrol0[7] = "$%sFcontrol7(0)#$";
+sFcontrol0[8] = "$%sFcontrol8(0)#$";
+sFcontrol0[9] = "$%sFcontrol9(0)#$";
+sFcontrol0[10] = "$%sFcontrol10(0)#$";
+sFcontrol0[11] = "$%sFcontrol11(0)#$";
+sFcontrol0[12] = "$%sFcontrol12(0)#$";
+sFcontrol0[13] = "$%sFcontrol13(0)#$";
+sFcontrol0[14] = "$%sFcontrol14(0)#$";
+sFcontrol0[15] = "$%sFcontrol15(0)#$";
+sFcontrol0[16] = "$%sFcontrol16(0)#$";
+sFcontrol0[17] = "$%sFcontrol17(0)#$";
+sFcontrol0[18] = "$%sFcontrol18(0)#$";
+sFcontrol0[19] = "$%sFcontrol19(0)#$";
+sFcontrol0[20] = "$%sFcontrol20(0)#$";
+sFcontrol0[21] = "$%sFcontrol21(0)#$";
+sFcontrol0[22] = "$%sFcontrol22(0)#$";
+sFcontrol0[23] = "$%sFcontrol23(0)#$";
+sFcontrol0[24] = "$%sFcontrol24(0)#$";
+sFcontrol0[25] = "$%sFcontrol25(0)#$";
+sFcontrol0[26] = "$%sFcontrol26(0)#$";
+sFcontrol0[27] = "$%sFcontrol27(0)#$";
+sFcontrol0[28] = "$%sFcontrol28(0)#$";
+
+var discardPort0 = new Array();
+discardPort0[1] = "$%discardPort1(0)#$";
+discardPort0[2] = "$%discardPort2(0)#$";
+discardPort0[3] = "$%discardPort3(0)#$";
+discardPort0[4] = "$%discardPort4(0)#$";
+discardPort0[5] = "$%discardPort5(0)#$";
+discardPort0[6] = "$%discardPort6(0)#$";
+discardPort0[7] = "$%discardPort7(0)#$";
+discardPort0[8] = "$%discardPort8(0)#$";
+discardPort0[9] = "$%discardPort9(0)#$";
+discardPort0[10] = "$%discardPort10(0)#$";
+discardPort0[11] = "$%discardPort11(0)#$";
+discardPort0[12] = "$%discardPort12(0)#$";
+discardPort0[13] = "$%discardPort13(0)#$";
+discardPort0[14] = "$%discardPort14(0)#$";
+discardPort0[15] = "$%discardPort15(0)#$";
+discardPort0[16] = "$%discardPort16(0)#$";
+discardPort0[17] = "$%discardPort17(0)#$";
+discardPort0[18] = "$%discardPort18(0)#$";
+discardPort0[19] = "$%discardPort19(0)#$";
+discardPort0[20] = "$%discardPort20(0)#$";
+discardPort0[21] = "$%discardPort21(0)#$";
+discardPort0[22] = "$%discardPort22(0)#$";
+discardPort0[23] = "$%discardPort23(0)#$";
+discardPort0[24] = "$%discardPort24(0)#$";
+discardPort0[25] = "$%discardPort25(0)#$";
+discardPort0[26] = "$%discardPort26(0)#$";
+discardPort0[27] = "$%discardPort27(0)#$";
+discardPort0[28] = "$%discardPort28(0)#$";
+
+var discardPort1= new Array();
+discardPort1[1] = "$%discardPort1(1)#$";
+discardPort1[2] = "$%discardPort2(1)#$";
+discardPort1[3] = "$%discardPort3(1)#$";
+discardPort1[4] = "$%discardPort4(1)#$";
+discardPort1[5] = "$%discardPort5(1)#$";
+discardPort1[6] = "$%discardPort6(1)#$";
+discardPort1[7] = "$%discardPort7(1)#$";
+discardPort1[8] = "$%discardPort8(1)#$";
+discardPort1[9] = "$%discardPort9(1)#$";
+discardPort1[10] = "$%discardPort10(1)#$";
+discardPort1[11] = "$%discardPort11(1)#$";
+discardPort1[12] = "$%discardPort12(1)#$";
+discardPort1[13] = "$%discardPort13(1)#$";
+discardPort1[14] = "$%discardPort14(1)#$";
+discardPort1[15] = "$%discardPort15(1)#$";
+discardPort1[16] = "$%discardPort16(1)#$";
+discardPort1[17] = "$%discardPort17(1)#$";
+discardPort1[18] = "$%discardPort18(1)#$";
+discardPort1[19] = "$%discardPort19(1)#$";
+discardPort1[20] = "$%discardPort20(1)#$";
+discardPort1[21] = "$%discardPort21(1)#$";
+discardPort1[22] = "$%discardPort22(1)#$";
+discardPort1[23] = "$%discardPort23(1)#$";
+discardPort1[24] = "$%discardPort24(1)#$";
+discardPort1[25] = "$%discardPort25(1)#$";
+discardPort1[26] = "$%discardPort26(1)#$";
+discardPort1[27] = "$%discardPort27(1)#$";
+discardPort1[28] = "$%discardPort28(1)#$";
+
+var discardPort2 = new Array();
+discardPort2[1] = "$%discardPort1(2)#$";
+discardPort2[2] = "$%discardPort2(2)#$";
+discardPort2[3] = "$%discardPort3(2)#$";
+discardPort2[4] = "$%discardPort4(2)#$";
+discardPort2[5] = "$%discardPort5(2)#$";
+discardPort2[6] = "$%discardPort6(2)#$";
+discardPort2[7] = "$%discardPort7(2)#$";
+discardPort2[8] = "$%discardPort8(2)#$";
+discardPort2[9] = "$%discardPort9(2)#$";
+discardPort2[10] = "$%discardPort10(2)#$";
+discardPort2[11] = "$%discardPort11(2)#$";
+discardPort2[12] = "$%discardPort12(2)#$";
+discardPort2[13] = "$%discardPort13(2)#$";
+discardPort2[14] = "$%discardPort14(2)#$";
+discardPort2[15] = "$%discardPort15(2)#$";
+discardPort2[16] = "$%discardPort16(2)#$";
+discardPort2[17] = "$%discardPort17(2)#$";
+discardPort2[18] = "$%discardPort18(2)#$";
+discardPort2[19] = "$%discardPort19(2)#$";
+discardPort2[20] = "$%discardPort20(2)#$";
+discardPort2[21] = "$%discardPort21(2)#$";
+discardPort2[22] = "$%discardPort22(2)#$";
+discardPort2[23] = "$%discardPort23(2)#$";
+discardPort2[24] = "$%discardPort24(2)#$";
+discardPort2[25] = "$%discardPort25(2)#$";
+discardPort2[26] = "$%discardPort26(2)#$";
+discardPort2[27] = "$%discardPort27(2)#$";
+discardPort2[28] = "$%discardPort28(2)#$";
+
+var idName="";
+function setCurState()
+{
+	for(i=1;i<=portNum;i++)
+	{
+		/*
+		idName = "rxPause"+i;
+		if(portRxPause[i-1] == 1)
+			document.getElementById(idName).checked = "true";
+		idName = "txPause"+i;
+		if(portTxPause[i-1] == 1)
+			document.getElementById(idName).checked = "true";
+			*/
+			
+		idName = "ljzt"+i;		
+		if(ljzt[i-1]==1)
+			document.getElementById(idName).value  = "连接";
+		else
+			document.getElementById(idName).value = "断开";
+		
+		idName = "type"+i;
+		if(type[i-1]==1)
+			document.getElementById(idName).value = "电口";
+		else
+			document.getElementById(idName).value = "光口";
+			
+				
+		idName = "curmode"+i;
+		if(curMode[i-1]==0)
+			document.getElementById(idName).value = "自适应";
+		else if(curMode[i-1]==1)
+			document.getElementById(idName).value = "100M全双工";
+		else if(curMode[i-1]==2)
+			document.getElementById(idName).value = "100M半双工";
+		else if(curMode[i-1]==3)
+			document.getElementById(idName).value = "10M全双工";
+		else if(curMode[i-1]==4)
+			document.getElementById(idName).value = "10M半双工";
+		else if(curMode[i-1]==5)
+			document.getElementById(idName).value = "1000M全双工";
+		else if(curMode[i-1]==6)
+			document.getElementById(idName).value = "1000M半双工";
+		else 
+			document.getElementById(idName).value = "Link Down";
+		idName = "sPortMode"+i;
+		if(type[i-1] != 1 )
+		{
+			document.getElementById("sPortMode"+i).disabled = true;
+			//document.getElementById("sFcontrol"+i).disabled = true;
+			}
+			
+	/*		*/
+	}
+}
+
+function submitForm0(){
+  var idName = "", descVal = "";
+  var doc = document.form0;
+  doc.portConfigEnableStr.value = "";
+  doc.sPortModeStr.value = "";
+  doc.sFcontrolStr.value = "";
+  doc.discardPortStr.value = "";
+  doc.sMdixStr.value = "";
+  
+  for(var i = 1; i <= portNum; i++){
+  	idName = "portDesc" + i;
+  	descVal = document.getElementById(idName).value;
+  	if(descVal != "" && isChinese(descVal)){
+  	  alert("端口 " + convert_tomodport(i) + " 的描述内容中含有汉字！");
+  	  return false;
+  	}
+  	if(!checkQuote(descVal)){
+  	  alert("端口 " + convert_tomodport(i) + " 的描述内容中含有引号！");
+  	  return false;
+  	}
+  	left_trim(document.getElementById(idName));
+	  right_trim(document.getElementById(idName));
+  }
+  for(var i = 1; i <= portNum; i++){
+    doc.portConfigEnableStr.value += document.getElementById("portConfigEnable" + i).value;
+    doc.sPortModeStr.value += document.getElementById("sPortMode" + i).value;
+    doc.sFcontrolStr.value += document.getElementById("sFcontrol" + i).value;
+    doc.discardPortStr.value += document.getElementById("discardPort" + i).value;
+    if(document.getElementById("portDesc" + i).value == "") document.getElementById("portDesc" + i).value = " ";
+    doc.portDescStr.value += document.getElementById("portDesc" + i).value + "'";
+  }
+  doc.portDescStr.value = doc.portDescStr.value.substring(0, doc.portDescStr.value.length-1);
+  doc.submit();
+}
+
+function display(){
+changebgcolor();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('port'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form id="form0" name="form0" method="post" action="port.html">
+  	<input type="hidden" name="portConfigEnableStr" value="$%portConfigEnableStr#$">
+  	<input type="hidden" name="sPortModeStr" value="$%sPortModeStr#$">
+  	<input type="hidden" name="sFcontrolStr" value="$%sFcontrolStr#$">
+  	<input type="hidden" name="discardPortStr" value="$%discardPortStr#$">
+  	<input type="hidden" name="portDescStr" value="$%portDescStr#$">
+  	<input type="hidden" name="sMdixStr" value="$%sMdixStr#$">
+  </form>
+  <form id="form1" name="form1" method="post" action="port.html">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td  class=Tablelist id=tabs name=tabs>端口配置</td>
+  </tr>
+</table>
+
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <TR    align="center" height=22>
+      <TD width="8%"   nowrap >端口</TD>
+      <TD width="15%"   nowrap >描述</TD>
+      <TD width="11%"   nowrap >状态</TD>
+      <TD width="10%"   nowrap >连接状态</TD>
+      <TD width="11%"   nowrap >类型</TD>
+      <TD width="12%"   nowrap >当前模式</TD>
+      <TD width="11%"   nowrap >配置模式</TD>
+      <TD width="11%"   nowrap >流控</TD>
+      <TD width="11%"   nowrap >丢弃</TD>
+    </TR>
+    
+    <script language= "javascript">
+	  for(var i = 1; i <= portNum; i++)
+	  {	
+	  	document.write(" <TR align='center' height=22>");
+		document.write(" <td>"+i+"</td>");
+		
+		document.write("<td ><input type='text' name='portDesc"+i+"' id='portDesc"+i+"' size='24' maxlength='22' value='"+portDesc[i]+"'></td>");
+		document.write("<td ><select name='portConfigEnable"+i+"' id='portConfigEnable"+i+"'>");
+	  	document.write("<option value='1' "+portConfigEnable1[i]+">启用</option>");
+		document.write("<option value='0' "+portConfigEnable0[i]+">禁用</option>");
+		document.write("</select></td>");
+		
+		document.write("<td ><input name='ljzt"+i+"' type='text'  readonly='readonly' class='disableText' id='ljzt"+i+"' size='4' ></td>");
+		document.write("<td ><input name='type"+i+"' type='text'  readonly='readonly' class='disableText' id='type"+i+"' size='4' ></td>");
+		document.write("<td ><input name='curmode"+i+"' type='text'  readonly='readonly' class='disableText1' id='curmode"+i+"'></td>");
+		
+		document.write("<td ><select name='sPortMode"+i+"' id='sPortMode"+i+"'>");
+		document.write("<option value='0' "+PortMode0[i]+">自适应</option>");
+		document.write("<option value='1' "+PortMode1[i]+">100M全双工</option>");
+		document.write("<option value='2' "+PortMode2[i]+">100M半双工</option>");
+		document.write("<option value='3' "+PortMode3[i]+">10M全双工</option>");
+		document.write("<option value='4' "+PortMode4[i]+">10M半双工</option>");
+		document.write("</select></td>");
+		
+		document.write("<td ><select name='sFcontrol"+i+"' id='sFcontrol"+i+"'>");
+		document.write("<option value='1' "+sFcontrol1[i]+">启用</option>");
+		document.write("<option value='0' "+sFcontrol0[i]+">禁用</option>");
+		document.write("</select></td>");
+		
+		document.write("<td ><select name='discardPort"+i+"' id='discardPort"+i+"'>");
+		document.write("<option value='0' "+discardPort0[i]+">None</option>");
+		document.write("<option value='1' "+discardPort1[i]+">All</option>");
+		document.write("<option value='2' "+discardPort2[i]+">Untag</option>");
+		document.write("</select></td>");
+		document.write("</tr>");
+	  }
+	 </script>
+      
+    <tr>
+     <td class="partition" colspan="32">&nbsp;
+      <input name="ddddd" type="button" class="button1" id="ddddd"  onclick="submitForm0()"  value="提交">
+     </td>
+    </tr>
+<script  language="javascript">
+setCurState();
+    </script>
+  </table>
+</form>
+
+ 
+<a name="bottom"></a></BODY></HTML>
+
+
+
+

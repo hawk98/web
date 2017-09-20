@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>Factory</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+
+}
+
+function resetconfig()
+{	
+	if(confirm("您确定要恢复为默认设置吗？"))
+	{
+		if(document.getElementById("c1").checked)
+			document.form1.Isclearip.value = 1;
+		else
+			document.form1.Isclearip.value = 0;
+		
+		
+		document.form1.submit();
+	}
+	return;	
+}
+</script>
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('factory'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+ <form id="form1" name="form1" method="post" action="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>恢复出厂设置</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="27%" rowspan="2" valign="top">&nbsp;</TD>
+      <td ><input type="checkbox" name="checkbox" value="checkbox" id="c1">
+        清除IP<span class="Tablelist">
+        <input type="hidden" name="Isclearip" id="Isclearip"/>
+        </span></td>
+    </TR>
+    <TR height=22>
+      <td height="136" style="background-color:#FFF">
+        <br>
+        <br>
+        <br>
+        <span class="update_ok" >请按“恢复”按钮，以恢复设备的出厂默认设置。</span><br>
+        <br>
+        <br>
+        <br></td>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="恢复"    onclick="resetconfig()">
+    </div></td>
+    </tr>
+</TABLE>
+  </FORM>
+
+</BODY></HTML>

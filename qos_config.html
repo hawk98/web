@@ -1,0 +1,678 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<SCRIPT LANGUAGE="javascript">
+function display()
+{
+changebgcolor();
+changebgcolor2();
+}
+function quickSet()
+{
+	document.getElementById("QosConfigQuickFlag").value = 1;
+	document.form1.submit();
+}
+function dhcpSet()
+{
+	document.getElementById("QosConfigQuickFlag").value = 2;
+	document.form1.submit();
+}
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('qos_config'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form name="form1" method="post" >
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>802.1P优先级队列</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="25%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">802.1P优先级0的<span class="partition">队列值</span></span></div></TD>
+      <TD width="25%" ><span class="crons">
+        <select name="8021pQosClassNum1" id="8021pQosClassNum1">
+          <option value="0" $%8021pQosClassNum1(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum1(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum1(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum1(3)#$>3</option>
+        </select>
+      </span></TD>
+      <TD width="25%" >&nbsp;&nbsp;<span class="td25">802.1P优先级1的<span class="partition">队列值</span></span></TD>
+      <TD width="25%" ><span class="crons">
+        <select name="8021pQosClassNum2" id="8021pQosClassNum2">
+          <option value="0" $%8021pQosClassNum2(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum2(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum2(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum2(3)#$>3</option>
+        </select>
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">802.1P优先级2的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum3" id="8021pQosClassNum3">
+          <option value="0" $%8021pQosClassNum3(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum3(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum3(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum3(3)#$>3</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">802.1P优先级3的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum4" id="8021pQosClassNum4">
+          <option value="0" $%8021pQosClassNum4(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum4(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum4(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum4(3)#$>3</option>
+        </select>
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">802.1P优先级4的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum5" id="8021pQosClassNum5">
+          <option value="0" $%8021pQosClassNum5(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum5(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum5(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum5(3)#$>3</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">802.1P优先级5的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum6" id="8021pQosClassNum6">
+          <option value="0" $%8021pQosClassNum6(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum6(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum6(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum6(3)#$>3</option>
+        </select>
+      </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">802.1P优先级6的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum7" id="8021pQosClassNum7">
+          <option value="0" $%8021pQosClassNum7(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum7(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum7(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum7(3)#$>3</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">802.1P优先级7的<span class="partition">队列值</span></span></TD>
+      <TD ><span class="crons">
+        <select name="8021pQosClassNum8" id="8021pQosClassNum8">
+          <option value="0" $%8021pQosClassNum8(0)#$>0</option>
+          <option value="1" $%8021pQosClassNum8(1)#$>1</option>
+          <option value="2" $%8021pQosClassNum8(2)#$>2</option>
+          <option value="3" $%8021pQosClassNum8(3)#$>3</option>
+        </select>
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提交"  onclick="checkMode()" >
+    </td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td width="48%"  class=Tablelist id=tabs name=tabs><nobr>DSCP优先级</nobr></td>
+    <td width="52%"   class="tablenew" id=tabs name=tabs><div align="right">
+      <span class="crons">快速设置：       DSCP从
+      <input name="tqosDSCPStart" type="text" id="tqosDSCPStart" size="4" maxlength="2" / VALUE="$%tqosDSCPStart#$">
+到
+<input name="tqosDSCPEnd" type="text" id="tqosDSCPEnd" size="4" maxlength="2" / VALUE="$%tqosDSCPEnd#$">
+队列
+<select name="DSCPClassNumQuick" id="DSCPClassNumQuick">
+  <option value="0" $%DSCPClassNumQuick(0)#$>0</option>
+  <option value="1" $%DSCPClassNumQuick(1)#$>1</option>
+  <option value="2" $%DSCPClassNumQuick(2)#$>2</option>
+  <option value="3" $%DSCPClassNumQuick(3)#$>3</option>
+</select>
+(DSCP:0-63)
+<input type="button" class="button3" name="button2" id="button2" value="快速设置"  onclick="quickSet()"/>
+<input type="hidden" name="QosConfigQuickFlag" id="QosConfigQuickFlag"  value="$%QosConfigQuickFlag#$"/>
+      </span>
+    </div></td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table2" class="tablebord">
+  <TBODY>
+    <TR height=22 align="center">
+      <TD width="12%" valign="top"><div align="center"><span class="partition">DSCP</span></div></TD>
+      <td width="12%" class="partition">队列值</td>
+      <td width="12%" class="partition">DSCP</td>
+      <td width="13%" class="partition">队列值</td>
+      <td width="12%" class="partition">DSCP</td>
+      <td width="13%" class="partition">队列值</td>
+      <td width="13%" class="partition">DSCP</td>
+      <td width="13%" class="partition">队列值</td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">0</TD>
+      <td class="crons"><select name="DSCPClassNum1" id="DSCPClassNum1">
+          <option value="0" $%DSCPClassNum1(0)#$>0</option>
+          <option value="1" $%DSCPClassNum1(1)#$>1</option>
+          <option value="2" $%DSCPClassNum1(2)#$>2</option>
+          <option value="3" $%DSCPClassNum1(3)#$>3</option>
+      </select></td>
+      <td class="crons">1</td>
+      <td class="crons"><select name="DSCPClassNum2" id="DSCPClassNum2">
+          <option value="0" $%DSCPClassNum2(0)#$>0</option>
+          <option value="1" $%DSCPClassNum2(1)#$>1</option>
+          <option value="2" $%DSCPClassNum2(2)#$>2</option>
+          <option value="3" $%DSCPClassNum2(3)#$>3</option>
+      </select></td>
+      <td class="crons">2</td>
+      <td class="crons"><select name="DSCPClassNum3" id="DSCPClassNum3">
+          <option value="0" $%DSCPClassNum3(0)#$>0</option>
+          <option value="1" $%DSCPClassNum3(1)#$>1</option>
+          <option value="2" $%DSCPClassNum3(2)#$>2</option>
+          <option value="3" $%DSCPClassNum3(3)#$>3</option>
+      </select></td>
+      <td class="crons">3</td>
+      <td class="crons"><select name="DSCPClassNum4" id="DSCPClassNum4">
+          <option value="0" $%DSCPClassNum4(0)#$>0</option>
+          <option value="1" $%DSCPClassNum4(1)#$>1</option>
+          <option value="2" $%DSCPClassNum4(2)#$>2</option>
+          <option value="3" $%DSCPClassNum4(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">4</TD>
+      <td class="crons"><select name="DSCPClassNum5" id="DSCPClassNum5">
+          <option value="0" $%DSCPClassNum5(0)#$>0</option>
+          <option value="1" $%DSCPClassNum5(1)#$>1</option>
+          <option value="2" $%DSCPClassNum5(2)#$>2</option>
+          <option value="3" $%DSCPClassNum5(3)#$>3</option>
+      </select></td>
+      <td class="crons">5</td>
+      <td class="crons"><select name="DSCPClassNum6" id="DSCPClassNum6">
+          <option value="0" $%DSCPClassNum6(0)#$>0</option>
+          <option value="1" $%DSCPClassNum6(1)#$>1</option>
+          <option value="2" $%DSCPClassNum6(2)#$>2</option>
+          <option value="3" $%DSCPClassNum6(3)#$>3</option>
+      </select></td>
+      <td class="crons">6</td>
+      <td class="crons"><select name="DSCPClassNum7" id="DSCPClassNum7">
+          <option value="0" $%DSCPClassNum7(0)#$>0</option>
+          <option value="1" $%DSCPClassNum7(1)#$>1</option>
+          <option value="2" $%DSCPClassNum7(2)#$>2</option>
+          <option value="3" $%DSCPClassNum7(3)#$>3</option>
+      </select></td>
+      <td class="crons">7</td>
+      <td class="crons"><select name="DSCPClassNum8" id="DSCPClassNum8">
+          <option value="0" $%DSCPClassNum8(0)#$>0</option>
+          <option value="1" $%DSCPClassNum8(1)#$>1</option>
+          <option value="2" $%DSCPClassNum8(2)#$>2</option>
+          <option value="3" $%DSCPClassNum8(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">8</TD>
+      <td class="crons"><select name="DSCPClassNum9" id="DSCPClassNum9">
+          <option value="0" $%DSCPClassNum9(0)#$>0</option>
+          <option value="1" $%DSCPClassNum9(1)#$>1</option>
+          <option value="2" $%DSCPClassNum9(2)#$>2</option>
+          <option value="3" $%DSCPClassNum9(3)#$>3</option>
+      </select></td>
+      <td class="crons">9</td>
+      <td class="crons"><select name="DSCPClassNum10" id="DSCPClassNum10">
+          <option value="0" $%DSCPClassNum10(0)#$>0</option>
+          <option value="1" $%DSCPClassNum10(1)#$>1</option>
+          <option value="2" $%DSCPClassNum10(2)#$>2</option>
+          <option value="3" $%DSCPClassNum10(3)#$>3</option>
+      </select></td>
+      <td class="crons">10</td>
+      <td class="crons"><select name="DSCPClassNum11" id="DSCPClassNum11">
+          <option value="0" $%DSCPClassNum11(0)#$>0</option>
+          <option value="1" $%DSCPClassNum11(1)#$>1</option>
+          <option value="2" $%DSCPClassNum11(2)#$>2</option>
+          <option value="3" $%DSCPClassNum11(3)#$>3</option>
+      </select></td>
+      <td class="crons">11</td>
+      <td class="crons"><select name="DSCPClassNum12" id="DSCPClassNum12">
+          <option value="0" $%DSCPClassNum12(0)#$>0</option>
+          <option value="1" $%DSCPClassNum12(1)#$>1</option>
+          <option value="2" $%DSCPClassNum12(2)#$>2</option>
+          <option value="3" $%DSCPClassNum12(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">12</TD>
+      <td class="crons"><select name="DSCPClassNum13" id="DSCPClassNum13">
+          <option value="0" $%DSCPClassNum13(0)#$>0</option>
+          <option value="1" $%DSCPClassNum13(1)#$>1</option>
+          <option value="2" $%DSCPClassNum13(2)#$>2</option>
+          <option value="3" $%DSCPClassNum13(3)#$>3</option>
+      </select></td>
+      <td class="crons">13</td>
+      <td class="crons"><select name="DSCPClassNum14" id="DSCPClassNum14">
+          <option value="0" $%DSCPClassNum14(0)#$>0</option>
+          <option value="1" $%DSCPClassNum14(1)#$>1</option>
+          <option value="2" $%DSCPClassNum14(2)#$>2</option>
+          <option value="3" $%DSCPClassNum14(3)#$>3</option>
+      </select></td>
+      <td class="crons">14</td>
+      <td class="crons"><select name="DSCPClassNum15" id="DSCPClassNum15">
+          <option value="0" $%DSCPClassNum15(0)#$>0</option>
+          <option value="1" $%DSCPClassNum15(1)#$>1</option>
+          <option value="2" $%DSCPClassNum15(2)#$>2</option>
+          <option value="3" $%DSCPClassNum15(3)#$>3</option>
+      </select></td>
+      <td class="crons">15</td>
+      <td class="crons"><select name="DSCPClassNum16" id="DSCPClassNum16">
+          <option value="0" $%DSCPClassNum16(0)#$>0</option>
+          <option value="1" $%DSCPClassNum16(1)#$>1</option>
+          <option value="2" $%DSCPClassNum16(2)#$>2</option>
+          <option value="3" $%DSCPClassNum16(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">16</TD>
+      <td class="crons"><select name="DSCPClassNum17" id="DSCPClassNum17">
+          <option value="0" $%DSCPClassNum17(0)#$>0</option>
+          <option value="1" $%DSCPClassNum17(1)#$>1</option>
+          <option value="2" $%DSCPClassNum17(2)#$>2</option>
+          <option value="3" $%DSCPClassNum17(3)#$>3</option>
+      </select></td>
+      <td class="crons">17</td>
+      <td class="crons"><select name="DSCPClassNum18" id="DSCPClassNum18">
+          <option value="0" $%DSCPClassNum18(0)#$>0</option>
+          <option value="1" $%DSCPClassNum18(1)#$>1</option>
+          <option value="2" $%DSCPClassNum18(2)#$>2</option>
+          <option value="3" $%DSCPClassNum18(3)#$>3</option>
+      </select></td>
+      <td class="crons">18</td>
+      <td class="crons"><select name="DSCPClassNum19" id="DSCPClassNum19">
+          <option value="0" $%DSCPClassNum19(0)#$>0</option>
+          <option value="1" $%DSCPClassNum19(1)#$>1</option>
+          <option value="2" $%DSCPClassNum19(2)#$>2</option>
+          <option value="3" $%DSCPClassNum19(3)#$>3</option>
+      </select></td>
+      <td class="crons">19</td>
+      <td class="crons"><select name="DSCPClassNum20" id="DSCPClassNum20">
+          <option value="0" $%DSCPClassNum20(0)#$>0</option>
+          <option value="1" $%DSCPClassNum20(1)#$>1</option>
+          <option value="2" $%DSCPClassNum20(2)#$>2</option>
+          <option value="3" $%DSCPClassNum20(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">20</TD>
+      <td class="crons"><select name="DSCPClassNum21" id="DSCPClassNum21">
+          <option value="0" $%DSCPClassNum21(0)#$>0</option>
+          <option value="1" $%DSCPClassNum21(1)#$>1</option>
+          <option value="2" $%DSCPClassNum21(2)#$>2</option>
+          <option value="3" $%DSCPClassNum21(3)#$>3</option>
+      </select></td>
+      <td class="crons">21</td>
+      <td class="crons"><select name="DSCPClassNum22" id="DSCPClassNum22">
+          <option value="0" $%DSCPClassNum22(0)#$>0</option>
+          <option value="1" $%DSCPClassNum22(1)#$>1</option>
+          <option value="2" $%DSCPClassNum22(2)#$>2</option>
+          <option value="3" $%DSCPClassNum22(3)#$>3</option>
+      </select></td>
+      <td class="crons">22</td>
+      <td class="crons"><select name="DSCPClassNum23" id="DSCPClassNum23">
+          <option value="0" $%DSCPClassNum23(0)#$>0</option>
+          <option value="1" $%DSCPClassNum23(1)#$>1</option>
+          <option value="2" $%DSCPClassNum23(2)#$>2</option>
+          <option value="3" $%DSCPClassNum23(3)#$>3</option>
+      </select></td>
+      <td class="crons">23</td>
+      <td class="crons"><select name="DSCPClassNum24" id="DSCPClassNum24">
+          <option value="0" $%DSCPClassNum24(0)#$>0</option>
+
+          <option value="1" $%DSCPClassNum24(1)#$>1</option>
+          <option value="2" $%DSCPClassNum24(2)#$>2</option>
+          <option value="3" $%DSCPClassNum24(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">24</TD>
+      <td class="crons"><select name="DSCPClassNum25" id="DSCPClassNum25">
+          <option value="0" $%DSCPClassNum25(0)#$>0</option>
+          <option value="1" $%DSCPClassNum25(1)#$>1</option>
+          <option value="2" $%DSCPClassNum25(2)#$>2</option>
+          <option value="3" $%DSCPClassNum25(3)#$>3</option>
+      </select></td>
+      <td class="crons">25</td>
+      <td class="crons"><select name="DSCPClassNum26" id="DSCPClassNum26">
+          <option value="0" $%DSCPClassNum26(0)#$>0</option>
+          <option value="1" $%DSCPClassNum26(1)#$>1</option>
+          <option value="2" $%DSCPClassNum26(2)#$>2</option>
+          <option value="3" $%DSCPClassNum26(3)#$>3</option>
+      </select></td>
+      <td class="crons">26</td>
+      <td class="crons"><select name="DSCPClassNum27" id="DSCPClassNum27">
+          <option value="0" $%DSCPClassNum27(0)#$>0</option>
+          <option value="1" $%DSCPClassNum27(1)#$>1</option>
+          <option value="2" $%DSCPClassNum27(2)#$>2</option>
+          <option value="3" $%DSCPClassNum27(3)#$>3</option>
+      </select></td>
+      <td class="crons">27</td>
+      <td class="crons"><select name="DSCPClassNum28" id="DSCPClassNum28">
+          <option value="0" $%DSCPClassNum28(0)#$>0</option>
+          <option value="1" $%DSCPClassNum28(1)#$>1</option>
+          <option value="2" $%DSCPClassNum28(2)#$>2</option>
+          <option value="3" $%DSCPClassNum28(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">28</TD>
+      <td class="crons"><select name="DSCPClassNum29" id="DSCPClassNum29">
+          <option value="0" $%DSCPClassNum29(0)#$>0</option>
+          <option value="1" $%DSCPClassNum29(1)#$>1</option>
+          <option value="2" $%DSCPClassNum29(2)#$>2</option>
+          <option value="3" $%DSCPClassNum29(3)#$>3</option>
+      </select></td>
+      <td class="crons">29</td>
+      <td class="crons"><select name="DSCPClassNum30" id="DSCPClassNum30">
+          <option value="0" $%DSCPClassNum30(0)#$>0</option>
+          <option value="1" $%DSCPClassNum30(1)#$>1</option>
+          <option value="2" $%DSCPClassNum30(2)#$>2</option>
+          <option value="3" $%DSCPClassNum30(3)#$>3</option>
+      </select></td>
+      <td class="crons">30</td>
+      <td class="crons"><select name="DSCPClassNum31" id="DSCPClassNum31">
+          <option value="0" $%DSCPClassNum31(0)#$>0</option>
+          <option value="1" $%DSCPClassNum31(1)#$>1</option>
+          <option value="2" $%DSCPClassNum31(2)#$>2</option>
+          <option value="3" $%DSCPClassNum31(3)#$>3</option>
+      </select></td>
+      <td class="crons">31</td>
+      <td class="crons"><select name="DSCPClassNum32" id="DSCPClassNum32">
+          <option value="0" $%DSCPClassNum32(0)#$>0</option>
+          <option value="1" $%DSCPClassNum32(1)#$>1</option>
+          <option value="2" $%DSCPClassNum32(2)#$>2</option>
+          <option value="3" $%DSCPClassNum32(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">32</TD>
+      <td class="crons"><select name="DSCPClassNum33" id="DSCPClassNum33">
+          <option value="0" $%DSCPClassNum33(0)#$>0</option>
+          <option value="1" $%DSCPClassNum33(1)#$>1</option>
+          <option value="2" $%DSCPClassNum33(2)#$>2</option>
+          <option value="3" $%DSCPClassNum33(3)#$>3</option>
+      </select></td>
+      <td class="crons">33</td>
+      <td class="crons"><select name="DSCPClassNum34" id="DSCPClassNum34">
+          <option value="0" $%DSCPClassNum34(0)#$>0</option>
+          <option value="1" $%DSCPClassNum34(1)#$>1</option>
+          <option value="2" $%DSCPClassNum34(2)#$>2</option>
+          <option value="3" $%DSCPClassNum34(3)#$>3</option>
+      </select></td>
+      <td class="crons">34</td>
+      <td class="crons"><select name="DSCPClassNum35" id="DSCPClassNum35">
+          <option value="0" $%DSCPClassNum35(0)#$>0</option>
+          <option value="1" $%DSCPClassNum35(1)#$>1</option>
+          <option value="2" $%DSCPClassNum35(2)#$>2</option>
+          <option value="3" $%DSCPClassNum35(3)#$>3</option>
+      </select></td>
+      <td class="crons">35</td>
+      <td class="crons"><select name="DSCPClassNum36" id="DSCPClassNum36">
+          <option value="0" $%DSCPClassNum36(0)#$>0</option>
+          <option value="1" $%DSCPClassNum36(1)#$>1</option>
+          <option value="2" $%DSCPClassNum36(2)#$>2</option>
+          <option value="3" $%DSCPClassNum36(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">36</TD>
+      <td class="crons"><select name="DSCPClassNum37" id="DSCPClassNum37">
+          <option value="0" $%DSCPClassNum37(0)#$>0</option>
+          <option value="1" $%DSCPClassNum37(1)#$>1</option>
+          <option value="2" $%DSCPClassNum37(2)#$>2</option>
+          <option value="3" $%DSCPClassNum37(3)#$>3</option>
+      </select></td>
+      <td class="crons">37</td>
+      <td class="crons"><select name="DSCPClassNum38" id="DSCPClassNum38">
+          <option value="0" $%DSCPClassNum38(0)#$>0</option>
+          <option value="1" $%DSCPClassNum38(1)#$>1</option>
+          <option value="2" $%DSCPClassNum38(2)#$>2</option>
+          <option value="3" $%DSCPClassNum38(3)#$>3</option>
+      </select></td>
+      <td class="crons">38</td>
+      <td class="crons"><select name="DSCPClassNum39" id="DSCPClassNum39">
+          <option value="0" $%DSCPClassNum39(0)#$>0</option>
+          <option value="1" $%DSCPClassNum39(1)#$>1</option>
+          <option value="2" $%DSCPClassNum39(2)#$>2</option>
+          <option value="3" $%DSCPClassNum39(3)#$>3</option>
+      </select></td>
+      <td class="crons">39</td>
+      <td class="crons"><select name="DSCPClassNum40" id="DSCPClassNum40">
+          <option value="0" $%DSCPClassNum40(0)#$>0</option>
+          <option value="1" $%DSCPClassNum40(1)#$>1</option>
+          <option value="2" $%DSCPClassNum40(2)#$>2</option>
+          <option value="3" $%DSCPClassNum40(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">40</TD>
+      <td class="crons"><select name="DSCPClassNum41" id="DSCPClassNum41">
+          <option value="0" $%DSCPClassNum41(0)#$>0</option>
+          <option value="1" $%DSCPClassNum41(1)#$>1</option>
+          <option value="2" $%DSCPClassNum41(2)#$>2</option>
+          <option value="3" $%DSCPClassNum41(3)#$>3</option>
+      </select></td>
+      <td class="crons">41</td>
+      <td class="crons"><select name="DSCPClassNum42" id="DSCPClassNum42">
+          <option value="0" $%DSCPClassNum42(0)#$>0</option>
+          <option value="1" $%DSCPClassNum42(1)#$>1</option>
+          <option value="2" $%DSCPClassNum42(2)#$>2</option>
+          <option value="3" $%DSCPClassNum42(3)#$>3</option>
+      </select></td>
+      <td class="crons">42</td>
+      <td class="crons"><select name="DSCPClassNum43" id="DSCPClassNum43">
+          <option value="0" $%DSCPClassNum43(0)#$>0</option>
+          <option value="1" $%DSCPClassNum43(1)#$>1</option>
+          <option value="2" $%DSCPClassNum43(2)#$>2</option>
+          <option value="3" $%DSCPClassNum43(3)#$>3</option>
+      </select></td>
+      <td class="crons">43</td>
+      <td class="crons"><select name="DSCPClassNum44" id="DSCPClassNum44">
+          <option value="0" $%DSCPClassNum44(0)#$>0</option>
+          <option value="1" $%DSCPClassNum44(1)#$>1</option>
+          <option value="2" $%DSCPClassNum44(2)#$>2</option>
+          <option value="3" $%DSCPClassNum44(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">44</TD>
+      <td class="crons"><select name="DSCPClassNum45" id="DSCPClassNum45">
+          <option value="0" $%DSCPClassNum45(0)#$>0</option>
+          <option value="1" $%DSCPClassNum45(1)#$>1</option>
+          <option value="2" $%DSCPClassNum45(2)#$>2</option>
+          <option value="3" $%DSCPClassNum45(3)#$>3</option>
+      </select></td>
+      <td class="crons">45</td>
+      <td class="crons"><select name="DSCPClassNum46" id="DSCPClassNum46">
+          <option value="0" $%DSCPClassNum46(0)#$>0</option>
+          <option value="1" $%DSCPClassNum46(1)#$>1</option>
+          <option value="2" $%DSCPClassNum46(2)#$>2</option>
+          <option value="3" $%DSCPClassNum46(3)#$>3</option>
+      </select></td>
+      <td class="crons">46</td>
+      <td class="crons"><select name="DSCPClassNum47" id="DSCPClassNum47">
+          <option value="0" $%DSCPClassNum47(0)#$>0</option>
+          <option value="1" $%DSCPClassNum47(1)#$>1</option>
+          <option value="2" $%DSCPClassNum47(2)#$>2</option>
+          <option value="3" $%DSCPClassNum47(3)#$>3</option>
+      </select></td>
+      <td class="crons">47</td>
+      <td class="crons"><select name="DSCPClassNum48" id="DSCPClassNum48">
+          <option value="0" $%DSCPClassNum48(0)#$>0</option>
+          <option value="1" $%DSCPClassNum48(1)#$>1</option>
+          <option value="2" $%DSCPClassNum48(2)#$>2</option>
+          <option value="3" $%DSCPClassNum48(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">48</TD>
+      <td class="crons"><select name="DSCPClassNum49" id="DSCPClassNum49">
+          <option value="0" $%DSCPClassNum49(0)#$>0</option>
+          <option value="1" $%DSCPClassNum49(1)#$>1</option>
+          <option value="2" $%DSCPClassNum49(2)#$>2</option>
+          <option value="3" $%DSCPClassNum49(3)#$>3</option>
+      </select></td>
+      <td class="crons">49</td>
+      <td class="crons"><select name="DSCPClassNum50" id="DSCPClassNum50">
+          <option value="0" $%DSCPClassNum50(0)#$>0</option>
+          <option value="1" $%DSCPClassNum50(1)#$>1</option>
+          <option value="2" $%DSCPClassNum50(2)#$>2</option>
+          <option value="3" $%DSCPClassNum50(3)#$>3</option>
+      </select></td>
+      <td class="crons">50</td>
+      <td class="crons"><select name="DSCPClassNum51" id="DSCPClassNum51">
+          <option value="0" $%DSCPClassNum51(0)#$>0</option>
+          <option value="1" $%DSCPClassNum51(1)#$>1</option>
+          <option value="2" $%DSCPClassNum51(2)#$>2</option>
+          <option value="3" $%DSCPClassNum51(3)#$>3</option>
+      </select></td>
+      <td class="crons">51</td>
+      <td class="crons"><select name="DSCPClassNum52" id="DSCPClassNum52">
+          <option value="0" $%DSCPClassNum52(0)#$>0</option>
+          <option value="1" $%DSCPClassNum52(1)#$>1</option>
+          <option value="2" $%DSCPClassNum52(2)#$>2</option>
+          <option value="3" $%DSCPClassNum52(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">52</TD>
+      <td class="crons"><select name="DSCPClassNum53" id="DSCPClassNum53">
+          <option value="0" $%DSCPClassNum53(0)#$>0</option>
+          <option value="1" $%DSCPClassNum53(1)#$>1</option>
+          <option value="2" $%DSCPClassNum53(2)#$>2</option>
+          <option value="3" $%DSCPClassNum53(3)#$>3</option>
+      </select></td>
+      <td class="crons">53</td>
+      <td class="crons"><select name="DSCPClassNum54" id="DSCPClassNum54">
+          <option value="0" $%DSCPClassNum54(0)#$>0</option>
+          <option value="1" $%DSCPClassNum54(1)#$>1</option>
+          <option value="2" $%DSCPClassNum54(2)#$>2</option>
+          <option value="3" $%DSCPClassNum54(3)#$>3</option>
+      </select></td>
+      <td class="crons">54</td>
+      <td class="crons"><select name="DSCPClassNum55" id="DSCPClassNum55">
+          <option value="0" $%DSCPClassNum55(0)#$>0</option>
+          <option value="1" $%DSCPClassNum55(1)#$>1</option>
+          <option value="2" $%DSCPClassNum55(2)#$>2</option>
+          <option value="3" $%DSCPClassNum55(3)#$>3</option>
+      </select></td>
+      <td class="crons">55</td>
+      <td class="crons"><select name="DSCPClassNum56" id="DSCPClassNum56">
+          <option value="0" $%DSCPClassNum56(0)#$>0</option>
+          <option value="1" $%DSCPClassNum56(1)#$>1</option>
+          <option value="2" $%DSCPClassNum56(2)#$>2</option>
+          <option value="3" $%DSCPClassNum56(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">56</TD>
+      <td class="crons"><select name="DSCPClassNum57" id="DSCPClassNum57">
+          <option value="0" $%DSCPClassNum57(0)#$>0</option>
+          <option value="1" $%DSCPClassNum57(1)#$>1</option>
+          <option value="2" $%DSCPClassNum57(2)#$>2</option>
+          <option value="3" $%DSCPClassNum57(3)#$>3</option>
+      </select></td>
+      <td class="crons">57</td>
+      <td class="crons"><select name="DSCPClassNum58" id="DSCPClassNum58">
+          <option value="0" $%DSCPClassNum58(0)#$>0</option>
+          <option value="1" $%DSCPClassNum58(1)#$>1</option>
+          <option value="2" $%DSCPClassNum58(2)#$>2</option>
+          <option value="3" $%DSCPClassNum58(3)#$>3</option>
+      </select></td>
+      <td class="crons">58</td>
+      <td class="crons"><select name="DSCPClassNum59" id="DSCPClassNum59">
+          <option value="0" $%DSCPClassNum59(0)#$>0</option>
+          <option value="1" $%DSCPClassNum59(1)#$>1</option>
+          <option value="2" $%DSCPClassNum59(2)#$>2</option>
+          <option value="3" $%DSCPClassNum59(3)#$>3</option>
+      </select></td>
+      <td class="crons">59</td>
+      <td class="crons"><select name="DSCPClassNum60" id="DSCPClassNum60">
+          <option value="0" $%DSCPClassNum60(0)#$>0</option>
+          <option value="1" $%DSCPClassNum60(1)#$>1</option>
+          <option value="2" $%DSCPClassNum60(2)#$>2</option>
+          <option value="3" $%DSCPClassNum60(3)#$>3</option>
+      </select></td>
+    </TR>
+    <TR height=22 align="center">
+      <TD valign="top">60</TD>
+      <td class="crons"><select name="DSCPClassNum61" id="DSCPClassNum61">
+          <option value="0" $%DSCPClassNum61(0)#$>0</option>
+          <option value="1" $%DSCPClassNum61(1)#$>1</option>
+          <option value="2" $%DSCPClassNum61(2)#$>2</option>
+          <option value="3" $%DSCPClassNum61(3)#$>3</option>
+      </select></td>
+      <td class="crons">61</td>
+      <td class="crons"><select name="DSCPClassNum62" id="DSCPClassNum62">
+          <option value="0" $%DSCPClassNum62(0)#$>0</option>
+          <option value="1" $%DSCPClassNum62(1)#$>1</option>
+          <option value="2" $%DSCPClassNum62(2)#$>2</option>
+          <option value="3" $%DSCPClassNum62(3)#$>3</option>
+      </select></td>
+      <td class="crons">62</td>
+      <td class="crons"><select name="DSCPClassNum63" id="DSCPClassNum63">
+          <option value="0" $%DSCPClassNum63(0)#$>0</option>
+          <option value="1" $%DSCPClassNum63(1)#$>1</option>
+          <option value="2" $%DSCPClassNum63(2)#$>2</option>
+          <option value="3" $%DSCPClassNum63(3)#$>3</option>
+      </select></td>
+      <td class="crons">63</td>
+      <td class="crons"><select name="DSCPClassNum64" id="DSCPClassNum64">
+          <option value="0" $%DSCPClassNum64(0)#$>0</option>
+          <option value="1" $%DSCPClassNum64(1)#$>1</option>
+          <option value="2" $%DSCPClassNum64(2)#$>2</option>
+          <option value="3" $%DSCPClassNum64(3)#$>3</option>
+      </select></td>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="32">&nbsp;
+    		<input name="b_submit22" class="button1" type="button" id="b_submit2" value="提交"  onclick="dhcpSet()">
+    	</td>
+    </tr>
+</TABLE>
+</form>
+</BODY></HTML>

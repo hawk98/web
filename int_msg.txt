@@ -1,0 +1,111 @@
+Error Number -- Message Mappings  
+
+The numbers represent the error numbers used in the RapidControl 
+System. The text following the '>' represents the corresponding message that 
+the RapidControl error handling mechanism will present to the indigenous system 
+upon reception of that error.  
+
+The only exception to this is the default message. The default message is the 
+message that the error handler passes on in the event it is unable to find the 
+correct mapping for an error number. "default" _must be_ in all lowercase for the 
+parsing to work properly.
+ 
+To "localize" the messages, simply translate the text following the '>' 
+into the relevant ASCII represention of the target language.
+
+Do not change any other text listings in this file ( or the parsing algorithm
+in msghdlr.c will not work properly ).  Make sure that each number ( or the "default"
+case ) is terminated by the '>' and each corresponding message is terminated 
+with a '%'. Also, the end of the error file _must be_ terminated with 'xxxx'.
+
+Begin Error Message Listings:
+-100> RC Mgmt: General Error%
+-101> RC Mgmt: No Data Is Available%
+-102> RC Mgmt: Could Not Be Found%
+-103> RC Mgmt: Access Is Denied%
+-104> RC Mgmt: Data Are Not Equal%
+-105> RC Mgmt: Illegal Value%
+
+-200> RC HTTP Post Engine: General Error%
+-201> RC HTTP Post Engine: No More MagicMarkups%
+
+-300> RC HTTP Get Engine: General Error%
+-301> RC HTTP Get Engine: Bad MagicMarkup%
+
+-400> RC Conversion: General Error%
+-401> RC Conversion: Incorrect Type%
+-402> RC Conversion: Overflow%
+-403> RC Conversion: Underflow%
+
+-500> RC Memory Manager: General Error%
+-501> RC Memory Manager: Bad Memory Size%
+-502> RC Memory Manager: Initialization Error%
+-503> RC Memory Manager: No Memory Available%
+-504> RC Memory Manager: Overlapping Memory Blocks%
+-505> RC Memory Manager: Bad Free%
+-506> RC Memory Manager: Memory Corruption%
+-507> RC Memory Manager: Invalid Length%
+ 
+-600> RC Decompression Module: General Error%
+-601> RC Decompression Module: Bad PKZIP File%
+-602> RC Decompression Module: Bad First Entry%
+-603> RC Decompression Module: GZIP File Not Deflated%
+-604> RC Decompression Module: Multipart GZIP Files%
+-605> RC Decompression Module: Invalid File Format%
+-606> RC Decompression Module: Format Violation%
+-607> RC Decompression Module: Length Mismatch%
+-608> RC Decompression Module: CRC Mismatch%
+-609> RC Decompression Module: Bad Data Length%
+
+-700> RC SMTP Module: General Error%
+-701> RC SMTP Module: Not Initialized%
+-702> RC SMTP Module: Automaton Operation Aborted%
+
+-800> RC Java: General Error%
+-801> RC Java: Data Length Not Found%
+-802> RC Java: Naming Service Database Empty%
+-803> RC Java: CRC Check Failed%
+-804> RC Java: Packet Header Error%
+-805> RC Java: Invalid Microtag%
+-806> RC Java: No Microtag%
+-807> RC Java: Bad Packet Received%
+
+-810> RC Protocol: General Error%
+-811> RC Protocol: Bad Header%
+-812> RC Protocol: Protocol Version Error%
+-813> RC Protocol: Unknown Message Type%
+-814> RC Protocol: Message Type Not Implemented%
+-815> RC Protocol: Bad Chunk%
+-816> RC Protocol: CRC Check Failed%
+-817> RC Protocol: Authorization failed%
+-818> RC Protocol: Connection failed%
+-819> RC Protocol: Response Packet Length Error%
+
+-840> RC Protocol: Bad OCP String%
+-841> RC Protocol: Bad Markup Name%
+-842> RC Protocol: Outgoing Chunk Length Error%
+
+-1000> RC Mgmt: General System Error%
+-1001> RC Mgmt: System Provided Memory Unavailable%
+-1002> RC Mgmt: System Socket Unexpected End Of Data%
+
+-1100> RC Mgmt: System Mutex Error%
+-1101> RC Mgmt: System Mutex Creation Error%
+-1102> RC Mgmt: System Mutex Wait Error%
+-1103> RC Mgmt: System Mutex Release Error%
+
+-1200> RC Mgmt: System Socket General Error%
+-1201> RC Mgmt: System Socket Creation Error%
+-1202> RC Mgmt: System Socket Bind Error%
+-1203> RC Mgmt: System Socket Thread Error%
+-1204> RC Mgmt: System Socket Listen Error%
+-1205> RC Mgmt: System Socket Accept Error%
+-1206> RC Mgmt: System Socket Create Task Error%
+-1207> RC Mgmt: System Socket Delete Error%
+-1208> RC Mgmt: System Socket Share Error%
+-1209> RC Mgmt: System Socket Start Error%
+-1210> RC Mgmt: System Socket Connect Error%
+
+default> RC Mgmt: Could Not Process Error Message%
+
+xxxx

@@ -1,0 +1,306 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+var portNum = $%portNum#$;
+
+var MirrorPort = new Array();
+MirrorPort[1] = "$%MirrorPort(1)#$";
+MirrorPort[2] = "$%MirrorPort(2)#$";
+MirrorPort[3] = "$%MirrorPort(3)#$";
+MirrorPort[4] = "$%MirrorPort(4)#$";
+MirrorPort[5] = "$%MirrorPort(5)#$";
+MirrorPort[6] = "$%MirrorPort(6)#$";
+MirrorPort[7] = "$%MirrorPort(7)#$";
+MirrorPort[8] = "$%MirrorPort(8)#$";
+MirrorPort[9] = "$%MirrorPort(9)#$";
+MirrorPort[10] = "$%MirrorPort(10)#$";
+MirrorPort[11] = "$%MirrorPort(11)#$";
+MirrorPort[12] = "$%MirrorPort(12)#$";
+MirrorPort[13] = "$%MirrorPort(13)#$";
+MirrorPort[14] = "$%MirrorPort(14)#$";
+MirrorPort[15] = "$%MirrorPort(15)#$";
+MirrorPort[16] = "$%MirrorPort(16)#$";
+MirrorPort[17] = "$%MirrorPort(17)#$";
+MirrorPort[18] = "$%MirrorPort(18)#$";
+MirrorPort[19] = "$%MirrorPort(19)#$";
+MirrorPort[20] = "$%MirrorPort(20)#$";
+MirrorPort[21] = "$%MirrorPort(21)#$";
+MirrorPort[22] = "$%MirrorPort(22)#$";
+MirrorPort[23] = "$%MirrorPort(23)#$";
+MirrorPort[24] = "$%MirrorPort(24)#$";
+MirrorPort[25] = "$%MirrorPort(25)#$";
+MirrorPort[26] = "$%MirrorPort(26)#$";
+MirrorPort[27] = "$%MirrorPort(27)#$";
+MirrorPort[28] = "$%MirrorPort(28)#$";
+
+var iMP = new Array();
+iMP[1] = "$%iMP1#$";
+iMP[2] = "$%iMP2#$";
+iMP[3] = "$%iMP3#$";
+iMP[4] = "$%iMP4#$";
+iMP[5] = "$%iMP5#$";
+iMP[6] = "$%iMP6#$";
+iMP[7] = "$%iMP7#$";
+iMP[8] = "$%iMP8#$";
+iMP[9] = "$%iMP9#$";
+iMP[10] = "$%iMP10#$";
+iMP[11] = "$%iMP11#$";
+iMP[12] = "$%iMP12#$";
+iMP[13] = "$%iMP13#$";
+iMP[14] = "$%iMP14#$";
+iMP[15] = "$%iMP15#$";
+iMP[16] = "$%iMP16#$";
+iMP[17] = "$%iMP17#$";
+iMP[18] = "$%iMP18#$";
+iMP[19] = "$%iMP19#$";
+iMP[20] = "$%iMP20#$";
+iMP[21] = "$%iMP21#$";
+iMP[22] = "$%iMP22#$";
+iMP[23] = "$%iMP23#$";
+iMP[24] = "$%iMP24#$";
+iMP[25] = "$%iMP25#$";
+iMP[26] = "$%iMP26#$";
+iMP[27] = "$%iMP27#$";
+iMP[28] = "$%iMP28#$";
+
+var eMP = new Array();
+eMP[1] = "$%eMP1#$";
+eMP[2] = "$%eMP2#$";
+eMP[3] = "$%eMP3#$";
+eMP[4] = "$%eMP4#$";
+eMP[5] = "$%eMP5#$";
+eMP[6] = "$%eMP6#$";
+eMP[7] = "$%eMP7#$";
+eMP[8] = "$%eMP8#$";
+eMP[9] = "$%eMP9#$";
+eMP[10] = "$%eMP10#$";
+eMP[11] = "$%eMP11#$";
+eMP[12] = "$%eMP12#$";
+eMP[13] = "$%eMP13#$";
+eMP[14] = "$%eMP14#$";
+eMP[15] = "$%eMP15#$";
+eMP[16] = "$%eMP16#$";
+eMP[17] = "$%eMP17#$";
+eMP[18] = "$%eMP18#$";
+eMP[19] = "$%eMP19#$";
+eMP[20] = "$%eMP20#$";
+eMP[21] = "$%eMP21#$";
+eMP[22] = "$%eMP22#$";
+eMP[23] = "$%eMP23#$";
+eMP[24] = "$%eMP24#$";
+eMP[25] = "$%eMP25#$";
+eMP[26] = "$%eMP26#$";
+eMP[27] = "$%eMP27#$";
+eMP[28] = "$%eMP28#$";
+
+function display(){
+changebgcolor();
+}
+
+function checkSub()
+{
+var  tiMirrorv = document.getElementById("tiMirror").value;
+var  teMirrorv = document.getElementById("teMirror").value;
+var  MirrorPort = document.getElementById("MirrorPort").value;
+var  tiMirrorMac = document.getElementById("tiMirrorMac").value;
+var  teMirrorMac = document.getElementById("teMirrorMac").value;
+
+
+if(isNaN(tiMirrorv) || tiMirrorv<1 || tiMirrorv>1023 || !fucCheckNUM(tiMirrorv))
+	{
+		alert("入口比率错误,范围：1-1023");
+		return;
+	}
+if(isNaN(teMirrorv) || teMirrorv<1 || teMirrorv>1023 || !fucCheckNUM(teMirrorv))
+	{
+		alert("出口比率错误,范围：1-1023");
+		return;
+	}
+
+if(tiMirrorMac != "" && !tdMacCheck(tiMirrorMac))
+	{
+		alert("入方向MAC错误！");
+		return;
+	}
+	if(teMirrorMac != "" && !tdMacCheck(teMirrorMac))
+	{
+		alert("出方向MAC错误！");
+		return;
+	}
+var iMP = "iMP"+MirrorPort;
+var eMP = "eMP"+MirrorPort;
+if(MirrorPort!=0)
+{
+	if(document.getElementById(iMP).checked == true || document.getElementById(eMP).checked == true)
+		{
+			alert("端口"+convert_tomodport(MirrorPort)+"为镜像端口，不能设置为被镜像端口。");
+			return;
+		}
+
+}
+if(tiMirrorMac == "") document.getElementById("tiMirrorMac").value = "00-00-00-00-00-00";
+if(teMirrorMac == "") document.getElementById("teMirrorMac").value = "00-00-00-00-00-00";
+	
+	
+document.form1.submit();
+}
+
+window.onload = function()
+{
+var  tiMirrorMac = document.getElementById("tiMirrorMac").value;
+var  teMirrorMac = document.getElementById("teMirrorMac").value;
+if(tiMirrorMac == "00:00:00:00:00:00") document.getElementById("tiMirrorMac").value = "";
+if(teMirrorMac == "00:00:00:00:00:00") document.getElementById("teMirrorMac").value = "";
+changebgcolor();
+
+}
+
+</script>
+</HEAD>
+
+<BODY >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('mirror'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form name="form1" method="post" >
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>Mirror</nobr></td>  
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD valign="top"><strong>端口镜像</strong></TD>
+      <td colspan="28"  >&nbsp;</td>
+    </TR>
+    <TR height=22>
+      <TD width="27%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">是否启用</span></div></TD>
+      <td colspan="28"  ><span class="crons">
+        <input type="checkbox" name="MirrorEnable" id="MirrorEnable" value="ON" / $%MirrorEnable#$>
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">镜像端口</span></TD>
+      <td colspan="28"  ><span class="crons">
+      <select name="MirrorPort" id="MirrorPort">
+      <script language= "javascript">
+	  for(var i = 1; i <= portNum; i++)
+	  {	
+	  		document.write("<option value='"+i+"' "+MirrorPort[i]+">端口"+i+"</option>");
+	  }
+	  </script>
+      </select>
+	
+      &nbsp（如果启用镜像，则镜像端口不能被其他功能使用） </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">入口比率</span></TD>
+      <td colspan="28"  ><span class="crons">
+      <input type="text" name="tiMirror" id="tiMirror" / VALUE="$%tiMirror#$">
+(1~1023)</span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">出口比率</span></TD>
+      <td colspan="28" ><span class="crons">
+        <input type="text" name="teMirror" id="teMirror" / VALUE="$%teMirror#$">
+(1~1023)</span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="partition">被镜像端口</span></TD>
+      <script language= "javascript">
+	  for(var i=1; i<=portNum; i++)
+	  {
+		   document.write("<td class='partition'>&nbsp;"+i+"</td>");
+	  }
+      </script>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">入口方向</span></TD>
+      <script language= "javascript">
+	  for(var i=1; i<=portNum; i++)
+	  {		
+		   document.write("<td  class='crons'><input type='checkbox' name='iMP"+i+"' id='iMP"+i+"' value='ON' "+iMP[i]+"></td>");
+	  }
+      </script>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">出口方向</span></TD>
+      <script language= "javascript">
+	  for(var i=1; i<=portNum; i++)
+	  {		
+		   document.write("<td  class='crons'><input type='checkbox' name='eMP"+i+"' id='eMP"+i+"' value='ON' "+eMP[i]+"></td>");
+	  }
+      </script>
+    </TR>
+    <TR height=22>
+      <TD valign="top"><span class="table_main3"><strong>监控模式</strong></span></TD>
+      <TD colspan="28" valign="top">&nbsp;</TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">出方向</span></TD>
+      <td colspan="28"  class="crons"> 监控MAC：
+        <input type="text" name="teMirrorMac" id="teMirrorMac" / VALUE="$%teMirrorMac#$">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="td25">监控模式：
+<select name="eMirrorMMode" id="sMirrorMMode"  >
+  <option value="0" $%eMirrorMMode(0)#$>All</option>
+  <option value="1" $%eMirrorMMode(1)#$>目的MAC</option>
+  <option value="2" $%eMirrorMMode(2)#$>源MAC</option>
+</select>
+</span></td>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">入方向</span></TD>
+      <td colspan="28"  class="crons"> 监控MAC：
+        <input type="text" name="tiMirrorMac" id="tiMirrorMac" / VALUE="$%tiMirrorMac#$">
+        <span class="td25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;监控模式：
+        <select name="iMirrorMMode" id="iMirrorMMode"  >
+          <option value="0" $%iMirrorMMode(0)#$>All</option>
+          <option value="1" $%iMirrorMMode(1)#$>目的MAC</option>
+          <option value="2" $%iMirrorMMode(2)#$>源MAC</option>
+        </select>
+        </span></td>
+      </TR>
+      
+      <tr>
+ 		<td class="partition" colspan="32">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交"  onclick="checkSub()">
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+   		</td>
+     	</tr>
+        
+</TABLE>
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="MirrorEnable,iMP1,iMP2,iMP3,iMP4,iMP5,iMP6,iMP7,iMP8,iMP9,iMP10,iMP11,iMP12,iMP13,iMP14,iMP15,iMP16,iMP17,iMP18,iMP19,iMP20,iMP21,iMP22,iMP23,iMP24,iMP25,iMP26,iMP27,iMP28,eMP1,eMP2,eMP3,eMP4,eMP5,eMP6,eMP7,eMP8,eMP9,eMP10,eMP11,eMP12,eMP13,eMP14,eMP15,eMP16,eMP17,eMP18,eMP19,eMP20,eMP21,eMP22,eMP23,eMP24,eMP5,eMP26,eMP27,eMP28" >
+</FORM>
+
+</BODY></HTML>

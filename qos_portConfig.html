@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+<script language="javascript">
+function display(){
+changebgcolor();
+}
+function checkSub()
+{
+	var idNamr= "";
+	var quee;
+		for(var j=1;j<5;j++)
+		{
+		quee = j - 1 ;
+		idName = "qosPortConfigQ"+j+"waight"+1;
+		var wValue = document.getElementById(idName).value;
+		
+		if(isNaN(wValue) || wValue<1 || wValue>32 || !fucCheckNUM(wValue))
+			{
+				alert("队列"+quee+"权重设置错误，范围：1-32");
+				return;
+			}
+		}
+	
+	document.getElementById("qosPortConfigQ1waight1").disabled = false;
+	document.getElementById("qosPortConfigQ2waight1").disabled = false;
+	document.getElementById("qosPortConfigQ3waight1").disabled = false;
+	document.getElementById("qosPortConfigQ4waight1").disabled = false;
+
+	document.form1.submit();
+} 
+function showQDisable()
+{
+	var QMode = document.getElementById("QosPortConfigQMode1").value;
+	
+if(QMode == "0")
+{
+	document.getElementById("qosPortConfigQ1waight1").disabled = false;
+	document.getElementById("qosPortConfigQ2waight1").disabled = false;
+	document.getElementById("qosPortConfigQ3waight1").disabled = false;
+	document.getElementById("qosPortConfigQ4waight1").disabled = false;
+}
+else if( QMode == "1")
+{
+	document.getElementById("qosPortConfigQ1waight1").disabled = false;
+	document.getElementById("qosPortConfigQ2waight1").disabled = false;
+	document.getElementById("qosPortConfigQ3waight1").disabled = false;
+	document.getElementById("qosPortConfigQ4waight1").disabled = true;	
+}
+else if(QMode == "2")
+{
+	document.getElementById("qosPortConfigQ1waight1").disabled = false;
+	document.getElementById("qosPortConfigQ2waight1").disabled = false;
+	document.getElementById("qosPortConfigQ3waight1").disabled = true;
+	document.getElementById("qosPortConfigQ4waight1").disabled = true;
+}
+else if(QMode == "3")
+{
+	document.getElementById("qosPortConfigQ1waight1").disabled = true;
+	document.getElementById("qosPortConfigQ2waight1").disabled = true;
+	document.getElementById("qosPortConfigQ3waight1").disabled = true;
+	document.getElementById("qosPortConfigQ4waight1").disabled = true;
+}
+
+}
+
+</script>
+</HEAD>
+<BODY    onload="display()" >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('qos_portConfig'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+<form name="form1" method="post" >
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>QoS系统配置</nobr></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD valign="top"><strong>QoS</strong></TD>
+      <td colspan="3"  >&nbsp;</td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;QoS模式</TD>
+      <td colspan="3"  ><span class="crons">
+        <input type="checkbox" name="qosSysEnable" id="qosSysEnable" value="ON" / $%qosSysEnable#$>
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD width="22%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">调度算法</span></div></TD>
+      <td colspan="3"  ><span class="crons">
+        <select name="QosPortConfigQMode1" id="QosPortConfigQMode1"  onchange="showQDisable()">
+          <option value="0" $%QosPortConfigQMode1(0)#$>4 WRR</option>
+          <option value="1" $%QosPortConfigQMode1(1)#$>1 SP - 3 WRR</option>
+          <option value="2" $%QosPortConfigQMode1(2)#$>2 SP - 2 WRR</option>
+          <option value="3" $%QosPortConfigQMode1(3)#$>4 SP</option>
+        </select>
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">优先级模式</span></TD>
+      <td colspan="3"  ><span class="crons">
+        <select name="QosPortConfigPriorityTrust" id="QosPortConfigPriorityTrust" >
+          <option value="0" $%QosPortConfigPriorityTrust(0)#$>dot1p</option>
+          <option value="1" $%QosPortConfigPriorityTrust(1)#$>dscp</option>
+        </select>
+      </span></td>
+    </TR>
+    <TR height=22>
+      <TD valign="top"><span class="table_main3"><strong>调度算法配置</strong></span></TD>
+      <TD colspan="3" valign="top">&nbsp;</TD>
+      </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;队列<span class="td25">0<span class="crons">权重</span></span></TD>
+      <td width="28%"  class="crons"><input name="qosPortConfigQ1waight1" type="text" id="qosPortConfigQ1waight1"  size="4" maxlength="2" / VALUE="$%qosPortConfigQ1waight1#$" />
+(1-32)</td>
+      <td width="22%"  class="crons">&nbsp;&nbsp;队列1权重</td>
+      <td width="28%"  class="crons"><input name="qosPortConfigQ2waight1" type="text" id="qosPortConfigQ2waight1" size="4" maxlength="2" / VALUE="$%qosPortConfigQ2waight1#$" />
+(1-32)</td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;队列2<span class="crons">权重</span></TD>
+      <td  class="crons"><input name="qosPortConfigQ3waight1" type="text" id="qosPortConfigQ3waight1" size="4" maxlength="2" / VALUE="$%qosPortConfigQ3waight1#$" />
+(1-32)</td>
+      <td  class="crons">&nbsp;&nbsp;队列3权重</td>
+      <td  class="crons"><input name="qosPortConfigQ4waight1" type="text" id="qosPortConfigQ4waight1" size="4" maxlength="2" / VALUE="$%qosPortConfigQ4waight1#$" />
+(1-32)</td>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+        <input name="b_submit2" class="button1" type="button" id="b_submit" value="提交"  onclick="checkSub()">
+    </td>
+    </tr>
+</TABLE>
+
+<script language="javascript">
+
+showQDisable();
+
+</script>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="qosSysEnable" >
+</span>
+</FORM>
+
+</BODY></HTML>

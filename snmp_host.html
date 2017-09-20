@@ -1,0 +1,169 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+function display()
+{
+changebgcolor();
+
+}
+
+/*
+var snmpHostIPAddrList = ["11111","22222","333333333","444444444","55555"];
+var snmpHostSnmpVerList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var snmpHostCommNameList = [1,2,1,2,1];
+*/
+
+var snmpHostIPAddrList = [$%snmpHostIPAddrList#$];
+var snmpHostSnmpVerList = [$%snmpHostSnmpVerList#$];
+var snmpHostCommNameList = [$%snmpHostCommNameList#$];
+
+
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<snmpHostIPAddrList.length;i++)
+	{
+	tempBuf += "<tr class='tables_all'><td class='inputsyslog1' >";
+	tempBuf += snmpHostIPAddrList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += snmpHostSnmpVerList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += snmpHostCommNameList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+
+
+function delSelectId( ID )
+{
+	document.getElementById("snmpDelHostID").value = snmpHostIPAddrList[ID];
+	document.form1.submit();
+}
+
+function checkSub()
+{
+    if ( !tdIpCheck(document.getElementById("snmpHostIP").value) )
+    {
+        alert('IP地址错误 !');
+		document.getElementById("snmpHostIP").focus();
+        return ;
+    }
+	 
+	 if(!checkname(document.getElementById("snmpcomV3userName"),"团体名 / SNMPv3用户名为空","团体名 / SNMPv3用户名错误","团体名 / SNMPv3用户名错误",1))
+	{
+		return false;
+	}
+    
+	document.form1.submit();
+}
+
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('snmp_host'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>SNMP主机</td>
+    
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">主机IP</span></div></TD>
+      <TD width="32%" ><span class="crons">
+        <input type="text" name="snmpHostIP" id="snmpHostIP" size="15" maxlength="15" value="$%snmpHostIP#$" />
+      </span></TD>
+      <TD width="18%" >&nbsp;</TD>
+      <TD width="32%" >&nbsp;</TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">SNMP版本</span></TD>
+      <TD ><span class="crons">
+        <select	name="SNMPverNUM" size="1">
+          <option	value="1" $%SNMPverNUM(1)#$>V1</option>
+          <option	value="2" $%SNMPverNUM(2)#$>V2c</option>
+          <option	value="3" $%SNMPverNUM(3)#$>V3 noAuth_noPriv</option>
+          <option	value="4" $%SNMPverNUM(4)#$>V3 auth_noPriv</option>
+          <option	value="5" $%SNMPverNUM(5)#$>V3 auth_priv</option>
+        </select>
+      </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">团体名/用户</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="snmpcomV3userName" id="snmpcomV3userName" size="20"	maxlength="32" value="$%snmpcomV3userName#$" />
+(范围：1~32个字符) </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+  	 	<input type="hidden" name="snmpDelHostID" id="snmpDelHostID" / VALUE="$%snmpDelHostID#$">    
+   		<input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"  onclick="checkSub()" >
+   		<input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+   	 </td>
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>SNMP主机表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="partition">主机IP</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">SNMP版本</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition"><span style="width:150px">团体名/用户</span></TD>
+      <TD width="36%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+  <script language="javascript">
+  writeList();
+  </script>
+  </table>
+</form>
+
+</BODY></HTML>

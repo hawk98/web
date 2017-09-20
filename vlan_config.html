@@ -1,0 +1,494 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+
+var VlanTagPort = new Array();
+VlanTagPort[1] = $%VlanTagPort1#$;
+VlanTagPort[2] = $%VlanTagPort2#$;
+VlanTagPort[3] = $%VlanTagPort3#$;
+VlanTagPort[4] = $%VlanTagPort4#$;
+VlanTagPort[5] = $%VlanTagPort5#$;
+VlanTagPort[6] = $%VlanTagPort6#$;
+VlanTagPort[7] = $%VlanTagPort7#$;
+VlanTagPort[8] = $%VlanTagPort8#$;
+VlanTagPort[9] = $%VlanTagPort9#$;
+VlanTagPort[10] = $%VlanTagPort10#$;
+VlanTagPort[11] = $%VlanTagPort11#$;
+VlanTagPort[12] = $%VlanTagPort12#$;
+VlanTagPort[13] = $%VlanTagPort13#$;
+VlanTagPort[14] = $%VlanTagPort14#$;
+VlanTagPort[15] = $%VlanTagPort15#$;
+VlanTagPort[16] = $%VlanTagPort16#$;
+VlanTagPort[17] = $%VlanTagPort17#$;
+VlanTagPort[18] = $%VlanTagPort18#$;
+VlanTagPort[19] = $%VlanTagPort19#$;
+VlanTagPort[20] = $%VlanTagPort20#$;
+VlanTagPort[21] = $%VlanTagPort21#$;
+VlanTagPort[22] = $%VlanTagPort22#$;
+VlanTagPort[23] = $%VlanTagPort23#$;
+VlanTagPort[24] = $%VlanTagPort24#$;
+VlanTagPort[25] = $%VlanTagPort25#$;
+VlanTagPort[26] = $%VlanTagPort26#$;
+VlanTagPort[27] = $%VlanTagPort27#$;
+VlanTagPort[28] = $%VlanTagPort28#$;
+
+function display()
+{
+	changebgcolor();
+}	
+	var vlanIDArray = [$%vlanIDArray#$];
+	var vlanNameArray = [$%vlanNameArray#$];
+	var vlanDescArray = [$%vlanDescArray#$];
+	var vlanPortTag = new Array();
+	vlanPortTag[1] = [$%vlanPortTag1#$];
+	vlanPortTag[2] = [$%vlanPortTag2#$];
+	vlanPortTag[3] = [$%vlanPortTag3#$];
+	vlanPortTag[4] = [$%vlanPortTag4#$];
+	vlanPortTag[5] = [$%vlanPortTag5#$];
+	vlanPortTag[6] = [$%vlanPortTag6#$];
+	vlanPortTag[7] = [$%vlanPortTag7#$];
+	vlanPortTag[8] = [$%vlanPortTag8#$];
+	vlanPortTag[9] = [$%vlanPortTag9#$];
+	vlanPortTag[10] = [$%vlanPortTag10#$];
+	vlanPortTag[11] = [$%vlanPortTag11#$];
+	vlanPortTag[12] = [$%vlanPortTag12#$];
+	vlanPortTag[13] = [$%vlanPortTag13#$];
+	vlanPortTag[14] = [$%vlanPortTag14#$];
+	vlanPortTag[15] = [$%vlanPortTag15#$];
+	vlanPortTag[16] = [$%vlanPortTag16#$];
+	vlanPortTag[17] = [$%vlanPortTag17#$];
+	vlanPortTag[18] = [$%vlanPortTag18#$];
+	vlanPortTag[19] = [$%vlanPortTag19#$];
+	vlanPortTag[20] = [$%vlanPortTag20#$];
+	vlanPortTag[21] = [$%vlanPortTag21#$];
+	vlanPortTag[22] = [$%vlanPortTag22#$];
+	vlanPortTag[23] = [$%vlanPortTag23#$];
+	vlanPortTag[24] = [$%vlanPortTag24#$];
+	vlanPortTag[25] = [$%vlanPortTag25#$];
+	vlanPortTag[26] = [$%vlanPortTag26#$];
+	vlanPortTag[27] = [$%vlanPortTag27#$];
+	vlanPortTag[28] = [$%vlanPortTag28#$];
+	
+	var vlanSelectInfo = [$%selectVlanInfo#$];
+	
+	var vlanTotalPages = $%vlanTotalPages#$;
+	var vlanCurPage = $%vlanCurPage#$;
+	
+
+	var SelectVlanID=1;
+	var inputVlanMembership;
+	var i,j;
+	inputVlanMembership = new Array(8);
+	for (i=0; i<portNum; i++)
+		inputVlanMembership[i] = 0;
+
+function selectVlan()
+{
+	var selectVlanIdNum = document.getElementById("tVlanIDSelect").value;
+	if(selectVlanIdNum=="")
+	{
+		alert("请输入VLAN ID！");
+		return;
+	}
+	if(selectVlanIdNum<1||selectVlanIdNum>4094)
+	{
+		alert("对不起，您选择的VLAN ID："+selectVlanIdNum+"不存在！");
+		return;
+	}
+	
+	selectVlanByID(selectVlanIdNum);
+}
+function selectVlanByID(VlanID)
+{
+	for(i=0;i<vlanIDArray.length;i++)
+	{
+		if(vlanIDArray[i]==VlanID)
+			{
+			document.getElementById("newVlanID").value = VlanID;
+			document.getElementById("vlanDesc").value = vlanDescArray[i];
+			
+			for(var j = 1; j < portNum+1; j++){
+		    if(typeof(vlanPortTag[j][i]) == "undefined")
+		      changeStateSelectID(j, 0);
+		    else 
+			    changeStateSelectID(j, vlanPortTag[j][i]);
+			}
+			
+			document.getElementById("hVlanModifyFlag").value = 1;
+			
+			for(var j = 1; j < portNum+1; j++){
+			  inputVlanMembership[j-1] = vlanPortTag[j][i];
+			}
+
+			
+			return;
+			}
+	}
+	alert("对不起，您选择的VLAN ID："+VlanID+"不存在！");
+}
+
+function selectVlanBySub()
+{
+	var IDSelect = document.getElementById("tVlanIDSelect").value;
+	selectVlanByID(IDSelect);
+}
+
+
+function writeVlanList()
+{
+	var htmlStr = "";
+	
+	for(i=0;i<vlanIDArray.length;i++)
+	{
+	htmlStr += "<tr class='tables_all'><td class='inputsyslog1'>";
+	htmlStr += vlanIDArray[i];
+	htmlStr += "&nbsp;</td><td class='inputsyslog1'>";
+	
+	for(var j = 1; j < portNum+1; j++){
+		if(typeof(vlanPortTag[j][i]) == "undefined") 
+		  htmlStr += " &nbsp;</td><td class='inputsyslog1'>";
+		else
+	    htmlStr += getVlanTagValue(vlanPortTag[j][i]);
+	  htmlStr += "&nbsp;</td><td class='inputsyslog1'>";
+	}
+	
+	htmlStr += "<input type='button' name='buttonP"+i+"' id='buttonP"+i+"' class='botton_under_line' value='选 择'  onclick='selectVlanByID("+vlanIDArray[i]+")' />";
+	htmlStr += "</td><td class='inputsyslog1'>";
+	if(vlanIDArray[i] == 1)
+	{
+	htmlStr += "&nbsp;";
+	}
+	else
+	{
+	htmlStr += "<input type='button' name='buttonP"+i+"' id='buttonP"+i+"' class='botton_under_line' value='删 除'  onclick='delVlan("+vlanIDArray[i]+")' />";
+	}
+	htmlStr += "</td></tr>";
+	htmlStr += "<tr class='tables_all'>";	
+	htmlStr += "<td class='inputsyslog1'>VLAN描述</td>";
+	htmlStr += "<td align='left' class='inputsyslog1' colspan='31'>";
+	htmlStr += vlanDescArray[i];
+	htmlStr += "&nbsp;</td>";
+	
+	htmlStr += "</tr>";
+	}
+	document.write(htmlStr);
+}
+
+
+function changeState(button, port)
+{
+	if(inputVlanMembership[port] == 0)
+		inputVlanMembership[port] = 2;
+	else if( inputVlanMembership[port] == 2)
+		inputVlanMembership[port] = 1;
+	else if( inputVlanMembership[port] == 1)
+		inputVlanMembership[port] = 0;
+	else
+		inputVlanMembership[port] = 0;
+	
+	button.value = getVlanTagValue(inputVlanMembership[port])
+	//port += 1;
+	var IdName = "VlanTagPort"+(port+1);
+	document.getElementById(IdName).value = inputVlanMembership[port];
+}
+
+function getVlanTagValue(tag)
+{
+	var ReturnValue;
+	switch( tag ) {
+	case 1: ReturnValue = "T";
+			break;
+	case 2: ReturnValue = "U";
+			break;
+	case 0: ReturnValue = " ";
+			break;
+	}
+	return ReturnValue;
+}
+function changeStateSelectID(port,tag)
+{
+	var idName = "";
+	idName  = "tport"+port;
+	document.getElementById(idName).value = getVlanTagValue(tag);
+	
+	idName  = "VlanTagPort"+port;
+	document.getElementById(idName).value = tag;
+
+}
+
+function delVlan(selectVlanIdNum)
+{
+	document.getElementById("tVlanIDSelect").value = selectVlanIdNum;
+	if(selectVlanIdNum=="")
+	{
+		alert("请输入VLAN ID！");
+		return;
+	}
+	if(selectVlanIdNum<1||selectVlanIdNum>4094)
+	{
+		alert("对不起，您选择的VLAN ID："+selectVlanIdNum+"不存在！");
+		return;
+	}
+	for(i=0;i<vlanIDArray.length;i++)
+	{
+	
+		if(vlanIDArray[i]==selectVlanIdNum)
+		{
+		document.getElementById("delVlanFlag").value = 1;
+		document.form1.submit();
+		return;
+		}
+	}
+	alert("对不起，您选择的VLAN ID："+selectVlanIdNum+"在当前页中不存在！");
+}
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("vlanGotoGage").value;
+	
+	if(isNaN(gotoPageNum) || gotoPageNum==""||gotoPageNum<1||gotoPageNum>vlanTotalPages)
+	{
+		alert("您输入的页数"+gotoPageNum+"不存在！");
+		return;
+	}
+	if(gotoPageNum == vlanCurPage)
+	{
+		alert("您已经在第"+vlanCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("vlanGotoPageEnable").value = 1;
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("vlanGotoGage").value = (vlanCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("vlanGotoGage").value = (vlanCurPage+1);
+	gotopage();
+}
+
+
+function subForm()
+{
+	if(document.getElementById("newVlanID").value == "")
+	{
+	  document.form1.submit();
+	  return true;
+	}	
+	if(!isNaN(document.getElementById("newVlanID").value) && !(fucCheckNUM(document.getElementById("newVlanID").value)))
+	{
+		alert("VLAN ID的范围是1-4094，请正确输入VLAN ID");
+		return;
+		}
+	if(document.getElementById("newVlanID").value<1 || document.getElementById("newVlanID").value >4094)
+		{
+		alert("VLAN ID的范围是1-4094，请正确输入VLAN ID");
+		return;
+		}
+  	descVal = document.getElementById("vlanDesc").value;
+  	if(descVal != "" && isChinese(descVal)){
+  	  alert("VLAN 的描述内容中含有汉字！");
+  	  return false;
+  	}
+  	if(!checkQuote(descVal)){
+  	  alert("VLAN 的描述内容中含有引号！");
+  	  return false;
+  	}
+	
+	document.form1.submit();
+}
+
+function selectVlanSubmit()
+{
+	
+document.getElementById("hVlanModifyFlag").value = 2;	
+document.form1.submit();
+	
+}
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('vlan_config'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>VLAN 配置</td>  
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="inputsyslog1">GVRP</span></div></TD>
+      <TD ><span class="inputsyslog1">
+        <input type="checkbox" name="gvrpEnable" id="gvrpEnable" value="ON" / $%gvrpEnable#$>
+启用</span></TD>
+      </TR>
+</TABLE>
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="48%"  class=Tablelist id=tabs name=tabs>VLAN 成员设置</td>
+    <td width="52%"   class="tablenew" id=tabs name=tabs><div align="right">
+      VLAN ID:
+          <input type="text" name="tVlanIDSelect" id="tVlanIDSelect" / VALUE="$%tVlanIDSelect#$">
+&nbsp;&nbsp;&nbsp;
+<input type="button" class="botton_under_line" name="button" id="button" value="选 择"  onclick="selectVlanSubmit()" />
+<!--
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" class="button1" name="button3" id="button3" value=" 删 除 "   onclick="delVlan()" />
+    -->
+<input type="hidden" name="delVlanFlag" id="delVlanFlag"  value="$%delVlanFlag#$"/>
+<input type="hidden" name="hVlanModifyFlag" id="hVlanModifyFlag" / VALUE="$%hVlanModifyFlag#$">
+</div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table2"  >
+  
+  <TR align="center" height=22>
+    <TD width="5%" rowspan="2"   nowrap class="all_tables_list"><span class="Tablelist">VLAN </span>ID</TD>
+    <TD colspan="20"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+    </TR>
+    
+  <TR align="center" height=22>
+   <script language="javascript">
+	for(var i = 1; i <= portNum; i++)
+	{
+		document.write(" <td nowrap class='all_tables_list'>&nbsp;"+i+"</td>");
+	}
+	</script>
+  </TR>
+    
+    <script language="javascript">
+	
+	var newVlanId = "$%newVlanID#$";
+	document.write("<tr class='tables_all'>");
+	document.write("<td class='inputsyslog1' ><input name='newVlanID' type='text' id='newVlanID' size='6' maxlength='4' value='"+newVlanId+"'></td>");
+	
+	for(var i = 1; i <= portNum; i++)
+	{
+		var j = i - 1; 
+		document.write("<td class='inputsyslog1' align='center'>");
+		document.write("<input name='tport"+i+"' type='button' class='buttonTag' id='tport"+i+"' onclick='changeState(this,"+j+");' value=' '>");
+		document.write("<input type='hidden' name='VlanTagPort"+i+"' id='VlanTagPort"+i+"' value='"+VlanTagPort[i]+"'></td>");
+	}
+
+	document.write("</tr>");
+	</script>
+    
+  <tr class='tables_all'>
+    <td colspan="4"  class='inputsyslog1'>VLAN描述</td>
+    <td colspan="25" align="center" class='inputsyslog1'><div align="left">
+      <input type="text" name="vlanDesc" id="vlanDesc" size="24" maxlength="24" value="$%vlanDesc#$">
+    </div></td>
+    </tr>
+	<tr>
+      	<td  class="partition1" colspan="32">&nbsp;
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"   onclick="subForm()" >
+       </td>
+      </tr>
+</table>
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>VLAN表&nbsp;&nbsp;&nbsp;
+    <script language="javascript">
+	document.write("总共"+vlanTotalPages+"页，当前"+vlanCurPage+"页，");
+	</script>
+    到<input name="vlanGotoGage" id="vlanGotoGage" type="text"  size="3" maxlength="3" VALUE="$%vlanGotoGage#$">页
+    <input type="button" class="button1" value="确 认" id="gotoVlanAPage"  onClick="gotopage();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> 
+<a  onClick="gotoNextpage();"  style="cursor:pointer;">下一页</a>	
+	<input type="hidden" name="vlanGotoPageEnable" id="vlanGotoPageEnable"  value="$%vlanGotoPageEnable#$"/>
+	<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="gvrpEnable" ></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="5%" rowspan="2"   nowrap class="all_tables_list"><span class="Tablelist">VLAN </span>ID</TD>
+      <TD colspan="20"   nowrap class="all_tables_list"><span class="partition">端口</span></TD>
+      <TD width="4%" rowspan="2"   nowrap class="all_tables_list"><span class="inputsyslog1">选择</span></TD>
+      <TD width="5%" rowspan="2"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+    
+    <TR align="center" height=22>
+    <script language="javascript">
+	for(var i = 1; i <= portNum; i++)
+	{
+		document.write(" <td nowrap class='all_tables_list'>&nbsp;"+i+"</td>");
+	}
+	</script>
+    </TR>
+    
+  <script language="javascript">
+  writeVlanList();
+  
+  
+    if(document.getElementById("hVlanModifyFlag").value == 1)
+	{
+		document.getElementById("hVlanModifyFlag").value = 0; 
+		  document.getElementById("newVlanID").value = "";
+		  document.getElementById("tVlanIDSelect").value = ""; 
+	}
+
+  if(document.getElementById("hVlanModifyFlag").value ==2)
+  {
+	 selectVlanBySub();	  
+	 document.getElementById("hVlanModifyFlag").value = 1; 
+  }
+  else
+  {
+	  document.getElementById("newVlanID").value = "";
+	  document.getElementById("tVlanIDSelect").value = ""; 
+  }
+  
+  
+  if(vlanCurPage == 1)
+  	document.getElementById("gotoVlanPrePage").style.display = "none";
+	if(vlanCurPage == vlanTotalPages)
+    document.getElementById("gotoVlanNextPage").style.display = "none";
+  </script>
+  </table>
+  </form>
+</BODY></HTML>

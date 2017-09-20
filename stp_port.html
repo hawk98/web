@@ -1,0 +1,869 @@
+<HTML>	
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<TITLE>page</TITLE><script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+
+var portNum = $%portNum#$;
+
+var stpEnable = new Array();
+stpEnable[1] = "$%stpEnable1#$";
+stpEnable[2] = "$%stpEnable2#$";
+stpEnable[3] = "$%stpEnable3#$";
+stpEnable[4] = "$%stpEnable4#$";
+stpEnable[5] = "$%stpEnable5#$";
+stpEnable[6] = "$%stpEnable6#$";
+stpEnable[7] = "$%stpEnable7#$";
+stpEnable[8] = "$%stpEnable8#$";
+stpEnable[9] = "$%stpEnable9#$";
+stpEnable[10] = "$%stpEnable10#$";
+stpEnable[11] = "$%stpEnable11#$";
+stpEnable[12] = "$%stpEnable12#$";
+stpEnable[13] = "$%stpEnable13#$";
+stpEnable[14] = "$%stpEnable14#$";
+stpEnable[15] = "$%stpEnable15#$";
+stpEnable[16] = "$%stpEnable16#$";
+stpEnable[17] = "$%stpEnable17#$";
+stpEnable[18] = "$%stpEnable18#$";
+stpEnable[19] = "$%stpEnable19#$";
+stpEnable[20] = "$%stpEnable20#$";
+stpEnable[21] = "$%stpEnable21#$";
+stpEnable[22] = "$%stpEnable22#$";
+stpEnable[23] = "$%stpEnable23#$";
+stpEnable[24] = "$%stpEnable24#$";
+stpEnable[25] = "$%stpEnable25#$";
+stpEnable[26] = "$%stpEnable26#$";
+stpEnable[27] = "$%stpEnable27#$";
+stpEnable[28] = "$%stpEnable28#$";
+
+var pathcost = new Array();
+pathcost[1] = "$%pathcost1#$";
+pathcost[2] = "$%pathcost2#$";
+pathcost[3] = "$%pathcost3#$";
+pathcost[4] = "$%pathcost4#$";
+pathcost[5] = "$%pathcost5#$";
+pathcost[6] = "$%pathcost6#$";
+pathcost[7] = "$%pathcost7#$";
+pathcost[8] = "$%pathcost8#$";
+pathcost[9] = "$%pathcost9#$";
+pathcost[10] = "$%pathcost10#$";
+pathcost[11] = "$%pathcost11#$";
+pathcost[12] = "$%pathcost12#$";
+pathcost[13] = "$%pathcost13#$";
+pathcost[14] = "$%pathcost14#$";
+pathcost[15] = "$%pathcost15#$";
+pathcost[16] = "$%pathcost16#$";
+pathcost[17] = "$%pathcost17#$";
+pathcost[18] = "$%pathcost18#$";
+pathcost[19] = "$%pathcost19#$";
+pathcost[20] = "$%pathcost20#$";
+pathcost[21] = "$%pathcost21#$";
+pathcost[22] = "$%pathcost22#$";
+pathcost[23] = "$%pathcost23#$";
+pathcost[24] = "$%pathcost24#$";
+pathcost[25] = "$%pathcost25#$";
+pathcost[26] = "$%pathcost26#$";
+pathcost[27] = "$%pathcost27#$";
+pathcost[28] = "$%pathcost28#$";
+
+var portPriority0 = new Array();
+portPriority0[1] = "$%portPriority1(0)#$";
+portPriority0[2] = "$%portPriority2(0)#$";
+portPriority0[3] = "$%portPriority3(0)#$";
+portPriority0[4] = "$%portPriority4(0)#$";
+portPriority0[5] = "$%portPriority5(0)#$";
+portPriority0[6] = "$%portPriority6(0)#$";
+portPriority0[7] = "$%portPriority7(0)#$";
+portPriority0[8] = "$%portPriority8(0)#$";
+portPriority0[9] = "$%portPriority9(0)#$";
+portPriority0[10] = "$%portPriority10(0)#$";
+portPriority0[11] = "$%portPriority11(0)#$";
+portPriority0[12] = "$%portPriority12(0)#$";
+portPriority0[13] = "$%portPriority13(0)#$";
+portPriority0[14] = "$%portPriority14(0)#$";
+portPriority0[15] = "$%portPriority15(0)#$";
+portPriority0[16] = "$%portPriority16(0)#$";
+portPriority0[17] = "$%portPriority17(0)#$";
+portPriority0[18] = "$%portPriority18(0)#$";
+portPriority0[19] = "$%portPriority19(0)#$";
+portPriority0[20] = "$%portPriority20(0)#$";
+portPriority0[21] = "$%portPriority21(0)#$";
+portPriority0[22] = "$%portPriority22(0)#$";
+portPriority0[23] = "$%portPriority23(0)#$";
+portPriority0[24] = "$%portPriority24(0)#$";
+portPriority0[25] = "$%portPriority25(0)#$";
+portPriority0[26] = "$%portPriority26(0)#$";
+portPriority0[27] = "$%portPriority27(0)#$";
+portPriority0[28] = "$%portPriority28(0)#$";
+
+var portPriority16 = new Array();
+portPriority16[1] = "$%portPriority1(16)#$";
+portPriority16[2] = "$%portPriority2(16)#$";
+portPriority16[3] = "$%portPriority3(16)#$";
+portPriority16[4] = "$%portPriority4(16)#$";
+portPriority16[5] = "$%portPriority5(16)#$";
+portPriority16[6] = "$%portPriority6(16)#$";
+portPriority16[7] = "$%portPriority7(16)#$";
+portPriority16[8] = "$%portPriority8(16)#$";
+portPriority16[9] = "$%portPriority9(16)#$";
+portPriority16[10] = "$%portPriority10(16)#$";
+portPriority16[11] = "$%portPriority11(16)#$";
+portPriority16[12] = "$%portPriority12(16)#$";
+portPriority16[13] = "$%portPriority13(16)#$";
+portPriority16[14] = "$%portPriority14(16)#$";
+portPriority16[15] = "$%portPriority15(16)#$";
+portPriority16[16] = "$%portPriority16(16)#$";
+portPriority16[17] = "$%portPriority17(16)#$";
+portPriority16[18] = "$%portPriority18(16)#$";
+portPriority16[19] = "$%portPriority19(16)#$";
+portPriority16[20] = "$%portPriority20(16)#$";
+portPriority16[21] = "$%portPriority21(16)#$";
+portPriority16[22] = "$%portPriority22(16)#$";
+portPriority16[23] = "$%portPriority23(16)#$";
+portPriority16[24] = "$%portPriority24(16)#$";
+portPriority16[25] = "$%portPriority25(16)#$";
+portPriority16[26] = "$%portPriority26(16)#$";
+portPriority16[27] = "$%portPriority27(16)#$";
+portPriority16[28] = "$%portPriority28(16)#$";
+
+var portPriority32 = new Array();
+portPriority32[1] = "$%portPriority1(32)#$";
+portPriority32[2] = "$%portPriority2(32)#$";
+portPriority32[3] = "$%portPriority3(32)#$";
+portPriority32[4] = "$%portPriority4(32)#$";
+portPriority32[5] = "$%portPriority5(32)#$";
+portPriority32[6] = "$%portPriority6(32)#$";
+portPriority32[7] = "$%portPriority7(32)#$";
+portPriority32[8] = "$%portPriority8(32)#$";
+portPriority32[9] = "$%portPriority9(32)#$";
+portPriority32[10] = "$%portPriority10(32)#$";
+portPriority32[11] = "$%portPriority11(32)#$";
+portPriority32[12] = "$%portPriority12(32)#$";
+portPriority32[13] = "$%portPriority13(32)#$";
+portPriority32[14] = "$%portPriority14(32)#$";
+portPriority32[15] = "$%portPriority15(32)#$";
+portPriority32[16] = "$%portPriority16(32)#$";
+portPriority32[17] = "$%portPriority17(32)#$";
+portPriority32[18] = "$%portPriority18(32)#$";
+portPriority32[19] = "$%portPriority19(32)#$";
+portPriority32[20] = "$%portPriority20(32)#$";
+portPriority32[21] = "$%portPriority21(32)#$";
+portPriority32[22] = "$%portPriority22(32)#$";
+portPriority32[23] = "$%portPriority23(32)#$";
+portPriority32[24] = "$%portPriority24(32)#$";
+portPriority32[25] = "$%portPriority25(32)#$";
+portPriority32[26] = "$%portPriority26(32)#$";
+portPriority32[27] = "$%portPriority27(32)#$";
+portPriority32[28] = "$%portPriority28(32)#$";
+
+var portPriority48 = new Array();
+portPriority48[1] = "$%portPriority1(48)#$";
+portPriority48[2] = "$%portPriority2(48)#$";
+portPriority48[3] = "$%portPriority3(48)#$";
+portPriority48[4] = "$%portPriority4(48)#$";
+portPriority48[5] = "$%portPriority5(48)#$";
+portPriority48[6] = "$%portPriority6(48)#$";
+portPriority48[7] = "$%portPriority7(48)#$";
+portPriority48[8] = "$%portPriority8(48)#$";
+portPriority48[9] = "$%portPriority9(48)#$";
+portPriority48[10] = "$%portPriority10(48)#$";
+portPriority48[11] = "$%portPriority11(48)#$";
+portPriority48[12] = "$%portPriority12(48)#$";
+portPriority48[13] = "$%portPriority13(48)#$";
+portPriority48[14] = "$%portPriority14(48)#$";
+portPriority48[15] = "$%portPriority15(48)#$";
+portPriority48[16] = "$%portPriority16(48)#$";
+portPriority48[17] = "$%portPriority17(48)#$";
+portPriority48[18] = "$%portPriority18(48)#$";
+portPriority48[19] = "$%portPriority19(48)#$";
+portPriority48[20] = "$%portPriority20(48)#$";
+portPriority48[21] = "$%portPriority21(48)#$";
+portPriority48[22] = "$%portPriority22(48)#$";
+portPriority48[23] = "$%portPriority23(48)#$";
+portPriority48[24] = "$%portPriority24(48)#$";
+portPriority48[25] = "$%portPriority25(48)#$";
+portPriority48[26] = "$%portPriority26(48)#$";
+portPriority48[27] = "$%portPriority27(48)#$";
+portPriority48[28] = "$%portPriority28(48)#$";
+
+var portPriority64 = new Array();
+portPriority64[1] = "$%portPriority1(64)#$";
+portPriority64[2] = "$%portPriority2(64)#$";
+portPriority64[3] = "$%portPriority3(64)#$";
+portPriority64[4] = "$%portPriority4(64)#$";
+portPriority64[5] = "$%portPriority5(64)#$";
+portPriority64[6] = "$%portPriority6(64)#$";
+portPriority64[7] = "$%portPriority7(64)#$";
+portPriority64[8] = "$%portPriority8(64)#$";
+portPriority64[9] = "$%portPriority9(64)#$";
+portPriority64[10] = "$%portPriority10(64)#$";
+portPriority64[11] = "$%portPriority11(64)#$";
+portPriority64[12] = "$%portPriority12(64)#$";
+portPriority64[13] = "$%portPriority13(64)#$";
+portPriority64[14] = "$%portPriority14(64)#$";
+portPriority64[15] = "$%portPriority15(64)#$";
+portPriority64[16] = "$%portPriority16(64)#$";
+portPriority64[17] = "$%portPriority17(64)#$";
+portPriority64[18] = "$%portPriority18(64)#$";
+portPriority64[19] = "$%portPriority19(64)#$";
+portPriority64[20] = "$%portPriority20(64)#$";
+portPriority64[21] = "$%portPriority21(64)#$";
+portPriority64[22] = "$%portPriority22(64)#$";
+portPriority64[23] = "$%portPriority23(64)#$";
+portPriority64[24] = "$%portPriority24(64)#$";
+portPriority64[25] = "$%portPriority25(64)#$";
+portPriority64[26] = "$%portPriority26(64)#$";
+portPriority64[27] = "$%portPriority27(64)#$";
+portPriority64[28] = "$%portPriority28(64)#$";
+
+var portPriority80 = new Array();
+portPriority80[1] = "$%portPriority1(80)#$";
+portPriority80[2] = "$%portPriority2(80)#$";
+portPriority80[3] = "$%portPriority3(80)#$";
+portPriority80[4] = "$%portPriority4(80)#$";
+portPriority80[5] = "$%portPriority5(80)#$";
+portPriority80[6] = "$%portPriority6(80)#$";
+portPriority80[7] = "$%portPriority7(80)#$";
+portPriority80[8] = "$%portPriority8(80)#$";
+portPriority80[9] = "$%portPriority9(80)#$";
+portPriority80[10] = "$%portPriority10(80)#$";
+portPriority80[11] = "$%portPriority11(80)#$";
+portPriority80[12] = "$%portPriority12(80)#$";
+portPriority80[13] = "$%portPriority13(80)#$";
+portPriority80[14] = "$%portPriority14(80)#$";
+portPriority80[15] = "$%portPriority15(80)#$";
+portPriority80[16] = "$%portPriority16(80)#$";
+portPriority80[17] = "$%portPriority17(80)#$";
+portPriority80[18] = "$%portPriority18(80)#$";
+portPriority80[19] = "$%portPriority19(80)#$";
+portPriority80[20] = "$%portPriority20(80)#$";
+portPriority80[21] = "$%portPriority21(80)#$";
+portPriority80[22] = "$%portPriority22(80)#$";
+portPriority80[23] = "$%portPriority23(80)#$";
+portPriority80[24] = "$%portPriority24(80)#$";
+portPriority80[25] = "$%portPriority25(80)#$";
+portPriority80[26] = "$%portPriority26(80)#$";
+portPriority80[27] = "$%portPriority27(80)#$";
+portPriority80[28] = "$%portPriority28(80)#$";
+
+var portPriority96 = new Array();
+portPriority96[1] = "$%portPriority1(96)#$";
+portPriority96[2] = "$%portPriority2(96)#$";
+portPriority96[3] = "$%portPriority3(96)#$";
+portPriority96[4] = "$%portPriority4(96)#$";
+portPriority96[5] = "$%portPriority5(96)#$";
+portPriority96[6] = "$%portPriority6(96)#$";
+portPriority96[7] = "$%portPriority7(96)#$";
+portPriority96[8] = "$%portPriority8(96)#$";
+portPriority96[9] = "$%portPriority9(96)#$";
+portPriority96[10] = "$%portPriority10(96)#$";
+portPriority96[11] = "$%portPriority11(96)#$";
+portPriority96[12] = "$%portPriority12(96)#$";
+portPriority96[13] = "$%portPriority13(96)#$";
+portPriority96[14] = "$%portPriority14(96)#$";
+portPriority96[15] = "$%portPriority15(96)#$";
+portPriority96[16] = "$%portPriority16(96)#$";
+portPriority96[17] = "$%portPriority17(96)#$";
+portPriority96[18] = "$%portPriority18(96)#$";
+portPriority96[19] = "$%portPriority19(96)#$";
+portPriority96[20] = "$%portPriority20(96)#$";
+portPriority96[21] = "$%portPriority21(96)#$";
+portPriority96[22] = "$%portPriority22(96)#$";
+portPriority96[23] = "$%portPriority23(96)#$";
+portPriority96[24] = "$%portPriority24(96)#$";
+portPriority96[25] = "$%portPriority25(96)#$";
+portPriority96[26] = "$%portPriority26(96)#$";
+portPriority96[27] = "$%portPriority27(96)#$";
+portPriority96[28] = "$%portPriority28(96)#$";
+
+var portPriority112 = new Array();
+portPriority112[1] = "$%portPriority1(112)#$";
+portPriority112[2] = "$%portPriority2(112)#$";
+portPriority112[3] = "$%portPriority3(112)#$";
+portPriority112[4] = "$%portPriority4(112)#$";
+portPriority112[5] = "$%portPriority5(112)#$";
+portPriority112[6] = "$%portPriority6(112)#$";
+portPriority112[7] = "$%portPriority7(112)#$";
+portPriority112[8] = "$%portPriority8(112)#$";
+portPriority112[9] = "$%portPriority9(112)#$";
+portPriority112[10] = "$%portPriority10(112)#$";
+portPriority112[11] = "$%portPriority11(112)#$";
+portPriority112[12] = "$%portPriority12(112)#$";
+portPriority112[13] = "$%portPriority13(112)#$";
+portPriority112[14] = "$%portPriority14(112)#$";
+portPriority112[15] = "$%portPriority15(112)#$";
+portPriority112[16] = "$%portPriority16(112)#$";
+portPriority112[17] = "$%portPriority17(112)#$";
+portPriority112[18] = "$%portPriority18(112)#$";
+portPriority112[19] = "$%portPriority19(112)#$";
+portPriority112[20] = "$%portPriority20(112)#$";
+portPriority112[21] = "$%portPriority21(112)#$";
+portPriority112[22] = "$%portPriority22(112)#$";
+portPriority112[23] = "$%portPriority23(112)#$";
+portPriority112[24] = "$%portPriority24(112)#$";
+portPriority112[25] = "$%portPriority25(112)#$";
+portPriority112[26] = "$%portPriority26(112)#$";
+portPriority112[27] = "$%portPriority27(112)#$";
+portPriority112[28] = "$%portPriority28(112)#$";
+
+var portPriority128 = new Array();
+portPriority128[1] = "$%portPriority1(128)#$";
+portPriority128[2] = "$%portPriority2(128)#$";
+portPriority128[3] = "$%portPriority3(128)#$";
+portPriority128[4] = "$%portPriority4(128)#$";
+portPriority128[5] = "$%portPriority5(128)#$";
+portPriority128[6] = "$%portPriority6(128)#$";
+portPriority128[7] = "$%portPriority7(128)#$";
+portPriority128[8] = "$%portPriority8(128)#$";
+portPriority128[9] = "$%portPriority9(128)#$";
+portPriority128[10] = "$%portPriority10(128)#$";
+portPriority128[11] = "$%portPriority11(128)#$";
+portPriority128[12] = "$%portPriority12(128)#$";
+portPriority128[13] = "$%portPriority13(128)#$";
+portPriority128[14] = "$%portPriority14(128)#$";
+portPriority128[15] = "$%portPriority15(128)#$";
+portPriority128[16] = "$%portPriority16(128)#$";
+portPriority128[17] = "$%portPriority17(128)#$";
+portPriority128[18] = "$%portPriority18(128)#$";
+portPriority128[19] = "$%portPriority19(128)#$";
+portPriority128[20] = "$%portPriority20(128)#$";
+portPriority128[21] = "$%portPriority21(128)#$";
+portPriority128[22] = "$%portPriority22(128)#$";
+portPriority128[23] = "$%portPriority23(128)#$";
+portPriority128[24] = "$%portPriority24(128)#$";
+portPriority128[25] = "$%portPriority25(128)#$";
+portPriority128[26] = "$%portPriority26(128)#$";
+portPriority128[27] = "$%portPriority27(128)#$";
+portPriority128[28] = "$%portPriority28(128)#$";
+
+var portPriority144 = new Array();
+portPriority144[1] = "$%portPriority1(144)#$";
+portPriority144[2] = "$%portPriority2(144)#$";
+portPriority144[3] = "$%portPriority3(144)#$";
+portPriority144[4] = "$%portPriority4(144)#$";
+portPriority144[5] = "$%portPriority5(144)#$";
+portPriority144[6] = "$%portPriority6(144)#$";
+portPriority144[7] = "$%portPriority7(144)#$";
+portPriority144[8] = "$%portPriority8(144)#$";
+portPriority144[9] = "$%portPriority9(144)#$";
+portPriority144[10] = "$%portPriority10(144)#$";
+portPriority144[11] = "$%portPriority11(144)#$";
+portPriority144[12] = "$%portPriority12(144)#$";
+portPriority144[13] = "$%portPriority13(144)#$";
+portPriority144[14] = "$%portPriority14(144)#$";
+portPriority144[15] = "$%portPriority15(144)#$";
+portPriority144[16] = "$%portPriority16(144)#$";
+portPriority144[17] = "$%portPriority17(144)#$";
+portPriority144[18] = "$%portPriority18(144)#$";
+portPriority144[19] = "$%portPriority19(144)#$";
+portPriority144[20] = "$%portPriority20(144)#$";
+portPriority144[21] = "$%portPriority21(144)#$";
+portPriority144[22] = "$%portPriority22(144)#$";
+portPriority144[23] = "$%portPriority23(144)#$";
+portPriority144[24] = "$%portPriority24(144)#$";
+portPriority144[25] = "$%portPriority25(144)#$";
+portPriority144[26] = "$%portPriority26(144)#$";
+portPriority144[27] = "$%portPriority27(144)#$";
+portPriority144[28] = "$%portPriority28(144)#$";
+
+var portPriority160 = new Array();
+portPriority160[1] = "$%portPriority1(160)#$";
+portPriority160[2] = "$%portPriority2(160)#$";
+portPriority160[3] = "$%portPriority3(160)#$";
+portPriority160[4] = "$%portPriority4(160)#$";
+portPriority160[5] = "$%portPriority5(160)#$";
+portPriority160[6] = "$%portPriority6(160)#$";
+portPriority160[7] = "$%portPriority7(160)#$";
+portPriority160[8] = "$%portPriority8(160)#$";
+portPriority160[9] = "$%portPriority9(160)#$";
+portPriority160[10] = "$%portPriority10(160)#$";
+portPriority160[11] = "$%portPriority11(160)#$";
+portPriority160[12] = "$%portPriority12(160)#$";
+portPriority160[13] = "$%portPriority13(160)#$";
+portPriority160[14] = "$%portPriority14(160)#$";
+portPriority160[15] = "$%portPriority15(160)#$";
+portPriority160[16] = "$%portPriority16(160)#$";
+portPriority160[17] = "$%portPriority17(160)#$";
+portPriority160[18] = "$%portPriority18(160)#$";
+portPriority160[19] = "$%portPriority19(160)#$";
+portPriority160[20] = "$%portPriority20(160)#$";
+portPriority160[21] = "$%portPriority21(160)#$";
+portPriority160[22] = "$%portPriority22(160)#$";
+portPriority160[23] = "$%portPriority23(160)#$";
+portPriority160[24] = "$%portPriority24(160)#$";
+portPriority160[25] = "$%portPriority25(160)#$";
+portPriority160[26] = "$%portPriority26(160)#$";
+portPriority160[27] = "$%portPriority27(160)#$";
+portPriority160[28] = "$%portPriority28(160)#$";
+
+var portPriority176 = new Array();
+portPriority176[1] = "$%portPriority1(176)#$";
+portPriority176[2] = "$%portPriority2(176)#$";
+portPriority176[3] = "$%portPriority3(176)#$";
+portPriority176[4] = "$%portPriority4(176)#$";
+portPriority176[5] = "$%portPriority5(176)#$";
+portPriority176[6] = "$%portPriority6(176)#$";
+portPriority176[7] = "$%portPriority7(176)#$";
+portPriority176[8] = "$%portPriority8(176)#$";
+portPriority176[9] = "$%portPriority9(176)#$";
+portPriority176[10] = "$%portPriority10(176)#$";
+portPriority176[11] = "$%portPriority11(176)#$";
+portPriority176[12] = "$%portPriority12(176)#$";
+portPriority176[13] = "$%portPriority13(176)#$";
+portPriority176[14] = "$%portPriority14(176)#$";
+portPriority176[15] = "$%portPriority15(176)#$";
+portPriority176[16] = "$%portPriority16(176)#$";
+portPriority176[17] = "$%portPriority17(176)#$";
+portPriority176[18] = "$%portPriority18(176)#$";
+portPriority176[19] = "$%portPriority19(176)#$";
+portPriority176[20] = "$%portPriority20(176)#$";
+portPriority176[21] = "$%portPriority21(176)#$";
+portPriority176[22] = "$%portPriority22(176)#$";
+portPriority176[23] = "$%portPriority23(176)#$";
+portPriority176[24] = "$%portPriority24(176)#$";
+portPriority176[25] = "$%portPriority25(176)#$";
+portPriority176[26] = "$%portPriority26(176)#$";
+portPriority176[27] = "$%portPriority27(176)#$";
+portPriority176[28] = "$%portPriority28(176)#$";
+
+var portPriority192 = new Array();
+portPriority192[1] = "$%portPriority1(192)#$";
+portPriority192[2] = "$%portPriority2(192)#$";
+portPriority192[3] = "$%portPriority3(192)#$";
+portPriority192[4] = "$%portPriority4(192)#$";
+portPriority192[5] = "$%portPriority5(192)#$";
+portPriority192[6] = "$%portPriority6(192)#$";
+portPriority192[7] = "$%portPriority7(192)#$";
+portPriority192[8] = "$%portPriority8(192)#$";
+portPriority192[9] = "$%portPriority9(192)#$";
+portPriority192[10] = "$%portPriority10(192)#$";
+portPriority192[11] = "$%portPriority11(192)#$";
+portPriority192[12] = "$%portPriority12(192)#$";
+portPriority192[13] = "$%portPriority13(192)#$";
+portPriority192[14] = "$%portPriority14(192)#$";
+portPriority192[15] = "$%portPriority15(192)#$";
+portPriority192[16] = "$%portPriority16(192)#$";
+portPriority192[17] = "$%portPriority17(192)#$";
+portPriority192[18] = "$%portPriority18(192)#$";
+portPriority192[19] = "$%portPriority19(192)#$";
+portPriority192[20] = "$%portPriority20(192)#$";
+portPriority192[21] = "$%portPriority21(192)#$";
+portPriority192[22] = "$%portPriority22(192)#$";
+portPriority192[23] = "$%portPriority23(192)#$";
+portPriority192[24] = "$%portPriority24(192)#$";
+portPriority192[25] = "$%portPriority25(192)#$";
+portPriority192[26] = "$%portPriority26(192)#$";
+portPriority192[27] = "$%portPriority27(192)#$";
+portPriority192[28] = "$%portPriority28(192)#$";
+
+var portPriority208 = new Array();
+portPriority208[1] = "$%portPriority1(208)#$";
+portPriority208[2] = "$%portPriority2(208)#$";
+portPriority208[3] = "$%portPriority3(208)#$";
+portPriority208[4] = "$%portPriority4(208)#$";
+portPriority208[5] = "$%portPriority5(208)#$";
+portPriority208[6] = "$%portPriority6(208)#$";
+portPriority208[7] = "$%portPriority7(208)#$";
+portPriority208[8] = "$%portPriority8(208)#$";
+portPriority208[9] = "$%portPriority9(208)#$";
+portPriority208[10] = "$%portPriority10(208)#$";
+portPriority208[11] = "$%portPriority11(208)#$";
+portPriority208[12] = "$%portPriority12(208)#$";
+portPriority208[13] = "$%portPriority13(208)#$";
+portPriority208[14] = "$%portPriority14(208)#$";
+portPriority208[15] = "$%portPriority15(208)#$";
+portPriority208[16] = "$%portPriority16(208)#$";
+portPriority208[17] = "$%portPriority17(208)#$";
+portPriority208[18] = "$%portPriority18(208)#$";
+portPriority208[19] = "$%portPriority19(208)#$";
+portPriority208[20] = "$%portPriority20(208)#$";
+portPriority208[21] = "$%portPriority21(208)#$";
+portPriority208[22] = "$%portPriority22(208)#$";
+portPriority208[23] = "$%portPriority23(208)#$";
+portPriority208[24] = "$%portPriority24(208)#$";
+portPriority208[25] = "$%portPriority25(208)#$";
+portPriority208[26] = "$%portPriority26(208)#$";
+portPriority208[27] = "$%portPriority27(208)#$";
+portPriority208[28] = "$%portPriority28(208)#$";
+
+var portPriority224 = new Array();
+portPriority224[1] = "$%portPriority1(224)#$";
+portPriority224[2] = "$%portPriority2(224)#$";
+portPriority224[3] = "$%portPriority3(224)#$";
+portPriority224[4] = "$%portPriority4(224)#$";
+portPriority224[5] = "$%portPriority5(224)#$";
+portPriority224[6] = "$%portPriority6(224)#$";
+portPriority224[7] = "$%portPriority7(224)#$";
+portPriority224[8] = "$%portPriority8(224)#$";
+portPriority224[9] = "$%portPriority9(224)#$";
+portPriority224[10] = "$%portPriority10(224)#$";
+portPriority224[11] = "$%portPriority11(224)#$";
+portPriority224[12] = "$%portPriority12(224)#$";
+portPriority224[13] = "$%portPriority13(224)#$";
+portPriority224[14] = "$%portPriority14(224)#$";
+portPriority224[15] = "$%portPriority15(224)#$";
+portPriority224[16] = "$%portPriority16(224)#$";
+portPriority224[17] = "$%portPriority17(224)#$";
+portPriority224[18] = "$%portPriority18(224)#$";
+portPriority224[19] = "$%portPriority19(224)#$";
+portPriority224[20] = "$%portPriority20(224)#$";
+portPriority224[21] = "$%portPriority21(224)#$";
+portPriority224[22] = "$%portPriority22(224)#$";
+portPriority224[23] = "$%portPriority23(224)#$";
+portPriority224[24] = "$%portPriority24(224)#$";
+portPriority224[25] = "$%portPriority25(224)#$";
+portPriority224[26] = "$%portPriority26(224)#$";
+portPriority224[27] = "$%portPriority27(224)#$";
+portPriority224[28] = "$%portPriority28(224)#$";
+
+var portPriority240 = new Array();
+portPriority240[1] = "$%portPriority1(240)#$";
+portPriority240[2] = "$%portPriority2(240)#$";
+portPriority240[3] = "$%portPriority3(240)#$";
+portPriority240[4] = "$%portPriority4(240)#$";
+portPriority240[5] = "$%portPriority5(240)#$";
+portPriority240[6] = "$%portPriority6(240)#$";
+portPriority240[7] = "$%portPriority7(240)#$";
+portPriority240[8] = "$%portPriority8(240)#$";
+portPriority240[9] = "$%portPriority9(240)#$";
+portPriority240[10] = "$%portPriority10(240)#$";
+portPriority240[11] = "$%portPriority11(240)#$";
+portPriority240[12] = "$%portPriority12(240)#$";
+portPriority240[13] = "$%portPriority13(240)#$";
+portPriority240[14] = "$%portPriority14(240)#$";
+portPriority240[15] = "$%portPriority15(240)#$";
+portPriority240[16] = "$%portPriority16(240)#$";
+portPriority240[17] = "$%portPriority17(240)#$";
+portPriority240[18] = "$%portPriority18(240)#$";
+portPriority240[19] = "$%portPriority19(240)#$";
+portPriority240[20] = "$%portPriority20(240)#$";
+portPriority240[21] = "$%portPriority21(240)#$";
+portPriority240[22] = "$%portPriority22(240)#$";
+portPriority240[23] = "$%portPriority23(240)#$";
+portPriority240[24] = "$%portPriority24(240)#$";
+portPriority240[25] = "$%portPriority25(240)#$";
+portPriority240[26] = "$%portPriority26(240)#$";
+portPriority240[27] = "$%portPriority27(240)#$";
+portPriority240[28] = "$%portPriority28(240)#$";
+
+var edgeEnbale = new Array();
+edgeEnbale[1] = "$%edgeEnbale1#$";
+edgeEnbale[2] = "$%edgeEnbale2#$";
+edgeEnbale[3] = "$%edgeEnbale3#$";
+edgeEnbale[4] = "$%edgeEnbale4#$";
+edgeEnbale[5] = "$%edgeEnbale5#$";
+edgeEnbale[6] = "$%edgeEnbale6#$";
+edgeEnbale[7] = "$%edgeEnbale7#$";
+edgeEnbale[8] = "$%edgeEnbale8#$";
+edgeEnbale[9] = "$%edgeEnbale9#$";
+edgeEnbale[10] = "$%edgeEnbale10#$";
+edgeEnbale[11] = "$%edgeEnbale11#$";
+edgeEnbale[12] = "$%edgeEnbale12#$";
+edgeEnbale[13] = "$%edgeEnbale13#$";
+edgeEnbale[14] = "$%edgeEnbale14#$";
+edgeEnbale[15] = "$%edgeEnbale15#$";
+edgeEnbale[16] = "$%edgeEnbale16#$";
+edgeEnbale[17] = "$%edgeEnbale17#$";
+edgeEnbale[18] = "$%edgeEnbale18#$";
+edgeEnbale[19] = "$%edgeEnbale19#$";
+edgeEnbale[20] = "$%edgeEnbale20#$";
+edgeEnbale[21] = "$%edgeEnbale21#$";
+edgeEnbale[22] = "$%edgeEnbale22#$";
+edgeEnbale[23] = "$%edgeEnbale23#$";
+edgeEnbale[24] = "$%edgeEnbale24#$";
+edgeEnbale[25] = "$%edgeEnbale25#$";
+edgeEnbale[26] = "$%edgeEnbale26#$";
+edgeEnbale[27] = "$%edgeEnbale27#$";
+edgeEnbale[28] = "$%edgeEnbale28#$";
+
+var p2pEnbale0 = new Array();
+p2pEnbale0[1] = "$%p2pEnbale1(0)#$";
+p2pEnbale0[2] = "$%p2pEnbale2(0)#$";
+p2pEnbale0[3] = "$%p2pEnbale3(0)#$";
+p2pEnbale0[4] = "$%p2pEnbale4(0)#$";
+p2pEnbale0[5] = "$%p2pEnbale5(0)#$";
+p2pEnbale0[6] = "$%p2pEnbale6(0)#$";
+p2pEnbale0[7] = "$%p2pEnbale7(0)#$";
+p2pEnbale0[8] = "$%p2pEnbale8(0)#$";
+p2pEnbale0[9] = "$%p2pEnbale9(0)#$";
+p2pEnbale0[10] = "$%p2pEnbale10(0)#$";
+p2pEnbale0[11] = "$%p2pEnbale11(0)#$";
+p2pEnbale0[12] = "$%p2pEnbale12(0)#$";
+p2pEnbale0[13] = "$%p2pEnbale13(0)#$";
+p2pEnbale0[14] = "$%p2pEnbale14(0)#$";
+p2pEnbale0[15] = "$%p2pEnbale15(0)#$";
+p2pEnbale0[16] = "$%p2pEnbale16(0)#$";
+p2pEnbale0[17] = "$%p2pEnbale17(0)#$";
+p2pEnbale0[18] = "$%p2pEnbale18(0)#$";
+p2pEnbale0[19] = "$%p2pEnbale19(0)#$";
+p2pEnbale0[20] = "$%p2pEnbale20(0)#$";
+p2pEnbale0[21] = "$%p2pEnbale21(0)#$";
+p2pEnbale0[22] = "$%p2pEnbale22(0)#$";
+p2pEnbale0[23] = "$%p2pEnbale23(0)#$";
+p2pEnbale0[24] = "$%p2pEnbale24(0)#$";
+p2pEnbale0[25] = "$%p2pEnbale25(0)#$";
+p2pEnbale0[26] = "$%p2pEnbale26(0)#$";
+p2pEnbale0[27] = "$%p2pEnbale27(0)#$";
+p2pEnbale0[28] = "$%p2pEnbale28(0)#$";
+
+
+var p2pEnbale1 = new Array();
+p2pEnbale1[1] = "$%p2pEnbale1(1)#$";
+p2pEnbale1[2] = "$%p2pEnbale2(1)#$";
+p2pEnbale1[3] = "$%p2pEnbale3(1)#$";
+p2pEnbale1[4] = "$%p2pEnbale4(1)#$";
+p2pEnbale1[5] = "$%p2pEnbale5(1)#$";
+p2pEnbale1[6] = "$%p2pEnbale6(1)#$";
+p2pEnbale1[7] = "$%p2pEnbale7(1)#$";
+p2pEnbale1[8] = "$%p2pEnbale8(1)#$";
+p2pEnbale1[9] = "$%p2pEnbale9(1)#$";
+p2pEnbale1[10] = "$%p2pEnbale10(1)#$";
+p2pEnbale1[11] = "$%p2pEnbale11(1)#$";
+p2pEnbale1[12] = "$%p2pEnbale12(1)#$";
+p2pEnbale1[13] = "$%p2pEnbale13(1)#$";
+p2pEnbale1[14] = "$%p2pEnbale14(1)#$";
+p2pEnbale1[15] = "$%p2pEnbale15(1)#$";
+p2pEnbale1[16] = "$%p2pEnbale16(1)#$";
+p2pEnbale1[17] = "$%p2pEnbale17(1)#$";
+p2pEnbale1[18] = "$%p2pEnbale18(1)#$";
+p2pEnbale1[19] = "$%p2pEnbale19(1)#$";
+p2pEnbale1[20] = "$%p2pEnbale20(1)#$";
+p2pEnbale1[21] = "$%p2pEnbale21(1)#$";
+p2pEnbale1[22] = "$%p2pEnbale22(1)#$";
+p2pEnbale1[23] = "$%p2pEnbale23(1)#$";
+p2pEnbale1[24] = "$%p2pEnbale24(1)#$";
+p2pEnbale1[25] = "$%p2pEnbale25(1)#$";
+p2pEnbale1[26] = "$%p2pEnbale26(1)#$";
+p2pEnbale1[27] = "$%p2pEnbale27(1)#$";
+p2pEnbale1[28] = "$%p2pEnbale28(1)#$";
+
+var p2pEnbale2 = new Array();
+p2pEnbale2[1] = "$%p2pEnbale1(2)#$";
+p2pEnbale2[2] = "$%p2pEnbale2(2)#$";
+p2pEnbale2[3] = "$%p2pEnbale3(2)#$";
+p2pEnbale2[4] = "$%p2pEnbale4(2)#$";
+p2pEnbale2[5] = "$%p2pEnbale5(2)#$";
+p2pEnbale2[6] = "$%p2pEnbale6(2)#$";
+p2pEnbale2[7] = "$%p2pEnbale7(2)#$";
+p2pEnbale2[8] = "$%p2pEnbale8(2)#$";
+p2pEnbale2[9] = "$%p2pEnbale9(2)#$";
+p2pEnbale2[10] = "$%p2pEnbale10(2)#$";
+p2pEnbale2[11] = "$%p2pEnbale11(2)#$";
+p2pEnbale2[12] = "$%p2pEnbale12(2)#$";
+p2pEnbale2[13] = "$%p2pEnbale13(2)#$";
+p2pEnbale2[14] = "$%p2pEnbale14(2)#$";
+p2pEnbale2[15] = "$%p2pEnbale15(2)#$";
+p2pEnbale2[16] = "$%p2pEnbale16(2)#$";
+p2pEnbale2[17] = "$%p2pEnbale17(2)#$";
+p2pEnbale2[18] = "$%p2pEnbale18(2)#$";
+p2pEnbale2[19] = "$%p2pEnbale19(2)#$";
+p2pEnbale2[20] = "$%p2pEnbale20(2)#$";
+p2pEnbale2[21] = "$%p2pEnbale21(2)#$";
+p2pEnbale2[22] = "$%p2pEnbale22(2)#$";
+p2pEnbale2[23] = "$%p2pEnbale23(2)#$";
+p2pEnbale2[24] = "$%p2pEnbale24(2)#$";
+p2pEnbale2[25] = "$%p2pEnbale25(2)#$";
+p2pEnbale2[26] = "$%p2pEnbale26(2)#$";
+p2pEnbale2[27] = "$%p2pEnbale27(2)#$";
+p2pEnbale2[28] = "$%p2pEnbale28(2)#$";
+
+
+
+
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+  
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+function checkSub()
+{
+	
+	var idNameID = "";
+	var idNameCost = "";
+	var stpEnableVar = "";
+	
+	for(var i=1;i<=portNum;i++)
+	{
+	
+	idNameCost ="pathcost"+i;
+	
+	var pathcost =  document.getElementById(idNameCost).value;
+	
+	if(isNaN(pathcost) || pathcost < 0 || pathcost > 2000000000  || !fucCheckNUM(pathcost))
+	{
+		alert("端口"+i+" 路径开销错误,范围：0-2000000000");
+		return;
+	}
+		stpEnableVar = "stpEnable"+i;
+	}
+	
+  	submitForm0();
+}
+
+function submitForm0(){
+  var doc = document.form0;
+  doc.stpEnableStr.value = "";
+  doc.pathcostStr.value = "";
+  doc.portPriorityStr.value = "";
+  doc.edgeEnbaleStr.value = "";
+  doc.p2pEnbaleStr.value = "";
+  
+  for(var i = 1; i <= portNum; i++){
+    doc.stpEnableStr.value += document.getElementById("stpEnable" + i).checked ? "1" : "0";
+    doc.pathcostStr.value += document.getElementById("pathcost" + i).value + ",";
+    doc.portPriorityStr.value += document.getElementById("portPriority" + i).value + ",";
+    doc.edgeEnbaleStr.value += document.getElementById("edgeEnbale" + i).checked ? "1" : "0";
+    doc.p2pEnbaleStr.value += document.getElementById("p2pEnbale" + i).value ;
+  }
+  
+  doc.pathcostStr.value = doc.pathcostStr.value.substring(0, doc.pathcostStr.value.length-1);
+  doc.portPriorityStr.value = doc.portPriorityStr.value.substring(0, doc.portPriorityStr.value.length-1);
+  doc.submit();
+}
+
+
+function display(){
+	changebgcolor();
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('stp_port'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+<form id="form0" name="form0" method="post" action="">
+  <input type="hidden" name="stpEnableStr" value="$%stpEnableStr#$">
+  <input type="hidden" name="pathcostStr" value="$%pathcostStr#$">
+  <input type="hidden" name="portPriorityStr" value="$%portPriorityStr#$">
+  <input type="hidden" name="edgeEnbaleStr" value="$%edgeEnbaleStr#$">
+  <input type="hidden" name="p2pEnbaleStr" value="$%p2pEnbaleStr#$">
+</form>
+<form id="form1" name="form1" method="post" action="port.html">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td  class=Tablelist id=tabs name=tabs>STP端口配置</td>
+  </tr>
+</table>
+
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+    <TR align="center" height=22>
+      <TD width="10%"   nowrap >端口</TD>
+      <TD width="18%"   nowrap >STP模式</TD>
+      <TD width="18%"   nowrap >路径开销(0表示auto状态)</TD>
+      <TD width="18%"   nowrap >端口优先级</TD>
+      <TD width="18%"   nowrap >边缘端口</TD>
+      <TD width="18%"   nowrap >P2P端口</TD>
+    </TR>
+    <script language= "javascript">
+	for(var i = 1; i <= portNum; i++)
+	{	
+	  	document.write("<TR align='center' height=22>");
+		document.write("<td>"+i+"</td>");
+		document.write("<td class='crons'><input type='checkbox' name='stpEnable"+i+"' id='stpEnable"+i+"' value='ON' "+stpEnable[i]+" ></td>");
+		document.write("<td class='crons'><input type='text' name='pathcost"+i+"' id='pathcost"+i+"' value='"+pathcost[i]+"' /></td>");
+		document.write("<td class='crons'><select name='portPriority"+i+"' id='portPriority"+i+"'>");
+		document.write("<option value='0' "+portPriority0[i]+">0</option>");
+		document.write("<option value='16' "+portPriority16[i]+">16</option>");
+		document.write("<option value='32' "+portPriority32[i]+">32</option>");
+		document.write("<option value='48' "+portPriority48[i]+">48</option>");
+		document.write("<option value='64' "+portPriority64[i]+">64</option>");
+		document.write("<option value='80' "+portPriority80[i]+">80</option>");
+		document.write("<option value='96' "+portPriority96[i]+">96</option>");
+		document.write("<option value='112' "+portPriority112[i]+">112</option>");
+		document.write("<option value='128' "+portPriority128[i]+">128</option>");
+		document.write("<option value='144' "+portPriority144[i]+">144</option>");
+		document.write("<option value='160' "+portPriority160[i]+">160</option>");
+		document.write("<option value='176' "+portPriority176[i]+">176</option>");
+		document.write("<option value='192' "+portPriority192[i]+">192</option>");
+		document.write("<option value='208' "+portPriority208[i]+">208</option>");
+		document.write("<option value='224' "+portPriority224[i]+">224</option>");
+		document.write("<option value='240' "+portPriority240[i]+">240</option>");
+		document.write("</select></td>");
+		
+		document.write("<td class='crons'><input type='checkbox' name='edgeEnbale"+i+"' id='edgeEnbale"+i+"' value='ON' "+edgeEnbale[i]+" ></td>");
+		document.write("<td class='crons'><select name='p2pEnbale"+i+"' id='p2pEnbale"+i+"'>");
+		document.write("<option value='0' "+p2pEnbale0[i]+">true</option>");
+		document.write("<option value='1' "+p2pEnbale1[i]+">false</option>");
+		document.write("<option value='2' "+p2pEnbale2[i]+">auto</option>");
+		document.write("</select></td>");
+ 	}
+	</script>
+    
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input name="ddddd" type="button" class="button1" id="ddddd"  onclick="submitForm0();"  value="提交">
+    </td>
+    </tr>
+  </table>
+<span class="table_main1">
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="AGGPortEnable,stpEnable1,edgeEnbale1,p2pEnbale1,stpEnable2,edgeEnbale2,p2pEnbale2,stpEnable3,edgeEnbale3,p2pEnbale3,stpEnable4,edgeEnbale4,p2pEnbale4,stpEnable5,edgeEnbale5,p2pEnbale5,stpEnable6,edgeEnbale6,p2pEnbale6,stpEnable7,edgeEnbale7,p2pEnbale7,stpEnable8,edgeEnbale8,p2pEnbale8,stpEnable9,edgeEnbale9,p2pEnbale9,stpEnable10,edgeEnbale10,p2pEnbale10,stpEnable11,edgeEnbale11,p2pEnbale11,stpEnable12,edgeEnbale12,p2pEnbale12,stpEnable13,edgeEnbale13,p2pEnbale13,stpEnable14,edgeEnbale14,p2pEnbale14,stpEnable15,edgeEnbale15,p2pEnbale15,stpEnable16,edgeEnbale16,p2pEnbale16,stpEnable17,edgeEnbale17,p2pEnbale17,stpEnable18,edgeEnbale18,p2pEnbale18,stpEnable19,edgeEnbale19,p2pEnbale19,stpEnable20,edgeEnbale20,p2pEnbale20,stpEnable21,edgeEnbale21,p2pEnbale21,stpEnable22,edgeEnbale22,p2pEnbale22,stpEnable23,edgeEnbale23,p2pEnbale23,stpEnable24,edgeEnbale24,p2pEnbale24,stpEnable25,edgeEnbale25,p2pEnbale25,stpEnable26,edgeEnbale26,p2pEnbale26,stpEnable27,edgeEnbale27,p2pEnbale27,stpEnable28,edgeEnbale28,p2pEnbale28" >
+</span>
+</form>
+
+ 
+<a name="bottom"></a></BODY></HTML>
+
+
+
+

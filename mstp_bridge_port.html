@@ -1,0 +1,832 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+
+var portNum = $%portNum#$;
+var MstpPortInfoList = [$%MstpPortInfoList#$];
+
+function setCurState()
+{
+}
+
+function checkSub(){
+  submitForm0();
+  return false;
+}
+
+function writeList(){
+	var sta = ["已禁用","已启用"];
+	var lType = ["Share","P2P"];
+	var proto = ["STP", "", "RSTP", "MSTP", "NULL"];
+	
+	for(var i = 0; i < MstpPortInfoList.length/6; i++){
+  	document.writeln("<tr><td class='td25' colspan='2'>");
+	  document.writeln(i + 1 + "</td><td class='td25'>");
+	  document.writeln(sta[MstpPortInfoList[i*6]] + "</td><td class='td25'>");
+	  document.writeln(sta[MstpPortInfoList[i*6 + 1]] + "</td><td class='td25'>");
+	  document.writeln(lType[MstpPortInfoList[i*6 + 2]] + "</td><td class='td25'>");
+	  document.writeln(sta[MstpPortInfoList[i*6 + 3]] + "</td><td class='td25'>");
+	  document.writeln(sta[MstpPortInfoList[i*6 + 4]] + "</td><td class='td25'>");
+	  document.writeln(proto[MstpPortInfoList[i*6 + 5]] + "</td></tr>");
+	}
+}
+function submitForm0(){
+  var doc = document.form0;
+  doc.MstpPortConStr.value = "";
+  for(var i = 1; i <= portNum; i++){
+  	doc.MstpPortConStr.value += document.getElementById("MstpPortEnable" + i).value 
+  	                      	  + document.getElementById("MstpPortEdge" + i).value 
+  	                      	  + document.getElementById("MstpPortLType" + i).value 
+  	                      	  + document.getElementById("MstpPortBpduGuard" + i).value 
+  	                      	  + document.getElementById("MstpPortBpduFilter" + i).value; 
+  }
+  doc.submit();
+}
+</script>
+
+</head>
+
+<body>
+<div class="container" id="cpcontainer">
+  <form id="form0" name="form0" method="post" action="">
+  	<input type="hidden" name="MstpPortConStr" value="$%MstpPortConStr#$">
+   </form>
+  <form id="form1" name="form1" method="post" action="" onsubmit="return checkSub();">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">MSTP 桥端口配置</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table  class="table_maintable" cellpadding="0" style="text-align:center"> 
+  <tr style="text-align:center">
+    <td class="partition" colspan='2' width="15%">端口</td>
+    <td class="partition">状态</td>
+    <td class="partition">边缘</td>
+    <td class="partition">连接类型</td>
+    <td class="partition">bpdu保护</td>
+    <td class="partition" colspan='2'>bpdu过滤</td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>1</td>
+    <td class="td25">
+      <select name="MstpPortEnable1" id="MstpPortEnable1">
+        <option value="1" $%MstpPortEnable1(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable1(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge1" id="MstpPortEdge1">
+        <option value="0" $%MstpPortEdge1(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge1(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge1(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType1" id="MstpPortLType1">
+        <option value="1" $%MstpPortLType1(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType1(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard1" id="MstpPortBpduGuard1">
+        <option value="0" $%MstpPortBpduGuard1(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard1(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard1(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter1" id="MstpPortBpduFilter1">
+        <option value="0" $%MstpPortBpduFilter1(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter1(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter1(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>2</td>
+    <td class="td25">
+      <select name="MstpPortEnable2" id="MstpPortEnable2">
+        <option value="1" $%MstpPortEnable2(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable2(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge2" id="MstpPortEdge2">
+        <option value="0" $%MstpPortEdge2(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge2(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge2(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType2" id="MstpPortLType2">
+        <option value="1" $%MstpPortLType2(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType2(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard2" id="MstpPortBpduGuard2">
+        <option value="0" $%MstpPortBpduGuard2(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard2(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard2(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter2" id="MstpPortBpduFilter2">
+        <option value="0" $%MstpPortBpduFilter2(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter2(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter2(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>3</td>
+    <td class="td25">
+      <select name="MstpPortEnable3" id="MstpPortEnable3">
+        <option value="1" $%MstpPortEnable3(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable3(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge3" id="MstpPortEdge3">
+        <option value="0" $%MstpPortEdge3(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge3(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge3(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType3" id="MstpPortLType3">
+        <option value="1" $%MstpPortLType3(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType3(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard3" id="MstpPortBpduGuard3">
+        <option value="0" $%MstpPortBpduGuard3(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard3(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard3(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter3" id="MstpPortBpduFilter3">
+        <option value="0" $%MstpPortBpduFilter3(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter3(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter3(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>4</td>
+    <td class="td25">
+      <select name="MstpPortEnable4" id="MstpPortEnable4">
+        <option value="1" $%MstpPortEnable4(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable4(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge4" id="MstpPortEdge4">
+        <option value="0" $%MstpPortEdge4(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge4(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge4(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType4" id="MstpPortLType4">
+        <option value="1" $%MstpPortLType4(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType4(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard4" id="MstpPortBpduGuard4">
+        <option value="0" $%MstpPortBpduGuard4(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard4(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard4(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter4" id="MstpPortBpduFilter4">
+        <option value="0" $%MstpPortBpduFilter4(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter4(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter4(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>5</td>
+    <td class="td25">
+      <select name="MstpPortEnable5" id="MstpPortEnable5">
+        <option value="1" $%MstpPortEnable5(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable5(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge5" id="MstpPortEdge5">
+        <option value="0" $%MstpPortEdge5(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge5(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge5(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType5" id="MstpPortLType5">
+        <option value="1" $%MstpPortLType5(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType5(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard5" id="MstpPortBpduGuard5">
+        <option value="0" $%MstpPortBpduGuard5(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard5(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard5(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter5" id="MstpPortBpduFilter5">
+        <option value="0" $%MstpPortBpduFilter5(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter5(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter5(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>6</td>
+    <td class="td25">
+      <select name="MstpPortEnable6" id="MstpPortEnable6">
+        <option value="1" $%MstpPortEnable6(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable6(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge6" id="MstpPortEdge6">
+        <option value="0" $%MstpPortEdge6(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge6(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge6(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType6" id="MstpPortLType6">
+        <option value="1" $%MstpPortLType6(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType6(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard6" id="MstpPortBpduGuard6">
+        <option value="0" $%MstpPortBpduGuard6(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard6(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard6(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter6" id="MstpPortBpduFilter6">
+        <option value="0" $%MstpPortBpduFilter6(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter6(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter6(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>7</td>
+    <td class="td25">
+      <select name="MstpPortEnable7" id="MstpPortEnable7">
+        <option value="1" $%MstpPortEnable7(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable7(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge7" id="MstpPortEdge7">
+        <option value="0" $%MstpPortEdge7(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge7(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge7(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType7" id="MstpPortLType7">
+        <option value="1" $%MstpPortLType7(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType7(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard7" id="MstpPortBpduGuard7">
+        <option value="0" $%MstpPortBpduGuard7(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard7(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard7(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter7" id="MstpPortBpduFilter7">
+        <option value="0" $%MstpPortBpduFilter7(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter7(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter7(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>8</td>
+    <td class="td25">
+      <select name="MstpPortEnable8" id="MstpPortEnable8">
+        <option value="1" $%MstpPortEnable8(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable8(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge8" id="MstpPortEdge8">
+        <option value="0" $%MstpPortEdge8(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge8(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge8(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType8" id="MstpPortLType8">
+        <option value="1" $%MstpPortLType8(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType8(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard8" id="MstpPortBpduGuard8">
+        <option value="0" $%MstpPortBpduGuard8(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard8(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard8(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter8" id="MstpPortBpduFilter8">
+        <option value="0" $%MstpPortBpduFilter8(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter8(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter8(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>9</td>
+    <td class="td25">
+      <select name="MstpPortEnable9" id="MstpPortEnable9">
+        <option value="1" $%MstpPortEnable9(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable9(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge9" id="MstpPortEdge9">
+        <option value="0" $%MstpPortEdge9(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge9(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge9(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType9" id="MstpPortLType9">
+        <option value="1" $%MstpPortLType9(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType9(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard9" id="MstpPortBpduGuard9">
+        <option value="0" $%MstpPortBpduGuard9(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard9(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard9(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter9" id="MstpPortBpduFilter9">
+        <option value="0" $%MstpPortBpduFilter9(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter9(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter9(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>10</td>
+    <td class="td25">
+      <select name="MstpPortEnable10" id="MstpPortEnable10">
+        <option value="1" $%MstpPortEnable10(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable10(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge10" id="MstpPortEdge10">
+        <option value="0" $%MstpPortEdge10(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge10(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge10(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType10" id="MstpPortLType10">
+        <option value="1" $%MstpPortLType10(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType10(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard10" id="MstpPortBpduGuard10">
+        <option value="0" $%MstpPortBpduGuard10(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard10(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard10(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter10" id="MstpPortBpduFilter10">
+        <option value="0" $%MstpPortBpduFilter10(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter10(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter10(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>11</td>
+    <td class="td25">
+      <select name="MstpPortEnable11" id="MstpPortEnable11">
+        <option value="1" $%MstpPortEnable11(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable11(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge11" id="MstpPortEdge11">
+        <option value="0" $%MstpPortEdge11(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge11(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge11(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType11" id="MstpPortLType11">
+        <option value="1" $%MstpPortLType11(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType11(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard11" id="MstpPortBpduGuard11">
+        <option value="0" $%MstpPortBpduGuard11(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard11(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard11(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter11" id="MstpPortBpduFilter11">
+        <option value="0" $%MstpPortBpduFilter11(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter11(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter11(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>12</td>
+    <td class="td25">
+      <select name="MstpPortEnable12" id="MstpPortEnable12">
+        <option value="1" $%MstpPortEnable12(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable12(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge12" id="MstpPortEdge12">
+        <option value="0" $%MstpPortEdge12(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge12(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge12(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType12" id="MstpPortLType12">
+        <option value="1" $%MstpPortLType12(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType12(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard12" id="MstpPortBpduGuard12">
+        <option value="0" $%MstpPortBpduGuard12(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard12(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard12(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter12" id="MstpPortBpduFilter12">
+        <option value="0" $%MstpPortBpduFilter12(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter12(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter12(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>13</td>
+    <td class="td25">
+      <select name="MstpPortEnable13" id="MstpPortEnable13">
+        <option value="1" $%MstpPortEnable13(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable13(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge13" id="MstpPortEdge13">
+        <option value="0" $%MstpPortEdge13(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge13(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge13(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType13" id="MstpPortLType13">
+        <option value="1" $%MstpPortLType13(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType13(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard13" id="MstpPortBpduGuard13">
+        <option value="0" $%MstpPortBpduGuard13(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard13(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard13(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter13" id="MstpPortBpduFilter13">
+        <option value="0" $%MstpPortBpduFilter13(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter13(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter13(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>14</td>
+    <td class="td25">
+      <select name="MstpPortEnable14" id="MstpPortEnable14">
+        <option value="1" $%MstpPortEnable14(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable14(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge14" id="MstpPortEdge14">
+        <option value="0" $%MstpPortEdge14(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge14(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge14(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType14" id="MstpPortLType14">
+        <option value="1" $%MstpPortLType14(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType14(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard14" id="MstpPortBpduGuard14">
+        <option value="0" $%MstpPortBpduGuard14(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard14(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard14(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter14" id="MstpPortBpduFilter14">
+        <option value="0" $%MstpPortBpduFilter14(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter14(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter14(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>15</td>
+    <td class="td25">
+      <select name="MstpPortEnable15" id="MstpPortEnable15">
+        <option value="1" $%MstpPortEnable15(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable15(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge15" id="MstpPortEdge15">
+        <option value="0" $%MstpPortEdge15(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge15(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge15(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType15" id="MstpPortLType15">
+        <option value="1" $%MstpPortLType15(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType15(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard15" id="MstpPortBpduGuard15">
+        <option value="0" $%MstpPortBpduGuard15(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard15(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard15(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter15" id="MstpPortBpduFilter15">
+        <option value="0" $%MstpPortBpduFilter15(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter15(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter15(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>16</td>
+    <td class="td25">
+      <select name="MstpPortEnable16" id="MstpPortEnable16">
+        <option value="1" $%MstpPortEnable16(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable16(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge16" id="MstpPortEdge16">
+        <option value="0" $%MstpPortEdge16(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge16(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge16(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType16" id="MstpPortLType16">
+        <option value="1" $%MstpPortLType16(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType16(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard16" id="MstpPortBpduGuard16">
+        <option value="0" $%MstpPortBpduGuard16(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard16(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard16(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter16" id="MstpPortBpduFilter16">
+        <option value="0" $%MstpPortBpduFilter16(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter16(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter16(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>17</td>
+    <td class="td25">
+      <select name="MstpPortEnable17" id="MstpPortEnable17">
+        <option value="1" $%MstpPortEnable17(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable17(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge17" id="MstpPortEdge17">
+        <option value="0" $%MstpPortEdge17(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge17(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge17(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType17" id="MstpPortLType17">
+        <option value="1" $%MstpPortLType17(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType17(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard17" id="MstpPortBpduGuard17">
+        <option value="0" $%MstpPortBpduGuard17(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard17(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard17(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter17" id="MstpPortBpduFilter17">
+        <option value="0" $%MstpPortBpduFilter17(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter17(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter17(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>18</td>
+    <td class="td25">
+      <select name="MstpPortEnable18" id="MstpPortEnable18">
+        <option value="1" $%MstpPortEnable18(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable18(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge18" id="MstpPortEdge18">
+        <option value="0" $%MstpPortEdge18(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge18(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge18(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType18" id="MstpPortLType18">
+        <option value="1" $%MstpPortLType18(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType18(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard18" id="MstpPortBpduGuard18">
+        <option value="0" $%MstpPortBpduGuard18(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard18(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard18(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter18" id="MstpPortBpduFilter18">
+        <option value="0" $%MstpPortBpduFilter18(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter18(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter18(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>19</td>
+    <td class="td25">
+      <select name="MstpPortEnable19" id="MstpPortEnable19">
+        <option value="1" $%MstpPortEnable19(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable19(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge19" id="MstpPortEdge19">
+        <option value="0" $%MstpPortEdge19(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge19(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge19(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType19" id="MstpPortLType19">
+        <option value="1" $%MstpPortLType19(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType19(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard19" id="MstpPortBpduGuard19">
+        <option value="0" $%MstpPortBpduGuard19(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard19(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard19(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter19" id="MstpPortBpduFilter19">
+        <option value="0" $%MstpPortBpduFilter19(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter19(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter19(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="td25" colspan='2'>20</td>
+    <td class="td25">
+      <select name="MstpPortEnable20" id="MstpPortEnable20">
+        <option value="1" $%MstpPortEnable20(1)#$>启用</option>
+        <option value="0" $%MstpPortEnable20(0)#$>禁用</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortEdge20" id="MstpPortEdge20">
+        <option value="0" $%MstpPortEdge20(0)#$>禁用</option>
+        <option value="1" $%MstpPortEdge20(1)#$>启用</option>
+        <option value="2" $%MstpPortEdge20(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortLType20" id="MstpPortLType20">
+        <option value="1" $%MstpPortLType20(1)#$>P2P</option>
+        <option value="0" $%MstpPortLType20(0)#$>Share</option>
+      </select>
+    </td>
+    <td class="td25">
+      <select name="MstpPortBpduGuard20" id="MstpPortBpduGuard20">
+        <option value="0" $%MstpPortBpduGuard20(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduGuard20(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduGuard20(2)#$>自动</option>
+      </select>
+    </td>
+    <td class="td25" colspan='2'>
+      <select name="MstpPortBpduFilter20" id="MstpPortBpduFilter20">
+        <option value="0" $%MstpPortBpduFilter20(0)#$>禁用</option>
+        <option value="1" $%MstpPortBpduFilter20(1)#$>启用</option>
+        <option value="2" $%MstpPortBpduFilter20(2)#$>自动</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+          <td height="10"></td>
+        </tr>
+  <tr>
+    <td colspan="8" align="center">
+      <input type="submit" class="button1" name="button" id="button" value="提 交" />
+    </td>
+    </tr>
+        <tr>
+          <td height="10"></td>
+        </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=9 class="table_main3">MSTP 桥端口状态</td>
+  </tr>
+  <tr style="text-align:center">
+    <td class="partition" colspan='2'>端口</td>
+    <td class="partition">状态</td>
+    <td class="partition">边缘</td>
+    <td class="partition">连接类型</td>
+    <td class="partition">bpdu保护</td>
+    <td class="partition">bpdu过滤</td>
+    <td class="partition">协议版本</td>
+  </tr>
+<script language="javascript">
+  writeList();
+</script>
+</table>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

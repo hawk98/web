@@ -1,0 +1,182 @@
+<HTML>	
+<HEAD>
+<TITLE>Switch</TITLE>
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<SCRIPT language="javascript">var logout_alter="您确定要退出?"</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<script language="javascript">
+function changev()
+{
+	if(top.mainctrl.view_help)
+	{
+		if(top.mainctrl.view_help.style.display=="none")
+		{
+			top.mainctrl.view_help.style.display="block";
+		}
+		else
+		{
+			top.mainctrl.view_help.style.display="none";
+		} 
+	}	
+}
+
+
+function submits()
+{
+	if(document.forma.system_user_can_reboot.value == 'enable')
+	{
+		if(confirm("您确定要重启?"))
+		{
+			con = confirm("在重启前您需要保存设置吗?");
+			if (con)
+			{
+				top.mainctrl.location.href = 'infoSave.html'
+			}
+			else
+			{
+				document.form2.submit();
+			}
+		}
+	}
+	else
+	{
+		alert("本次操作权限不足！");
+	}
+}
+
+
+var statusStr = "$%TopPortLinkStateStr#$";
+var packetsStr = "$%TopPortPacketsStr#$";
+var packetsStrOld = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0";
+var refeshTime=5001;
+var portStatus=new Array(33);
+var portPackets = new Array(33);
+var portPacketsOld = new Array(33);
+var alarm = 0;
+var power1_alarm;
+var power2_alarm;
+
+var timer = null;
+
+function changePort()
+{
+    timer=setTimeout("changePort()",refeshTime); 
+	
+	if(window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.document.form1) 
+	{
+		window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.document.form1.submit();
+		statusStr = window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.statusStr;
+		alarm = window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.alarm;
+		power1_alarm = window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.power1_alarm;
+		power2_alarm = window.parent.document.getElementsByTagName("frame")["hidden1"].contentWindow.power2_alarm;
+	}
+}
+function changeCursor()
+{
+	for(var i = 1; i < 29; i++){
+	if (typeof Image1 !== 'undefined')
+	{ 
+		document.getElementById("Image" + i).style.cursor = "pointer";
+	  	document.getElementById("Image" + i).onclick = function() {
+      	top.mainctrl.location.href = "portstatus.html?portNum=" + this.id.substring(5,this.id.length);
+		};
+	 }
+	
+	}
+}
+
+function loadPort(){
+	var imageID,picSrc,nPackets,pLevel;
+	var srcEnd;
+	
+	if(statusStr != null)
+		portStatus = ToNumArray(statusStr.split(','));
+/*	if(packetsStr != null)
+		portPackets = ToNumArray(packetsStr.split(','));
+  portPacketsOld = ToNumArray(packetsStrOld.split(','));
+*/  
+  for(var i = 5; i < 33; i++){
+    imageID = 'Image' + (i - 4);
+    srcEnd = i - 4;
+    if(i > 28) srcEnd = "g" + (i - 29);
+    if(portStatus[i] != 0){
+      picSrc = 'images/618f_port_3.gif';
+    }else{
+      picSrc = 'images/618fport.gif';
+    }
+    document.getElementById(imageID).src = picSrc;
+//    MM_swapImage(imageID,'',picSrc);
+  }
+  
+  if(alarm == 0){
+    document.getElementById("alarm1").src = "images/618f_ALM_1.gif";
+  }else{
+    document.getElementById("alarm1").src = "images/618f_ALM_2.gif";
+  }
+  
+  if(power1_alarm == "on"){
+    document.getElementById("pwr1").src = "images/618f_PWR1_on.gif";
+  }else{
+    document.getElementById("pwr1").src = "images/618f_PWR1_off.gif";
+  }
+  
+  
+  if(power2_alarm == "on"){
+    document.getElementById("pwr2").src = "images/618f_PWR2_on.gif";
+  }else{
+    document.getElementById("pwr2").src = "images/618f_PWR2_off.gif";
+  }
+  
+  
+  
+}
+
+function ToNumArray(anStrArray)
+{   var len, i;
+    len = anStrArray.length;
+    for (i=0; i<len; i++) 
+        anStrArray[i] = parseInt(anStrArray[i]);
+    return anStrArray;
+}	
+function gotoSta(portNum)
+{
+  top.mainctrl.location.href = "portstatus.html?portNum=" + portNum;
+}
+
+window.onload = function() {  
+    changePort();
+    changeCursor(); 
+}
+
+
+
+</script>
+<style type="text/css">
+body {margin:0px; font-family : Verdana, Arial, Helvetica; background-color:#0054A5}
+td {font-family : Verdana, Arial, Helvetica;font-size : 12px;color:000000}
+.link {font-family : Verdana, Arial, Helvetica;font-size : 12px;font-weight: bold; }
+.logo{ border:0; position:absolute;top:8px;left:15px}
+</style>
+</head>
+<BODY   bgcolor="D8D6D0" height="70">
+<form name="forma"   >
+      <input name="system_user_can_reboot"  id="system_user_can_reboot" value="$%system_user_can_reboot#$" type="hidden">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="70" style="padding-top:1px; padding-bottom:1px">
+   <tr>
+     <td width="160" rowspan="2"><a href="/index.html"></a><a href="/index.html"></a><img src="logo_web.png" width="500" height="50">
+   	</td>
+   </tr>
+    <tr>
+     <td align="right" class="link">&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="javascript:document.form1.submit();"style="cursor:pointer;color:#FFFFFF">&nbsp;注销&nbsp;|&nbsp;</a><span style="cursor:pointer;color:#FFFFFF" onClick="changev()">帮助&nbsp;|&nbsp;欢迎您：$%tSysadministrator#$ </span>     &nbsp;&nbsp;&nbsp;</td>
+    </tr></table>
+     
+</form>
+<form name="form1" method="post" action="/index.html">
+  <input name="logout" type="hidden" id="logout">
+</form>
+
+</body>
+</html>

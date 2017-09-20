@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+//var dhcpClient = ["1111","22222","tt"];
+//var dhcpClient = [0,1,8];
+function writeLine()
+{
+
+}
+
+function onClickAllDay(){
+
+}
+function checkForm(s){
+  var aNo = s.AclListNo.value;
+  var sMac = s.AclRuleSourceMac.value;
+  var dMac = s.AclRuleDestMac.value;
+  var sProto = s.AclRuleProto.value;   
+ 
+	if(sProto != "")
+	{
+            if(!IsHex(sProto,0) || sProto.length > 4)
+            	{
+			alert("以太网类型设置错误，范围：十六进制数0001~ffff");
+			return false;
+            	}
+	}			
+	if(sMac != "" && !tdMacCheck(sMac))
+	{
+		alert("源MAC地址错误！");
+		return false;
+	}
+	if(dMac != "" && !tdMacCheck(dMac))
+	{
+		alert("目的MAC地址错误！");
+		return false;
+	}
+	if (sProto == "" )
+		sProto = "ffff";
+	if ((sProto == "" || sProto == "0") && sMac == "" && dMac == "")
+	{
+	       alert("请输入规则配置数据");
+	       return false;
+	}
+  
+  return true;
+}
+
+window.onload = function(){
+  checkVar();
+}
+function checkVar(){
+  var strHref = window.document.location.href; 
+  var intPos = strHref.indexOf("?");
+  if(intPos < 0) window.location.href = "aclrule_config.html"; 
+  var strRight = strHref.substr(intPos + 1); 
+
+  var arrTmp = strRight.split("="); 
+  document.form1.AclListNo.value = arrTmp[1];
+}
+</script>
+</HEAD>
+<BODY   >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="EEFDFF">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('acl'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+  <form id="form1" name="form1" method="post" action="aclrule2.html">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs><nobr>ACL 规则</nobr></td>
+   
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    
+    
+    <TR height=22>
+      <TD width="22%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">对应ACL编号</span></div></TD>
+      <td  ><span class="crons">
+        <input name="AclListNo" type="text" id="AclListNo" value="$%AclListNo#$"  ReadOnly=true/>
+      </span></td>
+      <td  >&nbsp;&nbsp;<span class="crons">动作</span></td>
+      <td  ><span class="crons">
+        <select name="AclRuleAction" id="AclRuleAction">
+          <option value="1" $%AclRuleAction(1)#$>允许</option>
+          <option value="0" $%AclRuleAction(0)#$>拒绝</option>
+        </select>
+      </span></td>
+    </TR>
+    
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25"><span class="crons">以太网类型</span></span></TD>
+      <td width="28%"  class="crons"><input name="AclRuleProto" type="text" maxlength=6 id="AclRuleProto" value="$%AclRuleProto#$" />
+(十六进制数0001~ffff)</td>
+      <td width="22%"  class="crons">&nbsp;</td>
+      <td width="28%"  class="crons">&nbsp;</td>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="crons">源MAC</span></TD>
+      <td  class="crons"><input name="AclRuleSourceMac" type="text" maxlength=31 id="AclRuleSourceMac" value="$%AclRuleSourceMac#$" /></td>
+      <td  class="crons">&nbsp;&nbsp;目的MAC</td>
+      <td  class="crons"><input name="AclRuleDestMac" type="text" maxlength=31 id="AclRuleDestMac" value="$%AclRuleDestMac#$" /></td>
+    </TR>
+    <tr>
+    <td   class="partition" colspan="8">&nbsp;
+       <input name="b_submit2" class="button1" type="submit" id="b_submit" value="提交"  onclick="return checkForm(this.form);">
+    </td>
+    </tr>
+</TABLE>
+
+
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="RuleType" >
+
+</FORM>
+<script language="javascript">
+changebgcolor();
+</script>
+</BODY></HTML>

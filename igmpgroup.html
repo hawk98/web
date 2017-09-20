@@ -1,0 +1,209 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";</script>
+<script language="javascript">
+function changebgcolor(){
+ var tab = document.all.table1;
+  var len = tab.rows.length ;
+  for (var i=0; i<len; i++)
+  {
+	var lencol = tab.rows[i].cells.length
+    for (var j=0; j<lencol; j++)
+     {
+        if (j % 2 == 1){
+
+			tab.rows[i].cells[j].bgColor = "ffffff";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		  }
+	else{
+			tab.rows[i].cells[j].bgColor = "D3E4F4";
+			tab.rows[i].cells[j].className = "all_tables" ;
+		}
+
+     }
+
+  }
+}
+
+var portNum = $%portNum#$;
+var igmpStaGroupList = [$%igmpStaGroupList#$];
+
+function display()
+{
+changebgcolor();
+
+}
+
+
+
+var IgmpGTotalPages = $%IgmpGTotalPages#$;
+var IgmpGCurPage = $%IgmpGCurPage#$;
+var IgmpGPageItenNum = 20;
+
+function fucCheckNUM(NUM)
+{
+ var i,j,strTemp;
+ strTemp="0123456789";
+ if ( NUM.length== 0)
+  return 0
+ for (i=0;i<NUM.length;i++)
+ {
+  j=strTemp.indexOf(NUM.charAt(i)); 
+  if (j==-1)
+  {
+  //说明有字符不是数字
+   return false;
+  }
+ }
+ //说明是数字
+ return true;
+} 
+
+function gotopage()
+{	
+	var gotoPageNum = document.getElementById("IgmpGGotoGage").value;
+	
+	if(!fucCheckNUM(gotoPageNum)  || gotoPageNum==""||gotoPageNum<1||gotoPageNum>IgmpGTotalPages)
+	{
+		alert("您输入的页数不存在！");
+		return;
+	}
+	if(gotoPageNum == IgmpGCurPage)
+	{
+		alert("您已经在第"+IgmpGCurPage+"页了！");
+		return;
+	}
+	
+	document.getElementById("IgmpGGotoPageEnable").value = 1;
+	document.form1.submit();
+}
+function gotoPrepage()
+{
+	document.getElementById("IgmpGGotoGage").value = (IgmpGCurPage-1);
+	gotopage();
+}
+
+function gotoNextpage()
+{
+	document.getElementById("IgmpGGotoGage").value = (IgmpGCurPage+1);
+	gotopage();
+}
+
+
+function writeGroupLines()
+{
+	var i = 0;
+	var j = 0;
+	var k = 0;
+	
+	for(var i=0;i<(igmpStaGroupList.length/3);i++)
+	{
+	document.write("		<tr class='tables_all'>");
+	document.write("        <td class='inputsyslog1'>"+(i+1)+"</td>");
+	document.write("        <td class='inputsyslog1'>"+ igmpStaGroupList[j] +"</td>");
+	j++;
+	document.write("        <td class='inputsyslog1'>" +igmpStaGroupList[j]+ "</td>");
+	j++;
+	
+	var groupList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	var members =igmpStaGroupList[j].split(",");
+	
+	for(var n=0;n<members.length;n++)
+		groupList[ members[n] - 1 ] = 1;
+	
+	for(var m=0;m<portNum;m++)
+	{
+		if(groupList[m] == 1)
+			document.write("        <td class='inputsyslog1'>Y</td>");
+		else
+			document.write("        <td class='inputsyslog1'>&nbsp;</td>");
+	}
+	j++;
+	document.write("      </tr>");
+	}
+}
+
+
+
+</script>
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('igmpgroup'));
+ </SCRIPT>
+	  
+  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+    <br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="70%"  class=Tablelist id=tabs name=tabs>IGMP组&nbsp;&nbsp;&nbsp;
+      <script language="javascript">
+	document.write("总共"+IgmpGTotalPages+"页，当前"+IgmpGCurPage+"页，");
+	  </script>
+到
+<input name="IgmpGGotoGage" id="IgmpGGotoGage" type="text"  size="3" maxlength="3" VALUE="$%IgmpGGotoGage#$">
+页
+<input name="button" type="button" class="button1" id="gotoVlanAPage"  onClick="gotopage();" value="确 认">
+&nbsp;&nbsp;&nbsp;&nbsp; <a  onClick="gotoPrepage();" style="cursor:pointer;">上一页</a> <a  onClick="gotoNextpage();" style="cursor:pointer;">下一页</a>
+<input type="hidden" name="IgmpGGotoPageEnable" id="IgmpGGotoPageEnable"  value="$%IgmpGGotoPageEnable#$"/></td>
+    <td width="30%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table1"  >
+	
+    <tr>
+      <td rowspan="2" class="inputsyslog1">数量</td>
+      <td rowspan="2" class="inputsyslog1">VLAN ID</td>
+      <td rowspan="2" class="inputsyslog1">组</td>
+      <td align=center class="inputsyslog1" colspan=28>端口 </td>
+    </tr>
+     <script language= "javascript">
+	 document.write("<tr>");
+	 for(var i = 1; i <= portNum; i++)
+	 {
+		document.write(" <td align='center' class='inputsyslog1' >&nbsp;"+i+"</td>");
+	 }
+	 document.write("</tr>");
+	</script>
+    
+        <script language="javascript">
+		writeGroupLines();
+		
+    if(IgmpGCurPage == 1)
+	{
+  		if (typeof gotoVlanPrePage !== 'undefined')
+			document.getElementById("gotoVlanPrePage").style.display="none";
+	}
+	if(IgmpGCurPage == IgmpGTotalPages)
+	{	
+		if (typeof gotoVlanNextPage !== 'undefined')
+ 			document.getElementById("gotoVlanNextPage").style.display="none";
+	}
+		</script>
+  </table>
+  </form>
+
+</BODY></HTML>

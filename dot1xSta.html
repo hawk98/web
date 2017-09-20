@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WEB</title>
+
+<script language="javascript">
+var Dot1xPortStaList = [$%Dot1xPortStaList#$];
+
+function clearPort()
+{
+	if(confirm("您确定要清除吗？"))	
+		{
+			document.getElementById("hdotStaClearFlag").value = 1;
+			document.form1.submit();
+		}
+}
+
+function changePort()
+{
+document.form1.submit();
+}
+
+function getPage(){
+document.location("dot1xSta.html");
+}
+
+function changestat()
+{
+	var port = document.getElementById("sdot1xStaPort").value;
+
+	
+	for(i=0;i<14;i++)
+	{
+		IdName="dot1xCounters"+i;
+		document.getElementById(IdName).value = Dot1xPortStaList[i];
+	}
+  canSelect = true;
+}
+
+timer=null;
+var isAutoRefresh = true;
+function aotoRefresh()
+{
+	timer=setTimeout("doAotofresh()",5000);
+}
+
+function doAotofresh()
+{
+if(document.getElementById("autoRefresh1").checked == true && isAutoRefresh == true)
+	{
+	changePort();
+	//getPage();
+	}
+}
+function aotoRefreshSet()
+{
+if(document.getElementById("autoRefresh1").checked == true)
+{
+	isAutoRefresh = true;
+	aotoRefresh();
+}
+else
+{
+	isAutoRefresh = false;
+}
+}
+
+var canSelect = false;
+function selectChange(){
+	if(canSelect)
+    document.form1.submit();
+}
+
+window.onunload = function(){
+  canSelect = false;
+}
+</script>
+<style type="text/css">
+<!--
+.disableText {	BACKGROUND-COLOR: #efffff; BORDER-BOTTOM: #efffff 1px solid; BORDER-LEFT: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; 
+}
+-->
+</style>
+</head>
+
+<body  onload="changestat();">
+<div class="container" id="cpcontainer">
+  <form id="form1" name="form1" method="post" action="">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="9" align="left"><table width="250" border="0" cellpadding="0" cellspacing="0" class="table_main2">
+      <tr>
+        <td width="41" background="images/main_top.jpg"><img src="images/main_tops.jpg"/></td>
+        <td background="images/main_top.jpg" class="h14blackblod">802.1x 端口统计</td>
+      </tr>
+    </table></td></tr>
+  <tr><td class="table_main1">
+  <table class="table_maintable" cellpadding="0">
+  <tr>
+    <td colspan="3" class="crons">端口：
+      
+      <select name="sdot1xStaPort" id="sdot1xStaPort" onchange="selectChange()">
+        <option value="1" $%sdot1xStaPort(1)#$>端口1</option>
+        <option value="2" $%sdot1xStaPort(2)#$>端口2</option>
+        <option value="3" $%sdot1xStaPort(3)#$>端口3</option>
+        <option value="4" $%sdot1xStaPort(4)#$>端口4</option>
+        <option value="5" $%sdot1xStaPort(5)#$>端口5</option>
+        <option value="6" $%sdot1xStaPort(6)#$>端口6</option>
+        <option value="7" $%sdot1xStaPort(7)#$>端口7</option>
+        <option value="8" $%sdot1xStaPort(8)#$>端口8</option>
+        <option value="9" $%sdot1xStaPort(9)#$>端口9</option>
+        <option value="10" $%sdot1xStaPort(10)#$>端口10</option>
+        <option value="11" $%sdot1xStaPort(11)#$>端口11</option>
+        <option value="12" $%sdot1xStaPort(12)#$>端口12</option>
+        <option value="13" $%sdot1xStaPort(13)#$>端口13</option>
+        <option value="14" $%sdot1xStaPort(14)#$>端口14</option>
+        <option value="15" $%sdot1xStaPort(15)#$>端口15</option>
+        <option value="16" $%sdot1xStaPort(16)#$>端口16</option>
+        <option value="17" $%sdot1xStaPort(17)#$>端口17</option>
+        <option value="18" $%sdot1xStaPort(18)#$>端口18</option>
+        <option value="19" $%sdot1xStaPort(19)#$>端口19</option>
+        <option value="20" $%sdot1xStaPort(20)#$>端口20</option>
+        <option value="21" $%sdot1xStaPort(21)#$>端口21</option>
+        <option value="22" $%sdot1xStaPort(22)#$>端口22</option>
+        <option value="23" $%sdot1xStaPort(23)#$>端口23</option>
+        <option value="24" $%sdot1xStaPort(24)#$>端口24</option>
+        <option value="25" $%sdot1xStaPort(25)#$>端口25</option>
+        <option value="26" $%sdot1xStaPort(26)#$>端口26</option>
+        <option value="27" $%sdot1xStaPort(27)#$>端口27</option>
+        <option value="28" $%sdot1xStaPort(28)#$>端口28</option>
+      </select></td><td colspan="3" class="crons"><input type="checkbox" name="autoRefresh1" id="autoRefresh1"  value="ON"  onclick="aotoRefreshSet()"  / $%autoRefresh1#$ />
+自动刷新 &nbsp;&nbsp;&nbsp;&nbsp;
+      
+      <input type="submit" class="button3" name="button" id="button" value="立即刷新" />
+&nbsp;&nbsp;
+<input type="button" class="button1" name="button2" id="button2" value="清 零" onclick="clearPort()" />
+      
+      
+      <input type="hidden" name="hdotStaClearFlag" id="hdotStaClearFlag" value="$%hdotStaClearFlag#$" />
+      </td>
+    </tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=2 class="table_main3">Receive EAPOL Counters</td>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=2 class="table_main3">Transmit EAPOL Counters</td>
+    </tr>
+  <tr>
+    <td class="crons" colspan=2 width="12%">Total</td>
+    <td class="crons" width="38%"><input name="dot1xCounters0" type="text" class="disableText" id="dot1xCounters0"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2 width="12%">Total</td>
+    <td class="crons" width="38%"><input name="dot1xCounters1" type="text" class="disableText" id="dot1xCounters1"   value="" size="20"  readonly="readonly"/></td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Response ID</td>
+    <td class="crons"><input name="dot1xCounters2" type="text" class="disableText" id="dot1xCounters2"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>Request ID</td>
+    <td class="crons"><input name="dot1xCounters3" type="text" class="disableText" id="dot1xCounters3"   value="" size="20"  readonly="readonly"/></td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Responses</td>
+    <td class="crons"><input name="dot1xCounters4" type="text" class="disableText" id="dot1xCounters4"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>Requests</td>
+    <td class="crons"><input name="dot1xCounters5" type="text" class="disableText" id="dot1xCounters5"   value="" size="20"  readonly="readonly"/></td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Start</td>
+    <td class="crons"><input name="dot1xCounters6" type="text" class="disableText" id="dot1xCounters6"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Logoff</td>
+    <td class="crons"><input name="dot1xCounters7" type="text" class="disableText" id="dot1xCounters7"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Error</td>
+    <td class="crons"><input name="dot1xCounters8" type="text" class="disableText" id="dot1xCounters8"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+  <tr><td height=10></td></tr>
+  <tr>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=2 class="table_main3">Receive RADIUS Counters</td>
+    <td width="4%" align="center" class="table_main3"><img src="images/main_leftsmall.jpg" width="40" height="25" /></td>
+    <td colspan=2 class="table_main3">Transmit RADIUS Counters</td>
+    </tr>
+  <tr>
+    <td class="crons" colspan=2>Access Challenges</td>
+    <td class="crons"><input name="dot1xCounters9" type="text" class="disableText" id="dot1xCounters9"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>Responses</td>
+    <td class="crons"><input name="dot1xCounters10" type="text" class="disableText" id="dot1xCounters10"   value="" size="20"  readonly="readonly"/></td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Other Requests</td>
+    <td class="crons"><input name="dot1xCounters11" type="text" class="disableText" id="dot1xCounters11"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Auth. Successes</td>
+    <td class="crons"><input name="dot1xCounters12" type="text" class="disableText" id="dot1xCounters12"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="crons" colspan=2>Auth. Failures</td>
+    <td class="crons"><input name="dot1xCounters13" type="text" class="disableText" id="dot1xCounters13"   value="" size="20"  readonly="readonly"/></td>
+    <td class="crons" colspan=2>&nbsp;</td>
+    <td class="crons">&nbsp;</td>
+  </tr>
+</table>
+  <script language="javascript">
+
+  aotoRefresh();
+
+  </script>
+<INPUT TYPE="HIDDEN" NAME="CheckBoxManager" VALUE="autoRefresh1" >
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+</body>
+</html>

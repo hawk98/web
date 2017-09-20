@@ -1,0 +1,277 @@
+<HTML>
+<HEAD>
+<TITLE>page</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<link href="css/display_web.css" rel="stylesheet" type="text/css" />
+<script language="javascript">if (window == top) top.location.href = "/index.html";
+ </script>
+<script language="javascript" src="js/InputCheck_web.js"></script>
+
+
+
+
+<script language="javascript">
+
+/*
+var snmpGroupNameList = ["11111","22222","333333333","444444444","55555"];
+var snmpGroupSmodeList = ["aaaaaaa","bbbbbbbb","cccccccc","ddddddddddd","eeeeeeeeeeee"];
+var snmpGroupSleveList = [1,2,1,2,1];
+*/
+
+var snmpGroupNameList = [$%snmpGroupNameList#$];
+var snmpGroupSmodeList = [$%snmpGroupSmodeList#$];
+var snmpGroupSleveList = [$%snmpGroupSleveList#$];
+var snmpreadViewList = [$%snmpreadViewList#$];
+var snmpwriteViewList = [$%snmpwriteViewList#$];
+var snmpnotifyViewList = [$%snmpnotifyViewList#$];
+
+function display()
+{
+changebgcolor();
+
+}
+function writeList()
+{
+var tempBuf = "";
+var i;
+
+for(i=0;i<snmpGroupNameList.length;i++)
+	{
+	tempBuf += "<tr  class='tables_all'><td class='inputsyslog1'  >";
+	tempBuf += snmpGroupNameList[i];
+	//tempBuf += "</td><td class='crons'>";
+	//tempBuf += getSmode(snmpGroupSmodeList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";	
+	tempBuf += snmpreadViewList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";	
+	tempBuf += snmpwriteViewList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";	
+	tempBuf += snmpnotifyViewList[i];
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += getSleve(snmpGroupSleveList[i]);
+	tempBuf += "</td><td class='inputsyslog1'>";
+	tempBuf += "<input type='button' type='button' class='botton_under_line' id='button' value='删 除' onclick='delSelectId("+i+")' />";
+	//tempBuf += "<input type='button' type='button' class='button1' id='button' value='删除' onclick='delSelectId("+i+","+snmpGroupSmodeList[i]+")' />";
+	tempBuf += "</td><tr >";
+	}
+	document.write(tempBuf);
+}
+function getSmode(value)
+{
+if(value == 1)
+	return "SNMPv1";
+if(value == 2)
+	return "SNMPv2c";
+if(value == 3)
+	return "SNMPv3";
+}
+function getSleve(value)
+{
+if(value == 1)
+	return "NoAuthNoPriv";
+if(value == 2)
+	return "AuthNoPriv";
+if(value == 3)
+	return "AuthPriv";
+}
+
+
+function delSelectId( ID )
+{
+	document.getElementById("snmpGroupDelID").value = snmpGroupNameList[ID];
+	
+	//document.getElementById("snmpGroupDelMode").value = snmpGroupSmodeList[ID];
+	document.getElementById("snmpGroupDelMode").value = 0;
+	
+	//alert(document.getElementById("snmpGroupDelID").value);
+	//alert(document.getElementById("snmpGroupDelMode").value);
+	
+	document.form2.submit();
+}
+
+
+function checkSub()
+{
+	
+	if(!checkname(document.getElementById("snmpgroupName"),"群组名为空","群组名错误","群组名错误",1))
+	{
+		return false;
+	}
+	if(document.getElementById("snmpgroupName").value.length > 32 ||document.getElementById("snmpgroupName").value.length == 0)
+	{
+		alert("群组名不能为空，长度也不能超过32");
+		return false;
+	}
+	
+	if(!tdCheckASCIICode(document.getElementById("snmpgroupName").value))
+	{
+		alert("群组名错误");
+		return false;
+	}
+	
+	
+	if(document.getElementById("snmpreadView").value.length > 32)
+	{
+		alert("只读视图长度不能超过32");
+		return false;
+	}
+
+	
+	if(!tdCheckASCIICode(document.getElementById("snmpreadView").value))
+	{
+		alert("只读视图错误");
+		return false;
+	}
+	
+	if(document.getElementById("snmpwriteView").value.length > 32)
+	{
+		alert("读写视图长度不能超过32");
+		return false;
+	}
+	if(!tdCheckASCIICode(document.getElementById("snmpwriteView").value))
+	{
+		alert("读写视图错误");
+		return false;
+	}	
+	
+	if(document.getElementById("snmpnotifyView").value.length > 32)
+	{
+		alert("告警视图长度不能超过32");
+		return false;
+	}
+	if(!tdCheckASCIICode(document.getElementById("snmpnotifyView").value))
+	{
+		alert("告警视图错误");
+		return false;
+	}	
+	
+	if(document.getElementById("snmpreadView").value  == "")
+		document.getElementById("snmpreadView").value  =	"none";
+	
+	if(document.getElementById("snmpwriteView").value == "")
+		document.getElementById("snmpwriteView").value = "none";
+	
+	if(document.getElementById("snmpnotifyView").value == "")
+		document.getElementById("snmpnotifyView").value = "none";
+	
+	return true;
+	//document.form1.submit();
+}
+
+function changeLeave()
+{		
+	document.getElementById("snmpsecLevel").selectedIndex = 0;	
+}
+
+function setleveenable(){
+	if(!checkSub()) return;	
+	document.form1.submit();
+	
+}
+
+</script>
+
+
+</HEAD>
+
+<BODY  onload=display() >
+<br>
+
+
+<div id="view_help"  style="display:none">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class="Tablelist"><nobr>帮助</nobr></td>
+    <td   class="tablenew"></td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0   class="tablebord" bgcolor="D3E4F4">
+	  
+<SCRIPT language="javascript">
+		document.writeln(top.leftframe.helptext('snmp_group'));
+ </SCRIPT>
+	  
+	  </TABLE>
+</div>
+
+
+  <form id="form1" name="form1" method="post" action="" onSubmit="">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+<tr>
+    <td  class=Tablelist id=tabs name=tabs>SNMP群组</td>
+  </tr>
+</table>
+<TABLE width="98%" align="center" cellpadding=0 cellspacing=0 id="table1" class="tablebord">
+  <TBODY>
+    <TR height=22>
+      <TD width="18%" valign="top"><div align="left">&nbsp;&nbsp;<span class="td25">群组名</span></div></TD>
+      <TD width="32%" ><span class="crons">
+      <input type="text" name="snmpgroupName" id="snmpgroupName" size="20" maxlength="32" value="$%snmpgroupName#$" />
+(范围：1~32个字符) </span></TD>
+      <TD width="18%" >&nbsp;</TD>
+      <TD width="32%" >&nbsp;</TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">只读视图</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="snmpreadView" id="snmpreadView" size="20" maxlength="32" value="$%snmpreadView#$" />
+(范围：1~32个字符) </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">读写视图</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="snmpwriteView" id="snmpwriteView" size="20" maxlength="32" value="$%snmpwriteView#$" />
+(范围：1~32个字符) </span></TD>
+    </TR>
+    <TR height=22>
+      <TD valign="top">&nbsp;&nbsp;<span class="td25">告警视图</span></TD>
+      <TD ><span class="crons">
+      <input type="text" name="snmpnotifyView" id="snmpnotifyView" size="20" maxlength="32" value="$%snmpnotifyView#$" />
+(范围：1~32个字符) </span></TD>
+      <TD >&nbsp;&nbsp;<span class="td25">安全等级</span></TD>
+      <TD ><span class="crons">
+        <select name="snmpsecLevel" id="snmpsecLevel" size="1">
+          <option value="1" $%snmpsecLevel(1)#$>NoAuthNoPriv</option>
+          <option value="2" $%snmpsecLevel(2)#$>AuthNoPriv</option>
+          <option value="3" $%snmpsecLevel(3)#$>AuthPriv</option>
+        </select>
+      </span></TD>
+    </TR>
+    <tr>
+    	<td class="partition" colspan="8">&nbsp;
+      <input name="b_submit2" class="button1" type="button" id="b_submit" value="提 交"    onclick="setleveenable()"  >
+        <input name="b_reset2" class="button1" type="button" onClick="javascript:window.location.reload() " id="b_reset2" value="取消">
+    </td>
+    
+    </tr>
+</TABLE>
+
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="">
+  <tr>
+    <td width="51%"  class=Tablelist id=tabs name=tabs>SNMP群组表</td>
+    <td width="49%"   class="tablenew" id=tabs name=tabs><div align="right"></div></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding=0 cellspacing=0 class="tablebord" id="table3"  >
+    <TR align="center" height=22>
+      <TD width="13%"   nowrap class="all_tables_list"><span class="partition">群组名</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="partition">只读视图</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="td25">读写视图</span></TD>
+      <TD width="15%"   nowrap class="all_tables_list"><span class="td25">告警视图</span></TD>
+      <TD width="20%"   nowrap class="all_tables_list"><span class="td25">安全等级</span></TD>
+      <TD width="22%"   nowrap class="all_tables_list"><span class="partition">删除</span></TD>
+    </TR>
+  <script language="javascript">
+  writeList();
+  </script>
+  </table>
+</form>
+</form>
+  <form id="form2" name="form2" method="post" action="del_snmp_group.html"  >
+  <input type="hidden" name="snmpGroupDelID" id="snmpGroupDelID" / VALUE="">
+  <input type="hidden" name="snmpGroupDelMode" id="snmpGroupDelMode" / VALUE="">
+  </form>
+</BODY></HTML>
